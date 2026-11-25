@@ -1,0 +1,23 @@
+{
+  "_comment": "Criterio de exito del estudio 01 fijado ANTES de descargar o mirar resultados. No cambiar tras ver datos; si hay que cambiarlo, nuevo fichero versionado y justificacion.",
+  "version": 1,
+  "frozen_on": "2026-11-25",
+  "reference": "PM_FAO56_V1",
+  "metric_unit": "mm/day",
+  "competitive": {
+    "global_rmse_max": 0.62,
+    "global_abs_bias_max": 0.15,
+    "per_station_rmse_max": 1.0,
+    "anchor": "Valiantzas sin ajustar, RMSE anual V2 (0,62)"
+  },
+  "usable": {
+    "global_rmse_max": 0.95,
+    "anchor": "HS-Ra sin ajustar, RMSE anual V2 (0,95)"
+  },
+  "not_competitive": "global_rmse > usable.global_rmse_max",
+  "notes": [
+    "AHC (0,63 y 0,51 de RMSE anual V2) es una meta de referencia, no un umbral.",
+    "Se reporta ademas por estacion, anio, mes y temporada (DJF asigna diciembre al anio siguiente).",
+    "Open-Meteo usa todos los inputs en rejilla; los modelos V2 usan pocos inputs de sensor: la comparacion no es de iguales."
+  ]
+}

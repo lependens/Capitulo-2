@@ -1,0 +1,74 @@
+name: backfill
+
+# Descarga historica manual (por estacion y anio). Es idempotente: lo ya descargado se omite.
+
+on:
+  workflow_dispatch:
+    inputs:
+      product:
+        description: "Producto de Open-Meteo"
+        type: choice
+        options: [archive, historical_forecast]
+        default: archive
+      start:
+        description: "Fecha inicial (YYYY-MM-DD)"
+        default: "2020-01-01"
+      end:
+        description: "Fecha final (YYYY-MM-DD)"
+        default: "2025-12-31"
+      stations:
+        description: "Estaciones separadas por comas (vacio = todas)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-commits
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Descargar
+        env:
+          PYTHONPATH: src
+          PRODUCT: ${{ inputs.product }}
+          START: ${{ inputs.start }}
+          END: ${{ inputs.end }}
+          STATIONS: ${{ inputs.stations }}
+        run: |
+          python -m openmeteo_et0 backfill --product "$PRODUCT" --start "$START" --end "$END" --stations "$STATIONS"
+      - name: Construir tabla procesada
+        if: always()
+        env:
+          PYTHONPATH: src
+          PRODUCT: ${{ inputs.product }}
+        run: python -m openmeteo_et0 build-processed --product "$PRODUCT"
+      - name: Verificar hashes
+        if: always()
+        env:
+          PYTHONPATH: src
+        run: python -m openmeteo_et0 verify
+      - name: Guardar datos en el repositorio
+        if: always()
+        env:
+          PRODUCT: ${{ inputs.product }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+          else
+            git commit -m "data: backfill $PRODUCT"
+            git pull --rebase
+            git push
+          fi

@@ -1,0 +1,49 @@
+name: daily-forecast
+
+# Captura diaria de la prevision de Open-Meteo (16 dias) de las 9 estaciones.
+# Esa serie no se puede reconstruir despues, por eso se guarda cada dia.
+# El commit diario evita ademas que GitHub desactive el cron por inactividad (60 dias en repos publicos).
+
+on:
+  schedule:
+    - cron: "17 4 * * *" # 04:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-commits
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Capturar prevision de hoy
+        env:
+          PYTHONPATH: src
+        run: python -m openmeteo_et0 daily-forecast
+      - name: Construir tabla procesada
+        if: always()
+        env:
+          PYTHONPATH: src
+        run: python -m openmeteo_et0 build-processed --product forecast
+      - name: Guardar datos en el repositorio
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+          else
+            git commit -m "data: captura de prevision $(date -u +%F)"
+            git pull --rebase
+            git push
+          fi
