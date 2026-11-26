@@ -62,3 +62,18 @@ Temperatura (Tmax -1,8 C, Tmin +3,2 C, rango diurno 5 C menor) y humedad pesan p
 Cautela: la diferencia de viento mezcla el efecto rejilla (mar/tierra, rugosidad) con la altura efectiva del anemometro de cada estacion,
 que no esta verificada. La ET0 nativa de Open-Meteo no es identica a la PM recalculada con sus inputs diarios (diferencia media -0,02,
 RMSE 0,23, correlacion 0,992): su documentacion indica que se calcula por horas y se suma, sin detallar altura de viento ni variable de radiacion.
+
+## Gráficos y tablas ampliadas
+![Dispersión](figures/01_scatter.png)
+![Sesgo y RMSE por mes](figures/02_mes.png)
+![Sesgo por estación y mes](figures/03_sesgo_estacion_mes.png)
+![Sustitución de inputs](figures/04_sustitucion_inputs.png)
+
+Tablas por estación, mes y año, comparación de inputs y escenarios de sustitución: `results/tablas_ampliadas.md` (se regeneran con `python studies/01_et0_vs_pm/make_figures.py`).
+
+### Interpretación
+- El sesgo es positivo en las 9 estaciones y los 12 meses y es el 52 % del error cuadrático: quitándole el sesgo medio global el RMSE baja de 0,752 a 0,521.
+- El sesgo absoluto es mayor en otoño-invierno (+0,6–0,7 mm/día en oct–dic) y menor en mayo–junio (+0,3); en relación con la ET0 es enorme en invierno (+60 % en dic–ene) y pequeño en verano (+6–11 %).
+- IB08 e IB10 son las peores (RMSE 1,04 y 0,91, sesgo +0,94 y +0,76) y IB11 tiene el menor sesgo (+0,23) pero un RMSE alto: el error de IB11 es sobre todo ruido, no desplazamiento.
+- Entre los inputs, la temperatura de Open-Meteo tiene el rango diurno 5 °C más pequeño (Tmin +3,2 °C, Tmax −1,8 °C) y el viento a 2 m es el doble del medido (2,60 frente a 1,25 m/s). Cambiar solo el viento da casi todo el error (RMSE 0,658, sesgo +0,51); T, HR y Rs por separado dan 0,12, 0,17 y 0,30.
+- Sustituir inputs de uno en uno no es aditivo: T+HR da 0,231 y no 0,124+0,168.
