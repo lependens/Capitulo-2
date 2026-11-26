@@ -1,0 +1,31 @@
+{
+  "_comment": "Criterios del estudio 02 fijados ANTES de ejecutarlo (2026-11-26). Sustituyen en este estudio al thresholds.json v1 (que sigue congelado como historia). No cambiar tras ver resultados; si hace falta, nuevo fichero versionado.",
+  "version": 2,
+  "frozen_on": "2026-11-26",
+  "reference": "PM_FAO56_V1",
+  "protocol": {
+    "development": ["2004-01-01", "2019-12-31"],
+    "test": ["2020-01-01", "2025-12-31"],
+    "test_cohort": "common_core == 1 en los CSV V2 (n=19251)",
+    "adjustment": "AHC = a = sum(x*PM)/sum(x^2) por estacion (x = ET0 de Open-Meteo), ajustado solo con DESARROLLO",
+    "granularities": ["annual", "seasonal", "monthly"],
+    "selection_by_test": false,
+    "note": "Se publican las tres granularidades; ninguna se elige mirando TEST."
+  },
+  "comparison_A": {
+    "claim": "Open-Meteo + AHC mejora a las formulas de V2 en la misma granularidad",
+    "against": ["HS_RA_V1_FORMULA", "HG_RS_V1_FORMULA", "VALIANTZAS_V1_FORMULA", "HS_RA_V1_AHC", "HG_RS_V1_AHC", "VALIANTZAS_V1_AHC"],
+    "rule": "RMSE global TEST menor que el del comparador; se reporta cada comparador por separado (sin nota compuesta) junto con sesgo y n.º de estaciones donde gana"
+  },
+  "comparison_B": {
+    "claim": "ML y ANN de V2 siguen mejorando a Open-Meteo + AHC (ventaja del producto)",
+    "against": ["<familia>_ML", "<familia>_ANN_A", "<familia>_ANN_E"],
+    "rule": "RMSE global TEST del ML/ANN menor que el de Open-Meteo + AHC; se reporta por familia y granularidad"
+  },
+  "caveats": [
+    "Open-Meteo usa todas las entradas; las formulas de V2 usan pocas entradas de sensor.",
+    "Coeficiente ajustado con reanalisis (archive) puede no transferirse a la prevision.",
+    "Las predicciones V2 vienen de la exportacion data/v2 (catalogo derivado V2 aun DRAFT).",
+    "Filtrado de DESARROLLO: PM no vacio y evaluated_PM = true y ET0 Open-Meteo presente (criterio propio, V2 no lo detalla en la exportacion)."
+  ]
+}
