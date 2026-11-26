@@ -1,0 +1,24 @@
+{
+  "source_file": "classical-baselines.csv",
+  "source_sha256": "f55e4ed12691b84dbca4e090c49da538d5e7fad4f2ef371e1307a649cfb1af44",
+  "output_file": "reference_2020_2025.csv",
+  "output_sha256": "ce90829304ca2b69b89ceee4c459cb204cdc83b76180d6e9a229308ddb779060",
+  "rows": 19272,
+  "period": [
+    "2020-01-01",
+    "2025-12-31"
+  ],
+  "columns": [
+    "station_code",
+    "date",
+    "ET0_PM_FAO56_V1",
+    "ET0_HS_RA_V1",
+    "ET0_VALIANTZAS_V1",
+    "ET0_HG_RS_V1",
+    "EtPMon",
+    "evaluated_PM",
+    "quality_status",
+    "observation_status"
+  ],
+  "note": "Subconjunto del CSV de Capitulo-1; PM_FAO56_V1 es referencia calculada (FAO-56), no ET0 medida. Origen de datos: SiAR (MAPA); citar siempre."
+}
