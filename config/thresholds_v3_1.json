@@ -1,0 +1,58 @@
+{
+  "_comment": "Criterios del estudio 03.1. Se congelan al fusionar el PR que los introduce, ANTES de ejecutar. No sustituyen a thresholds_v3.json (estudio 03.2), que sigue congelado. Existe una prueba exploratoria previa declarada (studies/03_loso_openmeteo_ml/exploratorio/).",
+  "version": "3.1",
+  "status": "PROPUESTA hasta fusionar el PR; despues CONGELADO",
+  "reference": "PM_FAO56_V1",
+  "protocol": {
+    "development": ["2004-01-01", "2019-12-31"],
+    "test": ["2020-01-01", "2025-12-31"],
+    "test_cohort": "common_core == 1 en los CSV V2 (n=19251)",
+    "training_rule": "Solo DESARROLLO y solo estaciones de entrenamiento de cada particion",
+    "folds": "identicos a thresholds_v3.json (F1_loso principal; F2_island con Ibiza y Menorca; Mallorca solo informativo)",
+    "selection_by_test": false
+  },
+  "families": {
+    "HS_RA": ["Tmax", "Tmin", "Ra"],
+    "VALIANTZAS": ["Tmax", "Tmin", "HR_media", "Ra"],
+    "HG_RS": ["Tmax", "Tmin", "Rs"]
+  },
+  "inputs": {
+    "principal": "inputs base de la familia (granularidad anual de V2)",
+    "secundaria": "inputs base + sin/cos dia del anio + altitud"
+  },
+  "methods": {
+    "FORMULA": "sin ajuste; control frente a V2",
+    "AHC_transferido": "coeficiente anual y mensual medio de las estaciones de entrenamiento",
+    "AHC_vecino": "coeficiente anual y mensual de la estacion de entrenamiento mas cercana",
+    "Ridge": {"alpha": [0.1, 1, 10, 100]},
+    "HGB_primario": {"learning_rate": [0.03, 0.1], "max_leaf_nodes": [15, 31], "max_iter": 500, "early_stopping": false},
+    "RF": {"n_estimators": 300, "min_samples_leaf": [5, 20]},
+    "ANN_V2like": "arquitectura y ajustes de las ANN A de V2 segun la metodologia de Capitulo-1; 5 semillas; si no es replicable, se informa y se omite",
+    "ANN_S": {"hidden_layer_sizes": [32], "alpha": [1e-4, 1e-3], "early_stopping": true, "seeds": [0, 1, 2, 3, 4]},
+    "ANN_M": {"hidden_layer_sizes": [64, 32], "alpha": [1e-4, 1e-3], "early_stopping": true, "seeds": [0, 1, 2, 3, 4]},
+    "tuning": "validacion cruzada interna agrupada por estacion dentro del entrenamiento; RMSE",
+    "negatives": "recorte a 0 con recuento"
+  },
+  "comparators": [
+    "V2_local: mismo metodo y familia en la propia estacion (data/v2), mide la degradacion",
+    "PM_estacion_mas_cercana_mismo_dia",
+    "PM_IDW_estaciones_entrenamiento_mismo_dia",
+    "OM_crudo",
+    "OM_AHC_mensual_medio_entrenamiento"
+  ],
+  "statistics": {
+    "paired_ci": "Delta RMSE con IC 95% por bootstrap de bloques estacion-anio, 2000 replicas, semilla 20261126",
+    "practical_threshold_mm_dia": 0.05
+  },
+  "hypotheses": {
+    "H1_degradacion": "por familia: HGB conjunto (F1) - mejor modelo local V2 de la familia > 0, extremo inferior del IC > 0; se informa el tamano",
+    "H2_vs_estacion_cercana": "por familia: HGB conjunto (F1) - PM_estacion_mas_cercana; se informa Delta e IC",
+    "H3_vs_openmeteo": "por familia: HGB conjunto (F1) - OM_AHC_mensual_medio_entrenamiento; se informa Delta e IC"
+  },
+  "decision_rule": "El cambio de rumbo a Open-Meteo corregido (estudio 03.2) queda justificado si, para HS_RA y VALIANTZAS, el HGB conjunto en F1 no gana ni a PM_estacion_mas_cercana ni a OM_AHC_mensual_medio_entrenamiento (extremo superior del IC >= 0 en ambas comparaciones). HG_RS se informa aparte (requiere piranometro). Si no se cumple, se informa que el cambio de rumbo no esta justificado por este estudio.",
+  "caveats": [
+    "Referencia calculada, no ET0 medida.",
+    "9 estaciones cercanas y en regadio: F1 es optimista.",
+    "Diseno escrito despues de una prueba exploratoria (declarada)."
+  ]
+}

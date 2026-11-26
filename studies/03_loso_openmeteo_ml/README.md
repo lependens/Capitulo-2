@@ -1,5 +1,7 @@
 # Estudio 03: Open-Meteo corregido con ML, evaluado en estaciones no vistas (leave-one-station-out)
 
+> **Numeración:** este estudio es el **03.2**. Se ejecuta después del **03.1** (`studies/03_1_loso_inputs_siar/`), que comprueba primero si los modelos de pocos inputs de SIAR funcionan en una estación no vista; el 03.1 es el que justifica (o no) este cambio de rumbo. La carpeta y `config/thresholds_v3.json` conservan su nombre porque los criterios ya están congelados.
+
 Estado: **PLAN**. Protocolo y criterios en `config/thresholds_v3.json`; se congelan al fusionar el PR que los introduce, antes de ejecutar nada de este protocolo.
 
 ## Por qué este estudio (cambio de rumbo)
