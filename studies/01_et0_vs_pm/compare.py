@@ -42,9 +42,9 @@ def main(argv=None):
     ap.add_argument("--openmeteo", required=True, type=Path)
     ap.add_argument("--station-col", default="station_code")
     ap.add_argument("--date-col", default="date")
-    ap.add_argument("--ref-col", default="PM_FAO56_V1")
+    ap.add_argument("--ref-col", default="ET0_PM_FAO56_V1")
     ap.add_argument("--om-col", default="et0_om_mm")
-    ap.add_argument("--baselines", default="HS_RA_V1,VALIANTZAS_V1,HG_RS_V1",
+    ap.add_argument("--baselines", default="ET0_HS_RA_V1,ET0_VALIANTZAS_V1,ET0_HG_RS_V1",
                     help="columnas de formulas clasicas en el CSV de referencia (vacio para omitir)")
     ap.add_argument("--start", default="2020-01-01")
     ap.add_argument("--end", default="2025-12-31")

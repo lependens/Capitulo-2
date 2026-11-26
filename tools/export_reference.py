@@ -5,8 +5,8 @@ Uso:
         --output data/reference/reference_2020_2025.csv
 
 Escribe un CSV pequeno con las columnas pedidas y un .manifest.json con el SHA256 del original y del resultado.
-Los nombres de columna por defecto son los del contrato de Capitulo-1; si la cabecera real difiere, se indica
-con --station-col / --date-col y el script lista las columnas disponibles al fallar.
+Nombres de columna de classical-baselines.csv (cuatro metodos, SHA256 f55e4ed1...af44). No trae columna de split:
+los periodos se definen por fecha.
 """
 
 import argparse
@@ -30,7 +30,7 @@ def main():
     ap.add_argument("--output", required=True, type=Path)
     ap.add_argument("--station-col", default="station_code")
     ap.add_argument("--date-col", default="date")
-    ap.add_argument("--keep", default="split,PM_FAO56_V1,HS_RA_V1,HG_RS_V1,VALIANTZAS_V1,EtPMon,quality_status",
+    ap.add_argument("--keep", default="ET0_PM_FAO56_V1,ET0_HS_RA_V1,ET0_VALIANTZAS_V1,ET0_HG_RS_V1,EtPMon,evaluated_PM,quality_status,observation_status",
                     help="columnas adicionales a conservar (las que no existan se avisan y se omiten)")
     ap.add_argument("--start", default="2020-01-01")
     ap.add_argument("--end", default="2025-12-31")
