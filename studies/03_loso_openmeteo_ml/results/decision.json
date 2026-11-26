@@ -1,0 +1,77 @@
+{
+  "umbral_practico_mm_dia": 0.05,
+  "hipotesis": {
+    "H1": {
+      "A": "S0|HGB",
+      "B": "OM_AHC_mensual_medio_entrenamiento",
+      "rmse_A": 0.43294757837362785,
+      "rmse_B": 0.482756667368198,
+      "delta_rmse": -0.049809088994570205,
+      "ci95": [
+        -0.06892564949048541,
+        -0.029069306863637658
+      ],
+      "pequena": true,
+      "criterio": "Delta RMSE < 0 y extremo superior del IC < 0",
+      "cumple": true
+    },
+    "H2": {
+      "A": "S0|HGB",
+      "B": "PM_estacion_mas_cercana_mismo_dia",
+      "rmse_A": 0.43294757837362785,
+      "rmse_B": 0.48391185851641877,
+      "delta_rmse": -0.05096428014279092,
+      "ci95": [
+        -0.08399606276584992,
+        -0.018148942565383023
+      ],
+      "pequena": false,
+      "criterio": "Delta RMSE < 0 y extremo superior del IC < 0",
+      "cumple": true
+    },
+    "H3": {
+      "A": "S2|HGB",
+      "B": "S0|HGB",
+      "rmse_A": 0.39571276708729763,
+      "rmse_B": 0.43294757837362785,
+      "delta_rmse": -0.037234811286330216,
+      "ci95": [
+        -0.06156014849041667,
+        -0.012233796630699878
+      ],
+      "pequena": true,
+      "criterio": "extremo superior del IC < 0",
+      "cumple": true
+    },
+    "H4": {
+      "criterio": "HGB-L1 y HGB-L2 > HGB-S0: extremo inferior del IC > 0 en ambas",
+      "partes": {
+        "H4_L1": {
+          "A": "L1|HGB",
+          "B": "S0|HGB",
+          "rmse_A": 0.6680863309597208,
+          "rmse_B": 0.43294757837362785,
+          "delta_rmse": 0.23513875258609296,
+          "ci95": [
+            0.19855077722621622,
+            0.27396985226253856
+          ],
+          "pequena": false
+        },
+        "H4_L2": {
+          "A": "L2|HGB",
+          "B": "S0|HGB",
+          "rmse_A": 0.5527245711011668,
+          "rmse_B": 0.43294757837362785,
+          "delta_rmse": 0.11977699272753883,
+          "ci95": [
+            0.07862875040957494,
+            0.16216012424990578
+          ],
+          "pequena": false
+        }
+      },
+      "cumple": true
+    }
+  }
+}
