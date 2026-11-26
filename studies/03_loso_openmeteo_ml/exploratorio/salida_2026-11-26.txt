@@ -1,0 +1,18 @@
+                                        RMSE global  sesgo  peor est.       n
+modelo                                                                       
+ML sensor T+HR + Open-Meteo                   0.386  0.044      0.455  9497.0
+PM estación más cercana (IB03, 11 km)         0.403  0.246      0.403  1096.0
+PM estación más cercana (IB05, 11 km)         0.403 -0.246      0.403  1096.0
+ML solo Open-Meteo                            0.412  0.038      0.535  9497.0
+ML sensor T + Open-Meteo                      0.413  0.036      0.511  9497.0
+PM estación más cercana (IB04, 22 km)         0.435  0.160      0.435  1002.0
+PM estación más cercana (IB10, 22 km)         0.435 -0.160      0.435  1002.0
+PM estación más cercana (IB02, 16 km)         0.454  0.268      0.454   919.0
+PM estación más cercana (IB06, 16 km)         0.454 -0.268      0.454   919.0
+OM+AHC mensual (otras 8)                      0.472 -0.008      0.681  9497.0
+PM estación más cercana (IB06, 93 km)         0.504  0.270      0.504  1002.0
+ML sensor T+HR (+Ra) [tipo Valiantzas]        0.566  0.070      0.709  9497.0
+PM estación más cercana (IB01, 32 km)         0.571 -0.212      0.571  1092.0
+PM estación más cercana (IB11, 32 km)         0.571  0.212      0.571  1092.0
+ML solo sensor T (+Ra, calendario)            0.691  0.082      0.922  9497.0
+OM crudo                                      0.752  0.548      0.997  9497.0

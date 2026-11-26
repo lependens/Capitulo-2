@@ -17,9 +17,16 @@ Origen de los modelos y la referencia: [Capitulo-1](https://github.com/lependens
 | `data/v2/` | Predicciones ET0 V2 2020-2025 exportadas de Capitulo-1 (con manifiesto y SHA256) |
 | `data/reference/` | Referencia PM_FAO56_V1 congelada (subconjunto de Capitulo-1) con su manifiesto y SHA256 |
 | `studies/02_openmeteo_ahc/` | Estudio 02: Open-Meteo + AHC (ajuste ≤2019, test 2020-2025) frente a V2 |
+| `config/thresholds_v3.json` | Criterios del estudio 03 (se congelan al fusionar su PR, antes de ejecutar) |
+| `studies/03_loso_openmeteo_ml/` | Estudio 03 (plan): Open-Meteo corregido con ML, evaluado en estaciones no vistas (leave-one-station-out) |
+| `studies/04_prevision_et0/` | Estudio 04 (enfoque): previsión de ET0 a 0–7 días |
 | `studies/01_et0_vs_pm/` | Estudio 01: ET0 de Open-Meteo frente a PM_FAO56_V1 y frente a las formulas V2 |
 | `tools/export_reference.py` | Extrae de `classical-baselines.csv` (Capitulo-1, 56 MB) solo 2020-2025 y las columnas necesarias |
 | `.github/workflows/` | `daily_forecast` (captura diaria), `backfill` (descarga historica manual), `tests` |
+
+## Rumbo actual (2026-11-26)
+
+Los estudios 01 y 02 muestran que las ANN de V2 ganan a Open-Meteo sobre todo en su propia estacion y con radiacion medida, el caso de menos valor practico, y que el error de Open-Meteo viene del viento y del rango diurno de temperatura de la rejilla, no de su radiacion ni de su humedad. Se reorienta el producto de "ANN con pocos inputs locales" a **"datos de Open-Meteo corregidos para tu ubicacion con la referencia SIAR"**, con sensor del usuario opcional. El estudio 03 lo comprueba en estaciones no vistas; el 04 lo extiende a prevision. Justificacion completa en `studies/03_loso_openmeteo_ml/README.md`.
 
 ## Como se obtienen los datos
 

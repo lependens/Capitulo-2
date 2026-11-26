@@ -1,0 +1,60 @@
+{
+  "_comment": "Criterios del estudio 03. Se congelan al fusionar el PR que los introduce, ANTES de ejecutar el protocolo. Existe una prueba exploratoria previa (studies/03_loso_openmeteo_ml/exploratorio/) con otro corte temporal; se declara en el README. No cambiar tras ver resultados; si hace falta, nuevo fichero versionado.",
+  "version": 3,
+  "status": "PROPUESTA hasta fusionar el PR; despues CONGELADO",
+  "reference": "PM_FAO56_V1",
+  "protocol": {
+    "development": ["2004-01-01", "2019-12-31"],
+    "test": ["2020-01-01", "2025-12-31"],
+    "test_cohort": "common_core == 1 en los CSV V2 (n=19251), mismas claves que el estudio 02",
+    "training_rule": "Solo DESARROLLO y solo estaciones de entrenamiento de cada particion; la estacion o isla de prueba no aparece en ningun anio del entrenamiento",
+    "folds": {
+      "F1_loso": ["IB01", "IB02", "IB03", "IB04", "IB05", "IB06", "IB08", "IB10", "IB11"],
+      "F2_island": {"Ibiza": ["IB01", "IB11"], "Menorca": ["IB08"], "Mallorca_informativo": ["IB02", "IB03", "IB04", "IB05", "IB06", "IB10"]}
+    },
+    "selection_by_test": false
+  },
+  "scenarios": {
+    "S0": "Open-Meteo diario (et0, tmax, tmin, radiacion, viento medio y maximo, HR media/max/min) + sin/cos dia del anio + Ra + altitud",
+    "S1": "S0 + Tmax y Tmin de sensor",
+    "S2": "S0 + Tmax, Tmin y HR media de sensor",
+    "L1": "solo sensor: Tmax, Tmin, Ra, sin/cos dia del anio, altitud",
+    "L2": "solo sensor: Tmax, Tmin, HR media, Ra, sin/cos dia del anio, altitud",
+    "S0_coord_sensibilidad": "S0 + latitud y longitud (solo secundario)"
+  },
+  "models": {
+    "Ridge": {"alpha": [0.1, 1, 10, 100]},
+    "HGB_primario": {"learning_rate": [0.03, 0.1], "max_leaf_nodes": [15, 31], "max_iter": 500, "early_stopping": false},
+    "RF": {"n_estimators": 300, "min_samples_leaf": [5, 20]},
+    "ANN_S": {"hidden_layer_sizes": [32], "alpha": [1e-4, 1e-3], "early_stopping": true, "seeds": [0, 1, 2, 3, 4]},
+    "ANN_M": {"hidden_layer_sizes": [64, 32], "alpha": [1e-4, 1e-3], "early_stopping": true, "seeds": [0, 1, 2, 3, 4]},
+    "tuning": "validacion cruzada interna agrupada por estacion dentro del entrenamiento de cada particion; metrica RMSE",
+    "negatives": "recorte a 0; se informa el numero de predicciones recortadas"
+  },
+  "comparators": [
+    "OM_crudo",
+    "OM_AHC_mensual_medio_entrenamiento",
+    "OM_AHC_mensual_estacion_mas_cercana",
+    "PM_estacion_mas_cercana_mismo_dia",
+    "PM_IDW_estaciones_entrenamiento_mismo_dia",
+    "techo_local: V2 (formula, AHC, ANN) y OM_AHC local del estudio 02 (no LOSO, solo contexto)"
+  ],
+  "statistics": {
+    "metric": "RMSE global TEST; tambien n, MAE, sesgo, R2",
+    "paired_ci": "Delta RMSE con IC 95% por bootstrap de bloques estacion-anio, 2000 replicas, semilla 20261126",
+    "practical_threshold_mm_dia": 0.05
+  },
+  "hypotheses": {
+    "H1_principal": "HGB-S0 (F1) < OM_AHC_mensual_medio_entrenamiento: Delta RMSE < 0 y extremo superior del IC < 0",
+    "H2": "HGB-S0 (F1) < PM_estacion_mas_cercana_mismo_dia: Delta RMSE < 0 y extremo superior del IC < 0",
+    "H3": "HGB-S2 (F1) < HGB-S0 (F1): extremo superior del IC < 0",
+    "H4": "HGB-L1 y HGB-L2 (F1) > HGB-S0 (F1): extremo inferior del IC > 0",
+    "secundario": "resto de modelos, F2 y sensibilidad con coordenadas: se informan sin veredicto"
+  },
+  "caveats": [
+    "Referencia calculada, no ET0 medida.",
+    "9 estaciones cercanas y en regadio: F1 es optimista.",
+    "Reanalisis (archive); no informa sobre el error con prevision (estudio 04).",
+    "Diseno escrito despues de una prueba exploratoria con otro corte temporal (declarada)."
+  ]
+}
