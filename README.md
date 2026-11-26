@@ -13,7 +13,10 @@ Origen de los modelos y la referencia: [Capitulo-1](https://github.com/lependens
 | `src/openmeteo_et0/` | Descarga, almacenamiento con hash, normalizacion y metricas (solo libreria estandar de Python) |
 | `data/raw/` | Respuestas originales de la API (`.json.gz`), nunca se sobrescriben; `manifest.csv` con fecha de consulta, URL y SHA256 |
 | `data/processed/` | Tablas diarias derivadas de lo crudo (reconstruibles) |
+| `config/thresholds_v2.json` | Criterios del estudio 02, **fijados antes de ejecutarlo** |
+| `data/v2/` | Predicciones ET0 V2 2020-2025 exportadas de Capitulo-1 (con manifiesto y SHA256) |
 | `data/reference/` | Referencia PM_FAO56_V1 congelada (subconjunto de Capitulo-1) con su manifiesto y SHA256 |
+| `studies/02_openmeteo_ahc/` | Estudio 02: Open-Meteo + AHC (ajuste ≤2019, test 2020-2025) frente a V2 |
 | `studies/01_et0_vs_pm/` | Estudio 01: ET0 de Open-Meteo frente a PM_FAO56_V1 y frente a las formulas V2 |
 | `tools/export_reference.py` | Extrae de `classical-baselines.csv` (Capitulo-1, 56 MB) solo 2020-2025 y las columnas necesarias |
 | `.github/workflows/` | `daily_forecast` (captura diaria), `backfill` (descarga historica manual), `tests` |
