@@ -46,12 +46,6 @@ jobs:
           STATIONS: ${{ inputs.stations }}
         run: |
           python -m openmeteo_et0 backfill --product "$PRODUCT" --start "$START" --end "$END" --stations "$STATIONS"
-      - name: Construir tabla procesada
-        if: always()
-        env:
-          PYTHONPATH: src
-          PRODUCT: ${{ inputs.product }}
-        run: python -m openmeteo_et0 build-processed --product "$PRODUCT"
       - name: Verificar hashes
         if: always()
         env:
@@ -60,15 +54,21 @@ jobs:
       - name: Guardar datos en el repositorio
         if: always()
         env:
+          PYTHONPATH: src
           PRODUCT: ${{ inputs.product }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data
-          if git diff --cached --quiet; then
-            echo "Sin cambios"
-          else
+          # 1) solo lo crudo (el manifiesto se fusiona solo con merge=union)
+          git add data/raw
+          if ! git diff --cached --quiet; then
             git commit -m "data: backfill $PRODUCT"
-            git pull --rebase
-            git push
           fi
+          git pull --rebase
+          # 2) tablas procesadas: se regeneran desde lo crudo ya integrado
+          python -m openmeteo_et0 build-processed --product "$PRODUCT"
+          git add data/processed
+          if ! git diff --cached --quiet; then
+            git commit -m "data: tabla procesada $PRODUCT"
+          fi
+          git push

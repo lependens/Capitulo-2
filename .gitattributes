@@ -1,0 +1,2 @@
+# Manifiesto append-only: dos workflows pueden anadir lineas a la vez; se conservan ambas.
+data/raw/manifest.csv merge=union
