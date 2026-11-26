@@ -1,0 +1,25 @@
+{
+  "source_file": "classical-baselines.csv",
+  "source_sha256": "f55e4ed12691b84dbca4e090c49da538d5e7fad4f2ef371e1307a649cfb1af44",
+  "output_file": "siar_inputs_2020_2025.csv",
+  "output_sha256": "1d99523c0413eb59b432da5fe7a765d46660fcdd3cd267700e574b15373651e6",
+  "rows": 19272,
+  "period": [
+    "2020-01-01",
+    "2025-12-31"
+  ],
+  "columns": [
+    "station_code",
+    "date",
+    "TempMax",
+    "TempMin",
+    "TempMedia",
+    "HumedadMax",
+    "HumedadMin",
+    "HumedadMedia",
+    "VelViento",
+    "Radiacion",
+    "quality_status"
+  ],
+  "note": "Subconjunto del CSV de Capitulo-1; PM_FAO56_V1 es referencia calculada (FAO-56), no ET0 medida. Origen de datos: SiAR (MAPA); citar siempre."
+}
