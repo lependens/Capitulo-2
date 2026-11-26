@@ -1,0 +1,19 @@
+resolution,family,method,n,delta_rmse_vs_OM_AHC,ci95_lo,ci95_hi,verdict
+annual,HS_RA_V1,ANN_A,19251,-0.0009,-0.0353,+0.0348,empate (IC incluye 0)
+annual,HS_RA_V1,ML,19251,+0.0191,-0.0166,+0.0545,empate (IC incluye 0)
+annual,HG_RS_V1,ANN_A,19251,-0.1659,-0.1975,-0.1336,ANN gana
+annual,HG_RS_V1,ML,19251,-0.1531,-0.1844,-0.1214,ANN gana
+annual,VALIANTZAS_V1,ANN_A,19251,-0.1130,-0.1478,-0.0818,ANN gana
+annual,VALIANTZAS_V1,ML,19251,-0.0951,-0.1294,-0.0630,ANN gana
+seasonal,HS_RA_V1,ANN_A,19251,+0.0694,+0.0430,+0.0956,OM+AHC gana
+seasonal,HS_RA_V1,ML,19251,+0.1029,+0.0757,+0.1302,OM+AHC gana
+seasonal,HG_RS_V1,ANN_A,19251,-0.1174,-0.1385,-0.0957,ANN gana
+seasonal,HG_RS_V1,ML,19251,-0.1013,-0.1227,-0.0800,ANN gana
+seasonal,VALIANTZAS_V1,ANN_A,19251,-0.0382,-0.0632,-0.0167,ANN gana
+seasonal,VALIANTZAS_V1,ML,19251,-0.0132,-0.0370,+0.0085,empate (IC incluye 0)
+monthly,HS_RA_V1,ANN_A,19251,+0.1082,+0.0847,+0.1318,OM+AHC gana
+monthly,HS_RA_V1,ML,19251,+0.1310,+0.1051,+0.1553,OM+AHC gana
+monthly,HG_RS_V1,ANN_A,19251,-0.0992,-0.1193,-0.0797,ANN gana
+monthly,HG_RS_V1,ML,19251,-0.0824,-0.1014,-0.0639,ANN gana
+monthly,VALIANTZAS_V1,ANN_A,19251,-0.0038,-0.0274,+0.0167,empate (IC incluye 0)
+monthly,VALIANTZAS_V1,ML,19251,+0.0141,-0.0091,+0.0342,empate (IC incluye 0)
