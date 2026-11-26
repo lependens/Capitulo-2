@@ -14,6 +14,20 @@ Criterios fijados antes de ejecutar: `config/thresholds_v2.json`. Ejecutar: `pyt
 
 Tabla completa contra cada fórmula/AHC/ML/ANN de V2 y granularidad: `results/comparison.md`. Métricas globales y por estación: `results/metrics_*.csv`; coeficientes: `results/coefficients.csv`; predicciones: `results/predictions_openmeteo_2020_2025.csv`.
 
+## Qué significan anual / estacional / mensual para ML y ANN (misma información de calendario)
+Según la metodología V2 de Capitulo-1 (`et0_methodology_review_v2.md`, `ET0_V2_MEMORIA_CIENTIFICA.md`): en anual, ML/ANN usan solo las entradas base de la familia; en estacional se añaden 4 indicadores de temporada (DJF/MAM/JJA/SON); en mensual, 12 indicadores de mes; AHC usa 1, 4 o 12 coeficientes con la misma partición. Por eso **todas las comparaciones de este estudio emparejan la misma granularidad**: Open-Meteo + AHC anual con las ANN anuales, el mensual con las mensuales, etc. (las columnas `*_ANN_A` de cada CSV de `data/v2` ya corresponden a su resolución). El día del año (seno/coseno) queda fuera de V2.
+
+### Diferencias pareadas con intervalo de confianza (`paired_ci.py`, `results/paired_ci.csv`)
+ΔRMSE = RMSE(ANN A de V2) − RMSE(Open-Meteo + AHC) en la misma cohorte; negativo gana la ANN. IC 95 % por bootstrap de bloques estación-año (54 bloques).
+
+| Granularidad | HS-Ra ANN | HG-Rs ANN | Valiantzas ANN |
+|---|---|---|---|
+| Anual | −0,001 [−0,035, +0,035] empate | −0,166 [−0,198, −0,134] gana ANN | −0,113 [−0,148, −0,082] gana ANN |
+| Estacional | +0,069 [+0,043, +0,096] gana OM+AHC | −0,117 [−0,139, −0,096] gana ANN | −0,038 [−0,063, −0,017] gana ANN |
+| Mensual | +0,108 [+0,085, +0,132] gana OM+AHC | −0,099 [−0,119, −0,080] gana ANN | −0,004 [−0,027, +0,017] empate |
+
+Los ML hacen lo mismo con diferencias algo menores a favor de OM+AHC. Lectura: Valiantzas (Tmin, Tmax, HRmedia, Ra) **empata** con Open-Meteo + AHC solo en mensual y le gana de forma significativa en anual y estacional; HG-Rs (con Rs medida) gana siempre; HS-Ra (solo temperaturas) pierde en estacional y mensual. El IC no incluye la incertidumbre de entrenamiento (un solo ajuste por celda) ni es un test leave-one-station-out.
+
 ## Gráficos
 ![RMSE global](figures/01_rmse_global.png)
 ![RMSE por mes](figures/02_rmse_por_mes.png)
