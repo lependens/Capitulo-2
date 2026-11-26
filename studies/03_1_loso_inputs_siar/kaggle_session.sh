@@ -12,6 +12,28 @@ D=studies/03_1_loso_inputs_siar
 OUT=/kaggle/working
 pip install -q -r "$D/requirements.txt" || { echo "pip no pudo instalar las versiones fijadas"; exit 1; }
 python "$D/check_env.py" || exit 1
+# CONTINUAR: si se montaron salidas de sesiones anteriores (Add Input -> Notebook output), se recuperan sus celdas
+# para no repetir nada. Cada celda se guarda entera al acabar, asi que una sesion cortada pierde como mucho las
+# celdas que estaban a medias.
+python - "${KAGGLE_INPUT_DIR:-/kaggle/input}" "$D/results/cells" <<'PY'
+import glob, os, shutil, sys, zipfile
+src, dst = sys.argv[1], sys.argv[2]
+os.makedirs(dst, exist_ok=True)
+n = 0
+for z in glob.glob(os.path.join(src, "**", "celdas_sesion_*.zip"), recursive=True):
+    with zipfile.ZipFile(z) as zf:
+        for name in zf.namelist():
+            base = os.path.basename(name)
+            if base.endswith(".json.gz") and not os.path.exists(os.path.join(dst, base)):
+                with zf.open(name) as a, open(os.path.join(dst, base), "wb") as b:
+                    shutil.copyfileobj(a, b)
+                n += 1
+for f in glob.glob(os.path.join(src, "**", "*.json.gz"), recursive=True):
+    base = os.path.basename(f)
+    if not os.path.exists(os.path.join(dst, base)):
+        shutil.copy(f, os.path.join(dst, base)); n += 1
+print(f"celdas recuperadas de sesiones anteriores: {n}")
+PY
 case "$N" in
   1) ARGS=(--models RF,ANN_S,ANN_M) ;;
   2) ARGS=(--models ANN_V2like --families HS_RA,HG_RS) ;;
