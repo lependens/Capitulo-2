@@ -1,0 +1,393 @@
+scope,hypothesis,kind,A,B,n,n_blocks,rmse_A,rmse_B,delta_rmse,ci95_lo,ci95_hi,verdict
+F1,,vs_V2_local_mejor,HS_RA|principal|Ridge,HS_RA|V2_local_ANN_E_annual,19251,54,0.684152,0.532660,0.151492,0.135471,0.167799,B gana
+F1,,vs_PM_estacion_mas_cercana,HS_RA|principal|Ridge,PM_estacion_mas_cercana_mismo_dia,19251,54,0.684152,0.483912,0.200241,0.174821,0.223508,B gana
+F1,,vs_OM_AHC_transferido,HS_RA|principal|Ridge,OM_AHC_mensual_medio_entrenamiento,19251,54,0.684152,0.482757,0.201396,0.171529,0.231367,B gana
+F1,,vs_PM_IDW,HS_RA|principal|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,19251,54,0.684152,0.434489,0.249664,0.231796,0.268383,B gana
+F1,,vs_OM_crudo,HS_RA|principal|Ridge,OM_crudo,19251,54,0.684152,0.751612,-0.067459,-0.106456,-0.027092,A gana
+F1,H1,vs_V2_local_mejor,HS_RA|principal|HGB,HS_RA|V2_local_ANN_E_annual,19251,54,0.632748,0.532660,0.100088,0.081511,0.118852,B gana
+F1,H2,vs_PM_estacion_mas_cercana,HS_RA|principal|HGB,PM_estacion_mas_cercana_mismo_dia,19251,54,0.632748,0.483912,0.148836,0.122526,0.174421,B gana
+F1,H3,vs_OM_AHC_transferido,HS_RA|principal|HGB,OM_AHC_mensual_medio_entrenamiento,19251,54,0.632748,0.482757,0.149991,0.120266,0.179671,B gana
+F1,,vs_PM_IDW,HS_RA|principal|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,19251,54,0.632748,0.434489,0.198259,0.178640,0.217775,B gana
+F1,,vs_OM_crudo,HS_RA|principal|HGB,OM_crudo,19251,54,0.632748,0.751612,-0.118864,-0.160734,-0.077320,A gana
+F1,,vs_V2_local_mejor,HS_RA|secundaria|Ridge,HS_RA|V2_local_ANN_E_annual,19251,54,0.704469,0.532660,0.171809,0.148269,0.196510,B gana
+F1,,vs_PM_estacion_mas_cercana,HS_RA|secundaria|Ridge,PM_estacion_mas_cercana_mismo_dia,19251,54,0.704469,0.483912,0.220557,0.191327,0.248312,B gana
+F1,,vs_OM_AHC_transferido,HS_RA|secundaria|Ridge,OM_AHC_mensual_medio_entrenamiento,19251,54,0.704469,0.482757,0.221713,0.197149,0.247338,B gana
+F1,,vs_PM_IDW,HS_RA|secundaria|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,19251,54,0.704469,0.434489,0.269981,0.250745,0.289625,B gana
+F1,,vs_OM_crudo,HS_RA|secundaria|Ridge,OM_crudo,19251,54,0.704469,0.751612,-0.047142,-0.085981,-0.007821,A gana (pequena)
+F1,,vs_V2_local_mejor,HS_RA|secundaria|HGB,HS_RA|V2_local_ANN_E_annual,19251,54,0.668067,0.532660,0.135407,0.101419,0.171744,B gana
+F1,,vs_PM_estacion_mas_cercana,HS_RA|secundaria|HGB,PM_estacion_mas_cercana_mismo_dia,19251,54,0.668067,0.483912,0.184155,0.141957,0.227826,B gana
+F1,,vs_OM_AHC_transferido,HS_RA|secundaria|HGB,OM_AHC_mensual_medio_entrenamiento,19251,54,0.668067,0.482757,0.185310,0.135985,0.236565,B gana
+F1,,vs_PM_IDW,HS_RA|secundaria|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,19251,54,0.668067,0.434489,0.233578,0.187070,0.282317,B gana
+F1,,vs_OM_crudo,HS_RA|secundaria|HGB,OM_crudo,19251,54,0.668067,0.751612,-0.083545,-0.145372,-0.022959,A gana
+F1,,degradacion_metodo,HS_RA|FORMULA,HS_RA|V2_local_FORMULA_annual,19251,54,0.949058,0.949058,0.000000,-0.000000,0.000000,empate (IC incluye 0)
+F1,,degradacion_metodo,HS_RA|AHC_transferido_annual,HS_RA|V2_local_AHC_annual,19251,54,0.747600,0.630690,0.116910,0.080145,0.156733,B gana
+F1,,degradacion_metodo,HS_RA|AHC_vecino_annual,HS_RA|V2_local_AHC_annual,19251,54,0.841336,0.630690,0.210646,0.116332,0.307665,B gana
+F1,,degradacion_metodo,HS_RA|AHC_transferido_monthly,HS_RA|V2_local_AHC_annual,19251,54,0.742955,0.630690,0.112265,0.075427,0.153803,B gana
+F1,,degradacion_metodo,HS_RA|AHC_vecino_monthly,HS_RA|V2_local_AHC_annual,19251,54,0.840498,0.630690,0.209809,0.113020,0.308720,B gana
+F1,,degradacion_metodo,HS_RA|principal|Ridge,HS_RA|V2_local_ML_annual,19251,54,0.684152,0.553043,0.131110,0.113300,0.148840,B gana
+F1,,degradacion_metodo,HS_RA|principal|Ridge,HS_RA|V2_local_ANN_A_annual,19251,54,0.684152,0.533084,0.151068,0.134899,0.167315,B gana
+F1,,degradacion_metodo,HS_RA|principal|HGB,HS_RA|V2_local_ML_annual,19251,54,0.632748,0.553043,0.079705,0.059973,0.099783,B gana
+F1,,degradacion_metodo,HS_RA|principal|HGB,HS_RA|V2_local_ANN_A_annual,19251,54,0.632748,0.533084,0.099664,0.081122,0.118473,B gana
+F1,,sensibilidad_H1,HS_RA|principal|HGB,HS_RA|V2_local_ANN_A_annual,19251,54,0.632748,0.533084,0.099664,0.081122,0.118473,B gana
+F1,,sensibilidad_H1_cualquier_granularidad,HS_RA|principal|HGB,HS_RA|V2_local_ANN_A_seasonal,19251,54,0.632748,0.523581,0.109167,0.089379,0.129385,B gana
+F1,,comparadores,HS_RA|AHC_transferido_monthly,PM_estacion_mas_cercana_mismo_dia,19251,54,0.742955,0.483912,0.259043,0.210544,0.310145,B gana
+F1,,vs_V2_local_mejor,VALIANTZAS|principal|Ridge,VALIANTZAS|V2_local_ANN_E_annual,19251,54,0.559253,0.420913,0.138340,0.116764,0.158175,B gana
+F1,,vs_PM_estacion_mas_cercana,VALIANTZAS|principal|Ridge,PM_estacion_mas_cercana_mismo_dia,19251,54,0.559253,0.483912,0.075341,0.045769,0.102993,B gana
+F1,,vs_OM_AHC_transferido,VALIANTZAS|principal|Ridge,OM_AHC_mensual_medio_entrenamiento,19251,54,0.559253,0.482757,0.076496,0.043871,0.108910,B gana
+F1,,vs_PM_IDW,VALIANTZAS|principal|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,19251,54,0.559253,0.434489,0.124764,0.099888,0.149413,B gana
+F1,,vs_OM_crudo,VALIANTZAS|principal|Ridge,OM_crudo,19251,54,0.559253,0.751612,-0.192359,-0.230640,-0.154695,A gana
+F1,H1,vs_V2_local_mejor,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_E_annual,19251,54,0.518454,0.420913,0.097541,0.073554,0.118779,B gana
+F1,H2,vs_PM_estacion_mas_cercana,VALIANTZAS|principal|HGB,PM_estacion_mas_cercana_mismo_dia,19251,54,0.518454,0.483912,0.034542,0.003792,0.061692,B gana (pequena)
+F1,H3,vs_OM_AHC_transferido,VALIANTZAS|principal|HGB,OM_AHC_mensual_medio_entrenamiento,19251,54,0.518454,0.482757,0.035697,0.001587,0.068573,B gana (pequena)
+F1,,vs_PM_IDW,VALIANTZAS|principal|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,19251,54,0.518454,0.434489,0.083965,0.059783,0.106309,B gana
+F1,,vs_OM_crudo,VALIANTZAS|principal|HGB,OM_crudo,19251,54,0.518454,0.751612,-0.233158,-0.272364,-0.194179,A gana
+F1,,vs_V2_local_mejor,VALIANTZAS|secundaria|Ridge,VALIANTZAS|V2_local_ANN_E_annual,19251,54,0.568139,0.420913,0.147226,0.119208,0.174001,B gana
+F1,,vs_PM_estacion_mas_cercana,VALIANTZAS|secundaria|Ridge,PM_estacion_mas_cercana_mismo_dia,19251,54,0.568139,0.483912,0.084227,0.049848,0.116067,B gana
+F1,,vs_OM_AHC_transferido,VALIANTZAS|secundaria|Ridge,OM_AHC_mensual_medio_entrenamiento,19251,54,0.568139,0.482757,0.085383,0.052893,0.116997,B gana
+F1,,vs_PM_IDW,VALIANTZAS|secundaria|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,19251,54,0.568139,0.434489,0.133650,0.105450,0.160729,B gana
+F1,,vs_OM_crudo,VALIANTZAS|secundaria|Ridge,OM_crudo,19251,54,0.568139,0.751612,-0.183472,-0.221694,-0.146837,A gana
+F1,,vs_V2_local_mejor,VALIANTZAS|secundaria|HGB,VALIANTZAS|V2_local_ANN_E_annual,19251,54,0.552724,0.420913,0.131810,0.092922,0.171740,B gana
+F1,,vs_PM_estacion_mas_cercana,VALIANTZAS|secundaria|HGB,PM_estacion_mas_cercana_mismo_dia,19251,54,0.552724,0.483912,0.068812,0.021776,0.116309,B gana
+F1,,vs_OM_AHC_transferido,VALIANTZAS|secundaria|HGB,OM_AHC_mensual_medio_entrenamiento,19251,54,0.552724,0.482757,0.069967,0.016524,0.124300,B gana
+F1,,vs_PM_IDW,VALIANTZAS|secundaria|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,19251,54,0.552724,0.434489,0.118235,0.067166,0.169972,B gana
+F1,,vs_OM_crudo,VALIANTZAS|secundaria|HGB,OM_crudo,19251,54,0.552724,0.751612,-0.198888,-0.259348,-0.139616,A gana
+F1,,degradacion_metodo,VALIANTZAS|FORMULA,VALIANTZAS|V2_local_FORMULA_annual,19251,54,0.623646,0.623646,-0.000000,-0.000000,0.000000,empate (IC incluye 0)
+F1,,degradacion_metodo,VALIANTZAS|AHC_transferido_annual,VALIANTZAS|V2_local_AHC_annual,19251,54,0.599698,0.512227,0.087471,0.064331,0.110765,B gana
+F1,,degradacion_metodo,VALIANTZAS|AHC_vecino_annual,VALIANTZAS|V2_local_AHC_annual,19251,54,0.667841,0.512227,0.155613,0.094353,0.222873,B gana
+F1,,degradacion_metodo,VALIANTZAS|AHC_transferido_monthly,VALIANTZAS|V2_local_AHC_annual,19251,54,0.600269,0.512227,0.088042,0.064600,0.111287,B gana
+F1,,degradacion_metodo,VALIANTZAS|AHC_vecino_monthly,VALIANTZAS|V2_local_AHC_annual,19251,54,0.669342,0.512227,0.157114,0.095595,0.223578,B gana
+F1,,degradacion_metodo,VALIANTZAS|principal|Ridge,VALIANTZAS|V2_local_ML_annual,19251,54,0.559253,0.438837,0.120416,0.098286,0.140355,B gana
+F1,,degradacion_metodo,VALIANTZAS|principal|Ridge,VALIANTZAS|V2_local_ANN_A_annual,19251,54,0.559253,0.420975,0.138277,0.116743,0.158134,B gana
+F1,,degradacion_metodo,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ML_annual,19251,54,0.518454,0.438837,0.079617,0.055154,0.100715,B gana
+F1,,degradacion_metodo,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_A_annual,19251,54,0.518454,0.420975,0.097478,0.073526,0.118701,B gana
+F1,,sensibilidad_H1,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_A_annual,19251,54,0.518454,0.420975,0.097478,0.073526,0.118701,B gana
+F1,,sensibilidad_H1_cualquier_granularidad,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_A_seasonal,19251,54,0.518454,0.415995,0.102459,0.076629,0.124335,B gana
+F1,,comparadores,VALIANTZAS|AHC_transferido_monthly,PM_estacion_mas_cercana_mismo_dia,19251,54,0.600269,0.483912,0.116357,0.081335,0.149986,B gana
+F1,,vs_V2_local_mejor,HG_RS|principal|Ridge,HG_RS|V2_local_ANN_E_annual,19251,54,0.479210,0.367611,0.111598,0.096281,0.125518,B gana
+F1,,vs_PM_estacion_mas_cercana,HG_RS|principal|Ridge,PM_estacion_mas_cercana_mismo_dia,19251,54,0.479210,0.483912,-0.004702,-0.034680,0.024338,empate (IC incluye 0)
+F1,,vs_OM_AHC_transferido,HG_RS|principal|Ridge,OM_AHC_mensual_medio_entrenamiento,19251,54,0.479210,0.482757,-0.003547,-0.041542,0.035090,empate (IC incluye 0)
+F1,,vs_PM_IDW,HG_RS|principal|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,19251,54,0.479210,0.434489,0.044721,0.015147,0.072555,B gana (pequena)
+F1,,vs_OM_crudo,HG_RS|principal|Ridge,OM_crudo,19251,54,0.479210,0.751612,-0.272402,-0.321163,-0.224093,A gana
+F1,H1,vs_V2_local_mejor,HG_RS|principal|HGB,HG_RS|V2_local_ANN_E_annual,19251,54,0.420556,0.367611,0.052945,0.039320,0.066572,B gana
+F1,H2,vs_PM_estacion_mas_cercana,HG_RS|principal|HGB,PM_estacion_mas_cercana_mismo_dia,19251,54,0.420556,0.483912,-0.063356,-0.093655,-0.033726,A gana
+F1,H3,vs_OM_AHC_transferido,HG_RS|principal|HGB,OM_AHC_mensual_medio_entrenamiento,19251,54,0.420556,0.482757,-0.062201,-0.097750,-0.025299,A gana
+F1,,vs_PM_IDW,HG_RS|principal|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,19251,54,0.420556,0.434489,-0.013933,-0.041449,0.012735,empate (IC incluye 0)
+F1,,vs_OM_crudo,HG_RS|principal|HGB,OM_crudo,19251,54,0.420556,0.751612,-0.331055,-0.379039,-0.282400,A gana
+F1,,vs_V2_local_mejor,HG_RS|secundaria|Ridge,HG_RS|V2_local_ANN_E_annual,19251,54,0.450773,0.367611,0.083162,0.068294,0.097946,B gana
+F1,,vs_PM_estacion_mas_cercana,HG_RS|secundaria|Ridge,PM_estacion_mas_cercana_mismo_dia,19251,54,0.450773,0.483912,-0.033139,-0.061922,-0.007605,A gana (pequena)
+F1,,vs_OM_AHC_transferido,HG_RS|secundaria|Ridge,OM_AHC_mensual_medio_entrenamiento,19251,54,0.450773,0.482757,-0.031984,-0.063540,0.001288,empate (IC incluye 0)
+F1,,vs_PM_IDW,HG_RS|secundaria|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,19251,54,0.450773,0.434489,0.016284,-0.007599,0.039102,empate (IC incluye 0)
+F1,,vs_OM_crudo,HG_RS|secundaria|Ridge,OM_crudo,19251,54,0.450773,0.751612,-0.300839,-0.347047,-0.254960,A gana
+F1,,vs_V2_local_mejor,HG_RS|secundaria|HGB,HG_RS|V2_local_ANN_E_annual,19251,54,0.416485,0.367611,0.048874,0.027112,0.072575,B gana (pequena)
+F1,,vs_PM_estacion_mas_cercana,HG_RS|secundaria|HGB,PM_estacion_mas_cercana_mismo_dia,19251,54,0.416485,0.483912,-0.067426,-0.103584,-0.032762,A gana
+F1,,vs_OM_AHC_transferido,HG_RS|secundaria|HGB,OM_AHC_mensual_medio_entrenamiento,19251,54,0.416485,0.482757,-0.066271,-0.107469,-0.021978,A gana
+F1,,vs_PM_IDW,HG_RS|secundaria|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,19251,54,0.416485,0.434489,-0.018003,-0.057600,0.020781,empate (IC incluye 0)
+F1,,vs_OM_crudo,HG_RS|secundaria|HGB,OM_crudo,19251,54,0.416485,0.751612,-0.335126,-0.391836,-0.280939,A gana
+F1,,degradacion_metodo,HG_RS|FORMULA,HG_RS|V2_local_FORMULA_annual,19251,54,0.567013,0.567013,-0.000000,-0.000000,0.000000,empate (IC incluye 0)
+F1,,degradacion_metodo,HG_RS|AHC_transferido_annual,HG_RS|V2_local_AHC_annual,19251,54,0.440989,0.412673,0.028316,0.019623,0.036749,B gana (pequena)
+F1,,degradacion_metodo,HG_RS|AHC_vecino_annual,HG_RS|V2_local_AHC_annual,19251,54,0.454380,0.412673,0.041707,0.028722,0.056046,B gana (pequena)
+F1,,degradacion_metodo,HG_RS|AHC_transferido_monthly,HG_RS|V2_local_AHC_annual,19251,54,0.434584,0.412673,0.021911,0.013739,0.029735,B gana (pequena)
+F1,,degradacion_metodo,HG_RS|AHC_vecino_monthly,HG_RS|V2_local_AHC_annual,19251,54,0.447770,0.412673,0.035097,0.022884,0.048143,B gana (pequena)
+F1,,degradacion_metodo,HG_RS|principal|Ridge,HG_RS|V2_local_ML_annual,19251,54,0.479210,0.380864,0.098346,0.083841,0.111543,B gana
+F1,,degradacion_metodo,HG_RS|principal|Ridge,HG_RS|V2_local_ANN_A_annual,19251,54,0.479210,0.368050,0.111160,0.096027,0.124913,B gana
+F1,,degradacion_metodo,HG_RS|principal|HGB,HG_RS|V2_local_ML_annual,19251,54,0.420556,0.380864,0.039692,0.026560,0.052459,B gana (pequena)
+F1,,degradacion_metodo,HG_RS|principal|HGB,HG_RS|V2_local_ANN_A_annual,19251,54,0.420556,0.368050,0.052506,0.039158,0.065988,B gana
+F1,,sensibilidad_H1,HG_RS|principal|HGB,HG_RS|V2_local_ANN_A_annual,19251,54,0.420556,0.368050,0.052506,0.039158,0.065988,B gana
+F1,,sensibilidad_H1_cualquier_granularidad,HG_RS|principal|HGB,HG_RS|V2_local_ANN_A_monthly,19251,54,0.420556,0.327890,0.092666,0.074866,0.111037,B gana
+F1,,comparadores,HG_RS|AHC_transferido_monthly,PM_estacion_mas_cercana_mismo_dia,19251,54,0.434584,0.483912,-0.049328,-0.078874,-0.019360,A gana (pequena)
+F1,,comparadores,OM_AHC_mensual_medio_entrenamiento,PM_estacion_mas_cercana_mismo_dia,19251,54,0.482757,0.483912,-0.001155,-0.038156,0.035387,empate (IC incluye 0)
+F1,,comparadores,PM_IDW_estaciones_entrenamiento_mismo_dia,PM_estacion_mas_cercana_mismo_dia,19251,54,0.434489,0.483912,-0.049423,-0.068720,-0.031817,A gana (pequena)
+F2_Ibiza,,vs_V2_local_mejor,HS_RA|principal|Ridge,HS_RA|V2_local_ANN_E_annual,4380,12,0.717454,0.585710,0.131744,0.088175,0.173468,B gana
+F2_Ibiza,,vs_PM_estacion_mas_cercana,HS_RA|principal|Ridge,PM_estacion_mas_cercana_mismo_dia,4380,12,0.717454,0.744833,-0.027379,-0.082642,0.033826,empate (IC incluye 0)
+F2_Ibiza,,vs_OM_AHC_transferido,HS_RA|principal|Ridge,OM_AHC_mensual_medio_entrenamiento,4380,12,0.717454,0.587023,0.130432,0.070176,0.201027,B gana
+F2_Ibiza,,vs_PM_IDW,HS_RA|principal|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,4380,12,0.717454,0.612155,0.105300,0.066506,0.146742,B gana
+F2_Ibiza,,vs_OM_crudo,HS_RA|principal|Ridge,OM_crudo,4380,12,0.717454,0.770533,-0.053079,-0.100577,-0.003770,A gana
+F2_Ibiza,,vs_V2_local_mejor,HS_RA|principal|HGB,HS_RA|V2_local_ANN_E_annual,4380,12,0.670194,0.585710,0.084484,0.026378,0.146232,B gana
+F2_Ibiza,,vs_PM_estacion_mas_cercana,HS_RA|principal|HGB,PM_estacion_mas_cercana_mismo_dia,4380,12,0.670194,0.744833,-0.074639,-0.116488,-0.027865,A gana
+F2_Ibiza,,vs_OM_AHC_transferido,HS_RA|principal|HGB,OM_AHC_mensual_medio_entrenamiento,4380,12,0.670194,0.587023,0.083171,0.023655,0.145285,B gana
+F2_Ibiza,,vs_PM_IDW,HS_RA|principal|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,4380,12,0.670194,0.612155,0.058039,0.018387,0.093556,B gana
+F2_Ibiza,,vs_OM_crudo,HS_RA|principal|HGB,OM_crudo,4380,12,0.670194,0.770533,-0.100339,-0.163899,-0.030275,A gana
+F2_Ibiza,,vs_V2_local_mejor,HS_RA|secundaria|Ridge,HS_RA|V2_local_ANN_E_annual,4380,12,0.775563,0.585710,0.189853,0.126593,0.252365,B gana
+F2_Ibiza,,vs_PM_estacion_mas_cercana,HS_RA|secundaria|Ridge,PM_estacion_mas_cercana_mismo_dia,4380,12,0.775563,0.744833,0.030730,-0.010263,0.078034,empate (IC incluye 0)
+F2_Ibiza,,vs_OM_AHC_transferido,HS_RA|secundaria|Ridge,OM_AHC_mensual_medio_entrenamiento,4380,12,0.775563,0.587023,0.188541,0.139122,0.242173,B gana
+F2_Ibiza,,vs_PM_IDW,HS_RA|secundaria|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,4380,12,0.775563,0.612155,0.163409,0.133015,0.191751,B gana
+F2_Ibiza,,vs_OM_crudo,HS_RA|secundaria|Ridge,OM_crudo,4380,12,0.775563,0.770533,0.005030,-0.061921,0.072531,empate (IC incluye 0)
+F2_Ibiza,,vs_V2_local_mejor,HS_RA|secundaria|HGB,HS_RA|V2_local_ANN_E_annual,4380,12,0.668982,0.585710,0.083272,0.025942,0.140362,B gana
+F2_Ibiza,,vs_PM_estacion_mas_cercana,HS_RA|secundaria|HGB,PM_estacion_mas_cercana_mismo_dia,4380,12,0.668982,0.744833,-0.075851,-0.119913,-0.028208,A gana
+F2_Ibiza,,vs_OM_AHC_transferido,HS_RA|secundaria|HGB,OM_AHC_mensual_medio_entrenamiento,4380,12,0.668982,0.587023,0.081960,0.030934,0.138162,B gana
+F2_Ibiza,,vs_PM_IDW,HS_RA|secundaria|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,4380,12,0.668982,0.612155,0.056828,0.022802,0.087141,B gana
+F2_Ibiza,,vs_OM_crudo,HS_RA|secundaria|HGB,OM_crudo,4380,12,0.668982,0.770533,-0.101551,-0.160446,-0.041195,A gana
+F2_Ibiza,,degradacion_metodo,HS_RA|FORMULA,HS_RA|V2_local_FORMULA_annual,4380,12,0.876100,0.876100,-0.000000,-0.000000,-0.000000,A gana (pequena)
+F2_Ibiza,,degradacion_metodo,HS_RA|AHC_transferido_annual,HS_RA|V2_local_AHC_annual,4380,12,0.899384,0.770455,0.128929,0.008226,0.248459,B gana
+F2_Ibiza,,degradacion_metodo,HS_RA|AHC_vecino_annual,HS_RA|V2_local_AHC_annual,4380,12,0.956553,0.770455,0.186098,0.044806,0.321717,B gana
+F2_Ibiza,,degradacion_metodo,HS_RA|AHC_transferido_monthly,HS_RA|V2_local_AHC_annual,4380,12,0.903887,0.770455,0.133432,0.008709,0.257738,B gana
+F2_Ibiza,,degradacion_metodo,HS_RA|AHC_vecino_monthly,HS_RA|V2_local_AHC_annual,4380,12,0.958556,0.770455,0.188101,0.045702,0.325661,B gana
+F2_Ibiza,,degradacion_metodo,HS_RA|principal|Ridge,HS_RA|V2_local_ML_annual,4380,12,0.717454,0.608008,0.109446,0.061991,0.156461,B gana
+F2_Ibiza,,degradacion_metodo,HS_RA|principal|Ridge,HS_RA|V2_local_ANN_A_annual,4380,12,0.717454,0.586291,0.131164,0.087710,0.172461,B gana
+F2_Ibiza,,degradacion_metodo,HS_RA|principal|HGB,HS_RA|V2_local_ML_annual,4380,12,0.670194,0.608008,0.062186,0.002618,0.129851,B gana
+F2_Ibiza,,degradacion_metodo,HS_RA|principal|HGB,HS_RA|V2_local_ANN_A_annual,4380,12,0.670194,0.586291,0.083903,0.026237,0.145750,B gana
+F2_Ibiza,,sensibilidad_H1,HS_RA|principal|HGB,HS_RA|V2_local_ANN_A_annual,4380,12,0.670194,0.586291,0.083903,0.026237,0.145750,B gana
+F2_Ibiza,,sensibilidad_H1_cualquier_granularidad,HS_RA|principal|HGB,HS_RA|V2_local_ANN_A_seasonal,4380,12,0.670194,0.582363,0.087831,0.030930,0.148046,B gana
+F2_Ibiza,,comparadores,HS_RA|AHC_transferido_monthly,PM_estacion_mas_cercana_mismo_dia,4380,12,0.903887,0.744833,0.159054,0.053169,0.256638,B gana
+F2_Ibiza,,vs_V2_local_mejor,VALIANTZAS|principal|Ridge,VALIANTZAS|V2_local_ANN_E_annual,4380,12,0.570346,0.461682,0.108664,0.056180,0.168193,B gana
+F2_Ibiza,,vs_PM_estacion_mas_cercana,VALIANTZAS|principal|Ridge,PM_estacion_mas_cercana_mismo_dia,4380,12,0.570346,0.744833,-0.174487,-0.252578,-0.096531,A gana
+F2_Ibiza,,vs_OM_AHC_transferido,VALIANTZAS|principal|Ridge,OM_AHC_mensual_medio_entrenamiento,4380,12,0.570346,0.587023,-0.016676,-0.084401,0.054792,empate (IC incluye 0)
+F2_Ibiza,,vs_PM_IDW,VALIANTZAS|principal|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,4380,12,0.570346,0.612155,-0.041809,-0.085423,0.000106,empate (IC incluye 0)
+F2_Ibiza,,vs_OM_crudo,VALIANTZAS|principal|Ridge,OM_crudo,4380,12,0.570346,0.770533,-0.200187,-0.241918,-0.155999,A gana
+F2_Ibiza,,vs_V2_local_mejor,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_E_annual,4380,12,0.532246,0.461682,0.070564,0.006960,0.141812,B gana
+F2_Ibiza,,vs_PM_estacion_mas_cercana,VALIANTZAS|principal|HGB,PM_estacion_mas_cercana_mismo_dia,4380,12,0.532246,0.744833,-0.212587,-0.294058,-0.130226,A gana
+F2_Ibiza,,vs_OM_AHC_transferido,VALIANTZAS|principal|HGB,OM_AHC_mensual_medio_entrenamiento,4380,12,0.532246,0.587023,-0.054776,-0.126214,0.026184,empate (IC incluye 0)
+F2_Ibiza,,vs_PM_IDW,VALIANTZAS|principal|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,4380,12,0.532246,0.612155,-0.079908,-0.123518,-0.033066,A gana
+F2_Ibiza,,vs_OM_crudo,VALIANTZAS|principal|HGB,OM_crudo,4380,12,0.532246,0.770533,-0.238287,-0.300297,-0.169906,A gana
+F2_Ibiza,,vs_V2_local_mejor,VALIANTZAS|secundaria|Ridge,VALIANTZAS|V2_local_ANN_E_annual,4380,12,0.604001,0.461682,0.142319,0.076333,0.217336,B gana
+F2_Ibiza,,vs_PM_estacion_mas_cercana,VALIANTZAS|secundaria|Ridge,PM_estacion_mas_cercana_mismo_dia,4380,12,0.604001,0.744833,-0.140832,-0.220386,-0.063243,A gana
+F2_Ibiza,,vs_OM_AHC_transferido,VALIANTZAS|secundaria|Ridge,OM_AHC_mensual_medio_entrenamiento,4380,12,0.604001,0.587023,0.016979,-0.052463,0.088711,empate (IC incluye 0)
+F2_Ibiza,,vs_PM_IDW,VALIANTZAS|secundaria|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,4380,12,0.604001,0.612155,-0.008153,-0.051952,0.031774,empate (IC incluye 0)
+F2_Ibiza,,vs_OM_crudo,VALIANTZAS|secundaria|Ridge,OM_crudo,4380,12,0.604001,0.770533,-0.166532,-0.216797,-0.110760,A gana
+F2_Ibiza,,vs_V2_local_mejor,VALIANTZAS|secundaria|HGB,VALIANTZAS|V2_local_ANN_E_annual,4380,12,0.535091,0.461682,0.073409,0.006104,0.149152,B gana
+F2_Ibiza,,vs_PM_estacion_mas_cercana,VALIANTZAS|secundaria|HGB,PM_estacion_mas_cercana_mismo_dia,4380,12,0.535091,0.744833,-0.209742,-0.289240,-0.132430,A gana
+F2_Ibiza,,vs_OM_AHC_transferido,VALIANTZAS|secundaria|HGB,OM_AHC_mensual_medio_entrenamiento,4380,12,0.535091,0.587023,-0.051931,-0.118890,0.023255,empate (IC incluye 0)
+F2_Ibiza,,vs_PM_IDW,VALIANTZAS|secundaria|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,4380,12,0.535091,0.612155,-0.077063,-0.121903,-0.034352,A gana
+F2_Ibiza,,vs_OM_crudo,VALIANTZAS|secundaria|HGB,OM_crudo,4380,12,0.535091,0.770533,-0.235442,-0.296024,-0.171300,A gana
+F2_Ibiza,,degradacion_metodo,VALIANTZAS|FORMULA,VALIANTZAS|V2_local_FORMULA_annual,4380,12,0.644404,0.644404,-0.000000,-0.000000,-0.000000,A gana (pequena)
+F2_Ibiza,,degradacion_metodo,VALIANTZAS|AHC_transferido_annual,VALIANTZAS|V2_local_AHC_annual,4380,12,0.696029,0.600523,0.095505,0.019894,0.161443,B gana
+F2_Ibiza,,degradacion_metodo,VALIANTZAS|AHC_vecino_annual,VALIANTZAS|V2_local_AHC_annual,4380,12,0.758811,0.600523,0.158287,0.058236,0.241095,B gana
+F2_Ibiza,,degradacion_metodo,VALIANTZAS|AHC_transferido_monthly,VALIANTZAS|V2_local_AHC_annual,4380,12,0.698970,0.600523,0.098446,0.022424,0.166190,B gana
+F2_Ibiza,,degradacion_metodo,VALIANTZAS|AHC_vecino_monthly,VALIANTZAS|V2_local_AHC_annual,4380,12,0.762135,0.600523,0.161612,0.060641,0.245685,B gana
+F2_Ibiza,,degradacion_metodo,VALIANTZAS|principal|Ridge,VALIANTZAS|V2_local_ML_annual,4380,12,0.570346,0.484408,0.085938,0.030687,0.147584,B gana
+F2_Ibiza,,degradacion_metodo,VALIANTZAS|principal|Ridge,VALIANTZAS|V2_local_ANN_A_annual,4380,12,0.570346,0.461662,0.108684,0.056169,0.168258,B gana
+F2_Ibiza,,degradacion_metodo,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ML_annual,4380,12,0.532246,0.484408,0.047838,-0.018109,0.119843,empate (IC incluye 0)
+F2_Ibiza,,degradacion_metodo,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_A_annual,4380,12,0.532246,0.461662,0.070584,0.006996,0.141787,B gana
+F2_Ibiza,,sensibilidad_H1,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_A_annual,4380,12,0.532246,0.461662,0.070584,0.006996,0.141787,B gana
+F2_Ibiza,,sensibilidad_H1_cualquier_granularidad,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_A_seasonal,4380,12,0.532246,0.465056,0.067191,0.000454,0.142990,B gana
+F2_Ibiza,,comparadores,VALIANTZAS|AHC_transferido_monthly,PM_estacion_mas_cercana_mismo_dia,4380,12,0.698970,0.744833,-0.045863,-0.114210,0.028734,empate (IC incluye 0)
+F2_Ibiza,,vs_V2_local_mejor,HG_RS|principal|Ridge,HG_RS|V2_local_ANN_E_annual,4380,12,0.485999,0.421075,0.064924,0.051832,0.077620,B gana
+F2_Ibiza,,vs_PM_estacion_mas_cercana,HG_RS|principal|Ridge,PM_estacion_mas_cercana_mismo_dia,4380,12,0.485999,0.744833,-0.258834,-0.333115,-0.182219,A gana
+F2_Ibiza,,vs_OM_AHC_transferido,HG_RS|principal|Ridge,OM_AHC_mensual_medio_entrenamiento,4380,12,0.485999,0.587023,-0.101023,-0.175518,-0.021554,A gana
+F2_Ibiza,,vs_PM_IDW,HG_RS|principal|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,4380,12,0.485999,0.612155,-0.126155,-0.172614,-0.078331,A gana
+F2_Ibiza,,vs_OM_crudo,HG_RS|principal|Ridge,OM_crudo,4380,12,0.485999,0.770533,-0.284534,-0.326038,-0.245968,A gana
+F2_Ibiza,,vs_V2_local_mejor,HG_RS|principal|HGB,HG_RS|V2_local_ANN_E_annual,4380,12,0.434898,0.421075,0.013823,0.002006,0.027543,B gana (pequena)
+F2_Ibiza,,vs_PM_estacion_mas_cercana,HG_RS|principal|HGB,PM_estacion_mas_cercana_mismo_dia,4380,12,0.434898,0.744833,-0.309935,-0.376806,-0.239961,A gana
+F2_Ibiza,,vs_OM_AHC_transferido,HG_RS|principal|HGB,OM_AHC_mensual_medio_entrenamiento,4380,12,0.434898,0.587023,-0.152125,-0.222663,-0.075689,A gana
+F2_Ibiza,,vs_PM_IDW,HG_RS|principal|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,4380,12,0.434898,0.612155,-0.177257,-0.215292,-0.137213,A gana
+F2_Ibiza,,vs_OM_crudo,HG_RS|principal|HGB,OM_crudo,4380,12,0.434898,0.770533,-0.335635,-0.380217,-0.293813,A gana
+F2_Ibiza,,vs_V2_local_mejor,HG_RS|secundaria|Ridge,HG_RS|V2_local_ANN_E_annual,4380,12,0.480900,0.421075,0.059825,0.043970,0.076640,B gana
+F2_Ibiza,,vs_PM_estacion_mas_cercana,HG_RS|secundaria|Ridge,PM_estacion_mas_cercana_mismo_dia,4380,12,0.480900,0.744833,-0.263934,-0.326427,-0.199704,A gana
+F2_Ibiza,,vs_OM_AHC_transferido,HG_RS|secundaria|Ridge,OM_AHC_mensual_medio_entrenamiento,4380,12,0.480900,0.587023,-0.106123,-0.170048,-0.034843,A gana
+F2_Ibiza,,vs_PM_IDW,HG_RS|secundaria|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,4380,12,0.480900,0.612155,-0.131255,-0.170406,-0.090888,A gana
+F2_Ibiza,,vs_OM_crudo,HG_RS|secundaria|Ridge,OM_crudo,4380,12,0.480900,0.770533,-0.289634,-0.334259,-0.246940,A gana
+F2_Ibiza,,vs_V2_local_mejor,HG_RS|secundaria|HGB,HG_RS|V2_local_ANN_E_annual,4380,12,0.457460,0.421075,0.036385,0.018393,0.055988,B gana (pequena)
+F2_Ibiza,,vs_PM_estacion_mas_cercana,HG_RS|secundaria|HGB,PM_estacion_mas_cercana_mismo_dia,4380,12,0.457460,0.744833,-0.287373,-0.350793,-0.222018,A gana
+F2_Ibiza,,vs_OM_AHC_transferido,HG_RS|secundaria|HGB,OM_AHC_mensual_medio_entrenamiento,4380,12,0.457460,0.587023,-0.129562,-0.195498,-0.057940,A gana
+F2_Ibiza,,vs_PM_IDW,HG_RS|secundaria|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,4380,12,0.457460,0.612155,-0.154694,-0.186567,-0.121352,A gana
+F2_Ibiza,,vs_OM_crudo,HG_RS|secundaria|HGB,OM_crudo,4380,12,0.457460,0.770533,-0.313073,-0.363499,-0.266725,A gana
+F2_Ibiza,,degradacion_metodo,HG_RS|FORMULA,HG_RS|V2_local_FORMULA_annual,4380,12,0.555673,0.555673,0.000000,-0.000000,0.000000,empate (IC incluye 0)
+F2_Ibiza,,degradacion_metodo,HG_RS|AHC_transferido_annual,HG_RS|V2_local_AHC_annual,4380,12,0.493876,0.490140,0.003736,0.000230,0.007796,B gana (pequena)
+F2_Ibiza,,degradacion_metodo,HG_RS|AHC_vecino_annual,HG_RS|V2_local_AHC_annual,4380,12,0.526271,0.490140,0.036130,0.024680,0.046498,B gana (pequena)
+F2_Ibiza,,degradacion_metodo,HG_RS|AHC_transferido_monthly,HG_RS|V2_local_AHC_annual,4380,12,0.504804,0.490140,0.014664,0.004796,0.024209,B gana (pequena)
+F2_Ibiza,,degradacion_metodo,HG_RS|AHC_vecino_monthly,HG_RS|V2_local_AHC_annual,4380,12,0.538317,0.490140,0.048176,0.033843,0.061763,B gana (pequena)
+F2_Ibiza,,degradacion_metodo,HG_RS|principal|Ridge,HG_RS|V2_local_ML_annual,4380,12,0.485999,0.431106,0.054893,0.041879,0.067635,B gana
+F2_Ibiza,,degradacion_metodo,HG_RS|principal|Ridge,HG_RS|V2_local_ANN_A_annual,4380,12,0.485999,0.420734,0.065265,0.052280,0.077762,B gana
+F2_Ibiza,,degradacion_metodo,HG_RS|principal|HGB,HG_RS|V2_local_ML_annual,4380,12,0.434898,0.431106,0.003792,-0.010341,0.019624,empate (IC incluye 0)
+F2_Ibiza,,degradacion_metodo,HG_RS|principal|HGB,HG_RS|V2_local_ANN_A_annual,4380,12,0.434898,0.420734,0.014164,0.002290,0.027898,B gana (pequena)
+F2_Ibiza,,sensibilidad_H1,HG_RS|principal|HGB,HG_RS|V2_local_ANN_A_annual,4380,12,0.434898,0.420734,0.014164,0.002290,0.027898,B gana (pequena)
+F2_Ibiza,,sensibilidad_H1_cualquier_granularidad,HG_RS|principal|HGB,HG_RS|V2_local_ANN_A_monthly,4380,12,0.434898,0.401336,0.033562,0.021253,0.045591,B gana (pequena)
+F2_Ibiza,,comparadores,HG_RS|AHC_transferido_monthly,PM_estacion_mas_cercana_mismo_dia,4380,12,0.504804,0.744833,-0.240029,-0.295996,-0.178438,A gana
+F2_Ibiza,,comparadores,OM_AHC_mensual_medio_entrenamiento,PM_estacion_mas_cercana_mismo_dia,4380,12,0.587023,0.744833,-0.157811,-0.208990,-0.107645,A gana
+F2_Ibiza,,comparadores,PM_IDW_estaciones_entrenamiento_mismo_dia,PM_estacion_mas_cercana_mismo_dia,4380,12,0.612155,0.744833,-0.132679,-0.185549,-0.069521,A gana
+F2_Mallorca_informativo,,vs_V2_local_mejor,HS_RA|principal|Ridge,HS_RA|V2_local_ANN_E_annual,12774,36,0.671581,0.511668,0.159913,0.143428,0.177141,B gana
+F2_Mallorca_informativo,,vs_PM_estacion_mas_cercana,HS_RA|principal|Ridge,PM_estacion_mas_cercana_mismo_dia,12774,36,0.671581,0.634872,0.036709,-0.002435,0.076902,empate (IC incluye 0)
+F2_Mallorca_informativo,,vs_OM_AHC_transferido,HS_RA|principal|Ridge,OM_AHC_mensual_medio_entrenamiento,12774,36,0.671581,0.427883,0.243697,0.224915,0.263796,B gana
+F2_Mallorca_informativo,,vs_PM_IDW,HS_RA|principal|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,12774,36,0.671581,0.493554,0.178027,0.152813,0.205313,B gana
+F2_Mallorca_informativo,,vs_OM_crudo,HS_RA|principal|Ridge,OM_crudo,12774,36,0.671581,0.686068,-0.014487,-0.063949,0.035305,empate (IC incluye 0)
+F2_Mallorca_informativo,,vs_V2_local_mejor,HS_RA|principal|HGB,HS_RA|V2_local_ANN_E_annual,12774,36,0.626716,0.511668,0.115048,0.097348,0.132874,B gana
+F2_Mallorca_informativo,,vs_PM_estacion_mas_cercana,HS_RA|principal|HGB,PM_estacion_mas_cercana_mismo_dia,12774,36,0.626716,0.634872,-0.008156,-0.053362,0.037773,empate (IC incluye 0)
+F2_Mallorca_informativo,,vs_OM_AHC_transferido,HS_RA|principal|HGB,OM_AHC_mensual_medio_entrenamiento,12774,36,0.626716,0.427883,0.198832,0.175419,0.222226,B gana
+F2_Mallorca_informativo,,vs_PM_IDW,HS_RA|principal|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,12774,36,0.626716,0.493554,0.133162,0.103740,0.166113,B gana
+F2_Mallorca_informativo,,vs_OM_crudo,HS_RA|principal|HGB,OM_crudo,12774,36,0.626716,0.686068,-0.059352,-0.108088,-0.012354,A gana
+F2_Mallorca_informativo,,vs_V2_local_mejor,HS_RA|secundaria|Ridge,HS_RA|V2_local_ANN_E_annual,12774,36,0.681314,0.511668,0.169645,0.147427,0.192740,B gana
+F2_Mallorca_informativo,,vs_PM_estacion_mas_cercana,HS_RA|secundaria|Ridge,PM_estacion_mas_cercana_mismo_dia,12774,36,0.681314,0.634872,0.046441,0.000036,0.093225,B gana (pequena)
+F2_Mallorca_informativo,,vs_OM_AHC_transferido,HS_RA|secundaria|Ridge,OM_AHC_mensual_medio_entrenamiento,12774,36,0.681314,0.427883,0.253430,0.230959,0.275825,B gana
+F2_Mallorca_informativo,,vs_PM_IDW,HS_RA|secundaria|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,12774,36,0.681314,0.493554,0.187760,0.157485,0.218641,B gana
+F2_Mallorca_informativo,,vs_OM_crudo,HS_RA|secundaria|Ridge,OM_crudo,12774,36,0.681314,0.686068,-0.004754,-0.046530,0.037573,empate (IC incluye 0)
+F2_Mallorca_informativo,,vs_V2_local_mejor,HS_RA|secundaria|HGB,HS_RA|V2_local_ANN_E_annual,12774,36,0.675716,0.511668,0.164048,0.129936,0.196546,B gana
+F2_Mallorca_informativo,,vs_PM_estacion_mas_cercana,HS_RA|secundaria|HGB,PM_estacion_mas_cercana_mismo_dia,12774,36,0.675716,0.634872,0.040844,-0.017947,0.101407,empate (IC incluye 0)
+F2_Mallorca_informativo,,vs_OM_AHC_transferido,HS_RA|secundaria|HGB,OM_AHC_mensual_medio_entrenamiento,12774,36,0.675716,0.427883,0.247833,0.203097,0.290945,B gana
+F2_Mallorca_informativo,,vs_PM_IDW,HS_RA|secundaria|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,12774,36,0.675716,0.493554,0.182163,0.130777,0.234860,B gana
+F2_Mallorca_informativo,,vs_OM_crudo,HS_RA|secundaria|HGB,OM_crudo,12774,36,0.675716,0.686068,-0.010351,-0.080469,0.055089,empate (IC incluye 0)
+F2_Mallorca_informativo,,degradacion_metodo,HS_RA|FORMULA,HS_RA|V2_local_FORMULA_annual,12774,36,0.962266,0.962265,0.000000,-0.000000,0.000000,empate (IC incluye 0)
+F2_Mallorca_informativo,,degradacion_metodo,HS_RA|AHC_transferido_annual,HS_RA|V2_local_AHC_annual,12774,36,0.896818,0.571181,0.325637,0.271387,0.377527,B gana
+F2_Mallorca_informativo,,degradacion_metodo,HS_RA|AHC_vecino_annual,HS_RA|V2_local_AHC_annual,12774,36,0.628219,0.571181,0.057037,0.032825,0.083871,B gana
+F2_Mallorca_informativo,,degradacion_metodo,HS_RA|AHC_transferido_monthly,HS_RA|V2_local_AHC_annual,12774,36,0.895465,0.571181,0.324284,0.270654,0.375003,B gana
+F2_Mallorca_informativo,,degradacion_metodo,HS_RA|AHC_vecino_monthly,HS_RA|V2_local_AHC_annual,12774,36,0.620251,0.571181,0.049069,0.025645,0.075112,B gana (pequena)
+F2_Mallorca_informativo,,degradacion_metodo,HS_RA|principal|Ridge,HS_RA|V2_local_ML_annual,12774,36,0.671581,0.534911,0.136670,0.120841,0.152748,B gana
+F2_Mallorca_informativo,,degradacion_metodo,HS_RA|principal|Ridge,HS_RA|V2_local_ANN_A_annual,12774,36,0.671581,0.512071,0.159510,0.142963,0.176932,B gana
+F2_Mallorca_informativo,,degradacion_metodo,HS_RA|principal|HGB,HS_RA|V2_local_ML_annual,12774,36,0.626716,0.534911,0.091805,0.073791,0.109753,B gana
+F2_Mallorca_informativo,,degradacion_metodo,HS_RA|principal|HGB,HS_RA|V2_local_ANN_A_annual,12774,36,0.626716,0.512071,0.114645,0.097033,0.132539,B gana
+F2_Mallorca_informativo,,sensibilidad_H1,HS_RA|principal|HGB,HS_RA|V2_local_ANN_A_annual,12774,36,0.626716,0.512071,0.114645,0.097033,0.132539,B gana
+F2_Mallorca_informativo,,sensibilidad_H1_cualquier_granularidad,HS_RA|principal|HGB,HS_RA|V2_local_ANN_A_seasonal,12774,36,0.626716,0.505548,0.121168,0.102042,0.140449,B gana
+F2_Mallorca_informativo,,comparadores,HS_RA|AHC_transferido_monthly,PM_estacion_mas_cercana_mismo_dia,12774,36,0.895465,0.634872,0.260593,0.175547,0.343855,B gana
+F2_Mallorca_informativo,,vs_V2_local_mejor,VALIANTZAS|principal|Ridge,VALIANTZAS|V2_local_ANN_E_annual,12774,36,0.562569,0.407401,0.155168,0.132265,0.177958,B gana
+F2_Mallorca_informativo,,vs_PM_estacion_mas_cercana,VALIANTZAS|principal|Ridge,PM_estacion_mas_cercana_mismo_dia,12774,36,0.562569,0.634872,-0.072303,-0.126882,-0.017896,A gana
+F2_Mallorca_informativo,,vs_OM_AHC_transferido,VALIANTZAS|principal|Ridge,OM_AHC_mensual_medio_entrenamiento,12774,36,0.562569,0.427883,0.134685,0.107748,0.162236,B gana
+F2_Mallorca_informativo,,vs_PM_IDW,VALIANTZAS|principal|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,12774,36,0.562569,0.493554,0.069015,0.032020,0.107638,B gana
+F2_Mallorca_informativo,,vs_OM_crudo,VALIANTZAS|principal|Ridge,OM_crudo,12774,36,0.562569,0.686068,-0.123499,-0.164474,-0.086349,A gana
+F2_Mallorca_informativo,,vs_V2_local_mejor,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_E_annual,12774,36,0.512433,0.407401,0.105032,0.085070,0.125719,B gana
+F2_Mallorca_informativo,,vs_PM_estacion_mas_cercana,VALIANTZAS|principal|HGB,PM_estacion_mas_cercana_mismo_dia,12774,36,0.512433,0.634872,-0.122439,-0.173479,-0.070534,A gana
+F2_Mallorca_informativo,,vs_OM_AHC_transferido,VALIANTZAS|principal|HGB,OM_AHC_mensual_medio_entrenamiento,12774,36,0.512433,0.427883,0.084550,0.060766,0.110662,B gana
+F2_Mallorca_informativo,,vs_PM_IDW,VALIANTZAS|principal|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,12774,36,0.512433,0.493554,0.018880,-0.014581,0.054244,empate (IC incluye 0)
+F2_Mallorca_informativo,,vs_OM_crudo,VALIANTZAS|principal|HGB,OM_crudo,12774,36,0.512433,0.686068,-0.173634,-0.216172,-0.134268,A gana
+F2_Mallorca_informativo,,vs_V2_local_mejor,VALIANTZAS|secundaria|Ridge,VALIANTZAS|V2_local_ANN_E_annual,12774,36,0.571456,0.407401,0.164055,0.133441,0.195033,B gana
+F2_Mallorca_informativo,,vs_PM_estacion_mas_cercana,VALIANTZAS|secundaria|Ridge,PM_estacion_mas_cercana_mismo_dia,12774,36,0.571456,0.634872,-0.063416,-0.125797,-0.000066,A gana
+F2_Mallorca_informativo,,vs_OM_AHC_transferido,VALIANTZAS|secundaria|Ridge,OM_AHC_mensual_medio_entrenamiento,12774,36,0.571456,0.427883,0.143572,0.109186,0.178958,B gana
+F2_Mallorca_informativo,,vs_PM_IDW,VALIANTZAS|secundaria|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,12774,36,0.571456,0.493554,0.077902,0.032960,0.124287,B gana
+F2_Mallorca_informativo,,vs_OM_crudo,VALIANTZAS|secundaria|Ridge,OM_crudo,12774,36,0.571456,0.686068,-0.114612,-0.151116,-0.081267,A gana
+F2_Mallorca_informativo,,vs_V2_local_mejor,VALIANTZAS|secundaria|HGB,VALIANTZAS|V2_local_ANN_E_annual,12774,36,0.588851,0.407401,0.181449,0.149301,0.210896,B gana
+F2_Mallorca_informativo,,vs_PM_estacion_mas_cercana,VALIANTZAS|secundaria|HGB,PM_estacion_mas_cercana_mismo_dia,12774,36,0.588851,0.634872,-0.046021,-0.101743,0.010800,empate (IC incluye 0)
+F2_Mallorca_informativo,,vs_OM_AHC_transferido,VALIANTZAS|secundaria|HGB,OM_AHC_mensual_medio_entrenamiento,12774,36,0.588851,0.427883,0.160967,0.120512,0.197849,B gana
+F2_Mallorca_informativo,,vs_PM_IDW,VALIANTZAS|secundaria|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,12774,36,0.588851,0.493554,0.095297,0.046581,0.143013,B gana
+F2_Mallorca_informativo,,vs_OM_crudo,VALIANTZAS|secundaria|HGB,OM_crudo,12774,36,0.588851,0.686068,-0.097217,-0.164152,-0.038722,A gana
+F2_Mallorca_informativo,,degradacion_metodo,VALIANTZAS|FORMULA,VALIANTZAS|V2_local_FORMULA_annual,12774,36,0.603186,0.603186,-0.000000,-0.000000,0.000000,empate (IC incluye 0)
+F2_Mallorca_informativo,,degradacion_metodo,VALIANTZAS|AHC_transferido_annual,VALIANTZAS|V2_local_AHC_annual,12774,36,0.690318,0.476755,0.213563,0.173110,0.254534,B gana
+F2_Mallorca_informativo,,degradacion_metodo,VALIANTZAS|AHC_vecino_annual,VALIANTZAS|V2_local_AHC_annual,12774,36,0.527519,0.476755,0.050764,0.029255,0.075663,B gana
+F2_Mallorca_informativo,,degradacion_metodo,VALIANTZAS|AHC_transferido_monthly,VALIANTZAS|V2_local_AHC_annual,12774,36,0.688937,0.476755,0.212182,0.170889,0.253607,B gana
+F2_Mallorca_informativo,,degradacion_metodo,VALIANTZAS|AHC_vecino_monthly,VALIANTZAS|V2_local_AHC_annual,12774,36,0.528303,0.476755,0.051548,0.029795,0.075881,B gana
+F2_Mallorca_informativo,,degradacion_metodo,VALIANTZAS|principal|Ridge,VALIANTZAS|V2_local_ML_annual,12774,36,0.562569,0.423073,0.139495,0.116782,0.162126,B gana
+F2_Mallorca_informativo,,degradacion_metodo,VALIANTZAS|principal|Ridge,VALIANTZAS|V2_local_ANN_A_annual,12774,36,0.562569,0.407501,0.155068,0.132327,0.177823,B gana
+F2_Mallorca_informativo,,degradacion_metodo,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ML_annual,12774,36,0.512433,0.423073,0.089360,0.069917,0.108970,B gana
+F2_Mallorca_informativo,,degradacion_metodo,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_A_annual,12774,36,0.512433,0.407501,0.104933,0.085050,0.125666,B gana
+F2_Mallorca_informativo,,sensibilidad_H1,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_A_annual,12774,36,0.512433,0.407501,0.104933,0.085050,0.125666,B gana
+F2_Mallorca_informativo,,sensibilidad_H1_cualquier_granularidad,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_A_seasonal,12774,36,0.512433,0.399213,0.113220,0.094320,0.133334,B gana
+F2_Mallorca_informativo,,comparadores,VALIANTZAS|AHC_transferido_monthly,PM_estacion_mas_cercana_mismo_dia,12774,36,0.688937,0.634872,0.054065,-0.020392,0.125980,empate (IC incluye 0)
+F2_Mallorca_informativo,,vs_V2_local_mejor,HG_RS|principal|Ridge,HG_RS|V2_local_ANN_E_annual,12774,36,0.480932,0.357302,0.123630,0.108472,0.140573,B gana
+F2_Mallorca_informativo,,vs_PM_estacion_mas_cercana,HG_RS|principal|Ridge,PM_estacion_mas_cercana_mismo_dia,12774,36,0.480932,0.634872,-0.153940,-0.194994,-0.115385,A gana
+F2_Mallorca_informativo,,vs_OM_AHC_transferido,HG_RS|principal|Ridge,OM_AHC_mensual_medio_entrenamiento,12774,36,0.480932,0.427883,0.053049,0.033537,0.073905,B gana
+F2_Mallorca_informativo,,vs_PM_IDW,HG_RS|principal|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,12774,36,0.480932,0.493554,-0.012622,-0.036473,0.012514,empate (IC incluye 0)
+F2_Mallorca_informativo,,vs_OM_crudo,HG_RS|principal|Ridge,OM_crudo,12774,36,0.480932,0.686068,-0.205136,-0.256589,-0.153732,A gana
+F2_Mallorca_informativo,,vs_V2_local_mejor,HG_RS|principal|HGB,HG_RS|V2_local_ANN_E_annual,12774,36,0.420982,0.357302,0.063679,0.051219,0.077506,B gana
+F2_Mallorca_informativo,,vs_PM_estacion_mas_cercana,HG_RS|principal|HGB,PM_estacion_mas_cercana_mismo_dia,12774,36,0.420982,0.634872,-0.213891,-0.254025,-0.176192,A gana
+F2_Mallorca_informativo,,vs_OM_AHC_transferido,HG_RS|principal|HGB,OM_AHC_mensual_medio_entrenamiento,12774,36,0.420982,0.427883,-0.006902,-0.026241,0.013071,empate (IC incluye 0)
+F2_Mallorca_informativo,,vs_PM_IDW,HG_RS|principal|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,12774,36,0.420982,0.493554,-0.072572,-0.095637,-0.048373,A gana
+F2_Mallorca_informativo,,vs_OM_crudo,HG_RS|principal|HGB,OM_crudo,12774,36,0.420982,0.686068,-0.265086,-0.317530,-0.214499,A gana
+F2_Mallorca_informativo,,vs_V2_local_mejor,HG_RS|secundaria|Ridge,HG_RS|V2_local_ANN_E_annual,12774,36,0.438362,0.357302,0.081060,0.066626,0.096488,B gana
+F2_Mallorca_informativo,,vs_PM_estacion_mas_cercana,HG_RS|secundaria|Ridge,PM_estacion_mas_cercana_mismo_dia,12774,36,0.438362,0.634872,-0.196510,-0.234638,-0.159851,A gana
+F2_Mallorca_informativo,,vs_OM_AHC_transferido,HG_RS|secundaria|Ridge,OM_AHC_mensual_medio_entrenamiento,12774,36,0.438362,0.427883,0.010479,-0.007297,0.028730,empate (IC incluye 0)
+F2_Mallorca_informativo,,vs_PM_IDW,HG_RS|secundaria|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,12774,36,0.438362,0.493554,-0.055191,-0.076968,-0.032456,A gana
+F2_Mallorca_informativo,,vs_OM_crudo,HG_RS|secundaria|Ridge,OM_crudo,12774,36,0.438362,0.686068,-0.247705,-0.299438,-0.196216,A gana
+F2_Mallorca_informativo,,vs_V2_local_mejor,HG_RS|secundaria|HGB,HG_RS|V2_local_ANN_E_annual,12774,36,0.434936,0.357302,0.077634,0.056878,0.097872,B gana
+F2_Mallorca_informativo,,vs_PM_estacion_mas_cercana,HG_RS|secundaria|HGB,PM_estacion_mas_cercana_mismo_dia,12774,36,0.434936,0.634872,-0.199936,-0.238093,-0.160430,A gana
+F2_Mallorca_informativo,,vs_OM_AHC_transferido,HG_RS|secundaria|HGB,OM_AHC_mensual_medio_entrenamiento,12774,36,0.434936,0.427883,0.007053,-0.027286,0.036228,empate (IC incluye 0)
+F2_Mallorca_informativo,,vs_PM_IDW,HG_RS|secundaria|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,12774,36,0.434936,0.493554,-0.058617,-0.095359,-0.025083,A gana
+F2_Mallorca_informativo,,vs_OM_crudo,HG_RS|secundaria|HGB,OM_crudo,12774,36,0.434936,0.686068,-0.251131,-0.321947,-0.185923,A gana
+F2_Mallorca_informativo,,degradacion_metodo,HG_RS|FORMULA,HG_RS|V2_local_FORMULA_annual,12774,36,0.563540,0.563540,-0.000000,-0.000000,0.000000,empate (IC incluye 0)
+F2_Mallorca_informativo,,degradacion_metodo,HG_RS|AHC_transferido_annual,HG_RS|V2_local_AHC_annual,12774,36,0.423344,0.394604,0.028740,0.017720,0.039257,B gana (pequena)
+F2_Mallorca_informativo,,degradacion_metodo,HG_RS|AHC_vecino_annual,HG_RS|V2_local_AHC_annual,12774,36,0.456260,0.394604,0.061656,0.041665,0.081637,B gana
+F2_Mallorca_informativo,,degradacion_metodo,HG_RS|AHC_transferido_monthly,HG_RS|V2_local_AHC_annual,12774,36,0.422762,0.394604,0.028158,0.017165,0.038914,B gana (pequena)
+F2_Mallorca_informativo,,degradacion_metodo,HG_RS|AHC_vecino_monthly,HG_RS|V2_local_AHC_annual,12774,36,0.445726,0.394604,0.051122,0.029905,0.071666,B gana
+F2_Mallorca_informativo,,degradacion_metodo,HG_RS|principal|Ridge,HG_RS|V2_local_ML_annual,12774,36,0.480932,0.371095,0.109837,0.094615,0.126092,B gana
+F2_Mallorca_informativo,,degradacion_metodo,HG_RS|principal|Ridge,HG_RS|V2_local_ANN_A_annual,12774,36,0.480932,0.357430,0.123502,0.108188,0.140206,B gana
+F2_Mallorca_informativo,,degradacion_metodo,HG_RS|principal|HGB,HG_RS|V2_local_ML_annual,12774,36,0.420982,0.371095,0.049887,0.037086,0.063213,B gana (pequena)
+F2_Mallorca_informativo,,degradacion_metodo,HG_RS|principal|HGB,HG_RS|V2_local_ANN_A_annual,12774,36,0.420982,0.357430,0.063552,0.050933,0.077345,B gana
+F2_Mallorca_informativo,,sensibilidad_H1,HG_RS|principal|HGB,HG_RS|V2_local_ANN_A_annual,12774,36,0.420982,0.357430,0.063552,0.050933,0.077345,B gana
+F2_Mallorca_informativo,,sensibilidad_H1_cualquier_granularidad,HG_RS|principal|HGB,HG_RS|V2_local_ANN_A_monthly,12774,36,0.420982,0.308918,0.112064,0.093732,0.131474,B gana
+F2_Mallorca_informativo,,comparadores,HG_RS|AHC_transferido_monthly,PM_estacion_mas_cercana_mismo_dia,12774,36,0.422762,0.634872,-0.212110,-0.248467,-0.180306,A gana
+F2_Mallorca_informativo,,comparadores,OM_AHC_mensual_medio_entrenamiento,PM_estacion_mas_cercana_mismo_dia,12774,36,0.427883,0.634872,-0.206989,-0.243577,-0.171273,A gana
+F2_Mallorca_informativo,,comparadores,PM_IDW_estaciones_entrenamiento_mismo_dia,PM_estacion_mas_cercana_mismo_dia,12774,36,0.493554,0.634872,-0.141318,-0.165888,-0.117888,A gana
+F2_Menorca,,vs_V2_local_mejor,HS_RA|principal|Ridge,HS_RA|V2_local_ANN_E_annual,2097,6,0.759077,0.541616,0.217461,0.199835,0.239150,B gana
+F2_Menorca,,vs_PM_estacion_mas_cercana,HS_RA|principal|Ridge,PM_estacion_mas_cercana_mismo_dia,2097,6,0.759077,0.561028,0.198049,0.127828,0.280227,B gana
+F2_Menorca,,vs_OM_AHC_transferido,HS_RA|principal|Ridge,OM_AHC_mensual_medio_entrenamiento,2097,6,0.759077,0.586872,0.172205,0.132611,0.226426,B gana
+F2_Menorca,,vs_PM_IDW,HS_RA|principal|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,2097,6,0.759077,0.568237,0.190841,0.159196,0.234467,B gana
+F2_Menorca,,vs_OM_crudo,HS_RA|principal|Ridge,OM_crudo,2097,6,0.759077,1.038641,-0.279564,-0.322541,-0.211598,A gana
+F2_Menorca,,vs_V2_local_mejor,HS_RA|principal|HGB,HS_RA|V2_local_ANN_E_annual,2097,6,0.692001,0.541616,0.150385,0.132443,0.170796,B gana
+F2_Menorca,,vs_PM_estacion_mas_cercana,HS_RA|principal|HGB,PM_estacion_mas_cercana_mismo_dia,2097,6,0.692001,0.561028,0.130973,0.063999,0.219173,B gana
+F2_Menorca,,vs_OM_AHC_transferido,HS_RA|principal|HGB,OM_AHC_mensual_medio_entrenamiento,2097,6,0.692001,0.586872,0.105129,0.067758,0.162304,B gana
+F2_Menorca,,vs_PM_IDW,HS_RA|principal|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,2097,6,0.692001,0.568237,0.123764,0.090381,0.175279,B gana
+F2_Menorca,,vs_OM_crudo,HS_RA|principal|HGB,OM_crudo,2097,6,0.692001,1.038641,-0.346640,-0.394212,-0.268056,A gana
+F2_Menorca,,vs_V2_local_mejor,HS_RA|secundaria|Ridge,HS_RA|V2_local_ANN_E_annual,2097,6,0.788949,0.541616,0.247333,0.221076,0.279616,B gana
+F2_Menorca,,vs_PM_estacion_mas_cercana,HS_RA|secundaria|Ridge,PM_estacion_mas_cercana_mismo_dia,2097,6,0.788949,0.561028,0.227921,0.150979,0.317391,B gana
+F2_Menorca,,vs_OM_AHC_transferido,HS_RA|secundaria|Ridge,OM_AHC_mensual_medio_entrenamiento,2097,6,0.788949,0.586872,0.202077,0.156346,0.264520,B gana
+F2_Menorca,,vs_PM_IDW,HS_RA|secundaria|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,2097,6,0.788949,0.568237,0.220713,0.183453,0.273542,B gana
+F2_Menorca,,vs_OM_crudo,HS_RA|secundaria|Ridge,OM_crudo,2097,6,0.788949,1.038641,-0.249692,-0.298055,-0.174441,A gana
+F2_Menorca,,vs_V2_local_mejor,HS_RA|secundaria|HGB,HS_RA|V2_local_ANN_E_annual,2097,6,0.563221,0.541616,0.021605,0.005842,0.046478,B gana (pequena)
+F2_Menorca,,vs_PM_estacion_mas_cercana,HS_RA|secundaria|HGB,PM_estacion_mas_cercana_mismo_dia,2097,6,0.563221,0.561028,0.002193,-0.055675,0.066602,empate (IC incluye 0)
+F2_Menorca,,vs_OM_AHC_transferido,HS_RA|secundaria|HGB,OM_AHC_mensual_medio_entrenamiento,2097,6,0.563221,0.586872,-0.023651,-0.052744,0.013124,empate (IC incluye 0)
+F2_Menorca,,vs_PM_IDW,HS_RA|secundaria|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,2097,6,0.563221,0.568237,-0.005016,-0.026689,0.023315,empate (IC incluye 0)
+F2_Menorca,,vs_OM_crudo,HS_RA|secundaria|HGB,OM_crudo,2097,6,0.563221,1.038641,-0.475420,-0.511180,-0.421021,A gana
+F2_Menorca,,degradacion_metodo,HS_RA|FORMULA,HS_RA|V2_local_FORMULA_annual,2097,6,1.012459,1.012458,0.000000,0.000000,0.000000,B gana (pequena)
+F2_Menorca,,degradacion_metodo,HS_RA|AHC_transferido_annual,HS_RA|V2_local_AHC_annual,2097,6,0.737097,0.651469,0.085628,0.072820,0.099064,B gana
+F2_Menorca,,degradacion_metodo,HS_RA|AHC_vecino_annual,HS_RA|V2_local_AHC_annual,2097,6,0.582396,0.651469,-0.069074,-0.088667,-0.050008,A gana
+F2_Menorca,,degradacion_metodo,HS_RA|AHC_transferido_monthly,HS_RA|V2_local_AHC_annual,2097,6,0.724324,0.651469,0.072855,0.052947,0.089996,B gana
+F2_Menorca,,degradacion_metodo,HS_RA|AHC_vecino_monthly,HS_RA|V2_local_AHC_annual,2097,6,0.568055,0.651469,-0.083414,-0.102594,-0.064167,A gana
+F2_Menorca,,degradacion_metodo,HS_RA|principal|Ridge,HS_RA|V2_local_ML_annual,2097,6,0.759077,0.541044,0.218033,0.203120,0.238374,B gana
+F2_Menorca,,degradacion_metodo,HS_RA|principal|Ridge,HS_RA|V2_local_ANN_A_annual,2097,6,0.759077,0.541819,0.217259,0.199581,0.238978,B gana
+F2_Menorca,,degradacion_metodo,HS_RA|principal|HGB,HS_RA|V2_local_ML_annual,2097,6,0.692001,0.541044,0.150957,0.137112,0.164572,B gana
+F2_Menorca,,degradacion_metodo,HS_RA|principal|HGB,HS_RA|V2_local_ANN_A_annual,2097,6,0.692001,0.541819,0.150182,0.132206,0.170813,B gana
+F2_Menorca,,sensibilidad_H1,HS_RA|principal|HGB,HS_RA|V2_local_ANN_A_annual,2097,6,0.692001,0.541819,0.150182,0.132206,0.170813,B gana
+F2_Menorca,,sensibilidad_H1_cualquier_granularidad,HS_RA|principal|HGB,HS_RA|V2_local_ANN_A_seasonal,2097,6,0.692001,0.501399,0.190602,0.172119,0.209415,B gana
+F2_Menorca,,comparadores,HS_RA|AHC_transferido_monthly,PM_estacion_mas_cercana_mismo_dia,2097,6,0.724324,0.561028,0.163296,0.090698,0.236220,B gana
+F2_Menorca,,vs_V2_local_mejor,VALIANTZAS|principal|Ridge,VALIANTZAS|V2_local_ANN_E_annual,2097,6,0.621620,0.412541,0.209079,0.179852,0.234156,B gana
+F2_Menorca,,vs_PM_estacion_mas_cercana,VALIANTZAS|principal|Ridge,PM_estacion_mas_cercana_mismo_dia,2097,6,0.621620,0.561028,0.060592,-0.015175,0.146724,empate (IC incluye 0)
+F2_Menorca,,vs_OM_AHC_transferido,VALIANTZAS|principal|Ridge,OM_AHC_mensual_medio_entrenamiento,2097,6,0.621620,0.586872,0.034748,-0.008374,0.089096,empate (IC incluye 0)
+F2_Menorca,,vs_PM_IDW,VALIANTZAS|principal|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,2097,6,0.621620,0.568237,0.053384,0.003205,0.100206,B gana
+F2_Menorca,,vs_OM_crudo,VALIANTZAS|principal|Ridge,OM_crudo,2097,6,0.621620,1.038641,-0.417021,-0.471822,-0.348057,A gana
+F2_Menorca,,vs_V2_local_mejor,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_E_annual,2097,6,0.593486,0.412541,0.180945,0.157454,0.199282,B gana
+F2_Menorca,,vs_PM_estacion_mas_cercana,VALIANTZAS|principal|HGB,PM_estacion_mas_cercana_mismo_dia,2097,6,0.593486,0.561028,0.032458,-0.040303,0.123157,empate (IC incluye 0)
+F2_Menorca,,vs_OM_AHC_transferido,VALIANTZAS|principal|HGB,OM_AHC_mensual_medio_entrenamiento,2097,6,0.593486,0.586872,0.006614,-0.029012,0.063138,empate (IC incluye 0)
+F2_Menorca,,vs_PM_IDW,VALIANTZAS|principal|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,2097,6,0.593486,0.568237,0.025250,-0.019019,0.080375,empate (IC incluye 0)
+F2_Menorca,,vs_OM_crudo,VALIANTZAS|principal|HGB,OM_crudo,2097,6,0.593486,1.038641,-0.445155,-0.499714,-0.368291,A gana
+F2_Menorca,,vs_V2_local_mejor,VALIANTZAS|secundaria|Ridge,VALIANTZAS|V2_local_ANN_E_annual,2097,6,0.635779,0.412541,0.223238,0.190069,0.248628,B gana
+F2_Menorca,,vs_PM_estacion_mas_cercana,VALIANTZAS|secundaria|Ridge,PM_estacion_mas_cercana_mismo_dia,2097,6,0.635779,0.561028,0.074751,-0.006429,0.166482,empate (IC incluye 0)
+F2_Menorca,,vs_OM_AHC_transferido,VALIANTZAS|secundaria|Ridge,OM_AHC_mensual_medio_entrenamiento,2097,6,0.635779,0.586872,0.048906,0.001989,0.110591,B gana (pequena)
+F2_Menorca,,vs_PM_IDW,VALIANTZAS|secundaria|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,2097,6,0.635779,0.568237,0.067542,0.014449,0.120841,B gana
+F2_Menorca,,vs_OM_crudo,VALIANTZAS|secundaria|Ridge,OM_crudo,2097,6,0.635779,1.038641,-0.402862,-0.461296,-0.326449,A gana
+F2_Menorca,,vs_V2_local_mejor,VALIANTZAS|secundaria|HGB,VALIANTZAS|V2_local_ANN_E_annual,2097,6,0.442795,0.412541,0.030254,0.012561,0.044761,B gana (pequena)
+F2_Menorca,,vs_PM_estacion_mas_cercana,VALIANTZAS|secundaria|HGB,PM_estacion_mas_cercana_mismo_dia,2097,6,0.442795,0.561028,-0.118233,-0.177376,-0.041250,A gana
+F2_Menorca,,vs_OM_AHC_transferido,VALIANTZAS|secundaria|HGB,OM_AHC_mensual_medio_entrenamiento,2097,6,0.442795,0.586872,-0.144077,-0.169841,-0.100817,A gana
+F2_Menorca,,vs_PM_IDW,VALIANTZAS|secundaria|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,2097,6,0.442795,0.568237,-0.125441,-0.160025,-0.084952,A gana
+F2_Menorca,,vs_OM_crudo,VALIANTZAS|secundaria|HGB,OM_crudo,2097,6,0.442795,1.038641,-0.595846,-0.640972,-0.531655,A gana
+F2_Menorca,,degradacion_metodo,VALIANTZAS|FORMULA,VALIANTZAS|V2_local_FORMULA_annual,2097,6,0.697754,0.697754,0.000000,0.000000,0.000000,B gana (pequena)
+F2_Menorca,,degradacion_metodo,VALIANTZAS|AHC_transferido_annual,VALIANTZAS|V2_local_AHC_annual,2097,6,0.635041,0.520444,0.114597,0.091123,0.135541,B gana
+F2_Menorca,,degradacion_metodo,VALIANTZAS|AHC_vecino_annual,VALIANTZAS|V2_local_AHC_annual,2097,6,0.526514,0.520444,0.006070,0.004312,0.007634,B gana (pequena)
+F2_Menorca,,degradacion_metodo,VALIANTZAS|AHC_transferido_monthly,VALIANTZAS|V2_local_AHC_annual,2097,6,0.634456,0.520444,0.114012,0.090114,0.134720,B gana
+F2_Menorca,,degradacion_metodo,VALIANTZAS|AHC_vecino_monthly,VALIANTZAS|V2_local_AHC_annual,2097,6,0.524762,0.520444,0.004318,-0.000630,0.008280,empate (IC incluye 0)
+F2_Menorca,,degradacion_metodo,VALIANTZAS|principal|Ridge,VALIANTZAS|V2_local_ML_annual,2097,6,0.621620,0.432974,0.188646,0.157899,0.215264,B gana
+F2_Menorca,,degradacion_metodo,VALIANTZAS|principal|Ridge,VALIANTZAS|V2_local_ANN_A_annual,2097,6,0.621620,0.412571,0.209049,0.179833,0.234124,B gana
+F2_Menorca,,degradacion_metodo,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ML_annual,2097,6,0.593486,0.432974,0.160512,0.137010,0.177460,B gana
+F2_Menorca,,degradacion_metodo,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_A_annual,2097,6,0.593486,0.412571,0.180915,0.157418,0.199249,B gana
+F2_Menorca,,sensibilidad_H1,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_A_annual,2097,6,0.593486,0.412571,0.180915,0.157418,0.199249,B gana
+F2_Menorca,,sensibilidad_H1_cualquier_granularidad,VALIANTZAS|principal|HGB,VALIANTZAS|V2_local_ANN_A_seasonal,2097,6,0.593486,0.407555,0.185931,0.162842,0.204378,B gana
+F2_Menorca,,comparadores,VALIANTZAS|AHC_transferido_monthly,PM_estacion_mas_cercana_mismo_dia,2097,6,0.634456,0.561028,0.073428,-0.007424,0.162463,empate (IC incluye 0)
+F2_Menorca,,vs_V2_local_mejor,HG_RS|principal|Ridge,HG_RS|V2_local_ANN_E_annual,2097,6,0.463156,0.304287,0.158869,0.132677,0.180946,B gana
+F2_Menorca,,vs_PM_estacion_mas_cercana,HG_RS|principal|Ridge,PM_estacion_mas_cercana_mismo_dia,2097,6,0.463156,0.561028,-0.097872,-0.165797,-0.027168,A gana
+F2_Menorca,,vs_OM_AHC_transferido,HG_RS|principal|Ridge,OM_AHC_mensual_medio_entrenamiento,2097,6,0.463156,0.586872,-0.123716,-0.196349,-0.053039,A gana
+F2_Menorca,,vs_PM_IDW,HG_RS|principal|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,2097,6,0.463156,0.568237,-0.105080,-0.169175,-0.049590,A gana
+F2_Menorca,,vs_OM_crudo,HG_RS|principal|Ridge,OM_crudo,2097,6,0.463156,1.038641,-0.575485,-0.644057,-0.520511,A gana
+F2_Menorca,,vs_V2_local_mejor,HG_RS|principal|HGB,HG_RS|V2_local_ANN_E_annual,2097,6,0.422458,0.304287,0.118171,0.087869,0.149796,B gana
+F2_Menorca,,vs_PM_estacion_mas_cercana,HG_RS|principal|HGB,PM_estacion_mas_cercana_mismo_dia,2097,6,0.422458,0.561028,-0.138570,-0.209929,-0.072626,A gana
+F2_Menorca,,vs_OM_AHC_transferido,HG_RS|principal|HGB,OM_AHC_mensual_medio_entrenamiento,2097,6,0.422458,0.586872,-0.164415,-0.230727,-0.100947,A gana
+F2_Menorca,,vs_PM_IDW,HG_RS|principal|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,2097,6,0.422458,0.568237,-0.145779,-0.204270,-0.093801,A gana
+F2_Menorca,,vs_OM_crudo,HG_RS|principal|HGB,OM_crudo,2097,6,0.422458,1.038641,-0.616183,-0.680682,-0.560403,A gana
+F2_Menorca,,vs_V2_local_mejor,HG_RS|secundaria|Ridge,HG_RS|V2_local_ANN_E_annual,2097,6,0.465167,0.304287,0.160880,0.144315,0.179510,B gana
+F2_Menorca,,vs_PM_estacion_mas_cercana,HG_RS|secundaria|Ridge,PM_estacion_mas_cercana_mismo_dia,2097,6,0.465167,0.561028,-0.095861,-0.153029,-0.031956,A gana
+F2_Menorca,,vs_OM_AHC_transferido,HG_RS|secundaria|Ridge,OM_AHC_mensual_medio_entrenamiento,2097,6,0.465167,0.586872,-0.121706,-0.176959,-0.064962,A gana
+F2_Menorca,,vs_PM_IDW,HG_RS|secundaria|Ridge,PM_IDW_estaciones_entrenamiento_mismo_dia,2097,6,0.465167,0.568237,-0.103070,-0.149080,-0.062900,A gana
+F2_Menorca,,vs_OM_crudo,HG_RS|secundaria|Ridge,OM_crudo,2097,6,0.465167,1.038641,-0.573474,-0.628732,-0.521905,A gana
+F2_Menorca,,vs_V2_local_mejor,HG_RS|secundaria|HGB,HG_RS|V2_local_ANN_E_annual,2097,6,0.330076,0.304287,0.025789,0.002160,0.051423,B gana (pequena)
+F2_Menorca,,vs_PM_estacion_mas_cercana,HG_RS|secundaria|HGB,PM_estacion_mas_cercana_mismo_dia,2097,6,0.330076,0.561028,-0.230953,-0.291370,-0.166598,A gana
+F2_Menorca,,vs_OM_AHC_transferido,HG_RS|secundaria|HGB,OM_AHC_mensual_medio_entrenamiento,2097,6,0.330076,0.586872,-0.256797,-0.306619,-0.209509,A gana
+F2_Menorca,,vs_PM_IDW,HG_RS|secundaria|HGB,PM_IDW_estaciones_entrenamiento_mismo_dia,2097,6,0.330076,0.568237,-0.238161,-0.277685,-0.206441,A gana
+F2_Menorca,,vs_OM_crudo,HG_RS|secundaria|HGB,OM_crudo,2097,6,0.330076,1.038641,-0.708565,-0.758077,-0.655312,A gana
+F2_Menorca,,degradacion_metodo,HG_RS|FORMULA,HG_RS|V2_local_FORMULA_annual,2097,6,0.609932,0.609932,0.000000,-0.000000,0.000000,empate (IC incluye 0)
+F2_Menorca,,degradacion_metodo,HG_RS|AHC_transferido_annual,HG_RS|V2_local_AHC_annual,2097,6,0.391995,0.336259,0.055735,0.034688,0.077873,B gana
+F2_Menorca,,degradacion_metodo,HG_RS|AHC_vecino_annual,HG_RS|V2_local_AHC_annual,2097,6,0.401137,0.336259,0.064878,0.041527,0.089352,B gana
+F2_Menorca,,degradacion_metodo,HG_RS|AHC_transferido_monthly,HG_RS|V2_local_AHC_annual,2097,6,0.388380,0.336259,0.052121,0.033542,0.068782,B gana
+F2_Menorca,,degradacion_metodo,HG_RS|AHC_vecino_monthly,HG_RS|V2_local_AHC_annual,2097,6,0.399738,0.336259,0.063478,0.043243,0.081743,B gana
+F2_Menorca,,degradacion_metodo,HG_RS|principal|Ridge,HG_RS|V2_local_ML_annual,2097,6,0.463156,0.323415,0.139741,0.119963,0.155574,B gana
+F2_Menorca,,degradacion_metodo,HG_RS|principal|Ridge,HG_RS|V2_local_ANN_A_annual,2097,6,0.463156,0.309182,0.153974,0.130844,0.172638,B gana
+F2_Menorca,,degradacion_metodo,HG_RS|principal|HGB,HG_RS|V2_local_ML_annual,2097,6,0.422458,0.323415,0.099043,0.072075,0.126906,B gana
+F2_Menorca,,degradacion_metodo,HG_RS|principal|HGB,HG_RS|V2_local_ANN_A_annual,2097,6,0.422458,0.309182,0.113276,0.085835,0.142637,B gana
+F2_Menorca,,sensibilidad_H1,HG_RS|principal|HGB,HG_RS|V2_local_ANN_A_annual,2097,6,0.422458,0.309182,0.113276,0.085835,0.142637,B gana
+F2_Menorca,,sensibilidad_H1_cualquier_granularidad,HG_RS|principal|HGB,HG_RS|V2_local_ANN_A_monthly,2097,6,0.422458,0.263135,0.159323,0.125301,0.200717,B gana
+F2_Menorca,,comparadores,HG_RS|AHC_transferido_monthly,PM_estacion_mas_cercana_mismo_dia,2097,6,0.388380,0.561028,-0.172648,-0.219850,-0.123321,A gana
+F2_Menorca,,comparadores,OM_AHC_mensual_medio_entrenamiento,PM_estacion_mas_cercana_mismo_dia,2097,6,0.586872,0.561028,0.025844,-0.015756,0.067815,empate (IC incluye 0)
+F2_Menorca,,comparadores,PM_IDW_estaciones_entrenamiento_mismo_dia,PM_estacion_mas_cercana_mismo_dia,2097,6,0.568237,0.561028,0.007209,-0.043504,0.052546,empate (IC incluye 0)

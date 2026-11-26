@@ -1,6 +1,6 @@
 # Estudio 03.1: ¿los modelos de pocos inputs SIAR funcionan en una estación no vista?
 
-Estado: **PLAN**. Criterios en `config/thresholds_v3_1.json`; se congelan al fusionar el PR que los introduce, antes de ejecutar. Se ejecuta **antes** que el estudio 03.2 (`studies/03_loso_openmeteo_ml/`).
+Estado: **EJECUTADO EN PARTE (2026-11-26)**. Hecho: fórmulas, AHC, todos los comparadores, Ridge y HGB (primario), es decir, todo lo que entra en H1–H3 y en la regla de decisión. Pendiente: RF, ANN S/M y ANN tipo V2 (unas 64 h de CPU; ver «Ejecución»). Criterios en `config/thresholds_v3_1.json` (commit 4647f62 del PR #9), sin cambios. Se ejecuta **antes** que el estudio 03.2 (`studies/03_loso_openmeteo_ml/`).
 
 ## Por qué
 
@@ -64,3 +64,113 @@ Como en el 03.2: `results/` (particiones, métricas globales, por estación y po
 - Si la arquitectura de las ANN de V2 no está documentada lo bastante para replicarla, se informa y se usan solo ANN S y M.
 - Referencia calculada, no ET0 medida; 9 estaciones cercanas (F1 optimista).
 - El 03.2 ya incluye L1 y L2 (modelos conjuntos solo de sensor con calendario). Coinciden en parte con la variante secundaria de este estudio; se mantienen allí porque sus criterios están congelados.
+
+---
+
+# Resultados (ejecución del 2026-11-26)
+
+## Ejecución
+
+```
+python studies/03_1_loso_inputs_siar/run.py fit --models Ridge,HGB --workers 2   # ~18 min
+python studies/03_1_loso_inputs_siar/run.py report                              # ~30 s
+bash studies/03_1_loso_inputs_siar/run_server.sh 4     # RF y ANN; reanudable; ~64 h de CPU en total
+```
+
+Cada celda (partición × familia × variante × modelo) se guarda en `results/cells/`; `report` las une y calcula todo lo demás. Las celdas que faltan se listan en `results/run_manifest.json` (`missing_cells`).
+
+**Paso previo.** `classical-baselines.csv` no estaba accesible desde el entorno de ejecución, así que se usó la alternativa: `tools/export_inputs_from_raw.py` sobre `datos_siar_baleares/IBxx_datos_completos.csv` de Capitulo-1. Comprobación 2020–2025 contra `siar_inputs_2020_2025.csv`: 19.272 filas × 8 columnas, **0 discrepancias** (mismos valores y mismos vacíos). Las claves y `quality_status` de 2004–2019 salen de `reference_2004_2019.csv` (56.224 filas). Manifiesto: `data/reference/siar_inputs_2004_2019.manifest.json`.
+
+## Controles
+
+- **La fórmula reproduce V2.** En la cohorte común (n = 19.251), las tres fórmulas coinciden con la columna `FORMULA` de V2: HG-Rs, exacta (diferencia máxima 9·10⁻¹⁶); HS-Ra y Valiantzas, hasta 4·10⁻⁶ mm/día (redondeo de la latitud de `stations.csv` en Ra). RMSE: 0,9491 / 0,6236 / 0,5670, iguales a V2.
+- **AHC local reproduce V2.** Con la regla de objetivo de V2 (PM finita y ≥ 0, `et0_v2.py`), los coeficientes anuales por estación coinciden con los congelados de V2 (IB01: HS-Ra 0,893456; Valiantzas 0,980209; HG-Rs 0,918964; n = 5.512) y las predicciones AHC locales, hasta 4·10⁻⁶.
+- **V2 local** (`data/v2`) da en la cohorte los RMSE publicados de V2 (p. ej. ANN E anual: 0,5327 / 0,4209 / 0,3676).
+
+## ANN tipo V2: lo que se replica
+
+Leído en Capitulo-1 (`ET0_V2_MEMORIA_CIENTIFICA.md` §9, `et0_methodology_review_v2.md` §6 y `ann_modern.py`). ANN A de V2:
+
+| Elemento | V2 (ANN A, por estación) | 03.1 (conjunta) |
+|---|---|---|
+| Arquitecturas candidatas | (16), (32), (64), (64,32), (64,32,16) | iguales |
+| Red | MLPRegressor, ReLU, Adam, α = 1e-4, tasa 0,001, lote 256, `shuffle=False`, salida lineal | igual |
+| Escalado | StandardScaler ajustado solo con las filas que ajustan los pesos en cada fase | igual |
+| Épocas | último 15 % de fechas del entrenamiento como validación interna; máx. 200, paciencia 15, mejora mínima 1e-4 de RMSE; después reajuste con todo el entrenamiento del fold durante esas épocas | igual (fechas únicas del conjunto de estaciones de entrenamiento) |
+| Selección de arquitectura | dejar un año fuera dentro de DEVELOPMENT; media de RMSE; desempate: menor dispersión, menos parámetros, orden lexicográfico | **dejar una estación fuera** dentro del entrenamiento (lo exige el 03.1); mismos desempates |
+| Ajuste final | épocas por semilla = mediana de las mejores épocas de los folds (mitades hacia arriba); ensemble = media de las redes | igual |
+| Semillas | 3 (20261101–20261103) | **5** (20261101–20261105), como pide el 03.1 |
+| Entradas | anuales de la familia | iguales (variante secundaria: + sen/cos del día del año + altitud) |
+
+Las filas se ordenan por (fecha, estación) antes de entrenar, porque `shuffle=False` hace que el orden cuente. Está implementado (`loso_models.py`) y probado en tiempos, pero aún no se ha ejecutado entero (ver «Pendiente»).
+
+## Decisiones de implementación (no fijadas en los criterios)
+
+1. **Entradas de HG-Rs:** se usa el vector anual de V2, `[(Tmax+Tmin)/2, Rs]` (`et0_v2.py::_inputs`). El JSON enumera los sensores (Tmax, Tmin, Rs); el README pide «las entradas de la granularidad anual de V2».
+2. **Objetivo:** PM_FAO56_V1 finita y ≥ 0 (regla de V2). El estudio 02 filtraba además por `evaluated_PM`; la diferencia son unas pocas filas por estación.
+3. **Validación interna:** dejar una estación fuera dentro de las estaciones de entrenamiento (8 folds en F1). Métrica: media simple del RMSE de cada estación retenida. En caso de empate, la primera configuración de la rejilla.
+4. **«Mejor modelo local V2 de la familia» (H1):** el de menor RMSE TEST entre FORMULA, AHC, ML, ANN A y ANN E en granularidad anual (las mismas entradas que la variante principal). En las tres familias sale ANN E. Sensibilidad en `paired_ci.csv` frente a ANN A y frente al mejor de cualquier granularidad: no cambia ningún veredicto.
+5. **AHC transferido** = media simple de los coeficientes por estación de entrenamiento; **vecino** = la estación de entrenamiento más cercana (haversine).
+6. **PM de la estación más cercana:** la estación de entrenamiento más próxima con PM válida ese día; si falta, la siguiente (en F1 pasa 384 veces de 19.251; recuento por partición en el manifiesto). **IDW:** potencia 2 sobre las estaciones de entrenamiento con PM ese día.
+7. **Bootstrap:** 54 bloques estación-año (en F2, los de esas estaciones), 2.000 réplicas y semilla 20261126; los mismos remuestreos para todas las comparaciones; IC por percentiles.
+8. Universo: las 9 estaciones de los criterios (IB07, IB09 e IB101 no entran en el entrenamiento).
+
+## Resultados F1 (estación no vista), TEST 2020–2025, n = 19.251
+
+RMSE en mm/día (sesgo entre paréntesis). Tabla completa en `results/metrics_global.csv`.
+
+| Método | HS-Ra | Valiantzas | HG-Rs |
+|---|---|---|---|
+| Fórmula (= V2) | 0,949 (+0,58) | 0,624 (+0,24) | 0,567 (+0,29) |
+| AHC transferido anual / mensual | 0,748 / 0,743 | 0,600 / 0,600 | 0,441 / 0,435 |
+| AHC de la estación más cercana anual / mensual | 0,841 / 0,840 | 0,668 / 0,669 | 0,454 / 0,448 |
+| Ridge conjunto | 0,684 | 0,559 | 0,479 |
+| **HGB conjunto (primario)** | **0,633 (+0,16)** | **0,518 (+0,10)** | **0,421 (+0,07)** |
+| HGB conjunto, variante secundaria | 0,668 | 0,553 | 0,416 |
+| V2 local: AHC / ML / ANN A / ANN E | 0,631 / 0,553 / 0,533 / 0,533 | 0,512 / 0,439 / 0,421 / 0,421 | 0,413 / 0,381 / 0,368 / 0,368 |
+
+Comparadores (no dependen de la familia): PM de la estación más cercana **0,484**; IDW **0,434**; Open-Meteo crudo 0,752; Open-Meteo + AHC mensual transferido **0,483**.
+
+Por estación (`metrics_by_station.csv`), el HGB de Valiantzas va de 0,43 (IB03) a 0,61 (IB11); el de HG-Rs, de 0,36 (IB04) a 0,48 (IB11). La variante secundaria (calendario + altitud) empeora HS-Ra y Valiantzas; una explicación posible, no comprobada, es que con 8 estaciones la altitud actúe casi como identificador de estación.
+
+## Hipótesis (ΔRMSE = HGB conjunto F1 − comparador; IC 95 %)
+
+| Hipótesis | HS-Ra | Valiantzas | HG-Rs |
+|---|---|---|---|
+| H1: frente al mejor local V2 (ANN E anual) | +0,100 [+0,082; +0,119] | +0,098 [+0,074; +0,119] | +0,053 [+0,039; +0,067] |
+| H2: frente a la PM de la estación más cercana | +0,149 [+0,123; +0,174] | +0,035 [+0,004; +0,062] | −0,063 [−0,094; −0,034] |
+| H3: frente a OM + AHC mensual transferido | +0,150 [+0,120; +0,180] | +0,036 [+0,002; +0,069] | −0,062 [−0,098; −0,025] |
+
+**Veredictos:**
+
+- **H1 (degradación): se cumple en las tres familias** (Δ > 0 y extremo inferior > 0). Al salir de la estación, el HGB conjunto pierde 0,10 mm/día frente al mejor local en HS-Ra y en Valiantzas (+19 % y +23 %) y 0,05 en HG-Rs (+14 %). Por método (`degradacion_metodo`): AHC local → transferido, +0,12 (HS-Ra), +0,09 (Valiantzas), +0,03 (HG-Rs).
+- **H2: HS-Ra y Valiantzas pierden** frente a la estación más cercana (Valiantzas por poco: 0,035 < 0,05, «significativa pero pequeña»). **HG-Rs gana** (−0,063).
+- **H3: lo mismo frente a Open-Meteo + AHC transferido.** HS-Ra pierde, Valiantzas pierde por poco (0,036, pequeña) y HG-Rs gana (−0,062).
+
+## Regla de decisión (aplicación literal)
+
+> «El cambio de rumbo queda justificado si, para HS_RA y VALIANTZAS, el HGB conjunto en F1 no gana ni a PM_estacion_mas_cercana ni a OM_AHC_mensual_medio_entrenamiento (extremo superior del IC ≥ 0 en ambas comparaciones).»
+
+| Familia | Extremo superior IC frente a la estación más cercana | Extremo superior IC frente a OM + AHC | ¿≥ 0 en ambas? |
+|---|---|---|---|
+| HS-Ra | +0,174 | +0,180 | sí |
+| Valiantzas | +0,062 | +0,069 | sí |
+
+**Se cumple: el cambio de rumbo a Open-Meteo corregido (estudio 03.2) queda justificado por este estudio.** HG-Rs, informado aparte: con piranómetro, el modelo conjunto sí gana a la estación más cercana y a OM + AHC (unos 0,06 mm/día), aunque no a la IDW (−0,014 [−0,041; +0,013], empate).
+
+`results/decision.json` guarda el cálculo. RF y ANN no intervienen en la regla, así que este veredicto ya no cambia al completarlas.
+
+## Secundario (sin veredicto)
+
+- **F2.** Fuera Ibiza: el HGB de Valiantzas (0,532) gana a la estación más cercana, que queda lejos (0,745), y empata con OM + AHC (0,587). Fuera Menorca: Valiantzas 0,593, frente a 0,561 de la estación más cercana y 0,587 de OM + AHC, todo con IC que incluyen 0 (solo 6 bloques). HG-Rs gana a ambos comparadores en las dos islas. Fuera Mallorca (informativo): OM + AHC (0,428) gana a todos los modelos de sensor barato.
+- **Interpolación sencilla:** la IDW del mismo día (0,434) gana a la estación más cercana (−0,049 [−0,069; −0,032]). OM + AHC transferido empata con la estación más cercana (−0,001 [−0,038; +0,035]).
+- **Negativos recortados:** Ridge 667 en total entre todas las celdas; HGB 0.
+
+## Pendiente
+
+RF, ANN S, ANN M y ANN tipo V2 (288 celdas). Por los tiempos medidos (RF ≈ 7 min/celda, ANN S/M ≈ 3–5 min, ANN tipo V2 ≈ 40 min, en un solo núcleo), son unas 64 h de CPU. No caben en esta sesión sin reducir el protocolo. Se ejecutan con `run_server.sh` y después se completan aquí las tablas, `ann_seed_spread.csv` y la barra ANN de la figura 1.
+
+## Salvedades de la ejecución
+
+- El PR #9 (criterios del 03.1) no estaba fusionado al ejecutar. Se usó su contenido sin cambios (SHA256 de `thresholds_v3_1.json` en el manifiesto). Esta rama parte de él.
+- Paso previo hecho con la alternativa de crudos (coincidencia exacta en 2020–2025).

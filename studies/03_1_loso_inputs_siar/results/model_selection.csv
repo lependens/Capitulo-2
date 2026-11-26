@@ -1,0 +1,145 @@
+fold,family,variant,model,n_train,params,negatives_clipped,convergence_warnings,final_epochs,seconds,cv_mean_rmse_chosen
+F1_IB01,HG_RS,principal,HGB,42958,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,24.400000,0.401677
+F1_IB02,HG_RS,principal,HGB,42791,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,24.100000,0.389132
+F1_IB03,HG_RS,principal,HGB,42792,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,24.100000,0.391535
+F1_IB04,HG_RS,principal,HGB,42883,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,24.800000,0.402453
+F1_IB05,HG_RS,principal,HGB,42794,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,25.800000,0.399470
+F1_IB06,HG_RS,principal,HGB,42800,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,24.600000,0.395546
+F1_IB08,HG_RS,principal,HGB,43512,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,25.500000,0.392109
+F1_IB10,HG_RS,principal,HGB,43589,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,25.700000,0.398993
+F1_IB11,HG_RS,principal,HGB,43641,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,27.700000,0.379495
+F2_Ibiza,HG_RS,principal,HGB,38129,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,22.000000,0.386522
+F2_Mallorca_informativo,HG_RS,principal,HGB,15299,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,8.300000,0.442048
+F2_Menorca,HG_RS,principal,HGB,43512,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,25.900000,0.392109
+F1_IB01,HG_RS,secundaria,HGB,42958,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,33.400000,0.369866
+F1_IB02,HG_RS,secundaria,HGB,42791,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,32.700000,0.383694
+F1_IB03,HG_RS,secundaria,HGB,42792,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,33.800000,0.392435
+F1_IB04,HG_RS,secundaria,HGB,42883,"{'learning_rate': 0.1, 'max_leaf_nodes': 15}",0,0,,33.400000,0.360621
+F1_IB05,HG_RS,secundaria,HGB,42794,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,34.800000,0.357737
+F1_IB06,HG_RS,secundaria,HGB,42800,"{'learning_rate': 0.1, 'max_leaf_nodes': 31}",0,0,,33.900000,0.362088
+F1_IB08,HG_RS,secundaria,HGB,43512,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,33.600000,0.370940
+F1_IB10,HG_RS,secundaria,HGB,43589,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,36.300000,0.377950
+F1_IB11,HG_RS,secundaria,HGB,43641,"{'learning_rate': 0.1, 'max_leaf_nodes': 31}",0,0,,35.300000,0.318686
+F2_Ibiza,HG_RS,secundaria,HGB,38129,"{'learning_rate': 0.1, 'max_leaf_nodes': 31}",0,0,,28.700000,0.315686
+F2_Mallorca_informativo,HG_RS,secundaria,HGB,15299,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,8.800000,0.474832
+F2_Menorca,HG_RS,secundaria,HGB,43512,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,35.200000,0.370940
+F1_IB01,HS_RA,principal,HGB,42958,"{'learning_rate': 0.1, 'max_leaf_nodes': 15}",0,0,,26.500000,0.584035
+F1_IB02,HS_RA,principal,HGB,42791,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,26.600000,0.573381
+F1_IB03,HS_RA,principal,HGB,42792,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,26.700000,0.581809
+F1_IB04,HS_RA,principal,HGB,42883,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,28.200000,0.594544
+F1_IB05,HS_RA,principal,HGB,42794,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,28.000000,0.588166
+F1_IB06,HS_RA,principal,HGB,42800,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,29.400000,0.582370
+F1_IB08,HS_RA,principal,HGB,43512,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,27.900000,0.583350
+F1_IB10,HS_RA,principal,HGB,43589,"{'learning_rate': 0.1, 'max_leaf_nodes': 15}",0,0,,27.500000,0.585550
+F1_IB11,HS_RA,principal,HGB,43641,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,28.800000,0.529942
+F2_Ibiza,HS_RA,principal,HGB,38129,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,25.200000,0.528708
+F2_Mallorca_informativo,HS_RA,principal,HGB,15299,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,8.300000,0.692324
+F2_Menorca,HS_RA,principal,HGB,43512,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,28.300000,0.583350
+F1_IB01,HS_RA,secundaria,HGB,42958,"{'learning_rate': 0.1, 'max_leaf_nodes': 15}",0,0,,34.100000,0.607494
+F1_IB02,HS_RA,secundaria,HGB,42791,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,35.500000,0.625335
+F1_IB03,HS_RA,secundaria,HGB,42792,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,35.000000,0.636276
+F1_IB04,HS_RA,secundaria,HGB,42883,"{'learning_rate': 0.1, 'max_leaf_nodes': 31}",0,0,,35.800000,0.604195
+F1_IB05,HS_RA,secundaria,HGB,42794,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,36.400000,0.603292
+F1_IB06,HS_RA,secundaria,HGB,42800,"{'learning_rate': 0.1, 'max_leaf_nodes': 31}",0,0,,37.300000,0.593448
+F1_IB08,HS_RA,secundaria,HGB,43512,"{'learning_rate': 0.1, 'max_leaf_nodes': 31}",0,0,,35.500000,0.611482
+F1_IB10,HS_RA,secundaria,HGB,43589,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,35.800000,0.619446
+F1_IB11,HS_RA,secundaria,HGB,43641,"{'learning_rate': 0.1, 'max_leaf_nodes': 31}",0,0,,37.200000,0.517846
+F2_Ibiza,HS_RA,secundaria,HGB,38129,"{'learning_rate': 0.1, 'max_leaf_nodes': 31}",0,0,,31.200000,0.509966
+F2_Mallorca_informativo,HS_RA,secundaria,HGB,15299,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,9.600000,0.741065
+F2_Menorca,HS_RA,secundaria,HGB,43512,"{'learning_rate': 0.1, 'max_leaf_nodes': 31}",0,0,,37.000000,0.611482
+F1_IB01,VALIANTZAS,principal,HGB,42957,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,30.100000,0.491396
+F1_IB02,VALIANTZAS,principal,HGB,42790,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,30.400000,0.477404
+F1_IB03,VALIANTZAS,principal,HGB,42791,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,29.500000,0.483918
+F1_IB04,VALIANTZAS,principal,HGB,42882,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,31.400000,0.489743
+F1_IB05,VALIANTZAS,principal,HGB,42793,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,31.100000,0.485932
+F1_IB06,VALIANTZAS,principal,HGB,42799,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,30.600000,0.491193
+F1_IB08,VALIANTZAS,principal,HGB,43511,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,30.100000,0.486023
+F1_IB10,VALIANTZAS,principal,HGB,43588,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,31.400000,0.480754
+F1_IB11,VALIANTZAS,principal,HGB,43641,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,32.400000,0.434883
+F2_Ibiza,VALIANTZAS,principal,HGB,38129,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,26.400000,0.439415
+F2_Mallorca_informativo,VALIANTZAS,principal,HGB,15298,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,9.500000,0.591788
+F2_Menorca,VALIANTZAS,principal,HGB,43511,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,31.000000,0.486023
+F1_IB01,VALIANTZAS,secundaria,HGB,42957,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,38.900000,0.521204
+F1_IB02,VALIANTZAS,secundaria,HGB,42790,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,38.400000,0.544261
+F1_IB03,VALIANTZAS,secundaria,HGB,42791,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,39.100000,0.551732
+F1_IB04,VALIANTZAS,secundaria,HGB,42882,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,39.400000,0.499793
+F1_IB05,VALIANTZAS,secundaria,HGB,42793,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,41.300000,0.504430
+F1_IB06,VALIANTZAS,secundaria,HGB,42799,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,38.800000,0.508096
+F1_IB08,VALIANTZAS,secundaria,HGB,43511,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,39.500000,0.532000
+F1_IB10,VALIANTZAS,secundaria,HGB,43588,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,41.200000,0.526808
+F1_IB11,VALIANTZAS,secundaria,HGB,43641,"{'learning_rate': 0.1, 'max_leaf_nodes': 31}",0,0,,42.900000,0.436344
+F2_Ibiza,VALIANTZAS,secundaria,HGB,38129,"{'learning_rate': 0.1, 'max_leaf_nodes': 31}",0,0,,33.400000,0.428774
+F2_Mallorca_informativo,VALIANTZAS,secundaria,HGB,15298,"{'learning_rate': 0.03, 'max_leaf_nodes': 15}",0,0,,10.300000,0.648440
+F2_Menorca,VALIANTZAS,secundaria,HGB,43511,"{'learning_rate': 0.03, 'max_leaf_nodes': 31}",0,0,,40.500000,0.532000
+F1_IB01,HG_RS,principal,Ridge,42958,{'alpha': 10},10,0,,0.700000,0.479786
+F1_IB02,HG_RS,principal,Ridge,42791,{'alpha': 0.1},14,0,,0.700000,0.467553
+F1_IB03,HG_RS,principal,Ridge,42792,{'alpha': 0.1},15,0,,0.700000,0.470291
+F1_IB04,HG_RS,principal,Ridge,42883,{'alpha': 10},5,0,,0.700000,0.479178
+F1_IB05,HG_RS,principal,Ridge,42794,{'alpha': 0.1},4,0,,0.700000,0.478427
+F1_IB06,HG_RS,principal,Ridge,42800,{'alpha': 10},16,0,,0.700000,0.472739
+F1_IB08,HG_RS,principal,Ridge,43512,{'alpha': 0.1},14,0,,0.700000,0.469799
+F1_IB10,HG_RS,principal,Ridge,43589,{'alpha': 0.1},4,0,,0.700000,0.475823
+F1_IB11,HG_RS,principal,Ridge,43641,{'alpha': 10},5,0,,0.700000,0.464033
+F2_Ibiza,HG_RS,principal,Ridge,38129,{'alpha': 10},15,0,,0.800000,0.471116
+F2_Mallorca_informativo,HG_RS,principal,Ridge,15299,{'alpha': 0.1},36,0,,0.500000,0.498501
+F2_Menorca,HG_RS,principal,Ridge,43512,{'alpha': 0.1},14,0,,0.700000,0.469799
+F1_IB01,HG_RS,secundaria,Ridge,42958,{'alpha': 100},1,0,,0.900000,0.452774
+F1_IB02,HG_RS,secundaria,Ridge,42791,{'alpha': 10},7,0,,0.800000,0.433087
+F1_IB03,HG_RS,secundaria,Ridge,42792,{'alpha': 10},9,0,,0.700000,0.438546
+F1_IB04,HG_RS,secundaria,Ridge,42883,{'alpha': 10},4,0,,0.700000,0.448949
+F1_IB05,HG_RS,secundaria,Ridge,42794,{'alpha': 100},2,0,,0.800000,0.446363
+F1_IB06,HG_RS,secundaria,Ridge,42800,{'alpha': 0.1},15,0,,0.800000,0.439397
+F1_IB08,HG_RS,secundaria,Ridge,43512,{'alpha': 100},5,0,,0.700000,0.435837
+F1_IB10,HG_RS,secundaria,Ridge,43589,{'alpha': 10},2,0,,0.800000,0.444222
+F1_IB11,HG_RS,secundaria,Ridge,43641,{'alpha': 100},0,0,,0.700000,0.426137
+F2_Ibiza,HG_RS,secundaria,Ridge,38129,{'alpha': 100},1,0,,0.700000,0.440085
+F2_Mallorca_informativo,HG_RS,secundaria,Ridge,15299,{'alpha': 0.1},19,0,,0.500000,0.669927
+F2_Menorca,HG_RS,secundaria,Ridge,43512,{'alpha': 100},5,0,,0.800000,0.435837
+F1_IB01,HS_RA,principal,Ridge,42958,{'alpha': 100},0,0,,0.900000,0.680295
+F1_IB02,HS_RA,principal,Ridge,42791,{'alpha': 100},0,0,,0.800000,0.669377
+F1_IB03,HS_RA,principal,Ridge,42792,{'alpha': 100},0,0,,0.800000,0.678226
+F1_IB04,HS_RA,principal,Ridge,42883,{'alpha': 100},0,0,,0.700000,0.692374
+F1_IB05,HS_RA,principal,Ridge,42794,{'alpha': 100},0,0,,0.700000,0.685287
+F1_IB06,HS_RA,principal,Ridge,42800,{'alpha': 100},0,0,,0.800000,0.681398
+F1_IB08,HS_RA,principal,Ridge,43512,{'alpha': 100},0,0,,0.700000,0.680195
+F1_IB10,HS_RA,principal,Ridge,43589,{'alpha': 100},0,0,,0.700000,0.686488
+F1_IB11,HS_RA,principal,Ridge,43641,{'alpha': 100},0,0,,0.700000,0.641434
+F2_Ibiza,HS_RA,principal,Ridge,38129,{'alpha': 100},2,0,,0.700000,0.638079
+F2_Mallorca_informativo,HS_RA,principal,Ridge,15299,{'alpha': 100},0,0,,0.600000,0.770982
+F2_Menorca,HS_RA,principal,Ridge,43512,{'alpha': 100},0,0,,0.800000,0.680195
+F1_IB01,HS_RA,secundaria,Ridge,42958,{'alpha': 100},0,0,,1.000000,0.680090
+F1_IB02,HS_RA,secundaria,Ridge,42791,{'alpha': 100},1,0,,0.800000,0.665540
+F1_IB03,HS_RA,secundaria,Ridge,42792,{'alpha': 100},0,0,,0.800000,0.672714
+F1_IB04,HS_RA,secundaria,Ridge,42883,{'alpha': 100},0,0,,0.800000,0.690595
+F1_IB05,HS_RA,secundaria,Ridge,42794,{'alpha': 10},0,0,,0.700000,0.674363
+F1_IB06,HS_RA,secundaria,Ridge,42800,{'alpha': 100},1,0,,0.800000,0.679676
+F1_IB08,HS_RA,secundaria,Ridge,43512,{'alpha': 10},0,0,,0.800000,0.674032
+F1_IB10,HS_RA,secundaria,Ridge,43589,{'alpha': 100},0,0,,0.800000,0.680154
+F1_IB11,HS_RA,secundaria,Ridge,43641,{'alpha': 0.1},0,0,,0.800000,0.606230
+F2_Ibiza,HS_RA,secundaria,Ridge,38129,{'alpha': 0.1},1,0,,0.700000,0.609861
+F2_Mallorca_informativo,HS_RA,secundaria,Ridge,15299,{'alpha': 100},0,0,,0.500000,1.113924
+F2_Menorca,HS_RA,secundaria,Ridge,43512,{'alpha': 10},0,0,,0.800000,0.674032
+F1_IB01,VALIANTZAS,principal,Ridge,42957,{'alpha': 100},5,0,,0.800000,0.554250
+F1_IB02,VALIANTZAS,principal,Ridge,42790,{'alpha': 100},20,0,,0.800000,0.546757
+F1_IB03,VALIANTZAS,principal,Ridge,42791,{'alpha': 100},17,0,,0.700000,0.548709
+F1_IB04,VALIANTZAS,principal,Ridge,42882,{'alpha': 100},10,0,,0.800000,0.550201
+F1_IB05,VALIANTZAS,principal,Ridge,42793,{'alpha': 100},11,0,,0.800000,0.549278
+F1_IB06,VALIANTZAS,principal,Ridge,42799,{'alpha': 100},18,0,,0.700000,0.556167
+F1_IB08,VALIANTZAS,principal,Ridge,43511,{'alpha': 100},5,0,,0.800000,0.550156
+F1_IB10,VALIANTZAS,principal,Ridge,43588,{'alpha': 100},7,0,,0.700000,0.548070
+F1_IB11,VALIANTZAS,principal,Ridge,43641,{'alpha': 10},1,0,,0.700000,0.512865
+F2_Ibiza,VALIANTZAS,principal,Ridge,38129,{'alpha': 1},8,0,,0.700000,0.514250
+F2_Mallorca_informativo,VALIANTZAS,principal,Ridge,15298,{'alpha': 100},105,0,,0.500000,0.636463
+F2_Menorca,VALIANTZAS,principal,Ridge,43511,{'alpha': 100},5,0,,0.700000,0.550156
+F1_IB01,VALIANTZAS,secundaria,Ridge,42957,{'alpha': 100},5,0,,0.900000,0.559492
+F1_IB02,VALIANTZAS,secundaria,Ridge,42790,{'alpha': 100},22,0,,0.800000,0.548891
+F1_IB03,VALIANTZAS,secundaria,Ridge,42791,{'alpha': 100},17,0,,0.800000,0.549974
+F1_IB04,VALIANTZAS,secundaria,Ridge,42882,{'alpha': 100},9,0,,0.800000,0.551447
+F1_IB05,VALIANTZAS,secundaria,Ridge,42793,{'alpha': 100},9,0,,0.800000,0.543350
+F1_IB06,VALIANTZAS,secundaria,Ridge,42799,{'alpha': 100},21,0,,0.900000,0.558164
+F1_IB08,VALIANTZAS,secundaria,Ridge,43511,{'alpha': 100},3,0,,0.900000,0.549156
+F1_IB10,VALIANTZAS,secundaria,Ridge,43588,{'alpha': 100},7,0,,0.800000,0.545073
+F1_IB11,VALIANTZAS,secundaria,Ridge,43641,{'alpha': 0.1},6,0,,0.800000,0.487989
+F2_Ibiza,VALIANTZAS,secundaria,Ridge,38129,{'alpha': 0.1},6,0,,0.700000,0.499593
+F2_Mallorca_informativo,VALIANTZAS,secundaria,Ridge,15298,{'alpha': 100},120,0,,0.500000,1.040436
+F2_Menorca,VALIANTZAS,secundaria,Ridge,43511,{'alpha': 100},3,0,,0.800000,0.549156
