@@ -1,6 +1,6 @@
 # Estudio 03.1: ¿los modelos de pocos inputs SIAR funcionan en una estación no vista?
 
-Estado: **EJECUTADO EN PARTE (2026-11-26)**. Hecho: fórmulas, AHC, todos los comparadores, Ridge y HGB (primario), es decir, todo lo que entra en H1–H3 y en la regla de decisión. Pendiente: RF, ANN S/M y ANN tipo V2 (unas 64 h de CPU; ver «Ejecución»). Criterios en `config/thresholds_v3_1.json` (commit 4647f62 del PR #9), sin cambios. Se ejecuta **antes** que el estudio 03.2 (`studies/03_loso_openmeteo_ml/`).
+Estado: **EJECUTADO EN PARTE (2026-11-26)**. Hecho: fórmulas, AHC, todos los comparadores, Ridge y HGB (primario), es decir, todo lo que entra en H1–H3 y en la regla de decisión. Pendiente: RF, ANN S/M y ANN tipo V2 (unas 50 h de un núcleo; ver «Ejecución»). Criterios en `config/thresholds_v3_1.json` (commit 4647f62 del PR #9), sin cambios. Se ejecuta **antes** que el estudio 03.2 (`studies/03_loso_openmeteo_ml/`).
 
 ## Por qué
 
@@ -72,12 +72,23 @@ Como en el 03.2: `results/` (particiones, métricas globales, por estación y po
 ## Ejecución
 
 ```
-python studies/03_1_loso_inputs_siar/run.py fit --models Ridge,HGB --workers 2   # ~18 min
-python studies/03_1_loso_inputs_siar/run.py report                              # ~30 s
-bash studies/03_1_loso_inputs_siar/run_server.sh 4     # RF y ANN; reanudable; ~64 h de CPU en total
+python studies/03_1_loso_inputs_siar/run.py fit --models Ridge,HGB --workers 2   # ya hecho (~18 min)
+python studies/03_1_loso_inputs_siar/run.py report                              # ~30 s, cualquier equipo
 ```
 
-Cada celda (partición × familia × variante × modelo) se guarda en `results/cells/`; `report` las une y calcula todo lo demás. Las celdas que faltan se listan en `results/run_manifest.json` (`missing_cells`).
+Cada celda (partición × familia × variante × modelo) se guarda en `results/cells/` y `report` une todas las que haya, vengan de donde vengan. Las que faltan se listan en `results/run_manifest.json` (`missing_cells`). Cada celda guarda además la plataforma y las versiones con las que se calculó (`env`; las 144 de Ridge y HGB se calcularon en el entorno de trabajo de Claude, con las mismas versiones fijadas).
+
+**Pendiente: RF, ANN S, ANN M y ANN tipo V2 (288 celdas, unas 50 h de un núcleo medidas en ese entorno).** Se reparte en tres sesiones de Kaggle CPU (4 núcleos, 12 h), cada una con `kaggle_session.sh N`:
+
+| Sesión | Contenido | Celdas | Estimado (4 núcleos) |
+|---|---|---|---|
+| 1 | RF + ANN S + ANN M, todas las familias | 216 | 4–5 h |
+| 2 | ANN tipo V2 de HS-Ra y HG-Rs | 48 | 5–6 h |
+| 3 | ANN tipo V2 de Valiantzas | 24 | 4–5 h |
+
+Alternativa en un equipo propio (todo en serie, reanudable): `bash studies/03_1_loso_inputs_siar/run_server.sh 4`.
+
+Los filtros de `run.py fit` (`--families`, `--folds`, `--variants`, `--max-hours`, `--list`) solo seleccionan celdas; no cambian ningún modelo, rejilla ni criterio. `check_env.py` detiene la ejecución si las versiones no coinciden con `requirements.txt`. Cada sesión deja `celdas_sesion_N.zip`; se descomprime en `results/cells/` y se vuelve a ejecutar `report`.
 
 **Paso previo.** `classical-baselines.csv` no estaba accesible desde el entorno de ejecución, así que se usó la alternativa: `tools/export_inputs_from_raw.py` sobre `datos_siar_baleares/IBxx_datos_completos.csv` de Capitulo-1. Comprobación 2020–2025 contra `siar_inputs_2020_2025.csv`: 19.272 filas × 8 columnas, **0 discrepancias** (mismos valores y mismos vacíos). Las claves y `quality_status` de 2004–2019 salen de `reference_2004_2019.csv` (56.224 filas). Manifiesto: `data/reference/siar_inputs_2004_2019.manifest.json`.
 
@@ -168,7 +179,7 @@ Por estación (`metrics_by_station.csv`), el HGB de Valiantzas va de 0,43 (IB03)
 
 ## Pendiente
 
-RF, ANN S, ANN M y ANN tipo V2 (288 celdas). Por los tiempos medidos (RF ≈ 7 min/celda, ANN S/M ≈ 3–5 min, ANN tipo V2 ≈ 40 min, en un solo núcleo), son unas 64 h de CPU. No caben en esta sesión sin reducir el protocolo. Se ejecutan con `run_server.sh` y después se completan aquí las tablas, `ann_seed_spread.csv` y la barra ANN de la figura 1.
+RF, ANN S, ANN M y ANN tipo V2 (288 celdas). Tiempos medidos en un solo núcleo: RF ≈ 7 min/celda; ANN M ≈ 5 min (ANN S ≈ 3, estimado); ANN tipo V2 ≈ 28 / 39 / 18 min según familia (HS-Ra / Valiantzas / HG-Rs), con mucha variación porque las épocas elegidas van de 8 a 200. Total ≈ 50 h de un núcleo. Se ejecutan según «Ejecución» y después se completan aquí las tablas, `ann_seed_spread.csv` y la barra ANN de la figura 1.
 
 ## Salvedades de la ejecución
 

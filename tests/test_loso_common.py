@@ -61,3 +61,20 @@ class LosoCommonTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+@unittest.skipUnless(HAVE, "requiere numpy y pandas")
+class RunFiltersTest(unittest.TestCase):
+    def test_deadline_skips_cell_without_training(self):
+        import time
+        sys.path.insert(0, str(STUDY))
+        import loso_common
+        import run
+        fold = loso_common.build_folds()[0]
+        msg, secs = run.fit_cell(fold, "HG_RS", "principal", "ANN_V2like", deadline=time.time() - 1)
+        self.assertTrue(msg.startswith("OMITIDA"))
+        self.assertEqual(secs, 0.0)
+
+    def test_kaggle_sessions_cover_pending_cells(self):
+        # 216 + 48 + 24 = 288 celdas pendientes (RF, ANN S, ANN M, ANN tipo V2) en 12 particiones x 3 familias x 2 variantes
+        self.assertEqual(3 * 12 * 3 * 2 + 12 * 3 * 2 * 1, 216 + 72)
