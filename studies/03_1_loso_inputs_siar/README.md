@@ -383,6 +383,8 @@ Esta parte valora los modelos **en sí mismos**, al margen de que el estudio se 
 
 # Parte V — Propuesta de estudio 03.1.2 (sensor local + red): valoración y plan
 
+> **Actualización:** el plan definitivo, con los escenarios B (mismo día), C (previsión a D+1), B-ayer y A (distancia a la costa), está en [`studies/03_1_2_loso_sensor_red/README.md`](../03_1_2_loso_sensor_red/README.md), y los criterios en `config/thresholds_v3_1_2.json`. Lo que sigue es la propuesta original y se conserva tal cual.
+
 ## Valoración de la idea
 
 El punto de partida es correcto: comparar un modelo que solo ve un termómetro contra la **IDW** no es una comparación entre iguales. Pero conviene precisar **cuál** es la información de más que tiene la IDW, porque de eso depende que el estudio tenga sentido o no.
