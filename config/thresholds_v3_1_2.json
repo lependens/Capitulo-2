@@ -1,50 +1,26 @@
 {
   "_comment": "Criterios del estudio 03.1.2 (sensor local + red SIAR). PROPUESTA hasta que el usuario la apruebe y se fusione el PR que la congela, ANTES de ejecutar ninguna celda. No sustituye a thresholds_v3_1.json (03.1) ni a thresholds_v3.json (03.2), que siguen congelados. El diseno se escribio despues de conocer los resultados del 03.1 (declarado).",
   "version": "3.1.2",
+  "_clarifications_before_freeze": "Anadidas en el PR de congelacion, antes de ejecutar nada, por decision delegada del usuario: casos (2) y (5) y definicion de 'pierde' en interpretation_rule; Ra(d+1) anadida en todos los conjuntos de C; cohorte de C con d y d+1 en la cohorte comun; comparadores de B_ayer y A_costa. Justificacion en studies/03_1_2_loso_sensor_red/README.md.",
   "status": "CONGELADO",
   "reference": "PM_FAO56_V1",
   "protocol": {
-    "development": [
-      "2004-01-01",
-      "2019-12-31"
-    ],
-    "test": [
-      "2020-01-01",
-      "2025-12-31"
-    ],
+    "development": ["2004-01-01", "2019-12-31"],
+    "test": ["2020-01-01", "2025-12-31"],
     "test_cohort": "common_core == 1 en los CSV V2 (n=19251) para el escenario B y B_ayer (si el pool de red esta vacio la fila no entra y se cuenta); para C, las filas d+1 de esa cohorte cuyo dia d TAMBIEN esta en la cohorte (n=19216, identica para las tres familias; garantiza que exista la prediccion B|S+R1 del dia d para la persistencia del modelo); todos los comparadores de C se evaluan sobre esas mismas filas. Entrenamiento de C: pares (d, d+1) con ambos dias en DESARROLLO, objetivo valido en d+1 e inputs validos en d",
     "folds": "identicos a studies/03_1_loso_inputs_siar/results/folds.json (F1_loso principal; F2_island Ibiza y Menorca; Mallorca informativo)",
     "training_rule": "Solo DESARROLLO y solo estaciones de entrenamiento de cada particion",
     "selection_by_test": false
   },
   "families": {
-    "HS_RA": [
-      "Tmax",
-      "Tmin",
-      "Ra"
-    ],
-    "VALIANTZAS": [
-      "Tmax",
-      "Tmin",
-      "HR_media",
-      "Ra"
-    ],
-    "HG_RS": [
-      "Tmax",
-      "Tmin",
-      "Rs"
-    ]
+    "HS_RA": ["Tmax", "Tmin", "Ra"],
+    "VALIANTZAS": ["Tmax", "Tmin", "HR_media", "Ra"],
+    "HG_RS": ["Tmax", "Tmin", "Rs"]
   },
   "network_features": {
     "pool": "estaciones de entrenamiento de la particion con PM valida ese dia; para una fila de la estacion t se excluye siempre t (leave-self-out); en la validacion interna se excluye ademas la estacion de validacion del pool de TODAS las filas",
-    "R1": [
-      "IDW_PM (potencia 2, mismo calculo que el comparador del 03.1)",
-      "d1_km (distancia a la estacion del pool mas cercana)"
-    ],
-    "R3": [
-      "PM_1, PM_2, PM_3 de las 3 estaciones del pool mas cercanas, ordenadas por distancia",
-      "d1_km <= d2_km <= d3_km"
-    ],
+    "R1": ["IDW_PM (potencia 2, mismo calculo que el comparador del 03.1)", "d1_km (distancia a la estacion del pool mas cercana)"],
+    "R3": ["PM_1, PM_2, PM_3 de las 3 estaciones del pool mas cercanas, ordenadas por distancia", "d1_km <= d2_km <= d3_km"],
     "ordering_rule": "PM y distancias entran ordenadas por cercania, nunca indexadas por nombre de estacion",
     "missing": "si el pool tiene menos de 3 estaciones ese dia, R3 rellena con la ultima disponible y su distancia; si el pool esta vacio, la fila no entra (se cuenta)"
   },
@@ -55,107 +31,25 @@
     "A_costa_secundario": "inputs de sensor del dia d + log1p(distancia a la costa en km) -> PM del dia d (sin red)"
   },
   "input_sets": {
-    "B": {
-      "S": "reutilizado del 03.1 (variante principal), no se recalcula",
-      "S+R1": "por familia",
-      "S+R3": "por familia",
-      "R": "sin familia: R3 + Ra + IDW_PM"
-    },
-    "C": {
-      "S": "por familia",
-      "S+R1": "por familia",
-      "S+R3": "por familia",
-      "R": "sin familia"
-    },
-    "B_ayer_secundario": {
-      "S+R1": "por familia",
-      "R": "sin familia"
-    },
-    "A_costa_secundario": {
-      "S+costa": "por familia"
-    }
+    "B": {"S": "reutilizado del 03.1 (variante principal), no se recalcula", "S+R1": "por familia", "S+R3": "por familia", "R": "sin familia: R3 + Ra + IDW_PM"},
+    "C": {"S": "por familia", "S+R1": "por familia", "S+R3": "por familia", "R": "sin familia"},
+    "B_ayer_secundario": {"S+R1": "por familia", "R": "sin familia"},
+    "A_costa_secundario": {"S+costa": "por familia"}
   },
   "coast_distance": "distancia geodesica minima de cada estacion a la linea de costa Natural Earth 1:10m (o GSHHG full), calculada una vez y guardada en config/stations_coast.csv con la fuente y su SHA256; nunca estimada a mano",
   "methods": {
-    "Ridge": {
-      "alpha": [
-        0.1,
-        1,
-        10,
-        100
-      ],
-      "scenarios": [
-        "B",
-        "C",
-        "B_ayer_secundario",
-        "A_costa_secundario"
-      ]
-    },
-    "HGB_primario": {
-      "learning_rate": [
-        0.03,
-        0.1
-      ],
-      "max_leaf_nodes": [
-        15,
-        31
-      ],
-      "max_iter": 500,
-      "early_stopping": false,
-      "scenarios": [
-        "B",
-        "C",
-        "B_ayer_secundario",
-        "A_costa_secundario"
-      ]
-    },
-    "ANN_M": {
-      "hidden_layer_sizes": [
-        64,
-        32
-      ],
-      "alpha": [
-        0.0001,
-        0.001
-      ],
-      "early_stopping": true,
-      "seeds": [
-        0,
-        1,
-        2,
-        3,
-        4
-      ],
-      "scenarios": [
-        "B",
-        "C"
-      ]
-    },
+    "Ridge": {"alpha": [0.1, 1, 10, 100], "scenarios": ["B", "C", "B_ayer_secundario", "A_costa_secundario"]},
+    "HGB_primario": {"learning_rate": [0.03, 0.1], "max_leaf_nodes": [15, 31], "max_iter": 500, "early_stopping": false, "scenarios": ["B", "C", "B_ayer_secundario", "A_costa_secundario"]},
+    "ANN_M": {"hidden_layer_sizes": [64, 32], "alpha": [1e-4, 1e-3], "early_stopping": true, "seeds": [0, 1, 2, 3, 4], "scenarios": ["B", "C"]},
     "excluded": "RF, ANN_S y ANN_V2like (justificacion en el README)",
     "tuning": "validacion cruzada interna agrupada por estacion dentro del entrenamiento; RMSE (igual que el 03.1)",
     "negatives": "recorte a 0 con recuento"
   },
   "comparators": {
-    "B": [
-      "PM_IDW_mismo_dia",
-      "PM_estacion_mas_cercana_mismo_dia",
-      "OM_AHC_mensual_medio_entrenamiento",
-      "S (03.1, mismo modelo y familia)"
-    ],
-    "C": [
-      "persistencia_IDW: IDW_PM del dia d como valor de d+1",
-      "persistencia_vecina: PM de la estacion mas cercana del dia d",
-      "persistencia_modelo: prediccion B|S+R1 del dia d como valor de d+1",
-      "climatologia: media de PM de las estaciones de entrenamiento en DESARROLLO para el mes de d+1",
-      "informativo, no es prevision: OM_AHC_mensual del dia d+1 (reanalisis)"
-    ],
-    "B_ayer_secundario": [
-      "B|S+R1 del mismo modelo y familia (coste del desfase de un dia)",
-      "PM_IDW_mismo_dia"
-    ],
-    "A_costa_secundario": [
-      "S (03.1, mismo modelo y familia)"
-    ]
+    "B": ["PM_IDW_mismo_dia", "PM_estacion_mas_cercana_mismo_dia", "OM_AHC_mensual_medio_entrenamiento", "S (03.1, mismo modelo y familia)"],
+    "C": ["persistencia_IDW: IDW_PM del dia d como valor de d+1", "persistencia_vecina: PM de la estacion mas cercana del dia d", "persistencia_modelo: prediccion B|S+R1 del dia d como valor de d+1", "climatologia: media de PM de las estaciones de entrenamiento en DESARROLLO para el mes de d+1", "informativo, no es prevision: OM_AHC_mensual del dia d+1 (reanalisis)"],
+    "B_ayer_secundario": ["B|S+R1 del mismo modelo y familia (coste del desfase de un dia)", "PM_IDW_mismo_dia"],
+    "A_costa_secundario": ["S (03.1, mismo modelo y familia)"]
   },
   "statistics": {
     "paired_ci": "Delta RMSE con IC 95% por bootstrap de bloques estacion-anio, 2000 replicas, semilla 20261126, los mismos remuestreos para todas las comparaciones",
@@ -177,6 +71,5 @@
     "Las PM vecinas son de la misma referencia que el objetivo: el resultado mide red + sensor, no sensor.",
     "La red del dia d en SIAR se publica sin validacion completa; el estudio usa datos ya validados (limite superior).",
     "Diseno escrito despues de conocer los resultados del 03.1."
-  ],
-  "_clarifications_before_freeze": "Anadidas en el PR de congelacion, antes de ejecutar nada, por decision delegada del usuario: casos (2) y (5) y definicion de 'pierde' en interpretation_rule; Ra(d+1) anadida en todos los conjuntos de C; cohorte de C con d y d+1 en la cohorte comun; comparadores de B_ayer y A_costa. Justificacion en studies/03_1_2_loso_sensor_red/README.md."
+  ]
 }
