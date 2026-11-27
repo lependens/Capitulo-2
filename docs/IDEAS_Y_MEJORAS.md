@@ -4,7 +4,7 @@ Documento **vivo e interno**. Recoge lo que se ha aprendido, las líneas que se 
 
 **Cómo se mantiene:** al cerrar cada estudio se actualizan «Lo que sabemos hoy» y el estado de las líneas afectadas, y se añade una línea al registro de cambios del final. Las propuestas detalladas siguen en cada estudio (03.1 Parte V, 03.2 Parte V, 03.1.2); aquí solo se resumen y se priorizan.
 
-Última actualización: 2026-11-27, tras cerrar el 03.2 (el 04 está en enfoque).
+Última actualización: 2026-11-27, tras cerrar el 03.2 (el 04 está en enfoque; captura ECMWF añadida).
 
 ## 1. Lo que sabemos hoy
 
@@ -28,7 +28,7 @@ Viabilidad: **alta** (indicio a favor o base sólida), **media** o **baja**. Cos
 | L1 | **Balance hídrico por fuente de ET0** (estudio 05) | Traduce los deltas de RMSE a agua y euros; es el mensaje para vender el trabajo | alta | bajo | enfoque + exploratorio |
 | L2 | **Previsión D+1…D+7** (estudio 04) | Es lo que la red no da y lo más útil para programar el riego | media-alta | medio | enfoque; capturas en marcha |
 | L3 | **ML + red: corrección residual de HGB-S0 con la red del día** (regresión-kriging o IDW de los residuos) | La media simple HGB-S0 + IDW ya da 0,377 (−0,056); interpolar los residuos es la forma con base geoestadística | alta | bajo | idea (03.2 Parte V-A, 03.1.2) |
-| L4 | **Andalucía: distancia de cruce** (a partir de qué distancia a la red gana cada fuente) | ~100 estaciones, relieve y distancias de 50–100 km; base de un artículo serio y de un mapa de decisión | alta | medio | datos en captura (SIAR Sync V3) |
+| L4 | **Andalucía: distancia de cruce** (a partir de qué distancia a la red gana cada fuente, con y sin sensor propio) | ~100 estaciones, relieve y distancias de 50–100 km; base de un artículo serio y de un mapa de decisión. Método: exclusión por radio (ver abajo) | alta | medio | datos en captura (SIAR Sync V3) |
 | L5 | **Objetivo residual y control de dominio** (predecir PM/ET0_OM, recortar altitud, avisar fuera de rango) | Evita los fallos silenciosos de las ANN; imprescindible en un servicio | alta | bajo | idea (03.2 Parte V-B) |
 | L6 | **Incertidumbre por predicción** (cuantiles o intervalos conformes en LOSO) | «4,2 ± 0,4 mm» vale más que «4,2»; pocos servicios lo dan | alta | bajo | idea |
 | L7 | **Reconstrucción histórica de la ET0 de Baleares desde 1940** con el reanálisis corregido, y su tendencia | Muy divulgable; serie insular de 85 años; ya tenemos el pipeline. Supone que la corrección de 2004–2019 vale hacia atrás | media | bajo | idea |
@@ -38,8 +38,12 @@ Viabilidad: **alta** (indicio a favor o base sólida), **media** o **baja**. Cos
 | L11 | **Robustez a un sensor de usuario** (degradar T y HR con errores típicos de sensores baratos) | Saber cuánto sobrevive la mejora de S2 | alta | bajo | idea (03.2 Parte V-E) |
 | L12 | **Altura e interior** (estaciones > 120 m) | Ninguna estación de entrenamiento supera 120 m; la Tramuntana pasa de 1.000 | media | medio | idea (03.2 Parte V-C) |
 | L13 | **ANN con contexto temporal o espacial** (varios días seguidos, rejilla alrededor del punto) | Es donde las redes sí suelen ganar a los árboles; tiene sentido con Andalucía | media | alto | idea |
-| L14 | **Fuentes con licencia comercial** (ERA5/ERA5-Land de Copernicus, datos abiertos de ECMWF, AEMET) en lugar de la API gratuita de Open-Meteo | Requisito para cualquier uso con anuncios o de pago (ver sección 4) | alta | medio | idea; verificar licencias |
+| L14 | **Fuentes con licencia comercial** (ERA5/ERA5-Land, datos abiertos de ECMWF, AEMET) en lugar de la API gratuita de Open-Meteo | Requisito para cualquier uso con anuncios o de pago (ver sección 4) | alta | medio | captura ECMWF en marcha; falta reentrenar y revalidar con ERA5 |
 | L15 | **Sesgo positivo con sensor (S1, S2)** | +0,09 mm/día; se acumula en el balance | media | bajo | sin investigar |
+
+### Método para L4: exclusión por radio
+
+Para cada estación evaluada se quitan del entrenamiento y de la IDW todas las estaciones a menos de r km (r = 0, 25, 50, 75, 100). Así la curva de error frente a distancia es **controlada**, no limitada a las distancias que haya por casualidad. Se comparan: estación más cercana, IDW, Open-Meteo/ERA5 + ML sin sensor y con sensor (T; T + HR). El resultado es una regla de decisión: «si tu estación SIAR está a menos de X km, úsala; si no, usa esto; el sensor propio compensa solo si…». Protocolo prerregistrado, como los estudios 03.
 
 **Orden recomendado:** L1 → L3 y L5 (baratas, mismas predicciones e infraestructura) → L4 (Andalucía) → L2 (cuando haya meses de previsión capturada) → el resto según interés.
 
@@ -77,11 +81,23 @@ Viabilidad: **alta** (indicio a favor o base sólida), **media** o **baja**. Cos
 | R7. Curso o material docente («ML con datos agroclimáticos abiertos») | Basado en este repo reproducible | Bajos | medio | educativo: no comercial si es gratuito |
 | R8. Publicidad programática | Anuncios en la web | Muy bajos (nicho de pocas miles de visitas al mes) | bajo | **no** con la API gratuita |
 
+**Fuentes con licencia que permiten cobrar o poner anuncios** (comprobado el 2026-11-27; confirmar siempre el texto vigente):
+
+| Fuente | Uso | Condición |
+|---|---|---|
+| ERA5 / ERA5-Land (Copernicus) | Histórico para entrenar | CC-BY desde el 2 de julio de 2025; citar la fuente |
+| ECMWF datos abiertos en tiempo real (IFS, AIFS) | Previsión diaria | CC-BY-4.0 desde octubre de 2025; citar a ECMWF |
+| AEMET OpenData | Observación y previsión municipal | Reutilización comercial permitida citando «Fuente: AEMET» y sin sugerir aval; sus salidas de modelo no son abiertas |
+| Météo-France AROME | — | Abierto pero solo Francia: no sirve |
+
+Camino para un servicio de pago o con anuncios: entrenar con ERA5, predecir con ECMWF y **revalidar con la misma fuente que se usará en producción** (un modelo entrenado con Open-Meteo no se traslada sin comprobarlo). La referencia SIAR exige además confirmar con el MAPA el uso comercial. Los puntos de L14 y de la captura ECMWF están en `studies/04_prevision_et0/`.
+
 **Recomendación:** R2 + R3 como escaparate y para validar interés, R1 con el tutor como vía de financiación y R6 como objetivo de fondo. R8 no compensa.
 
 ## 5. Preguntas abiertas
 
-- ¿Qué fuente con licencia comercial reproduce mejor a Open-Meteo en Baleares (L14)?
+- ¿Qué fuente con licencia comercial reproduce mejor a Open-Meteo en Baleares (L14)? ¿Es el `archive` de Open-Meteo equivalente a ERA5 descargado de Copernicus?
+- ¿Qué ET0 prevista da ECMWF con sus variables abiertas (T, Td, viento, radiación) frente a la de Open-Meteo, y falta Tmax/Tmin para el modelo?
 - ¿Con qué retardo publica SIAR los datos del día? Decide si L3 sirve para la ET0 de hoy o solo para la de ayer.
 - ¿Hay acceso a datos de lisímetro a través del tutor (L10)?
 - ¿Mantiene HGB-S0 su ventaja con previsión en lugar de reanálisis (L2)?
@@ -91,3 +107,4 @@ Viabilidad: **alta** (indicio a favor o base sólida), **media** o **baja**. Cos
 | Fecha | Cambio |
 |---|---|
 | 2026-11-27 | Creación tras cerrar el 03.2; exploratorio de balance hídrico (estudio 05) |
+| 2026-11-27 | Licencias comerciales (ERA5, ECMWF, AEMET), método de exclusión por radio (L4), captura ECMWF y plan de previsión |
