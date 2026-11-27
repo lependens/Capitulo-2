@@ -30,7 +30,7 @@ Hora de emisión: AEMET da `elaborado` (la de la prueba, 19:59) y la actualiza v
 ## Incidencias
 
 - **SIAR sin previsión desde el 24-11-2026.** La última captura con datos del servidor `iaserver` es del 23-11-2026 a las 20:00. Desde entonces SIAR responde, pero sin filas, también en su web. Se registra como `sin_prevision`; cuando SIAR vuelva, se guardará sola.
-- Comarca SIAR de IB01 e IB11: Ibiza (701), tomada de la captura del servidor. Falta la de IB08 (Menorca): `pendiente_config` en SIAR; AEMET ya la captura.
+- Comarcas SIAR: Mallorca 702, Ibiza 701 (IB01 e IB11, tomada de la captura del servidor) y Menorca 703 (IB08, de `necesidadesHidricasRest/obtenerDatosEstacion` de SIAR). El servidor no capturaba IB08; aquí sí.
 
 ## Relación con el servidor (Capitulo-1)
 
