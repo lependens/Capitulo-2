@@ -11,7 +11,7 @@ from pathlib import Path
 
 HAVE = all(importlib.util.find_spec(m) for m in ("numpy", "pandas", "sklearn"))
 ROOT = Path(__file__).resolve().parents[1]
-STUDY = ROOT / "studies/03_loso_openmeteo_ml"
+STUDY = ROOT / "studies/03_2_loso_openmeteo_ml"
 
 
 def _load(name, path):

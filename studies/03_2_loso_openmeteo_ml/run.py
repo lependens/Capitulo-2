@@ -1,9 +1,9 @@
 """Estudio 03.2: Open-Meteo corregido con ML en estaciones no vistas (LOSO / fuera de isla).
 
 Uso (desde la raiz del repo):
-    python studies/03_loso_openmeteo_ml/run.py fit    [--models HGB,Ridge] [--scenarios S0,S2] [--folds F1_loso]
+    python studies/03_2_loso_openmeteo_ml/run.py fit    [--models HGB,Ridge] [--scenarios S0,S2] [--folds F1_loso]
                                                       [--workers N] [--max-hours H] [--list]
-    python studies/03_loso_openmeteo_ml/run.py report
+    python studies/03_2_loso_openmeteo_ml/run.py report
 
 `fit` ajusta un modelo por celda (particion x escenario x modelo) y guarda cada celda en results/cells/
 (gzip, escritura atomica). Las celdas ya hechas se saltan, asi que se puede interrumpir y reanudar.

@@ -1,6 +1,6 @@
 """Comprueba que el entorno tiene EXACTAMENTE las versiones fijadas en requirements.txt (si no, se detiene).
 
-Uso: python studies/03_loso_openmeteo_ml/check_env.py
+Uso: python studies/03_2_loso_openmeteo_ml/check_env.py
 Importa: numpy, pandas, scikit-learn, matplotlib. Las versiones fijadas no se relajan para que las celdas de
 distintas maquinas sean comparables."""
 import importlib.metadata as md

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Una sesion de Kaggle (CPU, sin acelerador, 4 nucleos, tope 12 h) del estudio 03.2. Uso (desde la raiz del repo):
-#   bash studies/03_loso_openmeteo_ml/kaggle_session.sh N
+#   bash studies/03_2_loso_openmeteo_ml/kaggle_session.sh N
 # Reparto en 4 sesiones paralelas (la cuenta admite 4 a la vez), sin solaparse:
 # N = 1: RF, F1 IB01-IB05                                30 celdas, ~10-11 h de nucleo -> ~3 h
 #     2: RF, F1 IB06, IB08, IB10, IB11 y las 3 de F2     42 celdas, ~12-13 h de nucleo -> ~3,5 h
@@ -13,7 +13,7 @@
 # output). NO usa ningun token ni secreto. Ridge y HGB no se ejecutan aqui: ya estan en results/cells/.
 set -uo pipefail
 N="${1:?uso: kaggle_session.sh 0|1|2|3|4}"
-D=studies/03_loso_openmeteo_ml
+D=studies/03_2_loso_openmeteo_ml
 OUT=/kaggle/working
 mkdir -p "$OUT"
 START=$(date +%s)
