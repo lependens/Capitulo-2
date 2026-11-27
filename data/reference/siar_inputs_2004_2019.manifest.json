@@ -1,0 +1,58 @@
+{
+  "source": "CSV crudos de Capitulo-1 (alternativa; classical-baselines.csv no disponible en el entorno de ejecucion)",
+  "raw_files_sha256": {
+    "IB01_datos_completos.csv": "dfadf1ec335d7af040a7caab65c73761ac555fa050e7bb75ffb7a4376b750c53",
+    "IB02_datos_completos.csv": "a65ba9913d1649fb86fb61b574630e9706154b4f2ad4ac11246b301740d78891",
+    "IB03_datos_completos.csv": "bf44c363acdc01673c5dd7bc847283bc7620d7af70ba91267608707c730c638d",
+    "IB04_datos_completos.csv": "2745c212a45078ba2010aaab637c40d56949f7fa50e9946dbe6763d008a11199",
+    "IB05_datos_completos.csv": "8ee97684d962169db1e3949c02e4a277b683ca0211ccea158e11382bd4905432",
+    "IB06_datos_completos.csv": "48731bd993a2116bea75fdb779788a1a71505563e1d9cdae8d9a7d5817907cb2",
+    "IB07_datos_completos.csv": "8641cdf90697064fe07c505618d5a9921cf103e5fc1e1d06b28812b566786c68",
+    "IB08_datos_completos.csv": "cfe4f124793139ea9b55f147209733fc74ef9e274272ff8bf9ad6115bf4c14cc",
+    "IB09_datos_completos.csv": "2cbd9bb289404264fc78dad21322562d9d22b64ce4bbc87e51512ca763ea7a8a",
+    "IB10_datos_completos.csv": "9295b9b071ad6239301544cce1618cec065bae1e6ff7106e4fa0c5def1f69c47",
+    "IB101_datos_completos.csv": "b2c91aa0c6b8836cba868243ad565755c97f21703e081baae40c66e0f810179a",
+    "IB11_datos_completos.csv": "bee7da8bdd401bbbf801517861d02f4e0b7e1296cf3229f924cba1c2bec01e07"
+  },
+  "keys_and_quality_from": {
+    "file": "reference_2004_2019.csv",
+    "sha256": "b41eb1ca58465ad3bb25694a2d05b117bbcdd5ce0047728f0565c527d3b3fa4e"
+  },
+  "check_2020_2025": {
+    "file": "siar_inputs_2020_2025.csv",
+    "sha256": "1d99523c0413eb59b432da5fe7a765d46660fcdd3cd267700e574b15373651e6",
+    "rows": 19272,
+    "columns": [
+      "TempMax",
+      "TempMin",
+      "TempMedia",
+      "HumedadMax",
+      "HumedadMin",
+      "HumedadMedia",
+      "VelViento",
+      "Radiacion"
+    ],
+    "discrepancies": 0
+  },
+  "output_file": "siar_inputs_2004_2019.csv",
+  "output_sha256": "0e9412abb8a9ab1ad549c99cbd865b3376d182369d1c01e23320a9ab2878e23c",
+  "rows": 56224,
+  "period": [
+    "2004-01-01",
+    "2019-12-31"
+  ],
+  "columns": [
+    "station_code",
+    "date",
+    "TempMax",
+    "TempMin",
+    "TempMedia",
+    "HumedadMax",
+    "HumedadMin",
+    "HumedadMedia",
+    "VelViento",
+    "Radiacion",
+    "quality_status"
+  ],
+  "note": "Mismas columnas que siar_inputs_2020_2025.csv. Origen de datos: SiAR (MAPA); citar siempre."
+}
