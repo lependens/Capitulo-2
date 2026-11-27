@@ -1,0 +1,2870 @@
+{
+ "exploracion": {
+  "siar_selects": {
+   "idCAEstacion": [
+    {
+     "value": "-1",
+     "text": "Seleccione una comunidad"
+    },
+    {
+     "value": "AND",
+     "text": "Andalucía"
+    },
+    {
+     "value": "ARA",
+     "text": "Aragón"
+    },
+    {
+     "value": "CAN",
+     "text": "Canarias"
+    },
+    {
+     "value": "CAL",
+     "text": "Castilla y León"
+    },
+    {
+     "value": "CAM",
+     "text": "Castilla-La Mancha"
+    },
+    {
+     "value": "MAD",
+     "text": "Comunidad de Madrid"
+    },
+    {
+     "value": "NAV",
+     "text": "Comunidad Foral de Navarra"
+    },
+    {
+     "value": "VAL",
+     "text": "Comunidad Valenciana"
+    },
+    {
+     "value": "EXT",
+     "text": "Extremadura"
+    },
+    {
+     "value": "GAL",
+     "text": "Galicia"
+    },
+    {
+     "value": "BAL",
+     "text": "Islas Baleares"
+    },
+    {
+     "value": "MUR",
+     "text": "Región de Murcia"
+    }
+   ],
+   "idProvinciaEstacion": [
+    {
+     "value": "-1",
+     "text": "Seleccione una provincia"
+    },
+    {
+     "value": "2",
+     "text": "Albacete"
+    },
+    {
+     "value": "3",
+     "text": "Alicante/Alacant"
+    },
+    {
+     "value": "4",
+     "text": "Almería"
+    },
+    {
+     "value": "5",
+     "text": "Ávila"
+    },
+    {
+     "value": "6",
+     "text": "Badajoz"
+    },
+    {
+     "value": "7",
+     "text": "Balears, Illes"
+    },
+    {
+     "value": "9",
+     "text": "Burgos"
+    },
+    {
+     "value": "10",
+     "text": "Cáceres"
+    },
+    {
+     "value": "11",
+     "text": "Cádiz"
+    },
+    {
+     "value": "12",
+     "text": "Castellón/Castelló"
+    },
+    {
+     "value": "13",
+     "text": "Ciudad Real"
+    },
+    {
+     "value": "14",
+     "text": "Córdoba"
+    },
+    {
+     "value": "15",
+     "text": "Coruña, A"
+    },
+    {
+     "value": "16",
+     "text": "Cuenca"
+    },
+    {
+     "value": "18",
+     "text": "Granada"
+    },
+    {
+     "value": "19",
+     "text": "Guadalajara"
+    },
+    {
+     "value": "21",
+     "text": "Huelva"
+    },
+    {
+     "value": "22",
+     "text": "Huesca"
+    },
+    {
+     "value": "23",
+     "text": "Jaén"
+    },
+    {
+     "value": "24",
+     "text": "León"
+    },
+    {
+     "value": "27",
+     "text": "Lugo"
+    },
+    {
+     "value": "28",
+     "text": "Madrid"
+    },
+    {
+     "value": "29",
+     "text": "Málaga"
+    },
+    {
+     "value": "30",
+     "text": "Murcia"
+    },
+    {
+     "value": "31",
+     "text": "Navarra"
+    },
+    {
+     "value": "34",
+     "text": "Palencia"
+    },
+    {
+     "value": "35",
+     "text": "Palmas, Las"
+    },
+    {
+     "value": "37",
+     "text": "Salamanca"
+    },
+    {
+     "value": "38",
+     "text": "Santa Cruz de Tenerife"
+    },
+    {
+     "value": "40",
+     "text": "Segovia"
+    },
+    {
+     "value": "41",
+     "text": "Sevilla"
+    },
+    {
+     "value": "42",
+     "text": "Soria"
+    },
+    {
+     "value": "44",
+     "text": "Teruel"
+    },
+    {
+     "value": "45",
+     "text": "Toledo"
+    },
+    {
+     "value": "46",
+     "text": "Valencia/València"
+    },
+    {
+     "value": "47",
+     "text": "Valladolid"
+    },
+    {
+     "value": "49",
+     "text": "Zamora"
+    },
+    {
+     "value": "50",
+     "text": "Zaragoza"
+    }
+   ],
+   "idComunidadRegantes": [
+    {
+     "value": "-1",
+     "text": "Seleccionar comunidad de regantes"
+    }
+   ],
+   "idEstacion": [
+    {
+     "value": "-1",
+     "text": "Seleccione una estación"
+    },
+    {
+     "value": "2_3",
+     "text": "A02 - Camp de Mirra"
+    },
+    {
+     "value": "3_3",
+     "text": "A03 - Vila Joiosa"
+    },
+    {
+     "value": "4_3",
+     "text": "A04 - Ondara"
+    },
+    {
+     "value": "5_3",
+     "text": "A05 - Dénia Gata"
+    },
+    {
+     "value": "6_3",
+     "text": "A06 - Pinoso"
+    },
+    {
+     "value": "8_3",
+     "text": "A08 - Monforte del Cid"
+    },
+    {
+     "value": "9_3",
+     "text": "A09 - Crevillente"
+    },
+    {
+     "value": "10_3",
+     "text": "A10 - Almoradí"
+    },
+    {
+     "value": "13_3",
+     "text": "A13 - Catral"
+    },
+    {
+     "value": "15_3",
+     "text": "A15 - Altea"
+    },
+    {
+     "value": "18_3",
+     "text": "A18 - Planes"
+    },
+    {
+     "value": "19_3",
+     "text": "A19 - Villena"
+    },
+    {
+     "value": "20_3",
+     "text": "A20 - Agost"
+    },
+    {
+     "value": "21_3",
+     "text": "A21 - Orihuela - La Murada"
+    },
+    {
+     "value": "101_3",
+     "text": "A101 - Elx EEA"
+    },
+    {
+     "value": "102_3",
+     "text": "A102 - Callosa d'en Sarrià"
+    },
+    {
+     "value": "1020_3",
+     "text": "A1020 - Callosa d'en Sarrià (malla)"
+    },
+    {
+     "value": "2_2",
+     "text": "AB02 - Juanaco"
+    },
+    {
+     "value": "3_2",
+     "text": "AB03 - Almansa"
+    },
+    {
+     "value": "5_2",
+     "text": "AB05 - Albacete"
+    },
+    {
+     "value": "6_2",
+     "text": "AB06 - Ontur"
+    },
+    {
+     "value": "7_2",
+     "text": "AB07 - Pozo Cañada"
+    },
+    {
+     "value": "8_2",
+     "text": "AB08 - La Gineta"
+    },
+    {
+     "value": "9_2",
+     "text": "AB09 - Motilleja"
+    },
+    {
+     "value": "10_2",
+     "text": "AB10 - Caudete"
+    },
+    {
+     "value": "11_2",
+     "text": "AB11 - Hellín"
+    },
+    {
+     "value": "12_2",
+     "text": "AB12 - Tarazona de la Mancha"
+    },
+    {
+     "value": "1_4",
+     "text": "AL01 - La Mojonera"
+    },
+    {
+     "value": "2_4",
+     "text": "AL02 - Almería"
+    },
+    {
+     "value": "4_4",
+     "text": "AL04 - Tabernas"
+    },
+    {
+     "value": "5_4",
+     "text": "AL05 - Fiñana"
+    },
+    {
+     "value": "6_4",
+     "text": "AL06 - Virgen de Fátima-Cuevas de Almanzora"
+    },
+    {
+     "value": "7_4",
+     "text": "AL07 - Huércal-Overa"
+    },
+    {
+     "value": "8_4",
+     "text": "AL08 - Cuevas de Almanzora"
+    },
+    {
+     "value": "10_4",
+     "text": "AL10 - Adra"
+    },
+    {
+     "value": "11_4",
+     "text": "AL11 - Níjar"
+    },
+    {
+     "value": "12_4",
+     "text": "AL12 - Tíjola"
+    },
+    {
+     "value": "201_4",
+     "text": "AL201 - Cajamar - PITA"
+    },
+    {
+     "value": "1_5",
+     "text": "AV01 - Nava de Arévalo"
+    },
+    {
+     "value": "101_5",
+     "text": "AV101 - Muñogalindo"
+    },
+    {
+     "value": "102_5",
+     "text": "AV102 - Losar del Barco"
+    },
+    {
+     "value": "1_6",
+     "text": "BA01 - Zalamea de la Serena"
+    },
+    {
+     "value": "2_6",
+     "text": "BA02 - Monterrubio de la Serena"
+    },
+    {
+     "value": "4_6",
+     "text": "BA04 - Villagonzalo"
+    },
+    {
+     "value": "5_6",
+     "text": "BA05 - Jerez de los Caballeros"
+    },
+    {
+     "value": "6_6",
+     "text": "BA06 - Olivenza"
+    },
+    {
+     "value": "8_6",
+     "text": "BA08 - Don Benito"
+    },
+    {
+     "value": "9_6",
+     "text": "BA09 - Villafranca de los Barros"
+    },
+    {
+     "value": "101_6",
+     "text": "BA101 - Mérida"
+    },
+    {
+     "value": "102_6",
+     "text": "BA102 - Azuaga"
+    },
+    {
+     "value": "103_6",
+     "text": "BA103 - Puebla de Alcocer"
+    },
+    {
+     "value": "104_6",
+     "text": "BA104 - Fuente de Cantos"
+    },
+    {
+     "value": "105_6",
+     "text": "BA105 - Don Benito-EFA"
+    },
+    {
+     "value": "106_6",
+     "text": "BA106 - Santa Amalia"
+    },
+    {
+     "value": "107_6",
+     "text": "BA107 - Torrefresneda"
+    },
+    {
+     "value": "108_6",
+     "text": "BA108 - Navalvillar de Pela"
+    },
+    {
+     "value": "109_6",
+     "text": "BA109 - Aceuchal"
+    },
+    {
+     "value": "203_6",
+     "text": "BA203 - Bercial"
+    },
+    {
+     "value": "204_6",
+     "text": "BA204 - Rueda Chica"
+    },
+    {
+     "value": "205_6",
+     "text": "BA205 - La Orden"
+    },
+    {
+     "value": "206_6",
+     "text": "BA206 - Arroyo"
+    },
+    {
+     "value": "210_6",
+     "text": "BA210 - Palazuelo"
+    },
+    {
+     "value": "2_9",
+     "text": "BU02 - Valle de Valdelucio"
+    },
+    {
+     "value": "3_9",
+     "text": "BU03 - Lerma"
+    },
+    {
+     "value": "4_9",
+     "text": "BU04 - Tardajos"
+    },
+    {
+     "value": "5_9",
+     "text": "BU05 - Vadocondes"
+    },
+    {
+     "value": "7_9",
+     "text": "BU07 - Santa Gadea del Cid"
+    },
+    {
+     "value": "101_9",
+     "text": "BU101 - Valle de Losa"
+    },
+    {
+     "value": "102_9",
+     "text": "BU102 - Condado de Treviño"
+    },
+    {
+     "value": "1_15",
+     "text": "C01 - A Capela"
+    },
+    {
+     "value": "2_15",
+     "text": "C02 - Boimorto"
+    },
+    {
+     "value": "1_11",
+     "text": "CA01 - Basurta-Jerez de la Frontera"
+    },
+    {
+     "value": "2_11",
+     "text": "CA02 - Jerez de la Frontera"
+    },
+    {
+     "value": "4_11",
+     "text": "CA04 - Villamartín"
+    },
+    {
+     "value": "5_11",
+     "text": "CA05 - Conil de la Frontera"
+    },
+    {
+     "value": "6_11",
+     "text": "CA06 - Vejer de la Frontera"
+    },
+    {
+     "value": "7_11",
+     "text": "CA07 - Jimena de la Frontera"
+    },
+    {
+     "value": "10_11",
+     "text": "CA10 - Puerto de Santa María"
+    },
+    {
+     "value": "11_11",
+     "text": "CA11 - Sanlúcar de Barrameda"
+    },
+    {
+     "value": "101_11",
+     "text": "CA101 - IFAPA Centro de Chipiona"
+    },
+    {
+     "value": "1_10",
+     "text": "CC01 - Casatejada"
+    },
+    {
+     "value": "4_10",
+     "text": "CC04 - Aldehuela del Jerte"
+    },
+    {
+     "value": "7_10",
+     "text": "CC07 - Madrigalejo"
+    },
+    {
+     "value": "9_10",
+     "text": "CC09 - Peraleda de la Mata"
+    },
+    {
+     "value": "10_10",
+     "text": "CC10 - Valdeiñigos-Tejeda de Tíetar"
+    },
+    {
+     "value": "11_10",
+     "text": "CC11 - Jarandilla de la Vera"
+    },
+    {
+     "value": "12_10",
+     "text": "CC12 - Gargantilla"
+    },
+    {
+     "value": "14_10",
+     "text": "CC14 - Coria-Puebla de Argeme"
+    },
+    {
+     "value": "16_10",
+     "text": "CC16 - Moraleja"
+    },
+    {
+     "value": "17_10",
+     "text": "CC17 - Valdastillas"
+    },
+    {
+     "value": "18_10",
+     "text": "CC18 - Valdesalor"
+    },
+    {
+     "value": "19_10",
+     "text": "CC19 - Zarza de Granadilla"
+    },
+    {
+     "value": "101_10",
+     "text": "CC101 - Hurdes-Azabal"
+    },
+    {
+     "value": "103_10",
+     "text": "CC103 - Guadalupe"
+    },
+    {
+     "value": "104_10",
+     "text": "CC104 - Alcantara"
+    },
+    {
+     "value": "105_10",
+     "text": "CC105 - Mirabel"
+    },
+    {
+     "value": "107_10",
+     "text": "CC107 - Rebollar"
+    },
+    {
+     "value": "108_10",
+     "text": "CC108 - Tiétar"
+    },
+    {
+     "value": "109_10",
+     "text": "CC109 - Valdeíñigos II"
+    },
+    {
+     "value": "1_14",
+     "text": "CO01 - Belmez"
+    },
+    {
+     "value": "2_14",
+     "text": "CO02 - Adamuz"
+    },
+    {
+     "value": "4_14",
+     "text": "CO04 - Hornachuelos"
+    },
+    {
+     "value": "5_14",
+     "text": "CO05 - El Carpio"
+    },
+    {
+     "value": "6_14",
+     "text": "CO06 - Córdoba"
+    },
+    {
+     "value": "7_14",
+     "text": "CO07 - Santaella"
+    },
+    {
+     "value": "8_14",
+     "text": "CO08 - Baena"
+    },
+    {
+     "value": "9_14",
+     "text": "CO09 - Palma del Rio"
+    },
+    {
+     "value": "101_14",
+     "text": "CO101 - IFAPA Centro de Cabra"
+    },
+    {
+     "value": "102_14",
+     "text": "CO102 - IFAPA Centro de Hinojosa del Duque"
+    },
+    {
+     "value": "1_13",
+     "text": "CR01 - Alcázar de San Juan"
+    },
+    {
+     "value": "3_13",
+     "text": "CR03 - Porzuna"
+    },
+    {
+     "value": "4_13",
+     "text": "CR04 - Ciudad Real"
+    },
+    {
+     "value": "5_13",
+     "text": "CR05 - Bolaños"
+    },
+    {
+     "value": "7_13",
+     "text": "CR07 - Argamasilla de Alba"
+    },
+    {
+     "value": "8_13",
+     "text": "CR08 - Herencia"
+    },
+    {
+     "value": "9_13",
+     "text": "CR09 - Daimiel"
+    },
+    {
+     "value": "10_13",
+     "text": "CR10 - Manzanares"
+    },
+    {
+     "value": "11_13",
+     "text": "CR11 - Montiel"
+    },
+    {
+     "value": "1_12",
+     "text": "CS01 - Vall d'Uixó"
+    },
+    {
+     "value": "3_12",
+     "text": "CS03 - San Rafael del Río"
+    },
+    {
+     "value": "5_12",
+     "text": "CS05 - Castelló Benadresa"
+    },
+    {
+     "value": "7_12",
+     "text": "CS07 - Ribera de Cabanes"
+    },
+    {
+     "value": "8_12",
+     "text": "CS08 - Nules"
+    },
+    {
+     "value": "9_12",
+     "text": "CS09 - Segorbe"
+    },
+    {
+     "value": "11_12",
+     "text": "CS11 - Onda"
+    },
+    {
+     "value": "13_12",
+     "text": "CS13 - VILA-REAL"
+    },
+    {
+     "value": "101_12",
+     "text": "CS101 - Vila-real EEA"
+    },
+    {
+     "value": "1_16",
+     "text": "CU01 - El Sanchón"
+    },
+    {
+     "value": "2_16",
+     "text": "CU02 - Pedernoso"
+    },
+    {
+     "value": "3_16",
+     "text": "CU03 - El Picazo"
+    },
+    {
+     "value": "4_16",
+     "text": "CU04 - Barajas de Melo"
+    },
+    {
+     "value": "5_16",
+     "text": "CU05 - Cañete"
+    },
+    {
+     "value": "7_16",
+     "text": "CU07 - Villaconejos de Trabaque"
+    },
+    {
+     "value": "8_16",
+     "text": "CU08 - Villanueva de la Jara"
+    },
+    {
+     "value": "9_16",
+     "text": "CU09 - Mariana"
+    },
+    {
+     "value": "1_35",
+     "text": "GC01 - Gáldar"
+    },
+    {
+     "value": "2_35",
+     "text": "GC02 - San Nicolás de Tolentino"
+    },
+    {
+     "value": "3_35",
+     "text": "GC03 - Santa Lucía - Vecindario"
+    },
+    {
+     "value": "4_35",
+     "text": "GC04 - Vega de San Mateo"
+    },
+    {
+     "value": "5_35",
+     "text": "GC05 - Arucas"
+    },
+    {
+     "value": "7_35",
+     "text": "GC07 - Tinajo"
+    },
+    {
+     "value": "9_35",
+     "text": "GC09 - Antigua - Pozo Negro"
+    },
+    {
+     "value": "101_35",
+     "text": "GC101 - La Torrecilla"
+    },
+    {
+     "value": "103_35",
+     "text": "GC103 - La Degollada"
+    },
+    {
+     "value": "104_35",
+     "text": "GC104 - Barranquillo Frío"
+    },
+    {
+     "value": "105_35",
+     "text": "GC105 - La Tornera"
+    },
+    {
+     "value": "106_35",
+     "text": "GC106 - El Galeón"
+    },
+    {
+     "value": "107_35",
+     "text": "GC107 - La Culata"
+    },
+    {
+     "value": "108_35",
+     "text": "GC108 - Tunte"
+    },
+    {
+     "value": "109_35",
+     "text": "GC109 - La Geria"
+    },
+    {
+     "value": "110_35",
+     "text": "GC110 - La Granja"
+    },
+    {
+     "value": "111_35",
+     "text": "GC111 - La Montaña"
+    },
+    {
+     "value": "112_35",
+     "text": "GC112 - Osorio"
+    },
+    {
+     "value": "1_18",
+     "text": "GR01 - Baza"
+    },
+    {
+     "value": "2_18",
+     "text": "GR02 - Puebla de Don Fadrique"
+    },
+    {
+     "value": "3_18",
+     "text": "GR03 - Loja"
+    },
+    {
+     "value": "5_18",
+     "text": "GR05 - Iznalloz"
+    },
+    {
+     "value": "6_18",
+     "text": "GR06 - Jerez del Marquesado"
+    },
+    {
+     "value": "7_18",
+     "text": "GR07 - Cádiar"
+    },
+    {
+     "value": "8_18",
+     "text": "GR08 - Zafarraya"
+    },
+    {
+     "value": "10_18",
+     "text": "GR10 - Padul"
+    },
+    {
+     "value": "11_18",
+     "text": "GR11 - Almuñecar"
+    },
+    {
+     "value": "12_18",
+     "text": "GR12 - Pinos Puente Casanueva"
+    },
+    {
+     "value": "101_18",
+     "text": "GR101 - IFAPA Centro Camino del Purchil"
+    },
+    {
+     "value": "102_18",
+     "text": "GR102 - Huéneja"
+    },
+    {
+     "value": "2_19",
+     "text": "GU02 - Jadraque"
+    },
+    {
+     "value": "3_19",
+     "text": "GU03 - Armuña de Tajuña"
+    },
+    {
+     "value": "5_19",
+     "text": "GU05 - Prados Redondos"
+    },
+    {
+     "value": "6_19",
+     "text": "GU06 - Illana"
+    },
+    {
+     "value": "9_19",
+     "text": "GU09 - Marchamalo"
+    },
+    {
+     "value": "2_21",
+     "text": "H02 - Lepe"
+    },
+    {
+     "value": "3_21",
+     "text": "H03 - Gibraleón"
+    },
+    {
+     "value": "5_21",
+     "text": "H05 - Niebla"
+    },
+    {
+     "value": "6_21",
+     "text": "H06 - Aroche"
+    },
+    {
+     "value": "7_21",
+     "text": "H07 - La Puebla de Guzmán"
+    },
+    {
+     "value": "8_21",
+     "text": "H08 - El Campillo"
+    },
+    {
+     "value": "9_21",
+     "text": "H09 - La Palma del Condado"
+    },
+    {
+     "value": "10_21",
+     "text": "H10 - Almonte"
+    },
+    {
+     "value": "11_21",
+     "text": "H11 - Gibraleón - Manzorrales"
+    },
+    {
+     "value": "12_21",
+     "text": "H12 - Moguer El Fresno"
+    },
+    {
+     "value": "101_21",
+     "text": "H101 - IFAPA Centro Huelva. Finca El Cebollar"
+    },
+    {
+     "value": "102_21",
+     "text": "H102 - IFAPA Centro Huelva. El Cebollar Bajo Plástico"
+    },
+    {
+     "value": "103_21",
+     "text": "H103 - Almonte bajo plástico"
+    },
+    {
+     "value": "107_21",
+     "text": "H107 - Palos de la Frontera bajo plástico"
+    },
+    {
+     "value": "1_22",
+     "text": "HU01 - Valfarta"
+    },
+    {
+     "value": "2_22",
+     "text": "HU02 - Zaidín"
+    },
+    {
+     "value": "3_22",
+     "text": "HU03 - Alcolea de Cinca"
+    },
+    {
+     "value": "4_22",
+     "text": "HU04 - Tamarite de Litera"
+    },
+    {
+     "value": "5_22",
+     "text": "HU05 - Lanaja"
+    },
+    {
+     "value": "6_22",
+     "text": "HU06 - Selgua"
+    },
+    {
+     "value": "7_22",
+     "text": "HU07 - Barbastro"
+    },
+    {
+     "value": "8_22",
+     "text": "HU08 - Sariñena"
+    },
+    {
+     "value": "9_22",
+     "text": "HU09 - Huesca"
+    },
+    {
+     "value": "10_22",
+     "text": "HU10 - Candasnos"
+    },
+    {
+     "value": "12_22",
+     "text": "HU12 - Huerto"
+    },
+    {
+     "value": "13_22",
+     "text": "HU13 - Gurrea de Gállego"
+    },
+    {
+     "value": "14_22",
+     "text": "HU14 - Banastón"
+    },
+    {
+     "value": "15_22",
+     "text": "HU15 - Alfántega"
+    },
+    {
+     "value": "17_22",
+     "text": "HU17 - Fraga"
+    },
+    {
+     "value": "18_22",
+     "text": "HU18 - Tardienta"
+    },
+    {
+     "value": "19_22",
+     "text": "HU19 - San Esteban de Litera"
+    },
+    {
+     "value": "20_22",
+     "text": "HU20 - Monte Julia"
+    },
+    {
+     "value": "21_22",
+     "text": "HU21 - Sodeto"
+    },
+    {
+     "value": "22_22",
+     "text": "HU22 - Santa Cilia de Jaca"
+    },
+    {
+     "value": "1_7",
+     "text": "IB01 - Santa Eulalia"
+    },
+    {
+     "value": "2_7",
+     "text": "IB02 - Inca"
+    },
+    {
+     "value": "3_7",
+     "text": "IB03 - Manacor"
+    },
+    {
+     "value": "4_7",
+     "text": "IB04 - Son Ferriol"
+    },
+    {
+     "value": "5_7",
+     "text": "IB05 - Felanitx"
+    },
+    {
+     "value": "6_7",
+     "text": "IB06 - Sa Pobla"
+    },
+    {
+     "value": "8_7",
+     "text": "IB08 - Es Mercadal"
+    },
+    {
+     "value": "10_7",
+     "text": "IB10 - Calviá"
+    },
+    {
+     "value": "11_7",
+     "text": "IB11 - S' Estany des Peix"
+    },
+    {
+     "value": "1_23",
+     "text": "J01 - Huesa"
+    },
+    {
+     "value": "2_23",
+     "text": "J02 - Pozo Alcón"
+    },
+    {
+     "value": "3_23",
+     "text": "J03 - San José de los Propios"
+    },
+    {
+     "value": "4_23",
+     "text": "J04 - Sabiote"
+    },
+    {
+     "value": "5_23",
+     "text": "J05 - Torreblascopedro"
+    },
+    {
+     "value": "6_23",
+     "text": "J06 - Alcaudete"
+    },
+    {
+     "value": "7_23",
+     "text": "J07 - Mancha Real"
+    },
+    {
+     "value": "8_23",
+     "text": "J08 - Ubeda"
+    },
+    {
+     "value": "11_23",
+     "text": "J11 - Chiclana de Segura"
+    },
+    {
+     "value": "12_23",
+     "text": "J12 - La Higuera de Arjona"
+    },
+    {
+     "value": "14_23",
+     "text": "J14 - Santo Tomé"
+    },
+    {
+     "value": "15_23",
+     "text": "J15 - Jaén"
+    },
+    {
+     "value": "16_23",
+     "text": "J16 - Marmolejo"
+    },
+    {
+     "value": "101_23",
+     "text": "J101 - Torreperogil"
+    },
+    {
+     "value": "102_23",
+     "text": "J102 - Villacarrillo"
+    },
+    {
+     "value": "103_23",
+     "text": "J103 - Jódar"
+    },
+    {
+     "value": "104_23",
+     "text": "J104 - IFAPA Centro Mengibar"
+    },
+    {
+     "value": "1_24",
+     "text": "LE01 - Carracedelo"
+    },
+    {
+     "value": "2_24",
+     "text": "LE02 - Mansilla mayor"
+    },
+    {
+     "value": "3_24",
+     "text": "LE03 - Cubillas de los Oteros"
+    },
+    {
+     "value": "4_24",
+     "text": "LE04 - Zotes del Páramo"
+    },
+    {
+     "value": "5_24",
+     "text": "LE05 - Quintana del Marco"
+    },
+    {
+     "value": "6_24",
+     "text": "LE06 - Hospital de Orbigo"
+    },
+    {
+     "value": "7_24",
+     "text": "LE07 - Bustillo del Páramo"
+    },
+    {
+     "value": "9_24",
+     "text": "LE09 - Santas Martas"
+    },
+    {
+     "value": "1_27",
+     "text": "LU01 - Castro de Rei"
+    },
+    {
+     "value": "2_27",
+     "text": "LU02 - Monforte de Lemos"
+    },
+    {
+     "value": "1_28",
+     "text": "M01 - Center: Finca experimental"
+    },
+    {
+     "value": "2_28",
+     "text": "M02 - Arganda"
+    },
+    {
+     "value": "3_28",
+     "text": "M03 - Aranjuez"
+    },
+    {
+     "value": "4_28",
+     "text": "M04 - Fuentidueña de Tajo"
+    },
+    {
+     "value": "5_28",
+     "text": "M05 - San Martín de la Vega"
+    },
+    {
+     "value": "6_28",
+     "text": "M06 - Chinchón"
+    },
+    {
+     "value": "102_28",
+     "text": "M102 - Villa del Prado"
+    },
+    {
+     "value": "1_29",
+     "text": "MA01 - Málaga"
+    },
+    {
+     "value": "2_29",
+     "text": "MA02 - Vélez-Málaga"
+    },
+    {
+     "value": "4_29",
+     "text": "MA04 - Estepona"
+    },
+    {
+     "value": "6_29",
+     "text": "MA06 - Sierra Yeguas"
+    },
+    {
+     "value": "7_29",
+     "text": "MA07 - IFAPA Churriana"
+    },
+    {
+     "value": "8_29",
+     "text": "MA08 - Pizarra"
+    },
+    {
+     "value": "9_29",
+     "text": "MA09 - Cártama"
+    },
+    {
+     "value": "10_29",
+     "text": "MA10 - Antequera"
+    },
+    {
+     "value": "11_29",
+     "text": "MA11 - Archidona"
+    },
+    {
+     "value": "101_29",
+     "text": "MA101 - IFAPA Centro de Campanillas"
+    },
+    {
+     "value": "1_30",
+     "text": "MU01 - Finca experimental de Aguilas (CIDA)"
+    },
+    {
+     "value": "2_30",
+     "text": "MU02 - Finca experimental de Totana (CIDA)"
+    },
+    {
+     "value": "3_30",
+     "text": "MU03 - Forja, S.A.-Fuente Alamo"
+    },
+    {
+     "value": "6_30",
+     "text": "MU06 - La Aljorra"
+    },
+    {
+     "value": "8_30",
+     "text": "MU08 - Turilla: La Paca"
+    },
+    {
+     "value": "9_30",
+     "text": "MU09 - Purias-Lorca"
+    },
+    {
+     "value": "10_30",
+     "text": "MU10 - Charco de Taray"
+    },
+    {
+     "value": "11_30",
+     "text": "MU11 - Finca Taray (Torres de cotillas)"
+    },
+    {
+     "value": "14_30",
+     "text": "MU14 - Finca Venta de Ulea-Moratalla"
+    },
+    {
+     "value": "16_30",
+     "text": "MU16 - Puerto Lumbreras"
+    },
+    {
+     "value": "17_30",
+     "text": "MU17 - Beniel"
+    },
+    {
+     "value": "18_30",
+     "text": "MU18 - Yecla"
+    },
+    {
+     "value": "19_30",
+     "text": "MU19 - Corvera"
+    },
+    {
+     "value": "20_30",
+     "text": "MU20 - Casa Rosa de Ulea"
+    },
+    {
+     "value": "21_30",
+     "text": "MU21 - Librilla La Egesa"
+    },
+    {
+     "value": "22_30",
+     "text": "MU22 - Jimenado"
+    },
+    {
+     "value": "101_30",
+     "text": "MU101 - Alhama (La Calavera)"
+    },
+    {
+     "value": "102_30",
+     "text": "MU102 - Calasparra (Rotas)"
+    },
+    {
+     "value": "103_30",
+     "text": "MU103 - Molina de Segura (Campotejar)"
+    },
+    {
+     "value": "104_30",
+     "text": "MU104 - Murcia (Cabezo Plata)"
+    },
+    {
+     "value": "105_30",
+     "text": "MU105 - Mazarrón (Cañada Gallego)"
+    },
+    {
+     "value": "106_30",
+     "text": "MU106 - Cehegín (La Torrecita)"
+    },
+    {
+     "value": "107_30",
+     "text": "MU107 - Fuente Alamo (Campillo bajo)"
+    },
+    {
+     "value": "108_30",
+     "text": "MU108 - Cehegín (El Chaparral)"
+    },
+    {
+     "value": "109_30",
+     "text": "MU109 - Puerto Lumbreras (El Esparragal)"
+    },
+    {
+     "value": "110_30",
+     "text": "MU110 - Blanca (Estación de Blanca)"
+    },
+    {
+     "value": "111_30",
+     "text": "MU111 - Cieza (La Carrichosa)"
+    },
+    {
+     "value": "112_30",
+     "text": "MU112 - Jumilla (las Encebras)"
+    },
+    {
+     "value": "114_30",
+     "text": "MU114 - Yecla (Pinillos)"
+    },
+    {
+     "value": "115_30",
+     "text": "MU115 - Jumilla (Cº del Judio)"
+    },
+    {
+     "value": "117_30",
+     "text": "MU117 - Torre Pacheco (Torre Blanca)"
+    },
+    {
+     "value": "119_30",
+     "text": "MU119 - Torre Pacheco (Los Infiernos)"
+    },
+    {
+     "value": "120_30",
+     "text": "MU120 - San Javier (Santiago de la Ribera)"
+    },
+    {
+     "value": "121_30",
+     "text": "MU121 - Murcia (La Alberca)"
+    },
+    {
+     "value": "123_30",
+     "text": "MU123 - Mula (Mula)"
+    },
+    {
+     "value": "124_30",
+     "text": "MU124 - Caravaca (Barranda)"
+    },
+    {
+     "value": "125_30",
+     "text": "MU125 - Jumilla (Roman)"
+    },
+    {
+     "value": "126_30",
+     "text": "MU126 - Abanilla (La Jaira)"
+    },
+    {
+     "value": "128_30",
+     "text": "MU128 - Torre Pacheco (Torre Pacheco)"
+    },
+    {
+     "value": "130_30",
+     "text": "MU130 - San Javier (El Mirador)"
+    },
+    {
+     "value": "2_31",
+     "text": "NA02 - 23 Fitero"
+    },
+    {
+     "value": "3_31",
+     "text": "NA03 - 24 Cascante"
+    },
+    {
+     "value": "4_31",
+     "text": "NA04 - 25 Ablitas"
+    },
+    {
+     "value": "5_31",
+     "text": "NA05 - 06 Aibar"
+    },
+    {
+     "value": "6_31",
+     "text": "NA06 - 07 San Martín de Unx"
+    },
+    {
+     "value": "7_31",
+     "text": "NA07 - 13 Murillo el Fruto"
+    },
+    {
+     "value": "8_31",
+     "text": "NA08 - 02 Adiós"
+    },
+    {
+     "value": "9_31",
+     "text": "NA09 - 05 Artajona"
+    },
+    {
+     "value": "10_31",
+     "text": "NA10 - 08 Miranda de Arga"
+    },
+    {
+     "value": "11_31",
+     "text": "NA11 - 12 Falces"
+    },
+    {
+     "value": "13_31",
+     "text": "NA13 - 10 Bargota"
+    },
+    {
+     "value": "14_31",
+     "text": "NA14 - 17 Bardenas Reales (El Plano)"
+    },
+    {
+     "value": "15_31",
+     "text": "NA15 - 26 Los Arcos"
+    },
+    {
+     "value": "16_31",
+     "text": "NA16 - 27 Sesma"
+    },
+    {
+     "value": "17_31",
+     "text": "NA17 - San Adrián"
+    },
+    {
+     "value": "18_31",
+     "text": "NA18 - Tudela"
+    },
+    {
+     "value": "101_31",
+     "text": "NA101 - 20 Cadreita"
+    },
+    {
+     "value": "102_31",
+     "text": "NA102 - 19 Bardenas Reales (Barranco)"
+    },
+    {
+     "value": "103_31",
+     "text": "NA103 - 15 Sartaguda"
+    },
+    {
+     "value": "104_31",
+     "text": "NA104 - 11 Olite"
+    },
+    {
+     "value": "105_31",
+     "text": "NA105 - 14 Traibuenas"
+    },
+    {
+     "value": "106_31",
+     "text": "NA106 - 01 Arazuri"
+    },
+    {
+     "value": "107_31",
+     "text": "NA107 - 03 Lumbier"
+    },
+    {
+     "value": "108_31",
+     "text": "NA108 - 04 Ancin"
+    },
+    {
+     "value": "109_31",
+     "text": "NA109 - 21 Corella"
+    },
+    {
+     "value": "110_31",
+     "text": "NA110 - 18 Funes"
+    },
+    {
+     "value": "111_31",
+     "text": "NA111 - 09 Lerin"
+    },
+    {
+     "value": "1_34",
+     "text": "P01 - Torquemada"
+    },
+    {
+     "value": "2_34",
+     "text": "P02 - Villamuriel de Cerrato"
+    },
+    {
+     "value": "3_34",
+     "text": "P03 - Fuentes de Nava"
+    },
+    {
+     "value": "4_34",
+     "text": "P04 - Villoldo"
+    },
+    {
+     "value": "6_34",
+     "text": "P06 - Herrera de Pisuerga"
+    },
+    {
+     "value": "7_34",
+     "text": "P07 - Villaluenga de la Vega"
+    },
+    {
+     "value": "8_34",
+     "text": "P08 - Lantadilla"
+    },
+    {
+     "value": "101_34",
+     "text": "P101 - Villaeles de Valdavia"
+    },
+    {
+     "value": "102_34",
+     "text": "P102 - Bárcena de Campos"
+    },
+    {
+     "value": "103_34",
+     "text": "P103 - Abia de las Torres"
+    },
+    {
+     "value": "104_34",
+     "text": "P104 - Lomilla de Aguilar"
+    },
+    {
+     "value": "1_37",
+     "text": "SA01 - Ciudad Rodrigo"
+    },
+    {
+     "value": "3_37",
+     "text": "SA03 - Aldearrubia"
+    },
+    {
+     "value": "101_37",
+     "text": "SA101 - Arabayona"
+    },
+    {
+     "value": "102_37",
+     "text": "SA102 - Ejeme"
+    },
+    {
+     "value": "2_41",
+     "text": "SE02 - Las Cabezas de San Juan"
+    },
+    {
+     "value": "3_41",
+     "text": "SE03 - Lebrija I"
+    },
+    {
+     "value": "5_41",
+     "text": "SE05 - Aznalcázar"
+    },
+    {
+     "value": "7_41",
+     "text": "SE07 - La Puebla del Río"
+    },
+    {
+     "value": "8_41",
+     "text": "SE08 - La Puebla del Río II"
+    },
+    {
+     "value": "9_41",
+     "text": "SE09 - Ecija"
+    },
+    {
+     "value": "10_41",
+     "text": "SE10 - La Luisiana"
+    },
+    {
+     "value": "11_41",
+     "text": "SE11 - Osuna"
+    },
+    {
+     "value": "12_41",
+     "text": "SE12 - La Rinconada"
+    },
+    {
+     "value": "13_41",
+     "text": "SE13 - Sanlúcar La Mayor"
+    },
+    {
+     "value": "15_41",
+     "text": "SE15 - Lora del Río"
+    },
+    {
+     "value": "16_41",
+     "text": "SE16 - Los Molares"
+    },
+    {
+     "value": "17_41",
+     "text": "SE17 - Guillena"
+    },
+    {
+     "value": "18_41",
+     "text": "SE18 - Puebla Cazalla"
+    },
+    {
+     "value": "19_41",
+     "text": "SE19 - IFAPA  Centro Las Torres-Tomejil"
+    },
+    {
+     "value": "20_41",
+     "text": "SE20 - Isla Mayor"
+    },
+    {
+     "value": "21_41",
+     "text": "SE21 - IFAPA Centro de Los Palacios"
+    },
+    {
+     "value": "22_41",
+     "text": "SE22 - Villanueva del Río y Minas"
+    },
+    {
+     "value": "101_41",
+     "text": "SE101 - IFAPA Centro Las Torres-Tomejil. Finca Tomejil"
+    },
+    {
+     "value": "1_40",
+     "text": "SG01 - Gomezserracín"
+    },
+    {
+     "value": "2_40",
+     "text": "SG02 - Nava de la Asunción"
+    },
+    {
+     "value": "1_42",
+     "text": "SO01 - Almazán"
+    },
+    {
+     "value": "2_42",
+     "text": "SO02 - San Esteban de Gormaz"
+    },
+    {
+     "value": "3_42",
+     "text": "SO03 - Fuentecantos"
+    },
+    {
+     "value": "101_42",
+     "text": "SO101 - Hinojosa del Campo"
+    },
+    {
+     "value": "1_44",
+     "text": "TE01 - Calanda"
+    },
+    {
+     "value": "2_44",
+     "text": "TE02 - Puig Moreno"
+    },
+    {
+     "value": "3_44",
+     "text": "TE03 - Híjar"
+    },
+    {
+     "value": "4_44",
+     "text": "TE04 - Monreal del Campo"
+    },
+    {
+     "value": "5_44",
+     "text": "TE05 - Teruel"
+    },
+    {
+     "value": "6_44",
+     "text": "TE06 - Villarquemado"
+    },
+    {
+     "value": "2_38",
+     "text": "TF02 - Guía de Isora"
+    },
+    {
+     "value": "3_38",
+     "text": "TF03 - Güímar"
+    },
+    {
+     "value": "4_38",
+     "text": "TF04 - La Fuente - Buenavista del Norte"
+    },
+    {
+     "value": "5_38",
+     "text": "TF05 - San Sebastián de La Gomera"
+    },
+    {
+     "value": "6_38",
+     "text": "TF06 - Hermigua"
+    },
+    {
+     "value": "7_38",
+     "text": "TF07 - Puerto de la Cruz"
+    },
+    {
+     "value": "8_38",
+     "text": "TF08 - Frontera"
+    },
+    {
+     "value": "10_38",
+     "text": "TF10 - Los Llanos de Aridane"
+    },
+    {
+     "value": "11_38",
+     "text": "TF11 - Barlovento"
+    },
+    {
+     "value": "13_38",
+     "text": "TF13 - Las Galletas"
+    },
+    {
+     "value": "14_38",
+     "text": "TF14 - Tijarafe"
+    },
+    {
+     "value": "101_38",
+     "text": "TF101 - Los Llanos de Aridane II"
+    },
+    {
+     "value": "102_38",
+     "text": "TF102 - Fuencaliente"
+    },
+    {
+     "value": "105_38",
+     "text": "TF105 - Valle Guerra-Isamar"
+    },
+    {
+     "value": "106_38",
+     "text": "TF106 - Valle Guerra-Pajalillos"
+    },
+    {
+     "value": "107_38",
+     "text": "TF107 - El Socorro"
+    },
+    {
+     "value": "108_38",
+     "text": "TF108 - El Pico"
+    },
+    {
+     "value": "109_38",
+     "text": "TF109 - Garimba"
+    },
+    {
+     "value": "110_38",
+     "text": "TF110 - Puntallana - Vivero"
+    },
+    {
+     "value": "111_38",
+     "text": "TF111 - Arico"
+    },
+    {
+     "value": "112_38",
+     "text": "TF112 - Las Galletas Aire Libre"
+    },
+    {
+     "value": "113_38",
+     "text": "TF113 - Las Galletas Invernadero"
+    },
+    {
+     "value": "114_38",
+     "text": "TF114 - Guía de Isora Aire Libre"
+    },
+    {
+     "value": "116_38",
+     "text": "TF116 - La Orotava - El Rincón"
+    },
+    {
+     "value": "117_38",
+     "text": "TF117 - Arico - El Helecho"
+    },
+    {
+     "value": "118_38",
+     "text": "TF118 - Ravelo"
+    },
+    {
+     "value": "119_38",
+     "text": "TF119 - Tejina Aire Libre"
+    },
+    {
+     "value": "120_38",
+     "text": "TF120 - Tejina Invernadero"
+    },
+    {
+     "value": "121_38",
+     "text": "TF121 - La Guancha"
+    },
+    {
+     "value": "122_38",
+     "text": "TF122 - Vilaflor"
+    },
+    {
+     "value": "123_38",
+     "text": "TF123 - Güímar - Toponegro"
+    },
+    {
+     "value": "124_38",
+     "text": "TF124 - Arico_2"
+    },
+    {
+     "value": "125_38",
+     "text": "TF125 - Tegueste"
+    },
+    {
+     "value": "126_38",
+     "text": "TF126 - Icod - Llanito Perera"
+    },
+    {
+     "value": "127_38",
+     "text": "TF127 - La Orotava - Ratiño"
+    },
+    {
+     "value": "128_38",
+     "text": "TF128 - Gúímar - Morra del Tanque"
+    },
+    {
+     "value": "129_38",
+     "text": "TF129 - Los Silos - Tierra del Trigo"
+    },
+    {
+     "value": "130_38",
+     "text": "TF130 - Santa Úrsula - Los Castaños"
+    },
+    {
+     "value": "131_38",
+     "text": "TF131 - Santiago del Teide - El Hoyo"
+    },
+    {
+     "value": "132_38",
+     "text": "TF132 - Buenavista - El Palmar"
+    },
+    {
+     "value": "133_38",
+     "text": "TF133 - Tacoronte"
+    },
+    {
+     "value": "134_38",
+     "text": "TF134 - La Matanza"
+    },
+    {
+     "value": "135_38",
+     "text": "TF135 - La Victoria"
+    },
+    {
+     "value": "136_38",
+     "text": "TF136 - La Orotava - La Suerte"
+    },
+    {
+     "value": "137_38",
+     "text": "TF137 - Benijos"
+    },
+    {
+     "value": "138_38",
+     "text": "TF138 - Palo Blanco"
+    },
+    {
+     "value": "139_38",
+     "text": "TF139 - Icod - Redondo"
+    },
+    {
+     "value": "140_38",
+     "text": "TF140 - Guía de Isora - Chio"
+    },
+    {
+     "value": "142_38",
+     "text": "TF142 - Guía de Isora - El Pozo"
+    },
+    {
+     "value": "143_38",
+     "text": "TF143 - Granadilla - Pinalete"
+    },
+    {
+     "value": "144_38",
+     "text": "TF144 - Granadilla - Charco del pino"
+    },
+    {
+     "value": "145_38",
+     "text": "TF145 - Güímar - Badajoz"
+    },
+    {
+     "value": "146_38",
+     "text": "TF146 - Güímar - Lomo de Mena"
+    },
+    {
+     "value": "147_38",
+     "text": "TF147 - Santa Úrsula - Media"
+    },
+    {
+     "value": "148_38",
+     "text": "TF148 - Santa Úrsula - Baja"
+    },
+    {
+     "value": "149_38",
+     "text": "TF149 - Arico - Icor"
+    },
+    {
+     "value": "150_38",
+     "text": "TF150 - El Rosario"
+    },
+    {
+     "value": "151_38",
+     "text": "TF151 - La Orotava - Aguamansa"
+    },
+    {
+     "value": "152_38",
+     "text": "TF152 - Ruígomez - Galería del Cubo"
+    },
+    {
+     "value": "153_38",
+     "text": "TF153 - Adeje - Hoya Grande Aire Libre"
+    },
+    {
+     "value": "154_38",
+     "text": "TF154 - Adeje - Hoya Grande Invernadero"
+    },
+    {
+     "value": "155_38",
+     "text": "TF155 - Guía de Isora - Alcalá"
+    },
+    {
+     "value": "156_38",
+     "text": "TF156 - Candelaria - Araya"
+    },
+    {
+     "value": "157_38",
+     "text": "TF157 - Taganana"
+    },
+    {
+     "value": "158_38",
+     "text": "TF158 - Igueste"
+    },
+    {
+     "value": "159_38",
+     "text": "TF159 - Buenavista"
+    },
+    {
+     "value": "160_38",
+     "text": "TF160 - Los Silos Aire Libre"
+    },
+    {
+     "value": "161_38",
+     "text": "TF161 - Los Silos Invernadero"
+    },
+    {
+     "value": "162_38",
+     "text": "TF162 - Realejos - Icod el Alto"
+    },
+    {
+     "value": "163_38",
+     "text": "TF163 - Fasnia - Eres"
+    },
+    {
+     "value": "164_38",
+     "text": "TF164 - La Laguna"
+    },
+    {
+     "value": "165_38",
+     "text": "TF165 - Puerto Naos"
+    },
+    {
+     "value": "1_45",
+     "text": "TO01 - Vegas de San Antonio"
+    },
+    {
+     "value": "3_45",
+     "text": "TO03 - Calera y chozas"
+    },
+    {
+     "value": "4_45",
+     "text": "TO04 - Los Navalmorales"
+    },
+    {
+     "value": "5_45",
+     "text": "TO05 - Alcolea de Tajo"
+    },
+    {
+     "value": "7_45",
+     "text": "TO07 - Recas"
+    },
+    {
+     "value": "8_45",
+     "text": "TO08 - Villarrubia de Santiago"
+    },
+    {
+     "value": "9_45",
+     "text": "TO09 - La Rinconada"
+    },
+    {
+     "value": "10_45",
+     "text": "TO10 - La Puebla de Almoradiel"
+    },
+    {
+     "value": "11_45",
+     "text": "TO11 - Magán"
+    },
+    {
+     "value": "12_45",
+     "text": "TO12 - Mora"
+    },
+    {
+     "value": "1_46",
+     "text": "V01 - Pedralba"
+    },
+    {
+     "value": "2_46",
+     "text": "V02 - Llíria"
+    },
+    {
+     "value": "4_46",
+     "text": "V04 - Benifaió"
+    },
+    {
+     "value": "5_46",
+     "text": "V05 - Cheste"
+    },
+    {
+     "value": "6_46",
+     "text": "V06 - Tavernes de Valldigna"
+    },
+    {
+     "value": "7_46",
+     "text": "V07 - Castelló"
+    },
+    {
+     "value": "10_46",
+     "text": "V10 - Benavites"
+    },
+    {
+     "value": "14_46",
+     "text": "V14 - Algemesí"
+    },
+    {
+     "value": "17_46",
+     "text": "V17 - Picassent"
+    },
+    {
+     "value": "18_46",
+     "text": "V18 - Montesa"
+    },
+    {
+     "value": "19_46",
+     "text": "V19 - Xàtiva"
+    },
+    {
+     "value": "20_46",
+     "text": "V20 - Sagunt"
+    },
+    {
+     "value": "21_46",
+     "text": "V21 - Campo Arcís"
+    },
+    {
+     "value": "22_46",
+     "text": "V22 - Villalonga"
+    },
+    {
+     "value": "23_46",
+     "text": "V23 - Gandia Marxuquera"
+    },
+    {
+     "value": "25_46",
+     "text": "V25 - Bolbaite"
+    },
+    {
+     "value": "26_46",
+     "text": "V26 - Bétera"
+    },
+    {
+     "value": "27_46",
+     "text": "V27 - Chulilla"
+    },
+    {
+     "value": "28_46",
+     "text": "V28 - Godelleta"
+    },
+    {
+     "value": "29_46",
+     "text": "V29 - Bélgida"
+    },
+    {
+     "value": "30_46",
+     "text": "V30 - Polinyà de Xúquer"
+    },
+    {
+     "value": "101_46",
+     "text": "V101 - Moncada IVIA"
+    },
+    {
+     "value": "102_46",
+     "text": "V102 - Carcaixent EEA"
+    },
+    {
+     "value": "103_46",
+     "text": "V103 - Carlet CE Coop"
+    },
+    {
+     "value": "104_46",
+     "text": "V104 - Llutxent EEA"
+    },
+    {
+     "value": "106_46",
+     "text": "V106 - Requena Cerrito"
+    },
+    {
+     "value": "109_46",
+     "text": "V109 - Algimia de Alfara"
+    },
+    {
+     "value": "110_46",
+     "text": "V110 - Valencia UPV"
+    },
+    {
+     "value": "1_47",
+     "text": "VA01 - Mayorga"
+    },
+    {
+     "value": "2_47",
+     "text": "VA02 - Torrecilla de la Orden"
+    },
+    {
+     "value": "3_47",
+     "text": "VA03 - Olmedo"
+    },
+    {
+     "value": "5_47",
+     "text": "VA05 - Encinas de Esgueva"
+    },
+    {
+     "value": "6_47",
+     "text": "VA06 - Tordesillas"
+    },
+    {
+     "value": "7_47",
+     "text": "VA07 - Valbuena de Duero"
+    },
+    {
+     "value": "8_47",
+     "text": "VA08 - Medina de Rioseco"
+    },
+    {
+     "value": "101_47",
+     "text": "VA101 - Finca Zamadueñas"
+    },
+    {
+     "value": "102_47",
+     "text": "VA102 - Medina del Campo"
+    },
+    {
+     "value": "103_47",
+     "text": "VA103 - Rueda"
+    },
+    {
+     "value": "104_47",
+     "text": "VA104 - Villalón de Campos"
+    },
+    {
+     "value": "1_50",
+     "text": "Z01 - Almonacid de la Sierra"
+    },
+    {
+     "value": "2_50",
+     "text": "Z02 - Belchite"
+    },
+    {
+     "value": "3_50",
+     "text": "Z03 - Quinto"
+    },
+    {
+     "value": "4_50",
+     "text": "Z04 - Fabara"
+    },
+    {
+     "value": "5_50",
+     "text": "Z05 - Épila"
+    },
+    {
+     "value": "6_50",
+     "text": "Z06 - Ejea de los Caballeros"
+    },
+    {
+     "value": "7_50",
+     "text": "Z07 - Sádaba"
+    },
+    {
+     "value": "8_50",
+     "text": "Z08 - Luna"
+    },
+    {
+     "value": "11_50",
+     "text": "Z11 - Montañana"
+    },
+    {
+     "value": "14_50",
+     "text": "Z14 - Borja"
+    },
+    {
+     "value": "15_50",
+     "text": "Z15 - Tarazona"
+    },
+    {
+     "value": "16_50",
+     "text": "Z16 - Caspe"
+    },
+    {
+     "value": "17_50",
+     "text": "Z17 - Osera de Ebro"
+    },
+    {
+     "value": "18_50",
+     "text": "Z18 - Daroca"
+    },
+    {
+     "value": "20_50",
+     "text": "Z20 - El Bayo"
+    },
+    {
+     "value": "21_50",
+     "text": "Z21 - Tauste"
+    },
+    {
+     "value": "22_50",
+     "text": "Z22 - Boquiñeni"
+    },
+    {
+     "value": "23_50",
+     "text": "Z23 - Pastriz"
+    },
+    {
+     "value": "24_50",
+     "text": "Z24 - Calatayud"
+    },
+    {
+     "value": "25_50",
+     "text": "Z25 - Santa Engracia (Tauste)"
+    },
+    {
+     "value": "26_50",
+     "text": "Z26 - Zuera"
+    },
+    {
+     "value": "1_49",
+     "text": "ZA01 - Colinas de Trasmonte"
+    },
+    {
+     "value": "2_49",
+     "text": "ZA02 - Villaralbo"
+    },
+    {
+     "value": "4_49",
+     "text": "ZA04 - Villalpando"
+    },
+    {
+     "value": "5_49",
+     "text": "ZA05 - Pozuelo de Tábara"
+    },
+    {
+     "value": "6_49",
+     "text": "ZA06 - Barcial del Barco"
+    },
+    {
+     "value": "8_49",
+     "text": "ZA08 - Toro"
+    },
+    {
+     "value": "1_3",
+     "text": "Inactiva A01 - Villena_Inactiva"
+    },
+    {
+     "value": "7_3",
+     "text": "Inactiva A07 - Novelda"
+    },
+    {
+     "value": "11_3",
+     "text": "Inactiva A11 - Orihuela la Murada"
+    },
+    {
+     "value": "12_3",
+     "text": "Inactiva A12 - Pilar de la Horadada"
+    },
+    {
+     "value": "14_3",
+     "text": "Inactiva A14 - Orihuela"
+    },
+    {
+     "value": "16_3",
+     "text": "Inactiva A16 - Castalla"
+    },
+    {
+     "value": "17_3",
+     "text": "Inactiva A17 - Agost_Inactiva"
+    },
+    {
+     "value": "1_2",
+     "text": "Inactiva AB01 - Tarazona"
+    },
+    {
+     "value": "4_2",
+     "text": "Inactiva AB04 - Hellín_Inactiva"
+    },
+    {
+     "value": "3_4",
+     "text": "Inactiva AL03 - Níjar"
+    },
+    {
+     "value": "9_4",
+     "text": "Inactiva AL09 - Tíjola"
+    },
+    {
+     "value": "3_6",
+     "text": "Inactiva BA03 - Don Benito"
+    },
+    {
+     "value": "7_6",
+     "text": "Inactiva BA07 - Villafranca de los Barros"
+    },
+    {
+     "value": "201_6",
+     "text": "Inactiva BA201 - Acevedos"
+    },
+    {
+     "value": "202_6",
+     "text": "Inactiva BA202 - Sagrajas"
+    },
+    {
+     "value": "207_6",
+     "text": "Inactiva BA207 - Don Rodrigo"
+    },
+    {
+     "value": "208_6",
+     "text": "Inactiva BA208 - Guareña"
+    },
+    {
+     "value": "209_6",
+     "text": "Inactiva BA209 - Don Benito-EFA"
+    },
+    {
+     "value": "1_9",
+     "text": "Inactiva BU01 - Miranda de Ebro"
+    },
+    {
+     "value": "6_9",
+     "text": "Inactiva BU06 - Miranda de Ebro"
+    },
+    {
+     "value": "3_11",
+     "text": "Inactiva CA03 - Sanlúcar de Barrameda"
+    },
+    {
+     "value": "8_11",
+     "text": "Inactiva CA08 - Puerto de Santa María"
+    },
+    {
+     "value": "9_11",
+     "text": "Inactiva CA09 - Sanlúcar de Barrameda"
+    },
+    {
+     "value": "2_10",
+     "text": "Inactiva CC02 - Cabezuela del Valle"
+    },
+    {
+     "value": "3_10",
+     "text": "Inactiva CC03 - Zarza de Granadilla"
+    },
+    {
+     "value": "5_10",
+     "text": "Inactiva CC05 - Moraleja"
+    },
+    {
+     "value": "6_10",
+     "text": "Inactiva CC06 - Coria"
+    },
+    {
+     "value": "8_10",
+     "text": "Inactiva CC08 - Valdesalor"
+    },
+    {
+     "value": "13_10",
+     "text": "Inactiva CC13 - Talayuela"
+    },
+    {
+     "value": "15_10",
+     "text": "Inactiva CC15 - Valdastillas"
+    },
+    {
+     "value": "102_10",
+     "text": "Inactiva CC102 - Madroñera"
+    },
+    {
+     "value": "106_10",
+     "text": "Inactiva CC106 - Aliseda"
+    },
+    {
+     "value": "3_14",
+     "text": "Inactiva CO03 - Palma del Río"
+    },
+    {
+     "value": "2_13",
+     "text": "Inactiva CR02 - Manzanares"
+    },
+    {
+     "value": "6_13",
+     "text": "Inactiva CR06 - Villahermosa-Tajoneras"
+    },
+    {
+     "value": "101_13",
+     "text": "Inactiva CR101 - Entresierra"
+    },
+    {
+     "value": "2_12",
+     "text": "Inactiva CS02 - Onda"
+    },
+    {
+     "value": "4_12",
+     "text": "Inactiva CS04 - Benicarló"
+    },
+    {
+     "value": "6_12",
+     "text": "Inactiva CS06 - Burriana"
+    },
+    {
+     "value": "10_12",
+     "text": "Inactiva CS10 - Onda"
+    },
+    {
+     "value": "12_12",
+     "text": "Inactiva CS12 - Benicarló"
+    },
+    {
+     "value": "6_16",
+     "text": "Inactiva CU06 - Mariana_Invactiva"
+    },
+    {
+     "value": "6_35",
+     "text": "Inactiva GC06 - Haría"
+    },
+    {
+     "value": "8_35",
+     "text": "Inactiva GC08 - Antigua - Molino de Agua"
+    },
+    {
+     "value": "10_35",
+     "text": "Inactiva GC10 - Antigua - Molino de Agua"
+    },
+    {
+     "value": "102_35",
+     "text": "Inactiva GC102 - Masdache"
+    },
+    {
+     "value": "4_18",
+     "text": "Inactiva GR04 - Pinos Puente"
+    },
+    {
+     "value": "9_18",
+     "text": "Inactiva GR09 - Almuñecar"
+    },
+    {
+     "value": "1_19",
+     "text": "Inactiva GU01 - Finca el serranillo: Vivero forestal"
+    },
+    {
+     "value": "4_19",
+     "text": "Inactiva GU04 - Alovera"
+    },
+    {
+     "value": "7_19",
+     "text": "Inactiva GU07 - Finca El Serranillo"
+    },
+    {
+     "value": "8_19",
+     "text": "Inactiva GU08 - Alovera (2)"
+    },
+    {
+     "value": "1_21",
+     "text": "Inactiva H01 - El Tojalillo-Gibraleón"
+    },
+    {
+     "value": "4_21",
+     "text": "Inactiva H04 - Moguer"
+    },
+    {
+     "value": "104_21",
+     "text": "Inactiva H104 - Almonte bajo plástico frb"
+    },
+    {
+     "value": "105_21",
+     "text": "Inactiva H105 - Almonte bajo plástico"
+    },
+    {
+     "value": "106_21",
+     "text": "Inactiva H106 - Lepe bajo plástico"
+    },
+    {
+     "value": "11_22",
+     "text": "Inactiva HU11 - Grañén"
+    },
+    {
+     "value": "16_22",
+     "text": "Inactiva HU16 - Santa Cilia de Jaca"
+    },
+    {
+     "value": "7_7",
+     "text": "Inactiva IB07 - Sóller"
+    },
+    {
+     "value": "9_7",
+     "text": "Inactiva IB09 - Artá"
+    },
+    {
+     "value": "101_7",
+     "text": "Inactiva IB101 - Ciutadella"
+    },
+    {
+     "value": "9_23",
+     "text": "Inactiva J09 - Linares"
+    },
+    {
+     "value": "10_23",
+     "text": "Inactiva J10 - Marmolejo"
+    },
+    {
+     "value": "13_23",
+     "text": "Inactiva J13 - Mengíbar"
+    },
+    {
+     "value": "17_23",
+     "text": "Inactiva J17 - Linares"
+    },
+    {
+     "value": "8_24",
+     "text": "Inactiva LE08 - Sahagún"
+    },
+    {
+     "value": "3_29",
+     "text": "Inactiva MA03 - Antequera"
+    },
+    {
+     "value": "5_29",
+     "text": "Inactiva MA05 - Archidona"
+    },
+    {
+     "value": "4_30",
+     "text": "Inactiva MU04 - Los Martínez del Puerto"
+    },
+    {
+     "value": "5_30",
+     "text": "Inactiva MU05 - Corvera"
+    },
+    {
+     "value": "7_30",
+     "text": "Inactiva MU07 - Roche. Finca La torreta"
+    },
+    {
+     "value": "12_30",
+     "text": "Inactiva MU12 - Villanueva de Segura"
+    },
+    {
+     "value": "13_30",
+     "text": "Inactiva MU13 - Casa Rosa de Ulea"
+    },
+    {
+     "value": "15_30",
+     "text": "Inactiva MU15 - Librilla"
+    },
+    {
+     "value": "1_31",
+     "text": "Inactiva NA01 - 22 Tudela"
+    },
+    {
+     "value": "12_31",
+     "text": "Inactiva NA12 - 16 San Adrián"
+    },
+    {
+     "value": "5_34",
+     "text": "Inactiva P05 - Lantadilla"
+    },
+    {
+     "value": "2_37",
+     "text": "Inactiva SA02 - Aldearrubia"
+    },
+    {
+     "value": "1_41",
+     "text": "Inactiva SE01 - Los Palacios y Villafranca"
+    },
+    {
+     "value": "4_41",
+     "text": "Inactiva SE04 - Lebrija 2"
+    },
+    {
+     "value": "6_41",
+     "text": "Inactiva SE06 - Villafranco del Guadalquivir"
+    },
+    {
+     "value": "14_41",
+     "text": "Inactiva SE14 - Villanueva del Río y Minas"
+    },
+    {
+     "value": "1_38",
+     "text": "Inactiva TF01 - Adeje - Arona"
+    },
+    {
+     "value": "9_38",
+     "text": "Inactiva TF09 - Tazacorte"
+    },
+    {
+     "value": "12_38",
+     "text": "Inactiva TF12 - Tazacorte"
+    },
+    {
+     "value": "103_38",
+     "text": "Inactiva TF103 - Barlovento II"
+    },
+    {
+     "value": "104_38",
+     "text": "Inactiva TF104 - Fuencaliente II"
+    },
+    {
+     "value": "115_38",
+     "text": "Inactiva TF115 - Guía de Isora Invernadero"
+    },
+    {
+     "value": "141_38",
+     "text": "Inactiva TF141 - Guía de Isora - Los Llanitos"
+    },
+    {
+     "value": "2_45",
+     "text": "Inactiva TO02 - Magán_Inactiva"
+    },
+    {
+     "value": "6_45",
+     "text": "Inactiva TO06 - Mora_Inactiva"
+    },
+    {
+     "value": "3_46",
+     "text": "Inactiva V03 - Turís"
+    },
+    {
+     "value": "8_46",
+     "text": "Inactiva V08 - Xàtiva"
+    },
+    {
+     "value": "9_46",
+     "text": "Inactiva V09 - Sagunto"
+    },
+    {
+     "value": "11_46",
+     "text": "Inactiva V11 - Puig"
+    },
+    {
+     "value": "12_46",
+     "text": "Inactiva V12 - Pobla del Duc"
+    },
+    {
+     "value": "13_46",
+     "text": "Inactiva V13 - Navarrés"
+    },
+    {
+     "value": "15_46",
+     "text": "Inactiva V15 - Campo Arcís"
+    },
+    {
+     "value": "16_46",
+     "text": "Inactiva V16 - Bétera"
+    },
+    {
+     "value": "24_46",
+     "text": "Inactiva V24 - Polinyá de Xúquer"
+    },
+    {
+     "value": "105_46",
+     "text": "Inactiva V105 - Requena Roma"
+    },
+    {
+     "value": "107_46",
+     "text": "Inactiva V107 - Manises"
+    },
+    {
+     "value": "108_46",
+     "text": "Inactiva V108 - Moncada2"
+    },
+    {
+     "value": "1010_46",
+     "text": "Inactiva V1010 - Moncada malla"
+    },
+    {
+     "value": "1020_46",
+     "text": "Inactiva V1020 - Carcaixent EEA Invernadero"
+    },
+    {
+     "value": "1030_46",
+     "text": "Inactiva V1030 - Carlet malla"
+    },
+    {
+     "value": "4_47",
+     "text": "Inactiva VA04 - Valladolid"
+    },
+    {
+     "value": "9_50",
+     "text": "Inactiva Z09 - Santa Engracia"
+    },
+    {
+     "value": "10_50",
+     "text": "Inactiva Z10 - Pastriz"
+    },
+    {
+     "value": "12_50",
+     "text": "Inactiva Z12 - Torres de Berrellén"
+    },
+    {
+     "value": "13_50",
+     "text": "Inactiva Z13 - Calatayud"
+    },
+    {
+     "value": "19_50",
+     "text": "Inactiva Z19 - Zuera"
+    },
+    {
+     "value": "27_50",
+     "text": "Inactiva Z27 - Torres de Berrellén"
+    },
+    {
+     "value": "28_50",
+     "text": "Inactiva Z28 - Cariñena"
+    },
+    {
+     "value": "3_49",
+     "text": "Inactiva ZA03 - Toro"
+    },
+    {
+     "value": "7_49",
+     "text": "Inactiva ZA07 - Toro"
+    }
+   ],
+   "comarcaSelect": [
+    {
+     "value": "-1",
+     "text": "Seleccionar comarca"
+    }
+   ],
+   "idCultivo": [
+    {
+     "value": "-1",
+     "text": "Seleccionar cultivo"
+    }
+   ],
+   "tipoCalculo": [
+    {
+     "value": "2",
+     "text": "Diarios"
+    },
+    {
+     "value": "3",
+     "text": "Semanales"
+    },
+    {
+     "value": "4",
+     "text": "Mensuales"
+    }
+   ]
+  },
+  "siar_inputs": [
+   {
+    "name": "esCalculo",
+    "type": "hidden"
+   },
+   {
+    "name": "provinciaEstHidden",
+    "type": "hidden"
+   },
+   {
+    "name": "chkProvincia",
+    "type": "hidden"
+   },
+   {
+    "name": "radioProvCom",
+    "type": "radio"
+   },
+   {
+    "name": "chkComRegante",
+    "type": "hidden"
+   },
+   {
+    "name": "radioProvCom",
+    "type": "radio"
+   },
+   {
+    "name": "sEstacion",
+    "type": "hidden"
+   },
+   {
+    "name": "comarcaEstacion",
+    "type": "text"
+   },
+   {
+    "name": "idComarca",
+    "type": "hidden"
+   },
+   {
+    "name": "chkComarca",
+    "type": "hidden"
+   },
+   {
+    "name": "checkboxComarca",
+    "type": "checkbox"
+   },
+   {
+    "name": "fechaInicial",
+    "type": "date"
+   },
+   {
+    "name": "fechaFinal",
+    "type": "date"
+   }
+  ],
+  "siar_scripts": [
+   "/siarweb/js/jquery.min.js",
+   "/siarweb/js/jquery-ui.min.js",
+   "/siarweb/js/jquery.dialogOptions.js",
+   "/siarweb/js/datatables.min.js",
+   "/siarweb/js/pdfmake.min.js",
+   "/siarweb/js/vfs_fonts.js",
+   "/siarweb/js/moment.min.js",
+   "/siarweb/js/loader.js",
+   "/siarweb/js/comunes.js",
+   "/siarweb/js/webflow.js",
+   "/siarweb/js/webfont.js",
+   "/siarweb/js/waitMe.min.js",
+   "/siarweb/js/menuPrivado.js",
+   "https://www.mapa.gob.es/es/_includes/javascript/magramaGTM.min.js",
+   "/siarweb/js/publico/necesidadesNetas/necesidadesNetas.js"
+  ]
+ },
+ "siar_sin_filas": {
+  "IB04": "Mi SiAR API SiAR Manual Web Espacio SiAR GestSiAR --> Inicio Consultas Consulta de datos Necesidades netas Informes de datos Energías renovables Episodios agroclimáticos ¿Está seguro de que desea cerrar su sesión? Aceptar Cancelar Inicio Necesidades netas Pronóstico de necesidades netas Pronóstico de necesidades netas Volver Modificar consulta BUSCADOR DE PRONÓSTICO DE NECESIDADES NETAS *Campos obligatorios Seleccione ubicación: Comunidad autónoma Seleccione una comunidad Andalucía Aragón Canarias Castilla y León Castilla-La Mancha Comunidad de Madrid Comunidad Foral de Navarra Comunidad Valenciana Extremadura Galicia Islas Baleares Región de Murcia Provincia Seleccione una provincia Albacete Alicante/Alacant Almería Ávila Badajoz Balears, Illes Burgos Cáceres Cádiz Castellón/Castelló Ciudad Real Córdoba Coruña, A Cuenca Granada Guadalajara Huelva Huesca Jaén León Lugo Madrid Málaga Murcia Navarra Palencia Palmas, Las Salamanca Santa Cruz de Tenerife Segovia Sevilla Soria Teruel Toledo Valencia/València Valladolid Zamora Zaragoza Comunidad de regantes Seleccionar comunidad de regantes Estación* Seleccione una estación IB01 - Santa Eulalia IB02 - Inca IB03 - Manacor IB04 - Son Ferriol IB05 - Felanitx IB06 - Sa Pobla IB08 - Es Mercadal IB10 - Calviá IB11 - S&#39; Estany des Peix Inactiva IB07 - Sóller Inactiva IB09 - Artá Inactiva IB101 - Ciutadella Comarca Cambiar la comarca seleccionada Seleccionar comarca Seleccione variables: Cultivo* Seleccionar cultivo Aguacate (Ene / Dic) Alfalfa (Mar / Oct) Almendro (Mar / Sep) Batata y boniato (Mar / Jun) Cereales de invierno para forrajes (Mar / Dic) Chirimoyo (Ene / Dic) Granado (Abr / Sep) Guindilla (May / Sep) Haba seca (Ene / Dic) Judía verde (Mar / Jul) Lechuga (Feb / May) Maíz forrajero (May / Sep) Mandarino (Ene / Dic) Melón (Abr / Ago) Naranjo (Ene / Dic) Naranjo amargo (Ene / Dic) Níspero (Abr / Ago) Nogal (Abr / Sep) Olivar aceituna de mesa (Mar / Oct) Otras gramíneas (Ene / Dic) Palmera datilera (Ene / Dic) Patata media estación (Mar / Ago) Patata temprana (Abr / Ago) Pimiento (May / Sep) Plantas ornamentales (Abr / Sep) Platanera (Ene / Dic) Praderas polifitas (Mar / Oct) Sandía (Mar / Jul) Sorgo (May / Sep) Sorgo forrajero (May / Sep) Tomate (Abr / Ago) Trébol (Abr / Ago) Vallico (Abr / Jun) Veza para forraje (Abr / Jul) Viñedo de uva de mesa (Abr / Ago) Tipo de datos* Diarios Semanales Mensuales Fecha de inicio* Fecha de fin* Datos seleccionados: Estación: Comarca: Tipo de datos: Cultivo: Fecha de inicio: Fecha de fin: Consultar datos RESULTADO DE PRONÓSTICO DE NECESIDADES NETAS Descargar datos de la estación &nbsp; &nbsp; Comunidad autónoma: Islas Baleares &nbsp; Provincia: Balears, Illes &nbsp; Estación: Son Ferriol &nbsp; Comarca: Mallorca &nbsp; Cultivo: Aguacate Totales de los resultados obtenidos: Kc ET0 (mm) ETc (mm) Pe (mm) ETc - Pe (mm) Totales 0,00 0,00 0,00 0,00 0,00 Ciclo de riego Ene Feb Mar Abr May Jun Jul Ago Sep Oct Nov Dic Fecha Fecha Kc ET0 (mm) ETc (mm) Pe (mm) ETc - Pe (mm) Fuente: datos proporcionados por AEMET (Agencia Estatal de Meteorología). Pº Infanta Isabel, 1 - 28014 Madrid (España) Copyright © Sistema de Información Agroclimática para el Regadío Versión: 2.16.0 Inicio Mi SiAR Aviso legal Mapa Web Declaración de accesibilidad Aviso Aceptar Aceptar Cancelar"
+ }
+}
