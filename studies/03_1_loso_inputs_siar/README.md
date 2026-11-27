@@ -1,6 +1,6 @@
 # Estudio 03.1: ¿los modelos de pocos inputs SIAR funcionan en una estación no vista?
 
-Estado: **EJECUTADO COMPLETO (2026-11-27)**: las 432 celdas (Ridge, HGB, RF, ANN S, ANN M y ANN tipo V2, en las 12 particiones, familias y variantes). Ridge y HGB se calcularon el 2026-11-26 en el entorno de trabajo; RF y ANN entre el 26 y el 27 en Kaggle (CPU). Criterios en `config/thresholds_v3_1.json` (commit 4647f62 del PR #9), sin cambios. Se ejecuta **antes** que el estudio 03.2 (`studies/03_loso_openmeteo_ml/`).
+Estado: **EJECUTADO COMPLETO (2026-11-27)**: las 432 celdas (Ridge, HGB, RF, ANN S, ANN M y ANN tipo V2, en las 12 particiones, familias y variantes). Ridge y HGB se calcularon el 2026-11-26 en el entorno de trabajo; RF y ANN entre el 26 y el 27 en Kaggle (CPU). Criterios en `config/thresholds_v3_1.json` (commit 4647f62 del PR #9), sin cambios. Se ejecuta **antes** que el estudio 03.2 (`studies/03_2_loso_openmeteo_ml/`).
 
 ## Índice
 
@@ -94,7 +94,7 @@ Ficheros producidos (los marcados *post hoc* son de la Parte III, posteriores al
 
 ## Salvedades
 
-- Prueba exploratoria previa declarada en `studies/03_loso_openmeteo_ml/exploratorio/`: ya sugirió que los modelos solo de sensor se degradan (0,57 y 0,69 mm/día). Este estudio se diseñó después de verla; se ejecuta para medirlo con protocolo y cubrir las tres familias y las ANN tipo V2.
+- Prueba exploratoria previa declarada en `studies/03_2_loso_openmeteo_ml/exploratorio/`: ya sugirió que los modelos solo de sensor se degradan (0,57 y 0,69 mm/día). Este estudio se diseñó después de verla; se ejecuta para medirlo con protocolo y cubrir las tres familias y las ANN tipo V2.
 - Si la arquitectura de las ANN de V2 no está documentada lo bastante para replicarla, se informa y se usan solo ANN S y M.
 - Referencia calculada, no ET0 medida; 9 estaciones cercanas (F1 optimista).
 - El 03.2 ya incluye L1 y L2 (modelos conjuntos solo de sensor con calendario). Coinciden en parte con la variante secundaria de este estudio; se mantienen allí porque sus criterios están congelados.

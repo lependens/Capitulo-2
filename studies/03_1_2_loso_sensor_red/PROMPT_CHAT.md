@@ -14,7 +14,7 @@ Vamos a ejecutar el **estudio 03.1.2 (sensor local + red SIAR)** del repositorio
 **Reglas que no se negocian:**
 - No cambies hipótesis, conjuntos de inputs, modelos, rejillas, comparadores ni la regla de interpretación una vez congelados. Si algo no se puede hacer tal cual, para, explícamelo y propón la alternativa; no la apliques por tu cuenta.
 - Paso 1: abre un PR que solo pase `status` de `config/thresholds_v3_1_2.json` a CONGELADO (más las correcciones que yo te pida). **No ejecutes ninguna celda hasta que yo lo apruebe y se fusione.**
-- No toques los datos crudos ni nada de `studies/03_1_loso_inputs_siar/` (resultados, celdas, README), ni de `studies/03_loso_openmeteo_ml/` (el 03.2 va en otro chat; no lo empieces).
+- No toques los datos crudos ni nada de `studies/03_1_loso_inputs_siar/` (resultados, celdas, README), ni de `studies/03_2_loso_openmeteo_ml/` (el 03.2 va en otro chat; no lo empieces).
 - Reutiliza en lugar de copiar: importa `loso_common` y `loso_models` del 03.1 y reutiliza sus celdas `S` (`results/cells/*__principal__{Ridge,HGB,ANN_M}.json.gz`) y sus comparadores. Mismas particiones (`results/folds.json`), mismo bootstrap (2.000 réplicas, semilla 20261126, bloques estación-año), mismas métricas, umbral 0,05 y TOST.
 - Respeta las dos reglas de construcción de la red: **exclusión de la propia estación** (una fila nunca ve su propia estación; en la validación interna la estación de validación sale del pool de todas las filas) y **PM y distancias ordenadas por cercanía**, nunca indexadas por nombre de estación. Escribe tests para ambas.
 - Los tests deben pasar: `PYTHONPATH=src python3 -m pytest -q tests` (hoy, 31) más los nuevos.

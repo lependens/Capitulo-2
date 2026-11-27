@@ -35,7 +35,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--pp-dir", required=True, type=Path)
     a = ap.parse_args()
-    d = pd.read_csv(ROOT / "studies/03_loso_openmeteo_ml/results/predictions_test.csv.gz")
+    d = pd.read_csv(ROOT / "studies/03_2_loso_openmeteo_ml/results/predictions_test.csv.gz")
     d = d[d.fold.astype(str).str.startswith("F1")] if d.fold.astype(str).str.startswith("F1").any() else d
     pp = pd.concat(pd.read_csv(f, usecols=["Fecha", "Precipitacion", "Estacion"]) for f in glob.glob(str(a.pp_dir / "IB*_datos_completos.csv")))
     pp = pp.rename(columns={"Fecha": "date", "Estacion": "station_code", "Precipitacion": "P"})

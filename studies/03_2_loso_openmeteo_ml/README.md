@@ -1,6 +1,6 @@
 # Estudio 03: Open-Meteo corregido con ML, evaluado en estaciones no vistas (leave-one-station-out)
 
-> **Numeración:** este estudio es el **03.2**. Se ejecuta después del **03.1** (`studies/03_1_loso_inputs_siar/`), que comprueba primero si los modelos de pocos inputs de SIAR funcionan en una estación no vista; el 03.1 es el que justifica (o no) este cambio de rumbo. La carpeta y `config/thresholds_v3.json` conservan su nombre porque los criterios ya están congelados.
+> **Numeración:** este estudio es el **03.2**. Se ejecuta después del **03.1** (`studies/03_1_loso_inputs_siar/`), que comprueba primero si los modelos de pocos inputs de SIAR funcionan en una estación no vista; el 03.1 es el que justifica (o no) este cambio de rumbo. La carpeta se llamaba `studies/03_loso_openmeteo_ml/` y se renombró a `studies/03_2_loso_openmeteo_ml/` tras la ejecución, para que siga la numeración de `03_1_…` y `03_1_2_…`. `config/thresholds_v3.json` **conserva su nombre** porque está congelado: su SHA256 consta en los manifiestos de resultados del 03.1 y del 03.2 y el código del 03.1 lo lee por esa ruta. Por la misma razón, los `_comment` de `thresholds_v3.json` y `thresholds_v3_1.json` (ficheros congelados) siguen citando la ruta antigua `studies/03_loso_openmeteo_ml/exploratorio/`, que hoy es `studies/03_2_loso_openmeteo_ml/exploratorio/`.
 
 Estado: **PLAN**. Protocolo y criterios en `config/thresholds_v3.json`; se congelan al fusionar el PR que los introduce, antes de ejecutar nada de este protocolo.
 
@@ -138,10 +138,10 @@ Dependencias: este estudio usa scikit-learn, pandas y numpy (`requirements.txt` 
 **Total: 360/360 celdas**; `results/run_manifest.json` → `missing_cells` vacío. Celda = partición (9 F1 + 3 F2) × escenario (S0, S1, S2, L1, L2, S0_coord) × modelo. Cada celda se guarda en `results/cells/` (gzip, escritura atómica: se escribe en `.tmp` y se renombra) con sus predicciones (y las de cada semilla en las ANN), la rejilla de validación interna, el número de recortes a 0 y el entorno con el que se calculó.
 
 ```
-python studies/03_loso_openmeteo_ml/run.py fit --models Ridge,HGB --workers 2   # ~35 min con 2 núcleos
-bash   studies/03_loso_openmeteo_ml/kaggle_session.sh N                         # N = 1..4, en Kaggle (RF y ANN)
-python studies/03_loso_openmeteo_ml/run.py report                              # ~25 s: tablas, IC, decision.json, figuras
-python studies/03_loso_openmeteo_ml/diagnostico_ann_altitud.py                 # diagnóstico posterior de las ANN (sin veredicto)
+python studies/03_2_loso_openmeteo_ml/run.py fit --models Ridge,HGB --workers 2   # ~35 min con 2 núcleos
+bash   studies/03_2_loso_openmeteo_ml/kaggle_session.sh N                         # N = 1..4, en Kaggle (RF y ANN)
+python studies/03_2_loso_openmeteo_ml/run.py report                              # ~25 s: tablas, IC, decision.json, figuras
+python studies/03_2_loso_openmeteo_ml/diagnostico_ann_altitud.py                 # diagnóstico posterior de las ANN (sin veredicto)
 ```
 
 **Kaggle (2026-11-27).** `kaggle_session.sh N` (CPU sin acelerador, internet activado, 4 núcleos, `--max-hours 8`), clonando esta rama:
@@ -149,7 +149,7 @@ python studies/03_loso_openmeteo_ml/diagnostico_ann_altitud.py                 #
 ```
 !git clone -b estudio-03-2-ejecucion https://github.com/lependens/Capitulo-2.git
 %cd Capitulo-2
-!bash studies/03_loso_openmeteo_ml/kaggle_session.sh N
+!bash studies/03_2_loso_openmeteo_ml/kaggle_session.sh N
 ```
 
 La cuenta admite 4 sesiones a la vez; el trabajo pesado se repartió en 4 sesiones paralelas sin solaparse (un test comprueba que cubren las 216 celdas exactamente una vez). Ninguna llegó al tope de 8 h, así que no hizo falta la sesión de continuación (`kaggle_session.sh 0`).
