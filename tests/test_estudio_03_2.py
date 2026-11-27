@@ -131,3 +131,21 @@ class Study032Test(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+@unittest.skipUnless(HAVE, "requiere numpy, pandas y scikit-learn")
+class KaggleSessionsPartitionTest(unittest.TestCase):
+    def test_sessions_1_to_4_cover_heavy_cells_without_overlap(self):
+        r = _load("estudio03_2_run_part", STUDY / "run.py")
+        sh = (STUDY / "kaggle_session.sh").read_text(encoding="utf-8")
+        seen = []
+        for n in "1234":
+            line = re.search(rf"^  {n}\) (.+?) ;;$", sh, re.M).group(1)
+            models = re.search(r"MODELS=([\w,]+)", line).group(1).split(",")
+            folds = re.search(r"FOLDS=([\w,]+)", line)
+            cells = r.select_cells(models, fold_ids=folds.group(1).split(",") if folds else None)
+            seen += [(f["id"], s, m) for f, s, m in cells]
+        self.assertEqual(len(seen), len(set(seen)), "celdas repetidas entre sesiones")
+        heavy = {(f["id"], s, m) for f, s, m in r.select_cells(r.HEAVY)}
+        self.assertEqual(set(seen), heavy)
+        self.assertEqual(len(heavy), 216)

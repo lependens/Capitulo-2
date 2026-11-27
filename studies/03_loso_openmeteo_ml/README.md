@@ -121,8 +121,8 @@ Dependencias: este estudio usa scikit-learn, pandas y numpy (`requirements.txt` 
 | Comparadores (OM crudo, OM + AHC transferido y vecino, PM más cercana, IDW) y techo local | — | hecho | entorno de trabajo de Claude |
 | Ridge | 72 | hecho | entorno de trabajo de Claude (~1 s/celda) |
 | HGB (primario) | 72 | hecho | entorno de trabajo de Claude (~1 min/celda) |
-| RF | 72 | **pendiente** | Kaggle, sesión 1 |
-| ANN-S y ANN-M (5 semillas) | 144 | **pendiente** | Kaggle, sesión 2 |
+| RF | 72 | **en ejecución** | Kaggle, sesiones 1 y 2 |
+| ANN-S y ANN-M (5 semillas) | 144 | **en ejecución** | Kaggle, sesiones 3 y 4 |
 
 Celda = partición (9 F1 + 3 F2) × escenario (S0, S1, S2, L1, L2, S0_coord) × modelo. Cada celda se guarda en `results/cells/` (gzip, escritura atómica: se escribe en `.tmp` y se renombra) con sus predicciones, la rejilla de validación interna, el número de recortes a 0 y el entorno con el que se calculó. `report` une las que haya; las que faltan se listan en `results/run_manifest.json` (`missing_cells`).
 
@@ -131,19 +131,23 @@ python studies/03_loso_openmeteo_ml/run.py fit --models Ridge,HGB --workers 2   
 python studies/03_loso_openmeteo_ml/run.py report                              # ~25 s
 ```
 
-**Pendiente en Kaggle (aún no lanzado).** `kaggle_session.sh N` (CPU sin acelerador, internet activado, 4 núcleos, `--max-hours 8`), clonando esta rama:
+**En Kaggle (lanzado el 2026-11-27).** `kaggle_session.sh N` (CPU sin acelerador, internet activado, 4 núcleos, `--max-hours 8`), clonando esta rama:
 
 ```
 !git clone --depth 1 -b estudio-03-2-ejecucion https://github.com/lependens/Capitulo-2 && cd Capitulo-2 && bash studies/03_loso_openmeteo_ml/kaggle_session.sh 1
 ```
 
+La cuenta admite 4 sesiones a la vez, así que el trabajo pesado se reparte en 4 sesiones paralelas sin solaparse (un test comprueba que cubren las 216 celdas exactamente una vez):
+
 | Sesión | Contenido | Celdas | Estimación |
 |---|---|---|---|
-| 1 | RF | 72 | ~22–25 h de núcleo → ~6–7 h con 4 núcleos |
-| 2 | ANN-S + ANN-M | 144 | ~15–20 h de núcleo → ~4–5 h |
+| 1 | RF, F1 IB01–IB05 | 30 | ~10–11 h de núcleo → ~3 h con 4 núcleos |
+| 2 | RF, F1 IB06, IB08, IB10, IB11 y las 3 particiones F2 | 42 | ~12–13 h → ~3,5 h |
+| 3 | ANN-S, todo | 72 | ~7–9 h → ~2–2,5 h |
+| 4 | ANN-M, todo | 72 | ~8–11 h → ~2,5–3 h |
 | 0 | lo pesado que falte (continuación) | — | — |
 
-Base de la estimación (medido aquí, un núcleo): un RF de 300 árboles con todo el entrenamiento de S2 (42.957 filas × 16 inputs) tarda 90 s; una celda son 2 configuraciones × (8 ajustes de validación interna + 1 final), ≈ 20–25 min (L1/L2, con 6–7 inputs, menos). Una MLP tarda 3–7 s; una celda ANN son 85 ajustes (2 configuraciones × 8 folds × 5 semillas + 5 finales), ≈ 6–10 min. Si la sesión 1 llega al tope de 8 h sin acabar, se continúa con una versión nueva que monte la salida anterior como entrada (`kaggle_session.sh 0`): el guion recupera las celdas del 03.2 (`celdas_03_2_sesion_*.zip` o `.json.gz` sueltos, solo con nombres de celda del 03.2; ignora los del 03.1) y salta las hechas. Cada sesión deja `celdas_03_2_sesion_N.zip`, que se descomprime en `results/cells/` antes de volver a ejecutar `report`.
+Base de la estimación (medido aquí, un núcleo): un RF de 300 árboles con todo el entrenamiento de S2 (42.957 filas × 16 inputs) tarda 90 s; una celda son 2 configuraciones × (8 ajustes de validación interna + 1 final), ≈ 20–25 min (L1/L2, con 6–7 inputs, menos). Una MLP tarda 3–7 s; una celda ANN son 85 ajustes (2 configuraciones × 8 folds × 5 semillas + 5 finales), ≈ 6–10 min. Si alguna sesión llega al tope de 8 h sin acabar, se continúa con una versión nueva que monte la salida anterior como entrada (`kaggle_session.sh 0`): el guion recupera las celdas del 03.2 (`celdas_03_2_sesion_*.zip` o `.json.gz` sueltos, solo con nombres de celda del 03.2; ignora los del 03.1) y salta las hechas. Cada sesión deja `celdas_03_2_sesion_N.zip`, que se descomprime en `results/cells/` antes de volver a ejecutar `report`.
 
 ## Paso previo
 
