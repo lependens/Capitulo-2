@@ -70,6 +70,15 @@ Si solo un brazo informativo cumple 1 o 2, se informa como *post hoc*. L5: si H5
 - **Salidas** como en el 03.2: `results/` (celdas, `metrics_global/by_station/by_month.csv`, `paired_ci.csv`, `equivalencia.csv`, `dominio.csv`, `predictions_test.csv.gz`, `run_manifest.json`, `interpretation.json`) y `figures/`.
 - Al terminar, el estudio 05 añade los brazos ganadores al balance hídrico.
 
+## Aclaraciones previas a la ejecución (2026-11-27, antes de ajustar ningún modelo)
+
+Decididas con el autor tras comparar este README con `thresholds_v3_3.json` (no hay contradicciones; el JSON añade Ridge en `S0+R1`, que se sigue). El JSON congelado no se toca.
+
+1. **Hueco de la regla de interpretación.** Los casos (1)–(4) no cubren todas las combinaciones (p. ej., `S0+R1` gana a HGB-S0 por ≥ 0,05 pero empata con la IDW). Se fija: **si algún IC95 < 0 y no se cumplen (1) ni (2), es el caso (3)** (se queda HGB-S0). `interpretation.json` indica si el caso salió del texto literal o de esta aclaración.
+2. **`S0_alt_recortada` con HGB es idéntico a HGB-S0 por construcción**: los árboles mandan cualquier valor por encima del máximo de entrenamiento al último tramo (comprobado en IB01: diferencia máxima 0,000). Se mantiene tal cual y se informa así; no se añade ANN M.
+3. **HGB-S0 anidados (`residuo_IDW` y w de `media_ponderada`)**: selección de hiperparámetros **anidada completa** (rejilla y validación interna sin s ni las evaluadas), no los del 03.2.
+4. **Implementación**: validación interna con la red recalculada por pliegue (`select_and_fit_net`, lógica literal de `loso_models.select_and_fit`); IDW de residuos con `network.py`; IC 90 % del TOST con los mismos remuestreos; cohorte común = filas con red del día d **y** de d−1 y con todos los métodos finitos; control de dominio con los 12 inputs de S0 distintos de la altitud ([p0,5; p99,5]) y la altitud ([min; max]), con la tasa por variable.
+
 ## Riesgos y salvedades
 
 - Diseño escrito después del 03.2 y de su indicio: declarado. F1 es optimista; F2 es el caso que más interesa.
