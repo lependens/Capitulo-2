@@ -1,0 +1,14 @@
+# Distancia minima a la linea de costa (km). Fuente: Natural Earth 1:10m ne_10m_coastline (dominio publico)
+# url: https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_coastline.geojson
+# fichero: ne_10m_coastline.geojson  sha256: 6f75ae0e0de157b14946e2255eb1f5486d9a13819032e26d4610852d296788f6
+# metodo: studies/03_1_2_loso_sensor_red/coast.py (punto mas cercano en plano local + haversine R=6371)
+station_code,coast_km,log1p_coast_km
+IB01,8.149,2.21364
+IB02,20.589,3.07221
+IB03,12.726,2.61927
+IB04,2.255,1.18031
+IB05,16.346,2.85337
+IB06,7.12,2.09432
+IB08,4.196,1.64779
+IB10,1.765,1.01718
+IB11,0.038,0.03767
