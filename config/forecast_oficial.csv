@@ -1,5 +1,5 @@
 station_code,siar_station_form_id,siar_id_comarca,siar_comarca_nombre,aemet_municipio_id,aemet_municipio_nombre
-IB01,1_7,,,07054,Santa Eulària des Riu
+IB01,1_7,701,Ibiza,07054,Santa Eulària des Riu
 IB02,2_7,702,Mallorca,07017,Costitx
 IB03,3_7,702,Mallorca,07033,Manacor
 IB04,4_7,702,Mallorca,07040,Palma
@@ -7,4 +7,4 @@ IB05,5_7,702,Mallorca,07022,Felanitx
 IB06,6_7,702,Mallorca,07044,Sa Pobla
 IB08,8_7,,,07037,Es Mercadal
 IB10,10_7,702,Mallorca,07011,Calvià
-IB11,11_7,,,07024,Formentera
+IB11,11_7,701,Ibiza,07024,Formentera
