@@ -188,7 +188,7 @@ def siar_capture(http, row, station_name):
     )
     if not _validation_ok(val):
         raise RuntimeError(f"SIAR rechaza el formulario: {val[:200]!r}")
-    _s, _h, _html, calc_url = http.call(
+    _s, _h, calc_html, calc_url = http.call(
         "POST", f"{SIAR_BASE}/necesidadesHidricas/calculo", data=form,
         headers={**base_h, "Accept": "text/html,*/*"},
     )
@@ -198,7 +198,18 @@ def siar_capture(http, row, station_name):
     if len(zbytes) > MAX_ZIP_BYTES:
         raise RuntimeError("SIAR: exportacion demasiado grande")
     name, csv_bytes = single_csv(zbytes)
-    return zbytes, csv_bytes, name
+    return zbytes, csv_bytes, name, visible_text(calc_html, (page.csrf_body, page.csrf_header))
+
+
+def visible_text(html_bytes, secrets=()):
+    """Texto visible de la pagina de resultado, sin scripts ni valores de sesion (solo para diagnostico)."""
+    t = _decode(html_bytes)
+    t = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", t)
+    t = re.sub(r"(?s)<[^>]+>", " ", t)
+    for s in secrets:
+        if s:
+            t = t.replace(s, "[sesion]")
+    return re.sub(r"\s+", " ", t).strip()
 
 
 def _validation_ok(body):
@@ -428,12 +439,16 @@ def run(mode, only=None):
             fails.append(f"SIAR {code}: sin configurar en config/forecast_oficial.csv")
         else:
             try:
-                zb, cb, name = siar_capture(http, r, names[code])
+                zb, cb, name, calc_text = siar_capture(http, r, names[code])
                 url = f"{SIAR_BASE}/necesidadesHidricas/exportCSV idEstacion={r['siar_station_form_id']} idCultivo=6"
                 save(SIAR_PRODUCT, code, tag, url, zb, "zip", now)
                 rel, sha = save(SIAR_PRODUCT, code, tag, url + f" csv={name}", cb, "csv", now)
                 try:
                     vals = parse_siar_csv(cb)
+                    if not vals:
+                        i = max(0, calc_text.lower().find("predic"))
+                        report.setdefault("siar_sin_filas", {})[code] = calc_text[:4000]
+                        raise ValueError(f"CSV sin filas ({len(cb)} bytes). Texto de la pagina: {calc_text[i:i + 600]}")
                     rows += to_rows("siar", code, r["siar_station_form_id"], "", vals, now, rel, sha)
                     print(f"+ SIAR {code}: {len(cb)} bytes, {len({v[0] for v in vals})} dias")
                 except ValueError as e:
