@@ -1,7 +1,7 @@
 {
   "_comment": "Criterios del estudio 03.1.2 (sensor local + red SIAR). PROPUESTA hasta que el usuario la apruebe y se fusione el PR que la congela, ANTES de ejecutar ninguna celda. No sustituye a thresholds_v3_1.json (03.1) ni a thresholds_v3.json (03.2), que siguen congelados. El diseno se escribio despues de conocer los resultados del 03.1 (declarado).",
   "version": "3.1.2",
-  "status": "PROPUESTA hasta fusionar el PR de congelacion; despues CONGELADO",
+  "status": "CONGELADO",
   "reference": "PM_FAO56_V1",
   "protocol": {
     "development": ["2004-01-01", "2019-12-31"],
