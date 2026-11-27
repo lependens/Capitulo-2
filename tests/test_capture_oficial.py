@@ -142,6 +142,21 @@ class RunTests(unittest.TestCase):
         estados = {(r["source"], r["status"]) for r in csv.DictReader(open(c.STATUS_FILE, encoding="utf-8"))}
         self.assertEqual(estados, {("siar", "sin_prevision"), ("aemet", "ok")})
 
+    def test_aemet_429_se_reintenta(self):
+        c.siar_capture = lambda *a: (b"z", SIAR_CSV, "x.csv", "")
+        days = [dict(AEMET[0]["prediccion"]["dia"][0], fecha=f"2026-12-{1 + i:02d}T00:00:00") for i in range(7)]
+        data = [dict(AEMET[0], prediccion={"dia": days})]
+        calls = []
+
+        def flaky(*_a):
+            calls.append(1)
+            if len(calls) == 1:
+                raise RuntimeError("GET https://opendata.aemet.es/x: HTTP 429")
+            return b"{}", json.dumps(data).encode(), None
+        c.aemet_get = flaky
+        self.assertEqual(c.run("completo"), 0)
+        self.assertEqual(len(calls), 2)
+
     def test_error_aemet_falla(self):
         c.siar_capture = lambda *a: (b"z", SIAR_CSV, "x.csv", "")
 
