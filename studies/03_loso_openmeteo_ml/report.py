@@ -276,8 +276,15 @@ def figures(glob, by_st, by_m):
                                           "S0+coord (sens.)"])
     ax.set_ylabel("RMSE frente a PM (mm/día), TEST 2020–2025")
     ax.set_title("Estación no vista (F1, n = 19.251): Open-Meteo corregido con ML frente a alternativas")
-    ax.legend(fontsize=8, ncol=3, loc="upper left")
-    ax.set_ylim(0, 0.95)
+    top = 1.0
+    for i, m in enumerate(models):  # barras recortadas por el eje: se rotula su valor
+        for j, s_ in enumerate(SCENARIOS):
+            v = g.get(f"{s_}|{m}", np.nan)
+            if np.isfinite(v) and v > top:
+                ax.text(j + (i - (len(models) - 1) / 2) * w, top - 0.01, f"{v:.2f}", rotation=90,
+                        ha="center", va="top", fontsize=7, color="white", fontweight="bold")
+    ax.legend(fontsize=8, ncol=1, loc="upper left", bbox_to_anchor=(1.01, 1.0))
+    ax.set_ylim(0, top)
     ax.grid(axis="y", alpha=0.3)
     fig.tight_layout()
     fig.savefig(FIG / "01_rmse_escenario_modelo.png", dpi=150)
@@ -301,6 +308,31 @@ def figures(glob, by_st, by_m):
     fig.tight_layout()
     fig.savefig(FIG / "02_rmse_por_estacion.png", dpi=150)
     plt.close(fig)
+
+    # 4: ANN frente a HGB y RF por estacion (S0): extrapolacion en altitud
+    alt = lc.load_stations().altitude_m
+    keys = [(m, f"S0|{m}") for m in ("HGB", "RF", "ANN_S", "ANN_M") if f"S0|{m}" in s]
+    if keys:
+        fig, ax = plt.subplots(figsize=(11, 4.5))
+        w = 0.8 / len(keys)
+        top = 1.2
+        for i, (lab, k) in enumerate(keys):
+            x = np.arange(len(s)) + (i - (len(keys) - 1) / 2) * w
+            ax.bar(x, np.minimum(s[k], top), w, label=lab, color=COLORS[lab])
+            for xi, v in zip(x, s[k]):
+                if v > top:
+                    ax.text(xi, top - 0.02, f"{v:.2f}", rotation=90, ha="center", va="top", fontsize=7,
+                            color="white", fontweight="bold")
+        ax.set_xticks(range(len(s)), [f"{c}\n{alt.get(c, np.nan):.0f} m" for c in s.index])
+        ax.set_ylabel("RMSE (mm/día)")
+        ax.set_title("S0 por estación dejada fuera (F1): las ANN fallan donde la altitud queda fuera del rango "
+                     "de entrenamiento (IB01, 120 m; resto 4–82 m)", fontsize=10)
+        ax.set_ylim(0, top)
+        ax.legend(fontsize=8, ncol=4, loc="upper right")
+        ax.grid(axis="y", alpha=0.3)
+        fig.tight_layout()
+        fig.savefig(FIG / "04_ann_por_estacion_altitud.png", dpi=150)
+        plt.close(fig)
 
     # 3: por mes
     mm = by_m[(by_m.scope == "F1") & (by_m.breakdown == "month")].pivot(index="key", columns="method", values="rmse")

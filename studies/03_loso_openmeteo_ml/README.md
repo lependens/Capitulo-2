@@ -4,7 +4,7 @@
 
 Estado: **PLAN**. Protocolo y criterios en `config/thresholds_v3.json`; se congelan al fusionar el PR que los introduce, antes de ejecutar nada de este protocolo.
 
-> **Ejecución (2026-11-26): EN PARTE.** Hecho: todos los comparadores, Ridge y HGB (primario) en las 12 particiones y los 6 escenarios, es decir, **todo lo que entra en H1–H4**, con veredicto más abajo («Resultados»). Pendiente: RF, ANN-S y ANN-M (216 celdas, secundarios; se ejecutan en Kaggle). El plan de abajo no se ha tocado: `thresholds_v3.json` quedó congelado al fusionar el PR #8.
+> **Ejecución (2026-11-26/27): COMPLETA.** Las 360 celdas (12 particiones × 6 escenarios × Ridge, HGB, RF, ANN-S y ANN-M) y todos los comparadores. **H1–H4 se cumplen** (H1 y H3, «significativas pero pequeñas»); veredicto, interpretación y salvedades en «Resultados». El plan de abajo no se ha tocado: `thresholds_v3.json` quedó congelado al fusionar el PR #8.
 
 ## Por qué este estudio (cambio de rumbo)
 
@@ -112,7 +112,7 @@ Dependencias: este estudio usa scikit-learn, pandas y numpy (`requirements.txt` 
 
 ---
 
-# Resultados (ejecución del 2026-11-26)
+# Resultados (ejecución del 2026-11-26/27)
 
 ## Estado de la ejecución
 
@@ -121,33 +121,36 @@ Dependencias: este estudio usa scikit-learn, pandas y numpy (`requirements.txt` 
 | Comparadores (OM crudo, OM + AHC transferido y vecino, PM más cercana, IDW) y techo local | — | hecho | entorno de trabajo de Claude |
 | Ridge | 72 | hecho | entorno de trabajo de Claude (~1 s/celda) |
 | HGB (primario) | 72 | hecho | entorno de trabajo de Claude (~1 min/celda) |
-| RF | 72 | **en ejecución** | Kaggle, sesiones 1 y 2 |
-| ANN-S y ANN-M (5 semillas) | 144 | **en ejecución** | Kaggle, sesiones 3 y 4 |
+| RF | 72 | hecho | Kaggle, sesiones 1 y 2 |
+| ANN-S y ANN-M (5 semillas) | 144 | hecho | Kaggle, sesiones 3 y 4 |
 
-Celda = partición (9 F1 + 3 F2) × escenario (S0, S1, S2, L1, L2, S0_coord) × modelo. Cada celda se guarda en `results/cells/` (gzip, escritura atómica: se escribe en `.tmp` y se renombra) con sus predicciones, la rejilla de validación interna, el número de recortes a 0 y el entorno con el que se calculó. `report` une las que haya; las que faltan se listan en `results/run_manifest.json` (`missing_cells`).
-
-```
-python studies/03_loso_openmeteo_ml/run.py fit --models Ridge,HGB --workers 2   # hecho (~35 min con 2 núcleos)
-python studies/03_loso_openmeteo_ml/run.py report                              # ~25 s
-```
-
-**En Kaggle (lanzado el 2026-11-27).** `kaggle_session.sh N` (CPU sin acelerador, internet activado, 4 núcleos, `--max-hours 8`), clonando esta rama:
+**Total: 360/360 celdas**; `results/run_manifest.json` → `missing_cells` vacío. Celda = partición (9 F1 + 3 F2) × escenario (S0, S1, S2, L1, L2, S0_coord) × modelo. Cada celda se guarda en `results/cells/` (gzip, escritura atómica: se escribe en `.tmp` y se renombra) con sus predicciones (y las de cada semilla en las ANN), la rejilla de validación interna, el número de recortes a 0 y el entorno con el que se calculó.
 
 ```
-!git clone --depth 1 -b estudio-03-2-ejecucion https://github.com/lependens/Capitulo-2 && cd Capitulo-2 && bash studies/03_loso_openmeteo_ml/kaggle_session.sh 1
+python studies/03_loso_openmeteo_ml/run.py fit --models Ridge,HGB --workers 2   # ~35 min con 2 núcleos
+bash   studies/03_loso_openmeteo_ml/kaggle_session.sh N                         # N = 1..4, en Kaggle (RF y ANN)
+python studies/03_loso_openmeteo_ml/run.py report                              # ~25 s: tablas, IC, decision.json, figuras
+python studies/03_loso_openmeteo_ml/diagnostico_ann_altitud.py                 # diagnóstico posterior de las ANN (sin veredicto)
 ```
 
-La cuenta admite 4 sesiones a la vez, así que el trabajo pesado se reparte en 4 sesiones paralelas sin solaparse (un test comprueba que cubren las 216 celdas exactamente una vez):
+**Kaggle (2026-11-27).** `kaggle_session.sh N` (CPU sin acelerador, internet activado, 4 núcleos, `--max-hours 8`), clonando esta rama:
 
-| Sesión | Contenido | Celdas | Estimación |
-|---|---|---|---|
-| 1 | RF, F1 IB01–IB05 | 30 | ~10–11 h de núcleo → ~3 h con 4 núcleos |
-| 2 | RF, F1 IB06, IB08, IB10, IB11 y las 3 particiones F2 | 42 | ~12–13 h → ~3,5 h |
-| 3 | ANN-S, todo | 72 | ~7–9 h → ~2–2,5 h |
-| 4 | ANN-M, todo | 72 | ~8–11 h → ~2,5–3 h |
-| 0 | lo pesado que falte (continuación) | — | — |
+```
+!git clone -b estudio-03-2-ejecucion https://github.com/lependens/Capitulo-2.git
+%cd Capitulo-2
+!bash studies/03_loso_openmeteo_ml/kaggle_session.sh N
+```
 
-Base de la estimación (medido aquí, un núcleo): un RF de 300 árboles con todo el entrenamiento de S2 (42.957 filas × 16 inputs) tarda 90 s; una celda son 2 configuraciones × (8 ajustes de validación interna + 1 final), ≈ 20–25 min (L1/L2, con 6–7 inputs, menos). Una MLP tarda 3–7 s; una celda ANN son 85 ajustes (2 configuraciones × 8 folds × 5 semillas + 5 finales), ≈ 6–10 min. Si alguna sesión llega al tope de 8 h sin acabar, se continúa con una versión nueva que monte la salida anterior como entrada (`kaggle_session.sh 0`): el guion recupera las celdas del 03.2 (`celdas_03_2_sesion_*.zip` o `.json.gz` sueltos, solo con nombres de celda del 03.2; ignora los del 03.1) y salta las hechas. Cada sesión deja `celdas_03_2_sesion_N.zip`, que se descomprime en `results/cells/` antes de volver a ejecutar `report`.
+La cuenta admite 4 sesiones a la vez; el trabajo pesado se repartió en 4 sesiones paralelas sin solaparse (un test comprueba que cubren las 216 celdas exactamente una vez). Ninguna llegó al tope de 8 h, así que no hizo falta la sesión de continuación (`kaggle_session.sh 0`).
+
+| Sesión | Contenido | Celdas | Estimación previa | Real |
+|---|---|---|---|---|
+| 1 | RF, F1 IB01–IB05 | 30 | ~3 h | 257 min |
+| 2 | RF, F1 IB06, IB08, IB10, IB11 y las 3 particiones F2 | 42 | ~3,5 h | 266 min |
+| 3 | ANN-S, todo | 72 | ~2–2,5 h | 258 min |
+| 4 | ANN-M, todo | 72 | ~2,5–3 h | ~329 min |
+
+La estimación (medida aquí con un núcleo y escalada a 4) se quedó corta en un factor de 1,2–2: probablemente porque Kaggle es más lento por núcleo y las celdas corren en paralelo (no se ha medido por separado). Cada sesión dejó `celdas_03_2_sesion_N.zip`, que se descomprimió en `results/cells/` antes de `report`.
 
 ## Paso previo
 
@@ -193,9 +196,21 @@ RMSE en mm/día. Tabla completa en `results/metrics_global.csv`.
 | HGB L1 (solo sensor T) | 0,668 | 0,496 | +0,219 | 0,847 |
 | HGB L2 (solo sensor T y HR) | 0,553 | 0,399 | +0,157 | 0,895 |
 | HGB S0 + coordenadas (sensibilidad) | 0,479 | 0,355 | +0,046 | 0,921 |
-| Ridge S0 / S1 / S2 / L1 / L2 / S0+coord | 0,484 / 0,491 / 0,465 / 0,704 / 0,568 / 0,604 | | | |
 | *Techo local (no LOSO): OM + AHC mensual local (estudio 02)* | *0,427* | | | |
 | *Techo local: V2 ANN E anual HS-Ra / Valiantzas / HG-Rs* | *0,533 / 0,421 / 0,368* | | | |
+
+**RMSE F1 por escenario y modelo** (ANN = ensemble de 5 semillas; sesgo entre paréntesis):
+
+| Escenario | Ridge | **HGB** | RF | ANN-S | ANN-M |
+|---|---|---|---|---|---|
+| S0 sin sensor | 0,484 (+0,06) | **0,433** (+0,04) | 0,444 (+0,03) | 0,528 (−0,08) | 1,020 (−0,25) |
+| S1 + termómetro | 0,491 (+0,11) | **0,411** (+0,10) | 0,434 (+0,06) | 0,649 (−0,11) | 1,002 (−0,21) |
+| S2 + termohigrómetro | 0,465 (+0,07) | **0,396** (+0,09) | 0,426 (+0,04) | 0,712 (−0,17) | 1,031 (−0,26) |
+| L1 solo sensor T | 0,704 (+0,20) | 0,668 (+0,22) | **0,646** (+0,18) | 0,906 (−0,08) | 1,128 (−0,15) |
+| L2 solo sensor T, HR | 0,568 (+0,11) | 0,553 (+0,16) | **0,538** (+0,11) | 0,636 (−0,04) | 1,159 (−0,23) |
+| S0 + coordenadas | 0,604 (+0,05) | 0,479 (+0,05) | **0,474** (+0,03) | 0,897 (−0,09) | 0,813 (+0,11) |
+
+Las cifras globales de las ANN están dominadas por **una sola estación (IB01)**; ver «RF y ANN» más abajo.
 
 ![RMSE por escenario y modelo](figures/01_rmse_escenario_modelo.png)
 
@@ -222,6 +237,10 @@ RMSE en mm/día. Tabla completa en `results/metrics_global.csv`.
 
 Cifras ajustadas: H1 queda a 0,0002 del umbral práctico y H2 a 0,001. Se informan tal cual salen de la regla.
 
+**Al completar RF y ANN el veredicto no cambia** (`decision.json` regenerado con las 360 celdas: los mismos valores). Ni RF ni ninguna ANN supera a HGB en el conjunto de F1, así que HGB sigue siendo la elección razonable además de la prefijada.
+
+**Sensibilidad (sin veredicto): sin IB01** (la estación que hace fallar a las ANN; `results/diagnostico_sin_IB01.csv`, mismo bootstrap): H1 −0,053 [−0,073; −0,032]; H2 −0,032 [−0,063; −0,001]; H3 −0,034 [−0,060; −0,007]. Las tres siguen cumpliendo su criterio, pero H2 pasa a «significativa pero pequeña» y su IC roza 0: buena parte de la ventaja sobre la estación más cercana viene de IB01 (Ibiza): su estación más cercana es IB11 (Formentera, a 32 km), cuya PM tiene allí un RMSE de 0,571 y un sesgo de +0,27, frente a 0,382 de HGB-S0.
+
 ## Secundario (sin veredicto)
 
 - **Por estación** (F1, `metrics_by_station.csv`, figura 2): HGB-S0 va de 0,36 (IB10) a 0,63 (IB11). Tiene menor RMSE que OM + AHC transferido en 7 de 9 estaciones; prácticamente igual en IB04 (0,417 frente a 0,416) y peor en IB05 (0,412 frente a 0,351). En IB04, IB05 e IB06 (Mallorca central) la IDW es la mejor opción (las estaciones vecinas están cerca). El sensor (S2) mejora en 6 de 9 estaciones, pero empeora en IB04, IB05 e IB06.
@@ -236,12 +255,51 @@ Cifras ajustadas: H1 queda a 0,0002 del umbral práctico y H2 a 0,001. Se inform
 
 ![RMSE por mes](figures/03_rmse_por_mes.png)
 
-## Pendiente
+## RF y ANN (secundario, sin veredicto)
 
-RF, ANN-S y ANN-M (216 celdas, ≈ 40–45 h de un núcleo), según «Estado de la ejecución». No intervienen en ninguna hipótesis, así que **los veredictos de H1–H4 no cambian al completarlas**. Al terminar se completan aquí la fila de cada modelo, `ann_seed_spread.csv` (dispersión entre semillas) y las figuras.
+No intervienen en H1–H4. Comparaciones emparejadas completas en `results/paired_ci.csv` (`kind = modelo_vs_HGB` y `vs_comparador`).
+
+**Random Forest.** Sigue el mismo patrón que HGB con algo más de error cuando hay inputs de Open-Meteo: ΔRMSE RF − HGB en S0 +0,011 [+0,002; +0,020], S1 +0,023 [+0,004; +0,043] y S2 +0,030 [+0,009; +0,050] (las tres «significativas pero pequeñas»). En los modelos solo de sensor es algo mejor: L1 −0,023 [−0,041; −0,005]. RF-S0 gana a OM + AHC transferido (−0,039 [−0,053; −0,022]) y a la estación más cercana (−0,040 [−0,072; −0,008]) y empata con la IDW (+0,010 [−0,015; +0,033]). Es decir, **las conclusiones de H1–H4 se sostienen con cualquiera de los dos modelos de árboles**. RF no recorta ninguna predicción a 0 y elige `min_samples_leaf = 5` en las 9 particiones.
+
+**ANN-S y ANN-M: fallan por extrapolación de la altitud en IB01.** En el conjunto de F1 las dos ANN son peores que HGB en todos los escenarios, y ANN-M (~1,0 mm/día) llega a ser peor que Open-Meteo crudo. Pero el fallo está en una sola estación:
+
+| RMSE S0 por estación dejada fuera | IB01 | IB02 | IB03 | IB04 | IB05 | IB06 | IB08 | IB10 | IB11 |
+|---|---|---|---|---|---|---|---|---|---|
+| Altitud (m) | **120** | 78 | 79 | 8 | 82 | 4 | 40 | 30 | 7 |
+| HGB | 0,38 | 0,42 | 0,37 | 0,42 | 0,41 | 0,39 | 0,46 | 0,36 | 0,63 |
+| RF | 0,38 | 0,47 | 0,34 | 0,40 | 0,42 | 0,38 | 0,52 | 0,39 | 0,64 |
+| ANN-S | **1,02** | 0,44 | 0,32 | 0,39 | 0,46 | 0,36 | 0,49 | 0,37 | 0,55 |
+| ANN-M | **2,77** | 0,44 | 0,32 | 0,39 | 0,47 | 0,37 | 0,51 | 0,35 | 0,56 |
+
+![ANN por estación y altitud](figures/04_ann_por_estacion_altitud.png)
+
+Diagnóstico (`diagnostico_ann_altitud.py`, posterior a la ejecución; no cambia nada del protocolo):
+
+1. **IB01 es la única estación con un input fuera del rango de entrenamiento en todos sus días:** su altitud (120 m) supera la de las 8 estaciones de entrenamiento (4–82 m). Todos los inputs de Open-Meteo de IB01 caen dentro del rango visto (`diagnostico_rango_inputs_estaticos.csv`).
+2. **El error es un desplazamiento constante, no ruido:** ANN-M en IB01 tiene sesgo −2,52 mm/día, de magnitud parecida todos los años 2020–2025 (RMSE anual 2,6–2,8). Así, 7.184 de sus 7.185 recortes a 0 en F1 son de IB01. Una red con activación ReLU extrapola linealmente fuera del rango; los árboles (HGB, RF) dan el valor del extremo visto (82 m) y no sufren.
+3. **El mismo fallo aparece donde otro input estático sale de rango:** en S0 + coordenadas, IB08 (la más al norte y al este) e IB11 (la más al sur y al oeste) quedan fuera del rango de latitud y longitud, y ahí las ANN suben a 0,9–1,9 mm/día mientras HGB y RF se quedan en 0,62–0,66. IB06 está 3 m por debajo del mínimo de altitud y no se nota.
+4. **Sin IB01 las ANN son tan buenas como HGB o mejores** (`diagnostico_sin_IB01.csv`, 8 estaciones, n = 17.059): en S0–S2 empatan (ANN-M − HGB en S2: −0,015 [−0,035; +0,007]) y en los modelos solo de sensor ganan (L2: ANN-M −0,051 [−0,072; −0,030]; L1: ANN-S −0,050 [−0,075; −0,026]). También recuperan el orden esperado: con sensor mejoran (ANN-S: S0 0,428 → S2 0,395), mientras que en el global parecía lo contrario.
+5. **La inestabilidad entre semillas también es de IB01:** en S0, el RMSE de cada semilla de ANN-S va de 0,44 a 0,98 con IB01 y de 0,432 a 0,436 sin ella (DT 0,001). Sin IB01, la DT entre semillas es ≤ 0,012 mm/día en todos los escenarios salvo S0 + coordenadas (`diagnostico_semillas_ann.csv`). Cuál de las semillas extrapola peor en IB01 es casi aleatorio (ANN-S S0: sesgos de −2,4 a +1,0 según semilla).
+
+Las dos pistas alternativas del traspaso (la parada temprana de `MLPRegressor` valida con un 10 % aleatorio, no agrupado por estación, y el objetivo no se escala) **no explican el fallo**: con ese mismo entrenamiento las ANN van bien en las 8 estaciones dentro de rango. El código de las ANN es copia literal y congelada del 03.1, así que no se ha corregido nada; se informa tal cual. Esto **confirma la explicación que el 03.1 dejó como «posible, no comprobada»** para su variante secundaria con altitud: allí las ANN también subían a 0,5–1,25 mm/día con sesgo negativo y gran dispersión entre semillas.
+
+**F2 (fuera de isla).** Fuera Ibiza (incluye IB01) las ANN fallan por lo mismo (S0: ANN-S 1,11, ANN-M 2,01, frente a HGB 0,51). Fuera Menorca, ANN-S (0,487) y ANN-M (0,506) ganan a los tres comparadores, como HGB (0,458) y RF (0,519). Fuera Mallorca (informativo, 3 estaciones de entrenamiento): RF 0,440 empata con OM + AHC transferido (0,428; +0,012 [−0,024; +0,047]) y es el mejor de los ML; HGB 0,477 y las ANN 0,52–0,53.
+
+**Hiperparámetros** (`model_selection.csv`, F1-S0): ANN-S elige α = 10⁻⁴ en 5 de 9 particiones y ANN-M en 8 de 9. No hay avisos de convergencia en ninguna de las 360 celdas.
+
+## Interpretación
+
+1. **El cambio de rumbo se sostiene, con ganancias modestas.** En una estación no vista, Open-Meteo corregido con HGB y sin sensor baja el error un ~10 % respecto a las dos alternativas sencillas con las que se comparaba (coeficiente mensual transferido y copiar la estación SIAR más cercana). Las mejoras rondan el umbral práctico de 0,05 mm/día, así que son reales pero pequeñas. Frente a la IDW del mismo día empata; su valor práctico es que no necesita la red SIAR del día, lo que la hace utilizable fuera de la red y con previsión (estudio 04).
+2. **Un termohigrómetro ayuda poco, y solo combinado con Open-Meteo.** S2 mejora 0,037 mm/día (−9 %); el sensor solo (L1, L2) es claramente peor que Open-Meteo sin sensor. Para un usuario sin estación, el input que más pesa es Open-Meteo, no su sensor.
+3. **Los árboles son la elección segura para aplicar el modelo en sitios nuevos.** HGB y RF dan resultados parecidos y estables en todas las estaciones. Las ANN igualan o mejoran a HGB cuando todos los inputs están dentro del rango de entrenamiento, pero fallan de forma grave y silenciosa (sesgo de −2,5 mm/día, sin aviso) cuando uno sale de él.
+4. **Implicación para el servicio: la altitud (y cualquier input estático) es un riesgo fuera de rango.** Las 9 estaciones SIAR están entre 4 y 120 m, y el usuario puede estar mucho más alto (la sierra de Tramuntana supera los 1.000 m). Una ANN extrapolaría sin control. Un árbol no extrapola: trataría 500 m como si fueran 120 m, también sin aviso, y su error a esa altitud no está medido en este estudio. Esto no cambia nada del 03.2, pero debería tenerse en cuenta al diseñar el estudio 04 y el servicio. Posibles medidas: comprobar que los inputs del usuario están dentro del rango de entrenamiento (control de dominio) y avisar si no; o quitar los inputs estáticos que solo identifican la estación. Cualquiera de ellas debería probarse con su propio protocolo congelado.
+5. **Lo que no cubre este estudio:** 9 estaciones casi todas costeras y bajas, una sola fuente meteorológica (Open-Meteo `archive`, reanálisis, no previsión) y un periodo de prueba de 6 años. H1 y H2 están en el borde del umbral práctico: con otras estaciones o años podrían quedar a un lado u otro de 0,05.
 
 ## Salvedades de la ejecución
 
 - Esta rama parte de `main` (con el PR #8 fusionado, criterios congelados). El PR #9 (criterios del 03.1) no estaba fusionado; de la rama del 03.1 solo se traen, sin cambios, los inputs 2004–2019 y el código común.
 - Las celdas de Ridge y HGB se calcularon en el entorno de trabajo de Claude con las versiones fijadas en `requirements.txt` (las mismas que exige `check_env.py` en Kaggle); el entorno de cada celda queda guardado en ella.
 - H1 y H2 quedan muy cerca del umbral práctico; con otro corte temporal o más estaciones podrían caer a uno u otro lado de 0,05.
+- RF y ANN se calcularon en Kaggle (CPU, 4 núcleos) con las mismas versiones fijadas (`check_env.py` lo exige antes de empezar); el entorno queda guardado en cada celda.
+- El diagnóstico de las ANN (`diagnostico_ann_altitud.py`, ficheros `results/diagnostico_*.csv`, figura 4) se hizo **después** de ver los resultados: es exploratorio y no tiene veredicto. Las cifras «sin IB01» no sustituyen a las del protocolo.
+- Recortes a 0 en total (F1 + F2): Ridge 489, HGB 0, RF 0, ANN-S 8.188, ANN-M 15.426, casi todos en las estaciones con inputs fuera de rango.

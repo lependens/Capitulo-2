@@ -1,5 +1,7 @@
 # Traspaso: análisis e interpretación del estudio 03.2
 
+> **HECHO (2026-11-27).** Análisis e interpretación redactados en el README («RF y ANN», «Interpretación»). Diagnóstico del fallo de las ANN: extrapolación de la altitud en IB01 (`diagnostico_ann_altitud.py`, figura 4). Este fichero queda como registro del traspaso.
+
 **Estado (2026-11-27 15:45): LISTO PARA ANÁLISIS.** 360/360 celdas en `results/cells/` (72 por modelo), `missing_cells` vacío, `report` regenerado con todo, 34 tests OK. `decision.json`: H1–H4 se cumplen, igual que en el README. Tiempos Kaggle: sesiones 1–4 = 257, 266, 258 y ~329 min (4 núcleos).
 
 Este documento es para quien haga el análisis final, previsto con Opus 5.5. La ejecución está hecha y es mecánica. Lo que queda es **leer los resultados, interpretarlos y redactar el README**.

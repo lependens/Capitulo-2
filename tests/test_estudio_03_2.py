@@ -149,3 +149,13 @@ class KaggleSessionsPartitionTest(unittest.TestCase):
         heavy = {(f["id"], s, m) for f, s, m in r.select_cells(r.HEAVY)}
         self.assertEqual(set(seen), heavy)
         self.assertEqual(len(heavy), 216)
+
+
+@unittest.skipUnless(HAVE, "faltan numpy/pandas/sklearn")
+class DiagnosticoAltitudTest(unittest.TestCase):
+    def test_static_ranges_flags_out_of_range_stations(self):
+        d = _load("estudio03_2_diag", STUDY / "diagnostico_ann_altitud.py").static_ranges().set_index("station_code")
+        self.assertEqual(len(d), 9)
+        self.assertEqual(set(d.index[d.altitude_m_fuera_de_rango]), {"IB01", "IB06"})
+        self.assertEqual(set(d.index[d.lat_fuera_de_rango]), {"IB08", "IB11"})
+        self.assertEqual(d.loc["IB01", "altitude_m_train_max"], 82.0)
