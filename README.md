@@ -23,6 +23,8 @@ Origen de los modelos y la referencia: [Capitulo-1](https://github.com/lependens
 | `config/thresholds_v3_1_2.json` | Criterios del estudio 03.1.2 (PROPUESTA; se congelan con su PR, antes de ejecutar) |
 | `studies/03_1_2_loso_sensor_red/` | Estudio 03.1.2 (plan): sensor local + red SIAR del mismo día y previsión a D+1; prompt de ejecución en `PROMPT_CHAT.md` |
 | `studies/03_loso_openmeteo_ml/` | Estudio 03.2 (plan): Open-Meteo corregido con ML, evaluado en estaciones no vistas (leave-one-station-out) |
+| `studies/05_balance_hidrico/` | Estudio 05 (enfoque + exploratorio): cuánto cambia el riego según la fuente de ET0 |
+| `docs/IDEAS_Y_MEJORAS.md` | Documento vivo: lo aprendido, líneas de investigación, publicación y cómo rentabilizar |
 | `studies/04_prevision_et0/` | Estudio 04 (enfoque): previsión de ET0 a 0–7 días |
 | `studies/01_et0_vs_pm/` | Estudio 01: ET0 de Open-Meteo frente a PM_FAO56_V1 y frente a las formulas V2 |
 | `tools/export_reference.py` | Extrae de `classical-baselines.csv` (Capitulo-1, 56 MB) solo 2020-2025 y las columnas necesarias |
