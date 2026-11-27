@@ -41,10 +41,28 @@ Viabilidad: **alta** (indicio a favor o base sólida), **media** o **baja**. Cos
 | L14 | **Fuentes con licencia comercial** (ERA5/ERA5-Land, datos abiertos de ECMWF, AEMET) en lugar de la API gratuita de Open-Meteo | Requisito para cualquier uso con anuncios o de pago (ver sección 4) | alta | medio | captura ECMWF en marcha; revalidación con ERA5 propuesta como estudio 03.4 |
 | L15 | **Sesgo positivo con sensor (S1, S2)** | +0,09 mm/día; se acumula en el balance | media | bajo | sin investigar |
 | L16 | **Resolución subdiaria** (datos horarios de Open-Meteo y SIAR) | Antes «03.4» en la Parte V del 03.1; el rango diurno es la variable que más falla | media | medio | idea |
+| L17 | **Terreno y emplazamiento como inputs** (altitud relativa a la celda del reanálisis, pendiente, orientación, posición en el relieve a 1/5/20 km, distancia a la costa, cobertura del suelo; modelo digital de elevación) | La orografía suavizada del reanálisis explica parte del error de temperatura y viento; hay base en la literatura (reducción de escala de ERA5 con topografía y descriptores de satélite). Con 9 estaciones bajas es solo un identificador: se prueba en Andalucía, por ablación (ver abajo) | media-alta | medio | idea; depende de L4; comprobar licencia del MDE para uso comercial |
+| L18 | **Satélite y radar** como datos adicionales: radiación de satélite (CM SAF SARAH-3), ET0 de satélite (LSA SAF METREF), radar de lluvia de AEMET, NDVI/Kcb de Sentinel-2 | Radiación y ET0 de satélite como fuente alternativa o comparador; lluvia de radar para el balance hídrico; Kcb para el cultivo real | media | medio | idea; ver abajo |
 
 ### Método para L4: exclusión por radio
 
 Para cada estación evaluada se quitan del entrenamiento y de la IDW todas las estaciones a menos de r km (r = 0, 25, 50, 75, 100). Así la curva de error frente a distancia es **controlada**, no limitada a las distancias que haya por casualidad. Se comparan: estación más cercana, IDW, Open-Meteo/ERA5 + ML sin sensor y con sensor (T; T + HR). El resultado es una regla de decisión: «si tu estación SIAR está a menos de X km, úsala; si no, usa esto; el sensor propio compensa solo si…». Protocolo prerregistrado, como los estudios 03.
+
+### L17: terreno y emplazamiento (diseño previsto para Andalucía)
+
+Ablación sobre Open-Meteo/ERA5 + ML, validada con estaciones retenidas: (1) sin datos estáticos; (2) + altitud relativa a la celda; (3) + descriptores de terreno; (4) + distancia a la costa; (5) + cobertura del suelo. Error por tipo de lugar (costa, interior, ladera, valle). No se usan curvas de nivel en bruto: se derivan descriptores de un modelo digital de elevación. Con pocos puntos de entrenamiento, cualquier dato estático actúa como identificador (03.1 y 03.2); por eso no se prueba en Baleares. Una ANN con parches de terreno solo tiene sentido con cientos de estaciones. Referencia: arXiv 2608.12271 (topografía explica la mayor parte del residuo de temperatura; descriptores de satélite ayudan al viento).
+
+### L18: satélite y radar (qué aporta cada uno)
+
+| Dato | Para qué sirve aquí | Valoración |
+|---|---|---|
+| **CM SAF SARAH-3** (radiación en superficie, 0,05°, cada 30 min, 1983 hasta hoy en tiempo casi real; gratuito, hay que mostrar «copyright EUMETSAT») | Mejor radiación que la del reanálisis en días con nubes. En el estudio 01 la radiación de Open-Meteo ya era buena, así que el margen es pequeño | media-baja para corregir; útil como comprobación |
+| **LSA SAF METREF** (ET0 diaria de satélite a 3 km, 2004–hoy, CC BY 4.0, con registro) | Es una ET0 independiente ya calculada: comparador gratuito y con licencia clara | media-alta como comparador (si cubre Baleares; comprobar) |
+| **Radar de lluvia de AEMET** (conjuntos abiertos; licencia por confirmar) | Lluvia observada para el balance hídrico (estudio 05); no afecta a la ET0 | media; requiere procesar imágenes |
+| **Sentinel-2 (NDVI, Kcb)** | Cultivo real de la parcela (la app SiAR ya los usa) | otra línea: coeficiente de cultivo, no ET0 |
+| **Presión atmosférica** | En FAO-56 solo entra por la constante psicrométrica y se obtiene de la altitud; ERA5 ya la trae | no aporta |
+
+Satélite y radar mejoran sobre todo la **nubosidad y la lluvia** (previsión a corto plazo y balance), no el sesgo de viento que domina el error de Open-Meteo.
 
 ### Próximos estudios
 
@@ -120,4 +138,5 @@ Camino para un servicio de pago o con anuncios: entrenar con ERA5, predecir con 
 |---|---|
 | 2026-11-27 | Creación tras cerrar el 03.2; exploratorio de balance hídrico (estudio 05) |
 | 2026-11-27 | Licencias comerciales (ERA5, ECMWF, AEMET), método de exclusión por radio (L4), captura ECMWF y plan de previsión |
+| 2026-11-27 | L17 (terreno y emplazamiento) y L18 (satélite y radar) |
 | 2026-11-27 | Estudio 03.3 (L3 + L5) con criterios congelados; 04 fase A y 05 con prompts; 03.4 propuesto (L14); L16 subdiaria; renumeración 03.3/03.4; guía `docs/COMO_ACTUALIZAR.md` |
