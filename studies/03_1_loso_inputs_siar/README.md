@@ -269,6 +269,7 @@ El ajuste mensual es mucho mejor que el anual (0,483 frente a 0,575): corrige el
 | **Mejor modelo local V2, misma estación (H1)** | **+0,100 [+0,082; +0,119]** | **+0,098 [+0,074; +0,119]** | **+0,053 [+0,039; +0,067]** |
 
 La última fila (H1) es la única comparación en la que el rival **ha visto la estación**: es el techo de lo que se podría conseguir con esos mismos inputs si hubiera una estación SIAR en el sitio del usuario. Las demás filas son rivales que el usuario puede tener sin instalar nada. Que la distancia al techo (+0,05 a +0,10) sea **menor** que la distancia a la estación más cercana en HS-Ra (+0,149) y mayor que ella en HG-Rs (−0,063) resume el estudio: con sensor barato, lo que falta no es tanto «estar en tu estación» como «tener suficiente información meteorológica».
+>> JOSEP: Lo que no entiendo de aqui es , estamos comparando nuestro modelo entonces contrA ESTACION siar mas cercana, que en realidad no tiene porque esa medida se mas proxima al valor de la estacion que hemos dejado fuera, por tanto, es lo que vemos, que baja de 0,149  a 0,100 .entonces mi pregunta es, que aporta la comparacion H2 a la estacion mas cercana si puede darnos lecturas o un error que no representa nada respecto lo que queremos conseguir? corrigeme si em equivoco
 
 **3. Criterio adicional de equivalencia (TOST).** Un «empate» por IC que incluye 0 no demuestra que dos métodos sean equivalentes. Para decir que lo son se usa el margen que el estudio ya fijó como diferencia sin interés práctico (0,05 mm/día): dos métodos son **equivalentes** si el IC al 90 % de ΔRMSE (bootstrap de bloques estación-año, los mismos remuestreos) queda dentro de ±0,05. Se informa además el **margen mínimo de equivalencia** (el menor margen con el que se declararía equivalencia). Resultados con HGB (igual con RF y ANN):
 
@@ -326,13 +327,20 @@ Esta parte valora los modelos **en sí mismos**, al margen de que el estudio se 
 1. **Valiantzas se queda a muy poco, y el partido está amañado en su contra.** Pierde +0,035 mm/día frente a la estación más cercana y +0,036 frente a Open-Meteo + AHC mensual: por debajo del umbral práctico de 0,05 que el propio estudio fijó como «diferencia sin interés práctico». Conviene mirar contra quién pierde:
    - El **mejor local V2** es un modelo entrenado **en la misma estación** en la que se le evalúa. Es el techo, y Valiantzas conjunta queda a +0,098 de él.
    - **Open-Meteo + AHC mensual** no es un rival modesto: es un reanálisis con muchas más variables (viento, humedad, radiación, nubosidad) **y además** recibe una calibración mensual construida con la PM de las 8 estaciones de entrenamiento. Es decir, usa la red SIAR dos veces: para los datos y para corregirse.
+     >> JOSEP:este ultimo parrafo, no me cuadra, entiendo que OM es et0 suya calculada con sus inputs y ppsteriormente ajustada anualmente o mensualmente, por tanto solamente ve 1 vez datos del siar. corrigeme si me equivoco
+     >> 
    - Contra la versión **anual** de ese mismo ajuste, **Valiantzas gana** (−0,057 [−0,095; −0,021]), y con el ajuste mensual de la estación más cercana es **estadísticamente equivalente** (±0,05).
    - Resumen: con un termohigrómetro y un modelo entrenado en otras estaciones se consigue, en una ubicación nunca vista, algo comparable a un reanálisis global corregido con la red. Eso es un resultado respetable para el coste del sensor.
 2. **Con radiación medida (HG-Rs) los modelos sí ganan, y con margen.** Baten a la estación más cercana (−0,063), a Open-Meteo + AHC mensual (−0,062), al ajuste anual (−0,155) y al mensual de la estación más cercana (−0,087), y empatan con la IDW. Hay que decirlo con honestidad: **es un resultado ventajista**, porque Rs es el input más informativo para la ET0 y también el caro (un piranómetro no es un sensor de aficionado). Lo que demuestra es que el cuello de botella está en la información de entrada, no en el método.
 3. **La degradación al salir de la estación es moderada, no un hundimiento.** +0,05 a +0,10 mm/día sobre errores de 0,4–0,6. Los modelos de V2 **transfieren**: pierden calidad fuera de su estación, pero no se rompen. Esto es información nueva: hasta ahora nadie lo había comprobado.
-4. **Calidad más predecible que la de los comparadores de red.** Entre las 9 estaciones, el RMSE del modelo HG-Rs varía con una desviación típica de 0,040, frente a 0,123 de Open-Meteo + AHC. El rival con mejor media es el más irregular según dónde estés. Para un servicio que no sabe de antemano dónde estará el usuario, eso cuenta.
-5. **El resultado es homogéneo: no depende de una estación afortunada.** Ninguna de las 9 estaciones cambia ningún veredicto (Parte III, punto 4), y las dos excepciones de Valiantzas se explican porque el comparador falla, no porque el modelo mejore.
-6. **La arquitectura ANN de V2 es reproducible y el resultado no depende del modelo.** Ridge, HGB, RF, ANN S, ANN M y ANN tipo V2 dan el mismo veredicto en las tres familias; las diferencias entre ANN están en el rango del ruido de semilla. El estudio no depende de haber elegido bien el modelo.
+
+>> JOSEP: la afirmacion de que nadie lo habia comprobado de donde sale? si on hay estudios al respecto comentar los mas parecidos o similares o cercanos.
+>
+5. **Calidad más predecible que la de los comparadores de red.** Entre las 9 estaciones, el RMSE del modelo HG-Rs varía con una desviación típica de 0,040, frente a 0,123 de Open-Meteo + AHC. El rival con mejor media es el más irregular según dónde estés. Para un servicio que no sabe de antemano dónde estará el usuario, eso cuenta.
+   es decir que open meteo saca mejor media de prediccion una vez ajustado , pero tiene variabliidad muy alta (como haias comentado creo que en verano primavera? es por eso o me quvoco?)
+   
+7. **El resultado es homogéneo: no depende de una estación afortunada.** Ninguna de las 9 estaciones cambia ningún veredicto (Parte III, punto 4), y las dos excepciones de Valiantzas se explican porque el comparador falla, no porque el modelo mejore.
+8. **La arquitectura ANN de V2 es reproducible y el resultado no depende del modelo.** Ridge, HGB, RF, ANN S, ANN M y ANN tipo V2 dan el mismo veredicto en las tres familias; las diferencias entre ANN están en el rango del ruido de semilla. El estudio no depende de haber elegido bien el modelo.
 
 ## Lo malo
 
@@ -346,8 +354,11 @@ Esta parte valora los modelos **en sí mismos**, al margen de que el estudio se 
 ## Lo que este estudio no responde
 
 - Qué pasa a 50 o 100 km de la estación más próxima (F1 no lo cubre; F2 lo insinúa pero sin potencia estadística).
+  >> JOSEP: seria en andalucia con mcuhas mas estacione y mas superfície buen sitio?
 - Cuánto se pierde con sensores de usuario en vez de sensores SIAR.
+- >> JOSEP: que experimento podriamos entonces hacer para reproducir esto?
 - Si combinar sensor local **y** red mejora a ambos por separado: es la pregunta de la Parte V.
+- >> JOSEP: añadiria otra pregunta a ver si hay bibliografia , con mayor resolucion de datos, es decir , creo que siar puede dar dos lecturas cada hora, tendriamos mas informacion del dia aunque fuera solo con temperatur , o incluso con humedad. serian las redes neuronales cpaces ?
 
 # Parte V — Propuesta de estudio 03.1.2 (sensor local + red): valoración y plan
 
