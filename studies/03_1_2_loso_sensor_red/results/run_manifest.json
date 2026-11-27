@@ -1,0 +1,49 @@
+{
+  "study": "03.1.2",
+  "criteria_status": "CONGELADO",
+  "inputs_sha256": {
+    "config/thresholds_v3_1_2.json": "f4faa08caf73e37883336e3aa67fe71f1047be40a61617155df41383145d24b7",
+    "config/thresholds_v3.json": "bb97e8d314a242cd6d17758c49894e28a9583f7f8c3ef684e84b666254c30191",
+    "config/stations.csv": "5db4dd9302f93e7f9b47c79c0353e938501f5dcde66c0e142e1f1d406a5e466a",
+    "config/stations_coast.csv": "3628d8b95930e3e2533bd6067ed0272130777e0efa29d5ff72f8bcee3f371f93",
+    "data/reference/reference_2004_2019.csv": "b41eb1ca58465ad3bb25694a2d05b117bbcdd5ce0047728f0565c527d3b3fa4e",
+    "data/reference/reference_2020_2025.csv": "ce90829304ca2b69b89ceee4c459cb204cdc83b76180d6e9a229308ddb779060",
+    "data/reference/siar_inputs_2004_2019.csv": "0e9412abb8a9ab1ad549c99cbd865b3376d182369d1c01e23320a9ab2878e23c",
+    "data/reference/siar_inputs_2020_2025.csv": "1d99523c0413eb59b432da5fe7a765d46660fcdd3cd267700e574b15373651e6",
+    "data/v2/et0_v2_annual_2020_2025.csv": "f360087da06a767ef0e630ab01c9d90a9d734b246e7fd142c93e5cf845c8156b",
+    "studies/03_1_loso_inputs_siar/results/predictions_test.csv.gz": "b9d8e849efb11d02f8739c9002abff4ad6633b90b85898d34877c22bd9957f7b",
+    "studies/03_1_loso_inputs_siar/results/folds.json": "560d90f8dbfed16b635cab02b5cbfd0f6a7fd65043e32f6ebab8f23c9ae0536d"
+  },
+  "cells_found": 780,
+  "cells_expected": 780,
+  "missing_cells": [],
+  "s_cells_031_checked": 108,
+  "rows_by_scenario_scope": {
+    "B": {
+      "F1": 19251,
+      "F2_Ibiza": 4380,
+      "F2_Mallorca_informativo": 12774,
+      "F2_Menorca": 2097
+    },
+    "Bayer": {
+      "F1": 19251,
+      "F2_Ibiza": 4380,
+      "F2_Mallorca_informativo": 12774,
+      "F2_Menorca": 2097
+    },
+    "A": {
+      "F1": 19251,
+      "F2_Ibiza": 4380,
+      "F2_Mallorca_informativo": 12774,
+      "F2_Menorca": 2097
+    },
+    "C": {
+      "F1": 19216,
+      "F2_Ibiza": 4374,
+      "F2_Mallorca_informativo": 12751,
+      "F2_Menorca": 2091
+    }
+  },
+  "rows_dropped_test_empty_pool": 0,
+  "python": "3.13.18"
+}
