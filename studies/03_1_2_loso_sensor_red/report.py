@@ -59,7 +59,8 @@ def check_s_cells(p031):
                 c = json.load(gzip.open(S031 / f"results/cells/{fid}__{f}__principal__{m}.json.gz", "rt",
                                         encoding="utf-8"))
                 assert list(c["station_code"]) == d.station_code.tolist() and list(c["date"]) == d.date.tolist()
-                assert np.allclose(np.array(c["pred"]), d[f"S|{f}|{m}"].to_numpy(), atol=1e-9), (fid, f, m)
+                # predictions_test.csv.gz del 03.1 esta redondeado a 5 decimales: tolerancia de media unidad
+                assert np.allclose(np.array(c["pred"]), d[f"S|{f}|{m}"].to_numpy(), rtol=0, atol=5.01e-6), (fid, f, m)
                 n += 1
     return n
 
