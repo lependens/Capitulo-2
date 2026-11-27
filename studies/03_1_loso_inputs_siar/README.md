@@ -187,9 +187,65 @@ RMSE F1 en mm/día, variante **principal** (ANN = ensemble de 5 semillas; `resul
 
 Frente a la **estación más cercana** (0,484), ΔRMSE [IC 95 %]: ANN tipo V2 +0,130 [+0,102; +0,157] (HS-Ra), +0,036 [+0,003; +0,065] (Valiantzas), −0,071 [−0,102; −0,042] (HG-Rs). RF, ANN S y ANN M dan lo mismo: ninguna ANN gana a la estación más cercana con HS-Ra ni con Valiantzas (ANN M en Valiantzas: +0,033 [−0,000; +0,061], empate técnico), y todas la ganan con HG-Rs. Frente al mejor local V2 (H1) todas pierden en las tres familias: +0,08 a +0,11 mm/día (HS-Ra y Valiantzas) y +0,045 a +0,057 (HG-Rs), con IC > 0. En conjunto, **cambiar de HGB a RF o a cualquier ANN no altera ningún veredicto de H1–H3 ni la regla de decisión**; la ANN tipo V2 mejora al HGB solo 0,02 mm/día en HS-Ra y 0,008 en HG-Rs.
 
+Hipótesis H1–H3 con cada modelo (ΔRMSE = modelo − comparador, IC 95 %, variante principal, F1; tabla completa en `results/rf_ann_hipotesis.csv`, figura `figures/03_rf_ann_hipotesis.png`):
+
+| | H1 HS-Ra | H1 Valiantzas | H1 HG-Rs | H2 HS-Ra | H2 Valiantzas | H2 HG-Rs | H3 HS-Ra | H3 Valiantzas | H3 HG-Rs |
+|---|---|---|---|---|---|---|---|---|---|
+| HGB (ref.) | +0,100 | +0,098 | +0,053 | +0,149 | +0,035 | −0,063 | +0,150 | +0,036 | −0,062 |
+| RF | +0,108 | +0,104 | +0,057 | +0,157 | +0,041 | −0,060 | +0,158 | +0,043 | −0,059 |
+| ANN S | +0,095 | +0,100 | +0,048 | +0,144 | +0,037 | −0,068 | +0,145 | +0,038 | −0,067 |
+| ANN M | +0,093 | +0,096 | +0,049 | +0,142 | +0,033 | −0,068 | +0,143 | +0,034 | −0,066 |
+| ANN tipo V2 | +0,081 | +0,099 | +0,045 | +0,130 | +0,036 | −0,071 | +0,131 | +0,037 | −0,070 |
+
+Lectura: H1 se cumple con todos los modelos y familias (ningún IC toca 0). En H2 y H3, con HS-Ra todos pierden por mucho; con Valiantzas todos pierden por poco (+0,03 a +0,04, bajo el umbral práctico de 0,05; con ANN M el extremo inferior del IC llega a 0); con HG-Rs todos ganan (−0,06 a −0,07). Por tanto, ningún modelo cambia la regla de decisión. Interpretación (hipótesis del autor, no probada con un experimento): el límite parece estar en la información disponible, no en la capacidad del modelo; con solo temperatura y Ra no se distingue un día ventoso de uno en calma, y la degradación frente al local viene de no conocer el sesgo propio de la estación (en F1 con HS-Ra el sesgo medio es de unos +0,16 mm/día). Las ANN solo mejoran de forma visible al HGB con HS-Ra (ANN tipo V2: 0,614 frente a 0,633).
+
 **Dispersión entre semillas** (`results/ann_seed_spread.csv`): en la variante principal, la desviación típica del RMSE entre las 5 semillas es de 0,001–0,005 mm/día; es decir, las diferencias entre ANN S, M y tipo V2 (≤ 0,015) son del orden del ruido de semilla y no se pueden interpretar como mejora de una arquitectura.
 
 **Variante secundaria (calendario + altitud) con ANN: falla.** Con ANN S, M y tipo V2 el RMSE F1 sube a 0,51–1,25 mm/día según familia y modelo (p. ej. ANN M, Valiantzas: 1,254; ANN tipo V2, HG-Rs: 1,052), con sesgo negativo y gran dispersión entre semillas (SD hasta 0,34), mientras Ridge, HGB y RF se mantienen en 0,42–0,72. Esta variante no interviene en hipótesis ni en la regla; una explicación posible, no comprobada, es que con 8 estaciones de entrenamiento la altitud sea casi un identificador de estación y la ANN extrapole mal a una altitud no vista. No se ha corregido nada: se informa tal cual.
+
+## Análisis exploratorio posterior (post hoc): ajuste mensual frente a anual y equivalencia
+
+**Estatus.** Se hizo **después** de ver los resultados, a petición del autor. No cambia hipótesis, comparadores congelados, criterios ni la regla de decisión (el SHA256 de `config/thresholds_v3_1.json` no cambia). Código: `extra_om_equivalencia.py`; salidas: `results/extra_om_comparadores.csv`, `results/extra_om_equivalencia.csv`, `figures/04_comparadores_om_mensual_vs_anual.png`, `figures/05_equivalencia.png`.
+
+**1. ¿Qué comparador de Open-Meteo usa H3?** Open-Meteo + AHC con coeficiente **mensual** = media de los coeficientes de las estaciones de entrenamiento («transferido»). Ya estaba calculado también el ajuste con el coeficiente **mensual de la estación más cercana** (`OM_AHC_mensual_estacion_mas_cercana`, RMSE 0,507), pero no entraba en ninguna hipótesis. El ajuste **anual** de Open-Meteo no se había calculado; aquí se añade con la misma construcción.
+
+| Comparador (F1, n = 19.251) | RMSE | Sesgo |
+|---|---|---|
+| Open-Meteo crudo | 0,752 | +0,542 |
+| OM + AHC **anual** transferido | 0,575 | +0,104 |
+| OM + AHC **anual** de la estación más cercana | 0,597 | +0,132 |
+| OM + AHC **mensual** de la estación más cercana | 0,507 | +0,027 |
+| OM + AHC **mensual** transferido (el de H3) | **0,483** | −0,002 |
+| PM de la estación SIAR más cercana (H2) | 0,484 | +0,038 |
+| IDW mismo día | 0,434 | +0,047 |
+
+El ajuste mensual es mucho mejor que el anual (0,483 frente a 0,575): corrige el sesgo estacional de Open-Meteo (el crudo sobreestima +0,54 mm/día) que un solo coeficiente anual no quita. Es decir, **H3 ya compara con la versión más favorable a Open-Meteo**. En cambio, para las fórmulas de sensor (HS-Ra, Valiantzas, HG-Rs) el AHC anual y el mensual casi no difieren (p. ej. Valiantzas transferido: 0,600 y 0,600; HS-Ra: 0,748 y 0,743; HG-Rs: 0,441 y 0,435).
+
+**2. HGB conjunto frente a cada comparador** (ΔRMSE, IC 95 %; `results/extra_om_equivalencia.csv` trae también RF y ANN):
+
+| Comparador | HS-Ra | Valiantzas | HG-Rs |
+|---|---|---|---|
+| Estación SIAR más cercana (H2) | +0,149 [+0,123; +0,174] | +0,035 [+0,004; +0,062] | −0,063 [−0,094; −0,034] |
+| OM + AHC mensual transferido (H3) | +0,150 [+0,120; +0,180] | +0,036 [+0,002; +0,069] | −0,062 [−0,098; −0,025] |
+| OM + AHC mensual, estación más cercana | +0,126 [+0,094; +0,155] | +0,011 [−0,027; +0,047] | −0,087 [−0,125; −0,048] |
+| OM + AHC anual transferido | +0,057 [+0,020; +0,093] | −0,057 [−0,095; −0,021] | −0,155 [−0,196; −0,114] |
+| OM + AHC anual, estación más cercana | +0,036 [−0,002; +0,071] | −0,078 [−0,120; −0,040] | −0,176 [−0,219; −0,133] |
+| IDW mismo día | +0,198 [+0,179; +0,218] | +0,084 [+0,060; +0,106] | −0,014 [−0,041; +0,013] |
+
+**3. Criterio adicional de equivalencia (TOST).** Un «empate» por IC que incluye 0 no demuestra que dos métodos sean equivalentes. Para decir que lo son se usa el margen que el estudio ya fijó como diferencia sin interés práctico (0,05 mm/día): dos métodos son **equivalentes** si el IC al 90 % de ΔRMSE (bootstrap de bloques estación-año, los mismos remuestreos) queda dentro de ±0,05. Se informa además el **margen mínimo de equivalencia** (el menor margen con el que se declararía equivalencia). Resultados con HGB (igual con RF y ANN):
+
+- **Valiantzas frente a la estación más cercana:** IC90 [+0,009; +0,058], margen mínimo 0,058; **no equivalente** por poco (supera 0,05). Frente a OM + AHC mensual transferido: margen mínimo 0,063, tampoco.
+- **Valiantzas frente a OM + AHC mensual de la estación más cercana: equivalente** (IC90 [−0,021; +0,041], margen mínimo 0,041; también con RF y las tres ANN).
+- **HG-Rs frente a la IDW: equivalente** (margen mínimo 0,037).
+- **HS-Ra: no es equivalente a nada** de lo anterior.
+
+**4. Lectura.**
+
+- Con **piranómetro (HG-Rs)** el modelo conjunto gana de forma clara y con margen a la estación más cercana y a Open-Meteo + AHC, tanto mensual como anual (−0,06 a −0,18 mm/día), y solo empata (equivalente) con la IDW, que usa las observaciones SIAR del mismo día. Es el único resultado claramente favorable a los modelos de sensor.
+- **Valiantzas** está cerca, pero no se puede decir que sea equivalente a la estación más cercana ni a OM + AHC mensual transferido con el margen de 0,05; sí lo es frente a OM + AHC mensual de la estación más cercana.
+- **Cuidado con el comparador anual:** frente a OM + AHC **anual**, Valiantzas gana (−0,06 a −0,08) y HS-Ra pierde por poco o empata. Pero el anual es un comparador **más débil** (0,575–0,597, frente a 0,483), y elegirlo después de ver los resultados sería favorecer al modelo; por eso la regla congelada, que usa el mensual, es la prueba más exigente para el método Open-Meteo y la que gobierna la decisión. El resultado con el anual se informa como contexto.
+- **La regla de decisión no cambia** (se cumple con HS-Ra y Valiantzas frente a los comparadores congelados).
+- Salvedad: la referencia PM_FAO56_V1 es calculada, no medida, y Open-Meteo recibe en este diseño ya el ajuste con la PM de las estaciones de entrenamiento; el margen de 0,05 es una elección del estudio, no un valor universal (el margen mínimo permite ver cómo cambiaría la conclusión con otro).
 
 ## Salvedades de la ejecución
 
