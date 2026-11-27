@@ -17,3 +17,21 @@ captured_at_utc,run_tag,source,station_code,status,detail
 2026-11-27T21:08:28Z,2026-11-27_2208,aemet,IB10,ok,"07011 elaborado 2026-11-27T21:03:08, 7 dias"
 2026-11-27T21:08:28Z,2026-11-27_2208,siar,IB11,pendiente_config,falta formulario o comarca en config/forecast_oficial.csv
 2026-11-27T21:08:28Z,2026-11-27_2208,aemet,IB11,ok,"07024 elaborado 2026-11-27T21:03:08, 7 dias"
+2026-11-27T21:21:05Z,2026-11-27_2221,siar,IB01,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-27T21:21:05Z,2026-11-27_2221,aemet,IB01,ok,"07054 elaborado 2026-11-27T21:03:08, 7 dias"
+2026-11-27T21:21:05Z,2026-11-27_2221,siar,IB02,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-27T21:21:05Z,2026-11-27_2221,aemet,IB02,ok,"07017 elaborado 2026-11-27T21:03:08, 7 dias"
+2026-11-27T21:21:05Z,2026-11-27_2221,siar,IB03,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-27T21:21:05Z,2026-11-27_2221,aemet,IB03,ok,"07033 elaborado 2026-11-27T21:03:08, 7 dias"
+2026-11-27T21:21:05Z,2026-11-27_2221,siar,IB04,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-27T21:21:05Z,2026-11-27_2221,aemet,IB04,ok,"07040 elaborado 2026-11-27T21:03:08, 7 dias"
+2026-11-27T21:21:05Z,2026-11-27_2221,siar,IB05,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-27T21:21:05Z,2026-11-27_2221,aemet,IB05,ok,"07022 elaborado 2026-11-27T21:03:08, 7 dias"
+2026-11-27T21:21:05Z,2026-11-27_2221,siar,IB06,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-27T21:21:05Z,2026-11-27_2221,aemet,IB06,error,GET https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/07044: HTTP 429
+2026-11-27T21:21:05Z,2026-11-27_2221,siar,IB08,pendiente_config,falta formulario o comarca en config/forecast_oficial.csv
+2026-11-27T21:21:05Z,2026-11-27_2221,aemet,IB08,error,GET https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/07037: HTTP 429
+2026-11-27T21:21:05Z,2026-11-27_2221,siar,IB10,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-27T21:21:05Z,2026-11-27_2221,aemet,IB10,error,GET https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/07011: HTTP 429
+2026-11-27T21:21:05Z,2026-11-27_2221,siar,IB11,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-27T21:21:05Z,2026-11-27_2221,aemet,IB11,error,GET https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/07024: HTTP 429
