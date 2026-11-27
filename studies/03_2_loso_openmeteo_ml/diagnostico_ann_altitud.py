@@ -8,7 +8,7 @@ No forma parte de la regla de decisión ni cambia ningún criterio. Lee las pred
 - results/diagnostico_sin_IB01.csv: F1 sin IB01 (8 estaciones), ΔRMSE con IC 95 % (mismo bootstrap de
   bloques estación-año, mismas funciones que report.py) y RMSE por semilla de las ANN.
 
-    python studies/03_loso_openmeteo_ml/diagnostico_ann_altitud.py
+    python studies/03_2_loso_openmeteo_ml/diagnostico_ann_altitud.py
 """
 from __future__ import annotations
 

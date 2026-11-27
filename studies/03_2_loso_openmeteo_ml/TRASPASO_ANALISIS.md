@@ -29,7 +29,7 @@ Este documento es para quien haga el análisis final, previsto con Opus 5.5. La 
 | `results/run_manifest.json` | SHA256 del código común y `missing_cells` (debe quedar vacío). |
 | `figures/01–03_*.png` | RMSE por escenario y modelo, por estación y por mes. |
 
-Regenerar: `python3 studies/03_loso_openmeteo_ml/run.py report` (~25 s).
+Regenerar: `python3 studies/03_2_loso_openmeteo_ml/run.py report` (~25 s).
 
 ## Qué hay que hacer
 

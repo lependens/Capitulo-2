@@ -1,6 +1,6 @@
 """Informe del estudio 03.2: une celdas, comparadores, metricas, IC pareados, veredictos, figuras y manifiesto.
 
-Uso: python studies/03_loso_openmeteo_ml/run.py report
+Uso: python studies/03_2_loso_openmeteo_ml/run.py report
 Criterios: config/thresholds_v3.json (congelado). Las hipotesis se evaluan de forma literal (ver decision()).
 """
 from __future__ import annotations
@@ -394,7 +394,7 @@ def main():
               "data/processed/openmeteo_archive.csv", "data/v2/et0_v2_annual_2020_2025.csv",
               "data/v2/et0_v2_seasonal_2020_2025.csv", "data/v2/et0_v2_monthly_2020_2025.csv",
               "studies/02_openmeteo_ahc/results/predictions_openmeteo_2020_2025.csv",
-              "studies/03_loso_openmeteo_ml/loso_common.py", "studies/03_loso_openmeteo_ml/loso_models.py"]
+              "studies/03_2_loso_openmeteo_ml/loso_common.py", "studies/03_2_loso_openmeteo_ml/loso_models.py"]
     by_model = {}
     for i in info:
         by_model.setdefault(i["model"], set()).add(i["platform"])

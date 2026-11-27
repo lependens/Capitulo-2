@@ -14,8 +14,8 @@
     "data/v2/et0_v2_seasonal_2020_2025.csv": "c6164f234c23d3560ad0243e528291fdf2f8e1564d96733ce4ba95ed9ee8dd37",
     "data/v2/et0_v2_monthly_2020_2025.csv": "2bb56a962c463316d7c6e3cdba8fe516334eab71e83fa17ff380ecafebb2b7a1",
     "studies/02_openmeteo_ahc/results/predictions_openmeteo_2020_2025.csv": "1e8e5ab2a767f58de06621e433404bc83ae2dea218896f3b8e9c6c249ee95e9b",
-    "studies/03_loso_openmeteo_ml/loso_common.py": "2e91f79f0a4ccbee823a94f1ea7dcb3365855654c662141442b43c233a8debd9",
-    "studies/03_loso_openmeteo_ml/loso_models.py": "e00c112ec8963368935a7d8c1edc1e56cfad10cbc24131774010c6c18ba6660f"
+    "studies/03_2_loso_openmeteo_ml/loso_common.py": "2e91f79f0a4ccbee823a94f1ea7dcb3365855654c662141442b43c233a8debd9",
+    "studies/03_2_loso_openmeteo_ml/loso_models.py": "e00c112ec8963368935a7d8c1edc1e56cfad10cbc24131774010c6c18ba6660f"
   },
   "versions_report": {
     "python": "3.13.18",
