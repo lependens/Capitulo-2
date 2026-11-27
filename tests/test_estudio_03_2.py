@@ -159,3 +159,16 @@ class DiagnosticoAltitudTest(unittest.TestCase):
         self.assertEqual(set(d.index[d.altitude_m_fuera_de_rango]), {"IB01", "IB06"})
         self.assertEqual(set(d.index[d.lat_fuera_de_rango]), {"IB08", "IB11"})
         self.assertEqual(d.loc["IB01", "altitude_m_train_max"], 82.0)
+
+
+@unittest.skipUnless(HAVE, "faltan numpy/pandas/sklearn")
+class NoModuleRunCollisionTest(unittest.TestCase):
+    def test_03_2_scripts_do_not_register_module_named_run(self):
+        prev = sys.modules.pop("run", None)
+        try:
+            _load("estudio03_2_report_nocol", STUDY / "report.py")
+            _load("estudio03_2_diag_nocol", STUDY / "diagnostico_ann_altitud.py")
+            self.assertNotIn("run", sys.modules)  # el 03.1 tiene su propio modulo "run"
+        finally:
+            if prev is not None:
+                sys.modules["run"] = prev

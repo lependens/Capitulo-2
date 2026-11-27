@@ -20,8 +20,19 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from run import CELLS, RES, lc  # noqa: E402
+def _run_module():
+    """Carga run.py del 03.2 con un nombre propio (en el 03.1 tambien hay un modulo "run")."""
+    import importlib.util
+    name = "estudio03_2_run"
+    if name not in sys.modules:
+        spec = importlib.util.spec_from_file_location(name, Path(__file__).resolve().parent / "run.py")
+        sys.modules[name] = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(sys.modules[name])
+    return sys.modules[name]
+
+
+_r = _run_module()
+CELLS, RES, lc = _r.CELLS, _r.RES, _r.lc
 
 MODELS = ["Ridge", "HGB", "RF", "ANN_S", "ANN_M"]
 SCEN = ["S0", "S1", "S2", "L1", "L2", "S0_coord"]

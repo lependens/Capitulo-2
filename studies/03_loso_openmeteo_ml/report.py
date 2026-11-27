@@ -15,8 +15,21 @@ import numpy as np
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE))
-from run import CELLS, HEAVY, MODELS, RES, SCENARIOS, lc, lm  # noqa: E402
+
+
+def _run_module():
+    """Carga run.py del 03.2 con un nombre propio (en el 03.1 tambien hay un modulo "run")."""
+    import importlib.util
+    name = "estudio03_2_run"
+    if name not in sys.modules:
+        spec = importlib.util.spec_from_file_location(name, Path(__file__).resolve().parent / "run.py")
+        sys.modules[name] = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(sys.modules[name])
+    return sys.modules[name]
+
+
+_r = _run_module()
+CELLS, HEAVY, MODELS, RES, SCENARIOS, lc, lm = _r.CELLS, _r.HEAVY, _r.MODELS, _r.RES, _r.SCENARIOS, _r.lc, _r.lm
 
 FIG = HERE / "figures"
 THR = json.loads((lc.ROOT / "config/thresholds_v3.json").read_text(encoding="utf-8"))
