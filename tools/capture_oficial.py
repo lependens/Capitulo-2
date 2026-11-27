@@ -76,6 +76,7 @@ SIAR_FORM_BASE = {
 AEMET_BASE = "https://opendata.aemet.es/opendata/api"
 AEMET_WRAPPER = "aemet_respuesta"
 AEMET_PRODUCT = "aemet_municipio"
+AEMET_PAUSE = 6  # segundos entre estaciones (2 peticiones cada una) para no rozar el limite por minuto
 
 OUT_FIELDS = [
     "captured_at_utc", "issued_at", "source", "station_code", "location_id", "target_date",
@@ -102,10 +103,17 @@ class Http:
                 last = f"HTTP {e.code}"
                 if e.code not in (429, 500, 502, 503, 504):
                     break
+                wait = 5 * (i + 1)
+                if e.code == 429:  # AEMET limita peticiones por minuto: esperar mas
+                    try:
+                        wait = max(int(e.headers.get("Retry-After", "0")), 20 * (i + 1))
+                    except ValueError:
+                        wait = 20 * (i + 1)
             except (error.URLError, TimeoutError, OSError) as e:
                 last = f"{type(e).__name__}: {e}"
+                wait = 5 * (i + 1)
             if i + 1 < attempts:
-                time.sleep(5 * (i + 1))
+                time.sleep(min(wait, 90))
         raise RuntimeError(f"{method} {url_sin_query(url)}: {last}")
 
 
@@ -297,11 +305,11 @@ def parse_siar_csv(csv_bytes):
 
 def aemet_get(http, path, key):
     """Peticion a OpenData: respuesta inicial (con la URL de datos) y datos. Devuelve (inicial, datos, charset)."""
-    _s, _h, wrapper, _u = http.call("GET", f"{AEMET_BASE}{path}", headers={"api_key": key, "Accept": "application/json"})
+    _s, _h, wrapper, _u = http.call("GET", f"{AEMET_BASE}{path}", headers={"api_key": key, "Accept": "application/json"}, attempts=3)
     w = json.loads(_decode(wrapper))
     if w.get("estado") != 200 or not w.get("datos"):
         raise RuntimeError(f"AEMET: estado {w.get('estado')} ({w.get('descripcion')})")
-    _s, h, payload, _u = http.call("GET", w["datos"], headers={"Accept": "application/json"})
+    _s, h, payload, _u = http.call("GET", w["datos"], headers={"Accept": "application/json"}, attempts=3)
     m = re.search(r"charset=([\w-]+)", h.get("Content-Type", ""), re.I)
     return wrapper, payload, (m.group(1) if m else None)
 
@@ -467,6 +475,33 @@ def run(mode, only=None):
                        "status": st, "detail": detail[:300]})
         print(f"{'+' if st == 'ok' else '!'} {source.upper()} {code}: {st} {detail[:300]}")
 
+    retry = []
+
+    def aemet_one(code, muni, final):
+        """Captura AEMET de una estacion. Con final=False, un fallo reintentable se deja para la segunda pasada."""
+        nonlocal rows
+        path = f"/prediccion/especifica/municipio/diaria/{muni}"
+        try:
+            wrapper, payload, charset = aemet_get(http, path, key)
+        except Exception as e:  # noqa: BLE001
+            msg = str(e)
+            if not final and re.search(r"HTTP (429|5\d\d)|URLError|Timeout|OSError", msg):
+                return False
+            hint = " (clave caducada o no valida?)" if "401" in msg or "403" in msg else ""
+            note("aemet", code, "error", f"{msg}{hint}")
+            return True
+        save(AEMET_WRAPPER, code, tag, AEMET_BASE + path, wrapper, "json", now)
+        rel, sha = save(AEMET_PRODUCT, code, tag, AEMET_BASE + path + " (datos)", payload, "json", now)
+        try:
+            issued, vals = parse_aemet_diaria(payload, charset)
+        except (ValueError, KeyError, IndexError) as e:
+            note("aemet", code, "error", f"crudo guardado pero no se pudo leer: {e}")
+            return True
+        days = len({v[0] for v in vals})
+        rows += to_rows("aemet", code, muni, issued, vals, now, rel, sha)
+        note("aemet", code, "ok" if days >= 6 else "error", f"{muni} elaborado {issued}, {days} dias")
+        return True
+
     if mode == "prueba":
         report["exploracion"] = explore(http, key)
 
@@ -500,23 +535,17 @@ def run(mode, only=None):
             note("aemet", code, "error", "falta el secret AEMET_API_KEY (o ha caducado y se borro)")
         elif not muni:
             note("aemet", code, "pendiente_config", "municipio sin configurar")
-        else:
-            try:
-                path = f"/prediccion/especifica/municipio/diaria/{muni}"
-                wrapper, payload, charset = aemet_get(http, path, key)
-                save(AEMET_WRAPPER, code, tag, AEMET_BASE + path, wrapper, "json", now)
-                rel, sha = save(AEMET_PRODUCT, code, tag, AEMET_BASE + path + " (datos)", payload, "json", now)
-                try:
-                    issued, vals = parse_aemet_diaria(payload, charset)
-                    days = len({v[0] for v in vals})
-                    rows += to_rows("aemet", code, muni, issued, vals, now, rel, sha)
-                    note("aemet", code, "ok" if days >= 6 else "error", f"{muni} elaborado {issued}, {days} dias")
-                except (ValueError, KeyError, IndexError) as e:
-                    note("aemet", code, "error", f"crudo guardado pero no se pudo leer: {e}")
-            except Exception as e:  # noqa: BLE001
-                hint = " (clave caducada o no valida?)" if "401" in str(e) or "403" in str(e) else ""
-                note("aemet", code, "error", f"{e}{hint}")
-            time.sleep(2)
+        elif not aemet_one(code, muni, final=False):
+            retry.append((code, muni))
+        time.sleep(AEMET_PAUSE)
+
+    # Segunda pasada para las que AEMET corto por limite de peticiones o fallo de red.
+    if retry:
+        print(f"= reintento AEMET en 60 s: {[c for c, _m in retry]}")
+        time.sleep(60)
+        for code, muni in retry:
+            aemet_one(code, muni, final=True)
+            time.sleep(AEMET_PAUSE)
 
     out = write_rows(rows, now)
     if out:
