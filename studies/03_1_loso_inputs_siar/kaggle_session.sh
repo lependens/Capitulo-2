@@ -7,7 +7,7 @@
 # Se detiene al empezar celdas nuevas pasadas 8 h (margen para el limite de 12 h) y siempre empaqueta lo hecho.
 # Reanudable: las celdas ya existentes se saltan. NO usa ningun token ni secreto.
 set -uo pipefail
-N="${1:?uso: kaggle_session.sh 1|2|3}"
+N="${1:?uso: kaggle_session.sh 1..7}"
 D=studies/03_1_loso_inputs_siar
 OUT=/kaggle/working
 pip install -q -r "$D/requirements.txt" || { echo "pip no pudo instalar las versiones fijadas"; exit 1; }
@@ -38,7 +38,12 @@ case "$N" in
   1) ARGS=(--models RF,ANN_S,ANN_M) ;;
   2) ARGS=(--models ANN_V2like --families HS_RA,HG_RS) ;;
   3) ARGS=(--models ANN_V2like --families VALIANTZAS) ;;
-  *) echo "N debe ser 1, 2 o 3"; exit 1 ;;
+  # Continuaciones (repartidas para que quepan en 12 h): las celdas ya hechas vienen en la rama (results/cells)
+  4) ARGS=(--models ANN_M) ;;
+  5) ARGS=(--models ANN_V2like --folds F1_IB06,F1_IB08,F1_IB10) ;;
+  6) ARGS=(--models ANN_V2like --folds F1_IB11,F2_Ibiza) ;;
+  7) ARGS=(--models ANN_V2like --folds F2_Mallorca_informativo,F2_Menorca) ;;
+  *) echo "N debe ser 1..7"; exit 1 ;;
 esac
 python "$D/run.py" fit "${ARGS[@]}" --list
 python "$D/run.py" fit "${ARGS[@]}" --workers 4 --max-hours 8
@@ -49,6 +54,8 @@ case "$N" in
   1) PAT='*__RF.json.gz *__ANN_S.json.gz *__ANN_M.json.gz' ;;
   2) PAT='*__HS_RA__*__ANN_V2like.json.gz *__HG_RS__*__ANN_V2like.json.gz' ;;
   3) PAT='*__VALIANTZAS__*__ANN_V2like.json.gz' ;;
+  4) PAT='*__ANN_M.json.gz' ;;
+  5|6|7) PAT='*__ANN_V2like.json.gz' ;;
 esac
 python - "$OUT/celdas_sesion_$N.zip" $PAT <<'PY'
 import glob, sys, zipfile
