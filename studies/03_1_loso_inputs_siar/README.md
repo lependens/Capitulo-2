@@ -1,6 +1,6 @@
 # Estudio 03.1: ¿los modelos de pocos inputs SIAR funcionan en una estación no vista?
 
-Estado: **EJECUTADO EN PARTE (2026-11-26)**. Hecho: fórmulas, AHC, todos los comparadores, Ridge y HGB (primario), es decir, todo lo que entra en H1–H3 y en la regla de decisión. Pendiente: RF, ANN S/M y ANN tipo V2 (unas 50 h de un núcleo; ver «Ejecución»). Criterios en `config/thresholds_v3_1.json` (commit 4647f62 del PR #9), sin cambios. Se ejecuta **antes** que el estudio 03.2 (`studies/03_loso_openmeteo_ml/`).
+Estado: **EJECUTADO COMPLETO (2026-11-27)**: las 432 celdas (Ridge, HGB, RF, ANN S, ANN M y ANN tipo V2, en las 12 particiones, familias y variantes). Ridge y HGB se calcularon el 2026-11-26 en el entorno de trabajo; RF y ANN entre el 26 y el 27 en Kaggle (CPU). Criterios en `config/thresholds_v3_1.json` (commit 4647f62 del PR #9), sin cambios. Se ejecuta **antes** que el estudio 03.2 (`studies/03_loso_openmeteo_ml/`).
 
 ## Por qué
 
@@ -67,24 +67,19 @@ Como en el 03.2: `results/` (particiones, métricas globales, por estación y po
 
 ---
 
-# Resultados (ejecución del 2026-11-26)
+# Resultados (ejecución del 2026-11-26/27)
 
 ## Ejecución
 
 ```
-python studies/03_1_loso_inputs_siar/run.py fit --models Ridge,HGB --workers 2   # ya hecho (~18 min)
+python studies/03_1_loso_inputs_siar/run.py fit --models Ridge,HGB --workers 2   # ~18 min
+bash studies/03_1_loso_inputs_siar/kaggle_session.sh N   # N = 1..7, RF y ANN en Kaggle
 python studies/03_1_loso_inputs_siar/run.py report                              # ~30 s, cualquier equipo
 ```
 
 Cada celda (partición × familia × variante × modelo) se guarda en `results/cells/` y `report` une todas las que haya, vengan de donde vengan. Las que faltan se listan en `results/run_manifest.json` (`missing_cells`). Cada celda guarda además la plataforma y las versiones con las que se calculó (`env`; las 144 de Ridge y HGB se calcularon en el entorno de trabajo de Claude, con las mismas versiones fijadas).
 
-**Pendiente: RF, ANN S, ANN M y ANN tipo V2 (288 celdas, unas 50 h de un núcleo medidas en ese entorno).** Se reparte en tres sesiones de Kaggle CPU (4 núcleos, 12 h), cada una con `kaggle_session.sh N`:
-
-| Sesión | Contenido | Celdas | Estimado (4 núcleos) |
-|---|---|---|---|
-| 1 | RF + ANN S + ANN M, todas las familias | 216 | 4–5 h |
-| 2 | ANN tipo V2 de HS-Ra y HG-Rs | 48 | 5–6 h |
-| 3 | ANN tipo V2 de Valiantzas | 24 | 4–5 h |
+**RF, ANN S, ANN M y ANN tipo V2 (288 celdas)** se ejecutaron en Kaggle CPU (4 núcleos) con `kaggle_session.sh N`, en 7 sesiones: 1–3 (RF, ANN S, ANN M y parte de ANN tipo V2) y 4–7 (continuaciones: ANN M restante y ANN tipo V2 repartidas por particiones, con `--folds`). Las celdas de ANN tipo V2 tardaron entre 0,5 y 2,4 h por celda con 4 procesos en paralelo (unas 3,5 veces más que la estimación de un solo núcleo).
 
 Alternativa en un equipo propio (todo en serie, reanudable): `bash studies/03_1_loso_inputs_siar/run_server.sh 4`.
 
@@ -113,7 +108,7 @@ Leído en Capitulo-1 (`ET0_V2_MEMORIA_CIENTIFICA.md` §9, `et0_methodology_revie
 | Semillas | 3 (20261101–20261103) | **5** (20261101–20261105), como pide el 03.1 |
 | Entradas | anuales de la familia | iguales (variante secundaria: + sen/cos del día del año + altitud) |
 
-Las filas se ordenan por (fecha, estación) antes de entrenar, porque `shuffle=False` hace que el orden cuente. Está implementado (`loso_models.py`) y probado en tiempos, pero aún no se ha ejecutado entero (ver «Pendiente»).
+Las filas se ordenan por (fecha, estación) antes de entrenar, porque `shuffle=False` hace que el orden cuente. Implementado en `loso_models.py` y ejecutado entero (ver resultados).
 
 ## Decisiones de implementación (no fijadas en los criterios)
 
@@ -169,7 +164,7 @@ Por estación (`metrics_by_station.csv`), el HGB de Valiantzas va de 0,43 (IB03)
 
 **Se cumple: el cambio de rumbo a Open-Meteo corregido (estudio 03.2) queda justificado por este estudio.** HG-Rs, informado aparte: con piranómetro, el modelo conjunto sí gana a la estación más cercana y a OM + AHC (unos 0,06 mm/día), aunque no a la IDW (−0,014 [−0,041; +0,013], empate).
 
-`results/decision.json` guarda el cálculo. RF y ANN no intervienen en la regla, así que este veredicto ya no cambia al completarlas.
+`results/decision.json` guarda el cálculo. RF y ANN no intervienen en la regla; al completarlas, el veredicto no cambia (ver «RF y ANN»).
 
 ## Secundario (sin veredicto)
 
@@ -177,9 +172,24 @@ Por estación (`metrics_by_station.csv`), el HGB de Valiantzas va de 0,43 (IB03)
 - **Interpolación sencilla:** la IDW del mismo día (0,434) gana a la estación más cercana (−0,049 [−0,069; −0,032]). OM + AHC transferido empata con la estación más cercana (−0,001 [−0,038; +0,035]).
 - **Negativos recortados:** Ridge 667 en total entre todas las celdas; HGB 0.
 
-## Pendiente
+## RF y ANN (completan el estudio; no intervienen en la regla de decisión)
 
-RF, ANN S, ANN M y ANN tipo V2 (288 celdas). Tiempos medidos en un solo núcleo: RF ≈ 7 min/celda; ANN M ≈ 5 min (ANN S ≈ 3, estimado); ANN tipo V2 ≈ 28 / 39 / 18 min según familia (HS-Ra / Valiantzas / HG-Rs), con mucha variación porque las épocas elegidas van de 8 a 200. Total ≈ 50 h de un núcleo. Se ejecutan según «Ejecución» y después se completan aquí las tablas, `ann_seed_spread.csv` y la barra ANN de la figura 1.
+RMSE F1 en mm/día, variante **principal** (ANN = ensemble de 5 semillas; `results/metrics_global.csv`):
+
+| Modelo | HS-Ra | Valiantzas | HG-Rs |
+|---|---|---|---|
+| HGB conjunto (primario) | 0,633 | 0,518 | 0,421 |
+| Random Forest | 0,641 | 0,525 | 0,424 |
+| ANN S (32) | 0,627 | 0,521 | 0,416 |
+| ANN M (64, 32) | 0,626 | 0,517 | 0,416 |
+| ANN tipo V2 | **0,614** | 0,520 | **0,413** |
+| V2 local, mejor (ANN E anual) | 0,533 | 0,421 | 0,368 |
+
+Frente a la **estación más cercana** (0,484), ΔRMSE [IC 95 %]: ANN tipo V2 +0,130 [+0,102; +0,157] (HS-Ra), +0,036 [+0,003; +0,065] (Valiantzas), −0,071 [−0,102; −0,042] (HG-Rs). RF, ANN S y ANN M dan lo mismo: ninguna ANN gana a la estación más cercana con HS-Ra ni con Valiantzas (ANN M en Valiantzas: +0,033 [−0,000; +0,061], empate técnico), y todas la ganan con HG-Rs. Frente al mejor local V2 (H1) todas pierden en las tres familias: +0,08 a +0,11 mm/día (HS-Ra y Valiantzas) y +0,045 a +0,057 (HG-Rs), con IC > 0. En conjunto, **cambiar de HGB a RF o a cualquier ANN no altera ningún veredicto de H1–H3 ni la regla de decisión**; la ANN tipo V2 mejora al HGB solo 0,02 mm/día en HS-Ra y 0,008 en HG-Rs.
+
+**Dispersión entre semillas** (`results/ann_seed_spread.csv`): en la variante principal, la desviación típica del RMSE entre las 5 semillas es de 0,001–0,005 mm/día; es decir, las diferencias entre ANN S, M y tipo V2 (≤ 0,015) son del orden del ruido de semilla y no se pueden interpretar como mejora de una arquitectura.
+
+**Variante secundaria (calendario + altitud) con ANN: falla.** Con ANN S, M y tipo V2 el RMSE F1 sube a 0,51–1,25 mm/día según familia y modelo (p. ej. ANN M, Valiantzas: 1,254; ANN tipo V2, HG-Rs: 1,052), con sesgo negativo y gran dispersión entre semillas (SD hasta 0,34), mientras Ridge, HGB y RF se mantienen en 0,42–0,72. Esta variante no interviene en hipótesis ni en la regla; una explicación posible, no comprobada, es que con 8 estaciones de entrenamiento la altitud sea casi un identificador de estación y la ANN extrapole mal a una altitud no vista. No se ha corregido nada: se informa tal cual.
 
 ## Salvedades de la ejecución
 
