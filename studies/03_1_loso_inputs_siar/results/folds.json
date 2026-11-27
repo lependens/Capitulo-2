@@ -1,0 +1,318 @@
+{
+  "_comment": "Particiones de los estudios 03.1 y 03.2 (identicas). Entrenamiento: solo DESARROLLO y solo estaciones 'train'; evaluacion: TEST en las estaciones 'test', cohorte common_core==1.",
+  "source": "config/thresholds_v3.json -> protocol.folds",
+  "folds": [
+    {
+      "id": "F1_IB01",
+      "scheme": "F1_loso",
+      "test": [
+        "IB01"
+      ],
+      "criterio": true,
+      "train": [
+        "IB02",
+        "IB03",
+        "IB04",
+        "IB05",
+        "IB06",
+        "IB08",
+        "IB10",
+        "IB11"
+      ],
+      "train_period": [
+        "2004-01-01",
+        "2019-12-31"
+      ],
+      "test_period": [
+        "2020-01-01",
+        "2025-12-31"
+      ]
+    },
+    {
+      "id": "F1_IB02",
+      "scheme": "F1_loso",
+      "test": [
+        "IB02"
+      ],
+      "criterio": true,
+      "train": [
+        "IB01",
+        "IB03",
+        "IB04",
+        "IB05",
+        "IB06",
+        "IB08",
+        "IB10",
+        "IB11"
+      ],
+      "train_period": [
+        "2004-01-01",
+        "2019-12-31"
+      ],
+      "test_period": [
+        "2020-01-01",
+        "2025-12-31"
+      ]
+    },
+    {
+      "id": "F1_IB03",
+      "scheme": "F1_loso",
+      "test": [
+        "IB03"
+      ],
+      "criterio": true,
+      "train": [
+        "IB01",
+        "IB02",
+        "IB04",
+        "IB05",
+        "IB06",
+        "IB08",
+        "IB10",
+        "IB11"
+      ],
+      "train_period": [
+        "2004-01-01",
+        "2019-12-31"
+      ],
+      "test_period": [
+        "2020-01-01",
+        "2025-12-31"
+      ]
+    },
+    {
+      "id": "F1_IB04",
+      "scheme": "F1_loso",
+      "test": [
+        "IB04"
+      ],
+      "criterio": true,
+      "train": [
+        "IB01",
+        "IB02",
+        "IB03",
+        "IB05",
+        "IB06",
+        "IB08",
+        "IB10",
+        "IB11"
+      ],
+      "train_period": [
+        "2004-01-01",
+        "2019-12-31"
+      ],
+      "test_period": [
+        "2020-01-01",
+        "2025-12-31"
+      ]
+    },
+    {
+      "id": "F1_IB05",
+      "scheme": "F1_loso",
+      "test": [
+        "IB05"
+      ],
+      "criterio": true,
+      "train": [
+        "IB01",
+        "IB02",
+        "IB03",
+        "IB04",
+        "IB06",
+        "IB08",
+        "IB10",
+        "IB11"
+      ],
+      "train_period": [
+        "2004-01-01",
+        "2019-12-31"
+      ],
+      "test_period": [
+        "2020-01-01",
+        "2025-12-31"
+      ]
+    },
+    {
+      "id": "F1_IB06",
+      "scheme": "F1_loso",
+      "test": [
+        "IB06"
+      ],
+      "criterio": true,
+      "train": [
+        "IB01",
+        "IB02",
+        "IB03",
+        "IB04",
+        "IB05",
+        "IB08",
+        "IB10",
+        "IB11"
+      ],
+      "train_period": [
+        "2004-01-01",
+        "2019-12-31"
+      ],
+      "test_period": [
+        "2020-01-01",
+        "2025-12-31"
+      ]
+    },
+    {
+      "id": "F1_IB08",
+      "scheme": "F1_loso",
+      "test": [
+        "IB08"
+      ],
+      "criterio": true,
+      "train": [
+        "IB01",
+        "IB02",
+        "IB03",
+        "IB04",
+        "IB05",
+        "IB06",
+        "IB10",
+        "IB11"
+      ],
+      "train_period": [
+        "2004-01-01",
+        "2019-12-31"
+      ],
+      "test_period": [
+        "2020-01-01",
+        "2025-12-31"
+      ]
+    },
+    {
+      "id": "F1_IB10",
+      "scheme": "F1_loso",
+      "test": [
+        "IB10"
+      ],
+      "criterio": true,
+      "train": [
+        "IB01",
+        "IB02",
+        "IB03",
+        "IB04",
+        "IB05",
+        "IB06",
+        "IB08",
+        "IB11"
+      ],
+      "train_period": [
+        "2004-01-01",
+        "2019-12-31"
+      ],
+      "test_period": [
+        "2020-01-01",
+        "2025-12-31"
+      ]
+    },
+    {
+      "id": "F1_IB11",
+      "scheme": "F1_loso",
+      "test": [
+        "IB11"
+      ],
+      "criterio": true,
+      "train": [
+        "IB01",
+        "IB02",
+        "IB03",
+        "IB04",
+        "IB05",
+        "IB06",
+        "IB08",
+        "IB10"
+      ],
+      "train_period": [
+        "2004-01-01",
+        "2019-12-31"
+      ],
+      "test_period": [
+        "2020-01-01",
+        "2025-12-31"
+      ]
+    },
+    {
+      "id": "F2_Ibiza",
+      "scheme": "F2_island",
+      "test": [
+        "IB01",
+        "IB11"
+      ],
+      "criterio": true,
+      "train": [
+        "IB02",
+        "IB03",
+        "IB04",
+        "IB05",
+        "IB06",
+        "IB08",
+        "IB10"
+      ],
+      "train_period": [
+        "2004-01-01",
+        "2019-12-31"
+      ],
+      "test_period": [
+        "2020-01-01",
+        "2025-12-31"
+      ]
+    },
+    {
+      "id": "F2_Menorca",
+      "scheme": "F2_island",
+      "test": [
+        "IB08"
+      ],
+      "criterio": true,
+      "train": [
+        "IB01",
+        "IB02",
+        "IB03",
+        "IB04",
+        "IB05",
+        "IB06",
+        "IB10",
+        "IB11"
+      ],
+      "train_period": [
+        "2004-01-01",
+        "2019-12-31"
+      ],
+      "test_period": [
+        "2020-01-01",
+        "2025-12-31"
+      ]
+    },
+    {
+      "id": "F2_Mallorca_informativo",
+      "scheme": "F2_island",
+      "test": [
+        "IB02",
+        "IB03",
+        "IB04",
+        "IB05",
+        "IB06",
+        "IB10"
+      ],
+      "criterio": false,
+      "train": [
+        "IB01",
+        "IB08",
+        "IB11"
+      ],
+      "train_period": [
+        "2004-01-01",
+        "2019-12-31"
+      ],
+      "test_period": [
+        "2020-01-01",
+        "2025-12-31"
+      ]
+    }
+  ]
+}

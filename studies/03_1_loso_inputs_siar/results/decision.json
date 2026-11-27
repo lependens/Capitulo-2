@@ -1,0 +1,94 @@
+{
+  "hypotheses": {
+    "H1_HS_RA": {
+      "B": "HS_RA|V2_local_ANN_E_annual",
+      "delta": 0.10008775628668887,
+      "lo": 0.08151130383058207,
+      "hi": 0.1188518744583091,
+      "rmse_A": 0.6327479220212143,
+      "rmse_B": 0.5326601657345256,
+      "cumple": true
+    },
+    "H2_HS_RA": {
+      "B": "PM_estacion_mas_cercana_mismo_dia",
+      "delta": 0.14883606350479567,
+      "lo": 0.12252586698109269,
+      "hi": 0.17442120179071852,
+      "rmse_A": 0.6327479220212143,
+      "rmse_B": 0.48391185851641877
+    },
+    "H3_HS_RA": {
+      "B": "OM_AHC_mensual_medio_entrenamiento",
+      "delta": 0.14999125465301638,
+      "lo": 0.12026576788112141,
+      "hi": 0.17967115026977723,
+      "rmse_A": 0.6327479220212143,
+      "rmse_B": 0.482756667368198
+    },
+    "H1_VALIANTZAS": {
+      "B": "VALIANTZAS|V2_local_ANN_E_annual",
+      "delta": 0.09754056379170983,
+      "lo": 0.07355407887246544,
+      "hi": 0.11877883087132358,
+      "rmse_A": 0.5184537827788247,
+      "rmse_B": 0.420913218987115,
+      "cumple": true
+    },
+    "H2_VALIANTZAS": {
+      "B": "PM_estacion_mas_cercana_mismo_dia",
+      "delta": 0.03454192426240604,
+      "lo": 0.0037917527470410287,
+      "hi": 0.061692388791652245,
+      "rmse_A": 0.5184537827788247,
+      "rmse_B": 0.48391185851641877
+    },
+    "H3_VALIANTZAS": {
+      "B": "OM_AHC_mensual_medio_entrenamiento",
+      "delta": 0.035697115410626756,
+      "lo": 0.0015868121412828035,
+      "hi": 0.06857297476640226,
+      "rmse_A": 0.5184537827788247,
+      "rmse_B": 0.482756667368198
+    },
+    "H1_HG_RS": {
+      "B": "HG_RS|V2_local_ANN_E_annual",
+      "delta": 0.05294464966557749,
+      "lo": 0.03932025611639549,
+      "hi": 0.06657167074501781,
+      "rmse_A": 0.42055610181378206,
+      "rmse_B": 0.36761145214820456,
+      "cumple": true
+    },
+    "H2_HG_RS": {
+      "B": "PM_estacion_mas_cercana_mismo_dia",
+      "delta": -0.06335575670263671,
+      "lo": -0.09365454260549393,
+      "hi": -0.033726002727529084,
+      "rmse_A": 0.42055610181378206,
+      "rmse_B": 0.48391185851641877
+    },
+    "H3_HG_RS": {
+      "B": "OM_AHC_mensual_medio_entrenamiento",
+      "delta": -0.062200565554416,
+      "lo": -0.09774950444316348,
+      "hi": -0.025298584046101035,
+      "rmse_A": 0.42055610181378206,
+      "rmse_B": 0.482756667368198
+    }
+  },
+  "rule": {
+    "condiciones": {
+      "HS_RA": {
+        "hi_vs_estacion_cercana": 0.17442120179071852,
+        "hi_vs_OM_AHC": 0.17967115026977723,
+        "no_gana_a_ninguno": true
+      },
+      "VALIANTZAS": {
+        "hi_vs_estacion_cercana": 0.061692388791652245,
+        "hi_vs_OM_AHC": 0.06857297476640226,
+        "no_gana_a_ninguno": true
+      }
+    },
+    "cambio_de_rumbo_justificado": true
+  }
+}

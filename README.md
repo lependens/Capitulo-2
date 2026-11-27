@@ -18,7 +18,11 @@ Origen de los modelos y la referencia: [Capitulo-1](https://github.com/lependens
 | `data/reference/` | Referencia PM_FAO56_V1 congelada (subconjunto de Capitulo-1) con su manifiesto y SHA256 |
 | `studies/02_openmeteo_ahc/` | Estudio 02: Open-Meteo + AHC (ajuste ≤2019, test 2020-2025) frente a V2 |
 | `config/thresholds_v3.json` | Criterios del estudio 03 (se congelan al fusionar su PR, antes de ejecutar) |
-| `studies/03_loso_openmeteo_ml/` | Estudio 03 (plan): Open-Meteo corregido con ML, evaluado en estaciones no vistas (leave-one-station-out) |
+| `config/thresholds_v3_1.json` | Criterios del estudio 03.1 (se congelan al fusionar su PR, antes de ejecutar) |
+| `studies/03_1_loso_inputs_siar/` | Estudio 03.1 (plan): modelos de pocos inputs SIAR de V2 en estaciones no vistas; justifica o no el cambio de rumbo |
+| `config/thresholds_v3_1_2.json` | Criterios del estudio 03.1.2 (PROPUESTA; se congelan con su PR, antes de ejecutar) |
+| `studies/03_1_2_loso_sensor_red/` | Estudio 03.1.2 (plan): sensor local + red SIAR del mismo día y previsión a D+1; prompt de ejecución en `PROMPT_CHAT.md` |
+| `studies/03_loso_openmeteo_ml/` | Estudio 03.2 (plan): Open-Meteo corregido con ML, evaluado en estaciones no vistas (leave-one-station-out) |
 | `studies/04_prevision_et0/` | Estudio 04 (enfoque): previsión de ET0 a 0–7 días |
 | `studies/01_et0_vs_pm/` | Estudio 01: ET0 de Open-Meteo frente a PM_FAO56_V1 y frente a las formulas V2 |
 | `tools/export_reference.py` | Extrae de `classical-baselines.csv` (Capitulo-1, 56 MB) solo 2020-2025 y las columnas necesarias |
@@ -26,7 +30,7 @@ Origen de los modelos y la referencia: [Capitulo-1](https://github.com/lependens
 
 ## Rumbo actual (2026-11-26)
 
-Los estudios 01 y 02 muestran que las ANN de V2 ganan a Open-Meteo sobre todo en su propia estacion y con radiacion medida, el caso de menos valor practico, y que el error de Open-Meteo viene del viento y del rango diurno de temperatura de la rejilla, no de su radiacion ni de su humedad. Se reorienta el producto de "ANN con pocos inputs locales" a **"datos de Open-Meteo corregidos para tu ubicacion con la referencia SIAR"**, con sensor del usuario opcional. El estudio 03 lo comprueba en estaciones no vistas; el 04 lo extiende a prevision. Justificacion completa en `studies/03_loso_openmeteo_ml/README.md`.
+Los estudios 01 y 02 muestran que las ANN de V2 ganan a Open-Meteo sobre todo en su propia estacion y con radiacion medida, el caso de menos valor practico, y que el error de Open-Meteo viene del viento y del rango diurno de temperatura de la rejilla, no de su radiacion ni de su humedad. Se propone reorientar el producto de "ANN con pocos inputs locales" a **"datos de Open-Meteo corregidos para tu ubicacion con la referencia SIAR"**, con sensor del usuario opcional. El estudio 03.1 comprueba primero si los modelos de pocos inputs SIAR funcionan en estaciones no vistas; el 03.2 evalua Open-Meteo corregido en esas mismas condiciones; el 04 lo extiende a prevision. Justificacion en `studies/03_1_loso_inputs_siar/README.md` y `studies/03_loso_openmeteo_ml/README.md`.
 
 ## Como se obtienen los datos
 
