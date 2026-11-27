@@ -1,0 +1,10 @@
+station_code,altitude_m,altitude_m_train_min,altitude_m_train_max,altitude_m_fuera_de_rango,lat,lat_train_min,lat_train_max,lat_fuera_de_rango,lon,lon_train_min,lon_train_max,lon_fuera_de_rango
+IB01,120.0,4.0,82.0,True,39.01,38.7269,40.0036,False,1.4397,1.3978,4.0981,False
+IB02,78.0,4.0,120.0,False,39.6836,38.7269,40.0036,False,2.9383,1.3978,4.0981,False
+IB03,79.0,4.0,120.0,False,39.5458,38.7269,40.0036,False,3.1714,1.3978,4.0981,False
+IB04,8.0,4.0,120.0,False,39.5622,38.7269,40.0036,False,2.7258,1.3978,4.0981,False
+IB05,82.0,4.0,120.0,False,39.4753,38.7269,40.0036,False,3.0861,1.3978,4.0981,False
+IB06,4.0,7.0,120.0,True,39.8028,38.7269,40.0036,False,3.0422,1.3978,4.0981,False
+IB08,40.0,4.0,120.0,False,40.0036,38.7269,39.8028,True,4.0981,1.3978,3.1714,True
+IB10,30.0,4.0,120.0,False,39.5511,38.7269,40.0036,False,2.4644,1.3978,4.0981,False
+IB11,7.0,4.0,120.0,False,38.7269,39.01,40.0036,True,1.3978,1.4397,4.0981,True

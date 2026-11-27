@@ -1,0 +1,87 @@
+{
+  "study": "03.2",
+  "criteria": "config/thresholds_v3.json (congelado, PR #8)",
+  "shared_code": "loso_common.py y loso_models.py: copia literal de studies/03_1_loso_inputs_siar @ 76d4aa8",
+  "inputs_sha256": {
+    "config/thresholds_v3.json": "bb97e8d314a242cd6d17758c49894e28a9583f7f8c3ef684e84b666254c30191",
+    "config/stations.csv": "5db4dd9302f93e7f9b47c79c0353e938501f5dcde66c0e142e1f1d406a5e466a",
+    "data/reference/reference_2004_2019.csv": "b41eb1ca58465ad3bb25694a2d05b117bbcdd5ce0047728f0565c527d3b3fa4e",
+    "data/reference/reference_2020_2025.csv": "ce90829304ca2b69b89ceee4c459cb204cdc83b76180d6e9a229308ddb779060",
+    "data/reference/siar_inputs_2004_2019.csv": "0e9412abb8a9ab1ad549c99cbd865b3376d182369d1c01e23320a9ab2878e23c",
+    "data/reference/siar_inputs_2020_2025.csv": "1d99523c0413eb59b432da5fe7a765d46660fcdd3cd267700e574b15373651e6",
+    "data/processed/openmeteo_archive.csv": "41a790d69617aad44458d5314195023e301d26fa2eda6378e3678f51f05ba660",
+    "data/v2/et0_v2_annual_2020_2025.csv": "f360087da06a767ef0e630ab01c9d90a9d734b246e7fd142c93e5cf845c8156b",
+    "data/v2/et0_v2_seasonal_2020_2025.csv": "c6164f234c23d3560ad0243e528291fdf2f8e1564d96733ce4ba95ed9ee8dd37",
+    "data/v2/et0_v2_monthly_2020_2025.csv": "2bb56a962c463316d7c6e3cdba8fe516334eab71e83fa17ff380ecafebb2b7a1",
+    "studies/02_openmeteo_ahc/results/predictions_openmeteo_2020_2025.csv": "1e8e5ab2a767f58de06621e433404bc83ae2dea218896f3b8e9c6c249ee95e9b",
+    "studies/03_loso_openmeteo_ml/loso_common.py": "2e91f79f0a4ccbee823a94f1ea7dcb3365855654c662141442b43c233a8debd9",
+    "studies/03_loso_openmeteo_ml/loso_models.py": "e00c112ec8963368935a7d8c1edc1e56cfad10cbc24131774010c6c18ba6660f"
+  },
+  "versions_report": {
+    "python": "3.13.18",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1"
+  },
+  "cell_platforms_by_model": {
+    "Ridge": [
+      "Linux-6.18.44-fc-v880-x86_64-with-glibc2.39"
+    ],
+    "HGB": [
+      "Linux-6.18.44-fc-v880-x86_64-with-glibc2.39"
+    ],
+    "RF": [
+      "Linux-6.18.55+-x86_64-with-glibc2.39"
+    ],
+    "ANN_S": [
+      "Linux-6.18.55+-x86_64-with-glibc2.39"
+    ],
+    "ANN_M": [
+      "Linux-6.18.55+-x86_64-with-glibc2.39"
+    ]
+  },
+  "seeds": {
+    "bootstrap": 20261126,
+    "bootstrap_reps": 2000,
+    "ANN_S_M": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "HGB_RF": 0
+  },
+  "test_cohort": {
+    "rows_F1": 19251,
+    "rule": "common_core == 1"
+  },
+  "nearest_station_fallbacks": {
+    "F1_IB01": 4,
+    "F1_IB02": 2,
+    "F1_IB03": 38,
+    "F1_IB04": 95,
+    "F1_IB05": 0,
+    "F1_IB06": 175,
+    "F1_IB08": 2,
+    "F1_IB10": 68,
+    "F1_IB11": 0,
+    "F2_Ibiza": 190,
+    "F2_Menorca": 2,
+    "F2_Mallorca_informativo": 359
+  },
+  "missing_cells": [],
+  "missing_cells_count": 0,
+  "negatives_clipped_by_model": {
+    "Ridge": 489,
+    "HGB": 0,
+    "RF": 0,
+    "ANN_S": 8188,
+    "ANN_M": 15426
+  },
+  "heavy_models": [
+    "RF",
+    "ANN_S",
+    "ANN_M"
+  ]
+}
