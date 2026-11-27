@@ -4,7 +4,7 @@ Documento **vivo e interno**. Recoge lo que se ha aprendido, las líneas que se 
 
 **Cómo se mantiene:** al cerrar cada estudio se actualizan «Lo que sabemos hoy» y el estado de las líneas afectadas, y se añade una línea al registro de cambios del final. Las propuestas detalladas siguen en cada estudio (03.1 Parte V, 03.2 Parte V, 03.1.2); aquí solo se resumen y se priorizan.
 
-Última actualización: 2026-11-27, tras cerrar el 03.2 (el 04 está en enfoque; captura ECMWF añadida).
+Última actualización: 2026-11-27: 03.3, 04 (fase A) y 05 preparados con sus prompts; 03.1.2 en ejecución. Cómo se mantiene este documento: `docs/COMO_ACTUALIZAR.md`.
 
 ## 1. Lo que sabemos hoy
 
@@ -25,11 +25,11 @@ Viabilidad: **alta** (indicio a favor o base sólida), **media** o **baja**. Cos
 
 | # | Línea | Por qué interesa | Viabilidad | Coste | Estado |
 |---|---|---|---|---|---|
-| L1 | **Balance hídrico por fuente de ET0** (estudio 05) | Traduce los deltas de RMSE a agua y euros; es el mensaje para vender el trabajo | alta | bajo | enfoque + exploratorio |
-| L2 | **Previsión D+1…D+7** (estudio 04) | Es lo que la red no da y lo más útil para programar el riego | media-alta | medio | enfoque; capturas en marcha |
-| L3 | **ML + red: corrección residual de HGB-S0 con la red del día** (regresión-kriging o IDW de los residuos) | La media simple HGB-S0 + IDW ya da 0,377 (−0,056); interpolar los residuos es la forma con base geoestadística | alta | bajo | idea (03.2 Parte V-A, 03.1.2) |
+| L1 | **Balance hídrico por fuente de ET0** (estudio 05) | Traduce los deltas de RMSE a agua y euros; es el mensaje para vender el trabajo | alta | bajo | plan + prompt; falta tabla de cultivos |
+| L2 | **Previsión D+1…D+7** (estudio 04) | Es lo que la red no da y lo más útil para programar el riego | media-alta | medio | fase A preparada; capturas Open-Meteo y ECMWF en marcha |
+| L3 | **ML + red: corrección residual de HGB-S0 con la red del día** (regresión-kriging o IDW de los residuos) | La media simple HGB-S0 + IDW ya da 0,377 (−0,056); interpolar los residuos es la forma con base geoestadística | alta | bajo | plan: estudio 03.3 |
 | L4 | **Andalucía: distancia de cruce** (a partir de qué distancia a la red gana cada fuente, con y sin sensor propio) | ~100 estaciones, relieve y distancias de 50–100 km; base de un artículo serio y de un mapa de decisión. Método: exclusión por radio (ver abajo) | alta | medio | datos en captura (SIAR Sync V3) |
-| L5 | **Objetivo residual y control de dominio** (predecir PM/ET0_OM, recortar altitud, avisar fuera de rango) | Evita los fallos silenciosos de las ANN; imprescindible en un servicio | alta | bajo | idea (03.2 Parte V-B) |
+| L5 | **Objetivo residual y control de dominio** (predecir PM − ET0_OM, quitar o recortar altitud, avisar fuera de rango) | Evita los fallos silenciosos de las ANN; imprescindible en un servicio | alta | bajo | plan: estudio 03.3 |
 | L6 | **Incertidumbre por predicción** (cuantiles o intervalos conformes en LOSO) | «4,2 ± 0,4 mm» vale más que «4,2»; pocos servicios lo dan | alta | bajo | idea |
 | L7 | **Reconstrucción histórica de la ET0 de Baleares desde 1940** con el reanálisis corregido, y su tendencia | Muy divulgable; serie insular de 85 años; ya tenemos el pipeline. Supone que la corrección de 2004–2019 vale hacia atrás | media | bajo | idea |
 | L8 | **Control de calidad de la red SIAR** con los residuos de Open-Meteo + ML (detectar sensores que derivan o fallan) | Útil para el MAPA y para depurar nuestra propia referencia; publicable | media | medio | idea |
@@ -38,12 +38,24 @@ Viabilidad: **alta** (indicio a favor o base sólida), **media** o **baja**. Cos
 | L11 | **Robustez a un sensor de usuario** (degradar T y HR con errores típicos de sensores baratos) | Saber cuánto sobrevive la mejora de S2 | alta | bajo | idea (03.2 Parte V-E) |
 | L12 | **Altura e interior** (estaciones > 120 m) | Ninguna estación de entrenamiento supera 120 m; la Tramuntana pasa de 1.000 | media | medio | idea (03.2 Parte V-C) |
 | L13 | **ANN con contexto temporal o espacial** (varios días seguidos, rejilla alrededor del punto) | Es donde las redes sí suelen ganar a los árboles; tiene sentido con Andalucía | media | alto | idea |
-| L14 | **Fuentes con licencia comercial** (ERA5/ERA5-Land, datos abiertos de ECMWF, AEMET) en lugar de la API gratuita de Open-Meteo | Requisito para cualquier uso con anuncios o de pago (ver sección 4) | alta | medio | captura ECMWF en marcha; falta reentrenar y revalidar con ERA5 |
+| L14 | **Fuentes con licencia comercial** (ERA5/ERA5-Land, datos abiertos de ECMWF, AEMET) en lugar de la API gratuita de Open-Meteo | Requisito para cualquier uso con anuncios o de pago (ver sección 4) | alta | medio | captura ECMWF en marcha; revalidación con ERA5 propuesta como estudio 03.4 |
 | L15 | **Sesgo positivo con sensor (S1, S2)** | +0,09 mm/día; se acumula en el balance | media | bajo | sin investigar |
+| L16 | **Resolución subdiaria** (datos horarios de Open-Meteo y SIAR) | Antes «03.4» en la Parte V del 03.1; el rango diurno es la variable que más falla | media | medio | idea |
 
 ### Método para L4: exclusión por radio
 
 Para cada estación evaluada se quitan del entrenamiento y de la IDW todas las estaciones a menos de r km (r = 0, 25, 50, 75, 100). Así la curva de error frente a distancia es **controlada**, no limitada a las distancias que haya por casualidad. Se comparan: estación más cercana, IDW, Open-Meteo/ERA5 + ML sin sensor y con sensor (T; T + HR). El resultado es una regla de decisión: «si tu estación SIAR está a menos de X km, úsala; si no, usa esto; el sensor propio compensa solo si…». Protocolo prerregistrado, como los estudios 03.
+
+### Próximos estudios
+
+| Estudio | Líneas | Estado | Necesita Kaggle |
+|---|---|---|---|
+| 03.1.2 sensor + red | — | en ejecución | sí (ANN M) |
+| 03.3 Open-Meteo + ML + red, objetivo residual | L3, L5 | plan congelado, prompt listo | una sesión corta (ANN M) |
+| 05 balance hídrico | L1 | plan, falta tabla de cultivos | no |
+| 04 fase A previsión | L2 | prompt listo | probablemente no |
+| **03.4 fuente con licencia comercial** (propuesto) | L14 | idea: repetir lo esencial del 03.2/03.3 con ERA5 de Copernicus (descarga con cuenta gratuita del CDS) y comprobar si el `archive` de Open-Meteo y ERA5 dan lo mismo | no |
+| Andalucía, distancia de cruce | L4 | espera datos | sí |
 
 **Orden recomendado:** L1 → L3 y L5 (baratas, mismas predicciones e infraestructura) → L4 (Andalucía) → L2 (cuando haya meses de previsión capturada) → el resto según interés.
 
@@ -108,3 +120,4 @@ Camino para un servicio de pago o con anuncios: entrenar con ERA5, predecir con 
 |---|---|
 | 2026-11-27 | Creación tras cerrar el 03.2; exploratorio de balance hídrico (estudio 05) |
 | 2026-11-27 | Licencias comerciales (ERA5, ECMWF, AEMET), método de exclusión por radio (L4), captura ECMWF y plan de previsión |
+| 2026-11-27 | Estudio 03.3 (L3 + L5) con criterios congelados; 04 fase A y 05 con prompts; 03.4 propuesto (L14); L16 subdiaria; renumeración 03.3/03.4; guía `docs/COMO_ACTUALIZAR.md` |

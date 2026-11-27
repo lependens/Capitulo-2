@@ -1,6 +1,17 @@
 # Estudio 04: previsión de ET0 a 0–7 días (enfoque)
 
-Estado: **ENFOQUE**, sin protocolo congelado ni código. Depende de lo que salga del estudio 03.2 (`studies/03_2_loso_openmeteo_ml/`).
+Estado: **FASE A preparada** (exploratoria, prompt en `PROMPT_CHAT.md`). La fase B (confirmatoria) tiene criterios en `config/thresholds_v4.json` en estado PROPUESTA: se congelan al cerrar la fase A y **antes** de evaluar con las capturas propias.
+
+## Dos fases
+
+| Fase | Datos | Qué hace | Veredicto |
+|---|---|---|---|
+| **A, exploratoria** (ya) | Previsiones históricas de Open-Meteo (*previous runs* y `historical_forecast`, 2022/2024–2025) contra la PM de 2020–2025 | Construye la cadena: descarga por horizonte, agregación diaria, ET0 PM de la previsión de ECMWF, comparadores y HGB por horizonte. Afina el diseño | No. Todo es exploratorio y se declara así |
+| **B, confirmatoria** (cuando haya ≥ 12 meses de capturas) | Capturas propias tal como se emitieron: Open-Meteo `daily_forecast` (desde 2026-11-26) y ECMWF abierto (desde 2026-11-27), más las previsiones de SIAR y AEMET de Capitulo-1 | Evaluación fuera de muestra en el año capturado, con criterios congelados antes | Sí, con `thresholds_v4.json` |
+
+Por qué así: la fase A puede mirar todo lo que quiera porque no decide nada. La fase B usa datos que **aún no existen**, así que sus criterios se congelan antes de que existan: es el prerregistro más limpio de todo el proyecto.
+
+**Ojo:** para la fase B hará falta la PM de SIAR de 2026–2027. Hoy `data/reference/` llega a 2025; habrá que ampliarla desde Capitulo-1 (SIAR Sync).
 
 ## Qué se quiere saber
 
@@ -35,11 +46,11 @@ El estudio 03.2 usa **reanálisis** (`archive`): datos del pasado, consistentes,
 | Previsiones anteriores de Open-Meteo (*previous runs*) | previsiones por horizonte | 2024 (comprobar variables disponibles) |
 | Captura propia `daily_forecast` (Open-Meteo) | previsión de 16 días tal como se emitió, fuera de muestra; solo investigación (API no comercial) | 2026-11-26 |
 | Captura propia `ecmwf-forecast` (ECMWF datos abiertos, CC-BY-4.0) | IFS 0,25°, 00z y 12z, 4 puntos de rejilla por estación, T, Td, viento, radiación y lluvia hasta D+10; **fuente con licencia para el servicio** | desde el primer disparo del workflow |
-| Captura de previsión SIAR / AEMET (Capitulo-1) | previsión oficial para comparar | según la captura activa |
+| Captura de previsión SIAR / AEMET (Capitulo-1) | previsión oficial para comparar | según la captura activa (en revisión por Josep) |
 
 La captura propia es la única evaluación realmente fuera de muestra, pero necesita meses: al menos un año para cubrir todas las estaciones del año. Mientras tanto, los productos históricos de Open-Meteo permiten construir y probar la cadena.
 
-## Preguntas abiertas
+## Preguntas abiertas (las responde la fase A)
 
 1. Qué producto histórico de Open-Meteo da el horizonte de forma fiable y con qué variables.
 2. Si la previsión de SIAR guarda su ET0 prevista o solo variables meteorológicas.
