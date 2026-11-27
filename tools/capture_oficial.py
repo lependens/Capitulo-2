@@ -417,9 +417,41 @@ def load_config():
         return list(csv.DictReader(f))
 
 
+STATUS_FIELDS = ["captured_at_utc", "run_tag", "source", "station_code", "status", "detail"]
+STATUS_FILE = OUT_DIR / "estado.csv"
+# ok: datos validos. sin_prevision: la fuente respondio bien pero sin datos (SIAR desde el 24-11-2026).
+# pendiente_config: falta configurar la estacion. error: fallo real (hace fallar el workflow y avisa por correo).
+FAILING = {"error"}
+
+
+def write_status(entries):
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    new = not STATUS_FILE.exists()
+    with open(STATUS_FILE, "a", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=STATUS_FIELDS)
+        if new:
+            w.writeheader()
+        w.writerows(entries)
+
+
+def day_summary(day_local):
+    """Recuento de estados por fuente en un dia local (a partir de estado.csv)."""
+    counts = {}
+    if not STATUS_FILE.exists():
+        return counts
+    with open(STATUS_FILE, newline="", encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            d = datetime.strptime(r["captured_at_utc"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+            if d.astimezone(TZ).date() == day_local:
+                k = (r["source"], r["status"])
+                counts[k] = counts.get(k, 0) + 1
+    return counts
+
+
 def run(mode, only=None):
     http = Http()
     now = datetime.now(timezone.utc)
+    stamp = now.strftime("%Y-%m-%dT%H:%M:%SZ")
     tag = now.astimezone(TZ).strftime("%Y-%m-%d_%H%M")
     names = {s.code: s.name for s in load_stations()}
     key = os.environ.get("AEMET_API_KEY", "").strip()
@@ -428,15 +460,20 @@ def run(mode, only=None):
         cfg = [r for r in cfg if r["station_code"] == "IB04"]
     if only:
         cfg = [r for r in cfg if r["station_code"] in only]
-    rows, fails, report = [], [], {}
+    rows, status, report = [], [], {}
+
+    def note(source, code, st, detail=""):
+        status.append({"captured_at_utc": stamp, "run_tag": tag, "source": source, "station_code": code,
+                       "status": st, "detail": detail[:300]})
+        print(f"{'+' if st == 'ok' else '!'} {source.upper()} {code}: {st} {detail[:300]}")
 
     if mode == "prueba":
         report["exploracion"] = explore(http, key)
 
     for r in cfg:
         code = r["station_code"]
-        if not r["siar_station_form_id"]:
-            fails.append(f"SIAR {code}: sin configurar en config/forecast_oficial.csv")
+        if not r["siar_station_form_id"] or not r["siar_id_comarca"]:
+            note("siar", code, "pendiente_config", "falta formulario o comarca en config/forecast_oficial.csv")
         else:
             try:
                 zb, cb, name, calc_text = siar_capture(http, r, names[code])
@@ -445,24 +482,24 @@ def run(mode, only=None):
                 rel, sha = save(SIAR_PRODUCT, code, tag, url + f" csv={name}", cb, "csv", now)
                 try:
                     vals = parse_siar_csv(cb)
-                    if not vals:
-                        i = max(0, calc_text.lower().find("predic"))
-                        report.setdefault("siar_sin_filas", {})[code] = calc_text[:4000]
-                        raise ValueError(f"CSV sin filas ({len(cb)} bytes). Texto de la pagina: {calc_text[i:i + 600]}")
-                    rows += to_rows("siar", code, r["siar_station_form_id"], "", vals, now, rel, sha)
-                    print(f"+ SIAR {code}: {len(cb)} bytes, {len({v[0] for v in vals})} dias")
+                    if vals:
+                        rows += to_rows("siar", code, r["siar_station_form_id"], "", vals, now, rel, sha)
+                        note("siar", code, "ok", f"{len({v[0] for v in vals})} dias")
+                    else:
+                        if mode == "prueba":
+                            report.setdefault("siar_sin_filas", {})[code] = calc_text[:4000]
+                        note("siar", code, "sin_prevision", f"CSV solo con cabecera ({len(cb)} bytes)")
                 except ValueError as e:
-                    fails.append(f"SIAR {code}: crudo guardado pero no se pudo leer ({e})")
+                    note("siar", code, "error", f"crudo guardado pero no se pudo leer: {e}")
             except Exception as e:  # noqa: BLE001 - cada estacion es independiente
-                fails.append(f"SIAR {code}: {e}")
+                note("siar", code, "error", str(e))
             time.sleep(1)
 
         muni = r["aemet_municipio_id"]
         if not key:
-            msg = f"AEMET {code}: falta el secret AEMET_API_KEY"
-            (print("! " + msg) if mode == "prueba" else fails.append(msg))
+            note("aemet", code, "error", "falta el secret AEMET_API_KEY (o ha caducado y se borro)")
         elif not muni:
-            fails.append(f"AEMET {code}: municipio sin configurar")
+            note("aemet", code, "pendiente_config", "municipio sin configurar")
         else:
             try:
                 path = f"/prediccion/especifica/municipio/diaria/{muni}"
@@ -471,25 +508,43 @@ def run(mode, only=None):
                 rel, sha = save(AEMET_PRODUCT, code, tag, AEMET_BASE + path + " (datos)", payload, "json", now)
                 try:
                     issued, vals = parse_aemet_diaria(payload, charset)
+                    days = len({v[0] for v in vals})
                     rows += to_rows("aemet", code, muni, issued, vals, now, rel, sha)
-                    print(f"+ AEMET {code} ({muni}): {len(payload)} bytes, elaborado {issued}, {len({v[0] for v in vals})} dias")
+                    note("aemet", code, "ok" if days >= 6 else "error", f"{muni} elaborado {issued}, {days} dias")
                 except (ValueError, KeyError, IndexError) as e:
-                    fails.append(f"AEMET {code}: crudo guardado pero no se pudo leer ({e})")
+                    note("aemet", code, "error", f"crudo guardado pero no se pudo leer: {e}")
             except Exception as e:  # noqa: BLE001
-                fails.append(f"AEMET {code}: {e}")
+                hint = " (clave caducada o no valida?)" if "401" in str(e) or "403" in str(e) else ""
+                note("aemet", code, "error", f"{e}{hint}")
             time.sleep(2)
 
     out = write_rows(rows, now)
     if out:
-        print(f"= extracto: {out.relative_to(REPO_ROOT)} (+{len(rows)} filas)")
+        print(f"= extracto: {out.name} (+{len(rows)} filas)")
+    write_status(status)
     if report:
         dpath = REPO_ROOT / "data" / "raw" / "exploracion_oficial" / f"{tag}.json"
         dpath.parent.mkdir(parents=True, exist_ok=True)
         dpath.write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
         print(f"= exploracion: {dpath.relative_to(REPO_ROOT)}")
-    for f in fails:
-        print("! " + f, file=sys.stderr)
-    return 1 if fails else 0
+    write_summary(now, status)
+    return 1 if any(e["status"] in FAILING for e in status) else 0
+
+
+def write_summary(now, status):
+    """Resumen en la pagina de la ejecucion de GitHub (si existe GITHUB_STEP_SUMMARY) y en el registro."""
+    day = now.astimezone(TZ).date()
+    lines = [f"### Captura oficial {now.astimezone(TZ):%Y-%m-%d %H:%M} (hora peninsular)", "",
+             "| Fuente | Estacion | Estado | Detalle |", "|---|---|---|---|"]
+    lines += [f"| {e['source']} | {e['station_code']} | {e['status']} | {e['detail']} |" for e in status]
+    lines += ["", f"**Acumulado del dia {day}:** " + ", ".join(
+        f"{src} {st}: {n}" for (src, st), n in sorted(day_summary(day).items()))]
+    text = "\n".join(lines) + "\n"
+    print(text)
+    target = os.environ.get("GITHUB_STEP_SUMMARY")
+    if target:
+        with open(target, "a", encoding="utf-8") as f:
+            f.write(text)
 
 
 def explore(http, key):

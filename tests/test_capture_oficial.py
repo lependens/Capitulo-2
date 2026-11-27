@@ -1,5 +1,7 @@
+import csv
 import io
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -99,6 +101,56 @@ class SalidaTests(unittest.TestCase):
             p = store.save_raw("x", "IB04", "t", "u", b"abc", raw_dir=Path(tmp), ext="csv")
             self.assertTrue(p.name.endswith(".csv.gz"))
             self.assertEqual(store.verify(Path(tmp)), [])
+
+
+class RunTests(unittest.TestCase):
+    """run() con la red simulada: SIAR vacio no falla; un error real si."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        out = Path(self.tmp.name)
+        self.saved = {k: getattr(c, k) for k in ("OUT_DIR", "STATUS_FILE", "save", "siar_capture", "aemet_get", "load_config", "time")}
+        c.OUT_DIR, c.STATUS_FILE = out, out / "estado.csv"
+        c.save = lambda *a, **k: ("f", "h")
+        c.load_config = lambda: [{"station_code": "IB04", "siar_station_form_id": "4_7", "siar_id_comarca": "702",
+                                  "siar_comarca_nombre": "Mallorca", "aemet_municipio_id": "07040", "aemet_municipio_nombre": "Palma"}]
+
+        class _T:
+            @staticmethod
+            def sleep(_s):
+                pass
+        c.time = _T
+        os.environ["AEMET_API_KEY"] = "x"
+
+    def tearDown(self):
+        for k, v in self.saved.items():
+            setattr(c, k, v)
+        os.environ.pop("AEMET_API_KEY", None)
+        self.tmp.cleanup()
+
+    def _aemet_ok(self, *_a):
+        return b"{}", json.dumps(AEMET * 1).encode(), None
+
+    def test_siar_vacio_no_falla(self):
+        c.siar_capture = lambda *a: (b"z", b"Fecha;Kc;ET0;ETc;Pe;ETc - Pe\r\n", "x.csv", "")
+        data = [dict(AEMET[0], prediccion={"dia": AEMET[0]["prediccion"]["dia"] * 1})]
+        days = [dict(AEMET[0]["prediccion"]["dia"][0], fecha=f"2026-11-{27 + i:02d}T00:00:00") for i in range(3)]
+        days += [dict(AEMET[0]["prediccion"]["dia"][0], fecha=f"2026-12-{1 + i:02d}T00:00:00") for i in range(4)]
+        data[0]["prediccion"] = {"dia": days}
+        c.aemet_get = lambda *a: (b"{}", json.dumps(data).encode(), None)
+        self.assertEqual(c.run("completo"), 0)
+        estados = {(r["source"], r["status"]) for r in csv.DictReader(open(c.STATUS_FILE, encoding="utf-8"))}
+        self.assertEqual(estados, {("siar", "sin_prevision"), ("aemet", "ok")})
+
+    def test_error_aemet_falla(self):
+        c.siar_capture = lambda *a: (b"z", SIAR_CSV, "x.csv", "")
+
+        def boom(*_a):
+            raise RuntimeError("GET https://opendata.aemet.es/x: HTTP 401")
+        c.aemet_get = boom
+        self.assertEqual(c.run("completo"), 1)
+        rows = list(csv.DictReader(open(c.STATUS_FILE, encoding="utf-8")))
+        self.assertIn("caducada", rows[-1]["detail"])
 
 
 if __name__ == "__main__":

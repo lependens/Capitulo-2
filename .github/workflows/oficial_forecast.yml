@@ -2,24 +2,21 @@ name: oficial-forecast
 
 # Captura de las previsiones oficiales: ET0 prevista de SIAR (suministrada por AEMET) y prevision
 # municipal diaria de AEMET OpenData. La serie "tal como se emitio" no se puede reconstruir despues.
-# FASE DE PRUEBA: sin horario. Se ejecuta a mano o al subir cambios del propio script a la rama de prueba.
-# El horario (schedule) se anade solo tras revisar la prueba con Josep.
+# Tres capturas al dia, aprobadas por Josep el 27-11-2026: 08:00, 14:00 y 20:00 en horario de invierno
+# (el cron va en UTC; en verano son las 09:00, 15:00 y 21:00). Estados en data/forecast_oficial/estado.csv.
+# El workflow solo falla (y GitHub avisa por correo) con errores reales; SIAR sin prevision no falla.
 # La clave de AEMET va en el secret AEMET_API_KEY del repo; nunca en un fichero.
 
 on:
+  schedule:
+    - cron: "7 7,13,19 * * *"
   workflow_dispatch:
     inputs:
       mode:
         description: "prueba (IB04 + Palma, con exploracion) o completo (todas las estaciones configuradas)"
-        default: prueba
+        default: completo
         type: choice
         options: [prueba, completo]
-  push:
-    branches: [captura-oficial]
-    paths:
-      - tools/capture_oficial.py
-      - .github/workflows/oficial_forecast.yml
-      - config/forecast_oficial.csv
 
 permissions:
   contents: write
@@ -43,7 +40,7 @@ jobs:
         env:
           PYTHONPATH: src
           AEMET_API_KEY: ${{ secrets.AEMET_API_KEY }}
-        run: python tools/capture_oficial.py --mode "${{ github.event.inputs.mode || 'prueba' }}"
+        run: python tools/capture_oficial.py --mode "${{ github.event.inputs.mode || 'completo' }}"
       - name: Guardar datos en el repositorio
         if: always()
         run: |
