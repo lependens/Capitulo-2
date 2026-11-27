@@ -1,0 +1,45 @@
+name: ecmwf-forecast
+
+# Captura de la prevision de ECMWF (datos abiertos, CC-BY-4.0) en los puntos de las estaciones.
+# Fuente con licencia que permite uso comercial citando a ECMWF; la serie "tal como se emitio" no se puede reconstruir.
+# Dos emisiones al dia (00z y 12z). La publicacion llega unas 7-8 h despues de la hora nominal.
+
+on:
+  schedule:
+    - cron: "40 9 * * *"  # emision 00z
+    - cron: "40 21 * * *" # emision 12z
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-commits
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar cliente y lector GRIB
+        run: pip install ecmwf-opendata eccodes
+      - name: Capturar ultima emision
+        env:
+          PYTHONPATH: src
+        run: python tools/capture_ecmwf.py
+      - name: Guardar datos en el repositorio
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/raw
+          if ! git diff --cached --quiet; then
+            git commit -m "data: captura ECMWF $(date -u +%F-%H)"
+          fi
+          git pull --rebase
+          git push

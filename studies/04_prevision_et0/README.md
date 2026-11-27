@@ -33,7 +33,8 @@ El estudio 03.2 usa **reanálisis** (`archive`): datos del pasado, consistentes,
 |---|---|---|
 | `historical_forecast` de Open-Meteo | salidas de modelos operativos | 2022 (varía por modelo); no siempre separa el horizonte |
 | Previsiones anteriores de Open-Meteo (*previous runs*) | previsiones por horizonte | 2024 (comprobar variables disponibles) |
-| Captura propia `daily_forecast` | previsión de 16 días tal como se emitió, fuera de muestra | 2026-11-26 |
+| Captura propia `daily_forecast` (Open-Meteo) | previsión de 16 días tal como se emitió, fuera de muestra; solo investigación (API no comercial) | 2026-11-26 |
+| Captura propia `ecmwf-forecast` (ECMWF datos abiertos, CC-BY-4.0) | IFS 0,25°, 00z y 12z, 4 puntos de rejilla por estación, T, Td, viento, radiación y lluvia hasta D+10; **fuente con licencia para el servicio** | desde el primer disparo del workflow |
 | Captura de previsión SIAR / AEMET (Capitulo-1) | previsión oficial para comparar | según la captura activa |
 
 La captura propia es la única evaluación realmente fuera de muestra, pero necesita meses: al menos un año para cubrir todas las estaciones del año. Mientras tanto, los productos históricos de Open-Meteo permiten construir y probar la cadena.
@@ -45,6 +46,19 @@ La captura propia es la única evaluación realmente fuera de muestra, pero nece
 3. Si conviene un modelo por horizonte o uno con L como entrada.
 4. Cómo comunicar la incertidumbre (intervalos por cuantiles) en el servicio.
 
+## Captura ECMWF
+
+Workflow `.github/workflows/ecmwf_forecast.yml` (cron 09:40 y 21:40 UTC) y `tools/capture_ecmwf.py`. Guarda en `data/raw/ecmwf_ifs/<estación>/` los 4 vecinos de rejilla de cada variable y paso (cada 3 h hasta 144 h, cada 6 h hasta 240 h), con el mismo manifiesto. Los campos globales no se guardan.
+
+Pendiente tras el primer disparo manual (`workflow_dispatch`): comprobar que descarga y que los pasos y variables son los esperados. Tmax y Tmin del día se derivarán de los pasos de 3 h (aproximación: el máximo real puede caer entre pasos); si hace falta, añadir `mx2t3`/`mn2t3` si están en la emisión abierta. El conjunto de miembros (ENS) para intervalos se añade más adelante.
+
+## Plan de previsión (resumen)
+
+1. Entrenar con previsiones **tal como se emitieron**; objetivo PM SIAR de D+L.
+2. Rivales: persistencia, climatología, ET0 prevista cruda, previsión de SIAR y de AEMET (capturas del Capitulo-1), modelo del 03.2 aplicado a la previsión.
+3. Referencia de la literatura (EE. UU., Medina y Tian, HESS 2020): error relativo semanal 8–11 %, diario 13–20 %, persistencia semanal ~22 %. Mejor comunicar sumas semanales en verano.
+4. Después: intervalos con el conjunto de ECMWF.
+
 ## Licencias
 
-Open-Meteo: datos CC BY 4.0, API gratuita solo no comercial. SiAR (MAPA): citar la fuente; uso comercial por confirmar con el MAPA.
+Open-Meteo: datos CC BY 4.0, API gratuita solo no comercial. ECMWF datos abiertos: CC-BY-4.0 (citar a ECMWF). SiAR (MAPA): citar la fuente; uso comercial por confirmar con el MAPA.
