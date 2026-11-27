@@ -176,6 +176,8 @@ def comparisons():
             if m != "HGB":
                 out.append(("modelo_vs_HGB", a, f"{scen}|HGB"))
         out.append(("vs_techo_OM_AHC_local", f"{scen}|HGB", "techo|OM_AHC_local_monthly"))
+        for fam in ("HS_RA", "VALIANTZAS", "HG_RS"):  # techo V2 local (mejor V2: ANN E anual); sin veredicto
+            out.append(("vs_techo_V2_ANN_E_anual", f"{scen}|HGB", f"techo|V2_{fam}_ANN_E_annual"))
     out += [("comparadores", OM_AHC_T, PM_N), ("comparadores", PM_IDW, PM_N), ("comparadores", OM_AHC_N, OM_AHC_T)]
     seen, uniq = set(), []
     for k, a, b in out:
