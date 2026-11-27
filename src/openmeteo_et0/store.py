@@ -31,11 +31,14 @@ def already_fetched(product, station_code, tag, raw_dir: Path = RAW_DIR) -> bool
     )
 
 
-def save_raw(product, station_code, tag, url, body: bytes, raw_dir: Path = RAW_DIR, now=None):
-    """Guarda body comprimido (gzip determinista) y anade una fila al manifiesto. Devuelve la ruta."""
+def save_raw(product, station_code, tag, url, body: bytes, raw_dir: Path = RAW_DIR, now=None, ext="json"):
+    """Guarda body comprimido (gzip determinista) y anade una fila al manifiesto. Devuelve la ruta.
+
+    ext es solo la extension del fichero original (json, csv, zip); el contenido se guarda byte a byte.
+    """
     now = now or datetime.now(timezone.utc)
     stamp = now.strftime("%Y%m%dT%H%M%SZ")
-    rel = Path(product) / station_code / f"{tag}__{stamp}.json.gz"
+    rel = Path(product) / station_code / f"{tag}__{stamp}.{ext}.gz"
     path = raw_dir / rel
     if path.exists():
         raise FileExistsError(f"No se sobrescribe: {path}")

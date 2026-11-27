@@ -1,0 +1,57 @@
+name: oficial-forecast
+
+# Captura de las previsiones oficiales: ET0 prevista de SIAR (suministrada por AEMET) y prevision
+# municipal diaria de AEMET OpenData. La serie "tal como se emitio" no se puede reconstruir despues.
+# FASE DE PRUEBA: sin horario. Se ejecuta a mano o al subir cambios del propio script a la rama de prueba.
+# El horario (schedule) se anade solo tras revisar la prueba con Josep.
+# La clave de AEMET va en el secret AEMET_API_KEY del repo; nunca en un fichero.
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "prueba (IB04 + Palma, con exploracion) o completo (todas las estaciones configuradas)"
+        default: prueba
+        type: choice
+        options: [prueba, completo]
+  push:
+    branches: [captura-oficial]
+    paths:
+      - tools/capture_oficial.py
+      - .github/workflows/oficial_forecast.yml
+      - config/forecast_oficial.csv
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-commits
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: IP de salida (para saber desde donde llama la prueba)
+        run: curl -s --max-time 10 https://api.ipify.org || true
+      - name: Capturar
+        env:
+          PYTHONPATH: src
+          AEMET_API_KEY: ${{ secrets.AEMET_API_KEY }}
+        run: python tools/capture_oficial.py --mode "${{ github.event.inputs.mode || 'prueba' }}"
+      - name: Guardar datos en el repositorio
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/raw data/forecast_oficial 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "data: captura oficial SIAR/AEMET $(date -u +%F-%H%M)"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
