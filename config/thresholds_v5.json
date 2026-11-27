@@ -1,0 +1,34 @@
+{
+  "_comment": "Criterios del estudio 05, balance hidrico por fuente de ET0. PROPUESTA: falta la tabla de cultivos (Kc por fases, duracion de fases, profundidad de raices, fraccion p y agua util por tipo de suelo), que el chat de ejecucion completa desde FAO-56 (tablas 11, 12 y 22) con cita y el usuario aprueba; entonces pasa a CONGELADO, ANTES de calcular nada. Ya se vio una prueba exploratoria (2026-11-27): declarado.",
+  "version": "5",
+  "status": "PROPUESTA",
+  "reference": "riego calculado con PM_FAO56_V1 de la propia estacion",
+  "predictions": {
+    "source": "studies/03_2_loso_openmeteo_ml/results/predictions_test.csv.gz (F1 principal y F2); cuando exista, studies/03_3_om_red_residual/results/predictions_test.csv.gz",
+    "period": "TEST 2020-2025, cohorte comun; dias faltantes de una fuente se rellenan con la PM de la estacion SOLO para mantener el balance continuo y se cuentan (igual en todas las fuentes)"
+  },
+  "sources": ["OM_crudo", "PM_estacion_mas_cercana_mismo_dia", "OM_AHC_mensual_medio_entrenamiento", "PM_IDW_estaciones_entrenamiento_mismo_dia", "S0|HGB", "S2|HGB", "L2|HGB", "brazos ganadores del 03.3 si existen (informativo)"],
+  "rain": {"principal": "precipitacion SIAR de la propia estacion, igual para todas las fuentes", "variante": "precipitacion de Open-Meteo archive (lo que tendria el usuario), informativa"},
+  "model": {
+    "method": "balance diario de la zona radicular FAO-56 (cap. 8), sin estres (Ks = 1) para el calculo del riego, Kc por fases interpolado linealmente",
+    "irrigation": "se riega cuando el agotamiento Dr supera RAW = p x TAW; el riego devuelve Dr a 0; eficiencia 1 (se informa el riego neto)",
+    "runoff": "sin escorrentia; la lluvia que excede la capacidad pasa a percolacion",
+    "initial": "Dr = 0 el primer dia de cada anio hidrologico (1 de octubre) para cultivos permanentes; inicio de ciclo para la horticola",
+    "crops": "cesped (jardin y golf), almendro, olivo, vina, citricos y tomate de verano: TABLA A COMPLETAR desde FAO-56",
+    "soils": "dos suelos: franco-arenoso y franco-arcilloso (agua disponible por metro de FAO-56 tabla 19)"
+  },
+  "metrics": {
+    "unit": "estacion-anio (9 x 6 = 54 por cultivo y suelo)",
+    "per_unit": "riego neto anual (mm), error relativo e = riego_fuente / riego_PM - 1, numero de riegos, percolacion",
+    "summary": "sesgo medio de e, error absoluto medio de e, peor estacion (media de sus 6 anios), percentil 90 de |e|"
+  },
+  "statistics": {"paired_ci": "bootstrap de las 54 unidades estacion-anio, 2000 replicas, semilla 20261126, mismos remuestreos para todas las comparaciones", "practical_threshold_pct": 5},
+  "hypotheses": {
+    "B5_1_OM_crudo_riega_de_mas": "Por cultivo y suelo: sesgo medio de e de OM_crudo > +10 % con extremo inferior del IC95 > +5 %",
+    "B5_2_HGB_S0_mas_fiel": "Error absoluto medio de e: S0|HGB - PM_IDW < 0 y S0|HGB - PM_estacion_mas_cercana < 0, con IC95 < 0, en al menos 4 de los 6 cultivos con el suelo franco-arenoso",
+    "B5_3_corregir_basta": "Entre las fuentes corregidas (AHC, vecina, IDW, S0, S2) la diferencia de error absoluto medio respecto a la mejor es < 5 puntos en todos los cultivos",
+    "informativo": "F2, lluvia de Open-Meteo, numero de riegos, percolacion, 03.3"
+  },
+  "interpretation_rule": "Mensaje del servicio: si B5_1 y B5_3 se cumplen -> 'lo que importa es corregir Open-Meteo; con cualquier correccion se riega bien'; si ademas B5_2 se cumple con diferencia >= 5 puntos -> 'y el modelo del proyecto es la correccion mas fiel en cada finca'. Si B5_1 no se cumple, el argumento del riego de mas no se sostiene y se dice asi.",
+  "caveats": ["Referencia calculada.", "Kc tabulados, no locales.", "Riego neto, sin eficiencia ni uniformidad.", "9 estaciones, 6 anios.", "Exploratorio previo visto."]
+}

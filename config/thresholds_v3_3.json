@@ -1,0 +1,67 @@
+{
+  "_comment": "Criterios del estudio 03.3 (Open-Meteo + ML + red SIAR del dia; objetivo residual y control de dominio). Se congelan al fusionar el PR que los crea, ANTES de ejecutar nada. El diseno se escribio despues de conocer los resultados del 03.2, incluido el indicio post hoc de la media HGB-S0 + IDW (RMSE 0,377): declarado. No sustituye a thresholds_v3.json (03.2), thresholds_v3_1.json ni thresholds_v3_1_2.json.",
+  "version": "3.3",
+  "status": "CONGELADO",
+  "reference": "PM_FAO56_V1",
+  "protocol": {
+    "development": ["2004-01-01", "2019-12-31"],
+    "test": ["2020-01-01", "2025-12-31"],
+    "test_cohort": "common_core == 1 (n=19251, la del 03.2). Las filas con pool de red vacio no entran en los brazos con red y se cuentan; TODOS los comparadores se evaluan sobre las mismas filas (cohorte comun del estudio = interseccion)",
+    "folds": "identicos a studies/03_2_loso_openmeteo_ml/results/folds.json (F1_loso principal; F2_island Ibiza y Menorca; Mallorca informativo)",
+    "training_rule": "Solo DESARROLLO y solo estaciones de entrenamiento de cada particion",
+    "selection_by_test": false
+  },
+  "inputs": {
+    "S0": "identico al 03.2 (run.py feature_names('S0')): variables de Open-Meteo archive + sin/cos dia del anio + Ra + altitud",
+    "S2": "identico al 03.2",
+    "R1": "IDW_PM (potencia 2) y d1_km, construidos con studies/03_1_2_loso_sensor_red/network.py (importado, sin copiar ni modificar): pool = estaciones de entrenamiento con PM valida ese dia; exclusion de la propia estacion; en la validacion interna la estacion de validacion sale del pool de todas las filas",
+    "R1_ayer": "R1 con la red del dia d-1 (secundario)"
+  },
+  "arms": {
+    "L3_combinacion_red": {
+      "S0+R1": "HGB con S0 + R1, objetivo PM (PRIMARIO de L3)",
+      "media_fija": "0,5 x HGB-S0 + 0,5 x IDW del dia (indicio post hoc del 03.2, ahora prerregistrado)",
+      "media_ponderada": "w x HGB-S0 + (1-w) x IDW, w en {0,0.1,...,1} elegido por validacion interna agrupada por estacion",
+      "residuo_IDW": "HGB-S0 + IDW (potencia 2) de los residuos PM - HGB-S0 de las estaciones del pool ese dia. Los residuos de cada estacion de entrenamiento s se calculan con un HGB-S0 entrenado SIN s ni la estacion evaluada (LOSO anidado); nunca residuos dentro de muestra",
+      "S2+R1": "HGB con S2 + R1 (secundario: termohigrometro + red)",
+      "S0+R1_ayer": "HGB con S0 + R1 del dia d-1 (secundario: sin esperar a la red del dia)"
+    },
+    "L5_residual_y_dominio": {
+      "S0_res": "objetivo PM - ET0_OM; prediccion = ET0_OM + modelo (PRIMARIO de L5)",
+      "S0_sin_alt": "S0 sin altitud, objetivo PM",
+      "S0_alt_recortada": "S0 con altitud recortada al rango [min,max] de las estaciones de entrenamiento de la particion",
+      "S0_res_sin_alt": "objetivo residual y sin altitud",
+      "control_de_dominio": "por fila de TEST, marca fuera_de_dominio si algun input continuo de S0 cae fuera del rango [p0.5, p99.5] del entrenamiento de la particion, o la altitud fuera de [min,max]; se informa la tasa de marcas y el RMSE y sesgo dentro y fuera de dominio, sin veredicto"
+    }
+  },
+  "methods": {
+    "HGB_primario": {"learning_rate": [0.03, 0.1], "max_leaf_nodes": [15, 31], "max_iter": 500, "early_stopping": false, "arms": "todos los brazos con modelo"},
+    "Ridge": {"alpha": [0.1, 1, 10, 100], "arms": ["S0+R1", "S0_res"]},
+    "ANN_M": {"hidden_layer_sizes": [64, 32], "alpha": [1e-4, 1e-3], "early_stopping": true, "seeds": [0, 1, 2, 3, 4], "arms": ["S0_res", "S0_sin_alt", "S0_res_sin_alt"], "ensemble": "media de las 5 semillas; se informa la dispersion"},
+    "tuning": "validacion cruzada interna agrupada por estacion dentro del entrenamiento (como el 03.2); RMSE",
+    "negatives": "recorte a 0 con recuento",
+    "reused": "HGB-S0, HGB-S2 y ANN_M-S0 del 03.2 se toman de studies/03_2_loso_openmeteo_ml/results/predictions_test.csv.gz y sus celdas; no se reentrenan"
+  },
+  "comparators": ["HGB-S0 (03.2)", "PM_IDW_mismo_dia", "PM_estacion_mas_cercana_mismo_dia", "OM_AHC_mensual_medio_entrenamiento", "OM_crudo", "HGB-S2 (03.2)", "ANN_M-S0 (03.2)"],
+  "statistics": {
+    "paired_ci": "Delta RMSE con IC 95% por bootstrap de bloques estacion-anio, 2000 replicas, semilla 20261126, los mismos remuestreos para todas las comparaciones",
+    "practical_threshold_mm_dia": 0.05,
+    "equivalence": "TOST con IC 90% y margen +-0.05"
+  },
+  "hypotheses": {
+    "H33_1_red_mejora_a_OM_ML": "F1: HGB S0+R1 - HGB-S0 < 0 con extremo superior del IC95 < 0",
+    "H33_2_OM_ML_mejora_a_la_red": "F1: HGB S0+R1 - PM_IDW_mismo_dia < 0 con extremo superior del IC95 < 0",
+    "H33_3_robustez_lejos": "F2 (Ibiza y Menorca, por separado): HGB S0+R1 - HGB-S0; se informa Delta e IC y si supera +0.05 (la red empeora lejos)",
+    "H5_1_residual_arregla_ANN": "F1: ANN_M S0_res - ANN_M S0 (03.2) < 0 con extremo superior del IC95 < 0",
+    "H5_2_residual_en_HGB": "F1: HGB S0_res frente a HGB-S0, TOST +-0.05 (se espera equivalencia)",
+    "informativo": "media_fija, media_ponderada, residuo_IDW, S2+R1, S0+R1_ayer, sin altitud y altitud recortada, por estacion (sobre todo IB01), control de dominio: sin veredicto"
+  },
+  "interpretation_rule": "Fijada antes de ejecutar, para el servicio. L3, con Delta1 = H33_1 y Delta2 = H33_2 (estimaciones puntuales, F1): (1) los dos IC95 < 0, Delta1 <= -0.05 y Delta2 <= -0.05, y en F2 S0+R1 no empeora a HGB-S0 en mas de +0.05 -> el servicio usa Open-Meteo + ML + red en toda Baleares; (2) igual que (1) pero en F2 empeora mas de +0.05 -> combinar solo cerca de la red (la distancia de corte se fija en Andalucia, L4); (3) algun IC95 < 0 pero |Delta| < 0.05 -> mejora sin interes practico: el servicio sigue con HGB-S0 (no depende de que SIAR publique a tiempo); (4) ningun IC95 < 0 -> la red no aporta sobre HGB-S0. Si (1) o (2) solo se cumplen con un brazo informativo y no con S0+R1, se informa como post hoc. L5: si se cumple H5_1 y ANN_M S0_res queda a menos de +0.05 de HGB-S0 en F1 -> las ANN vuelven a considerarse para Andalucia (L13); si no, quedan aparcadas. El control de dominio se adopta en el servicio en cualquier caso.",
+  "caveats": [
+    "Referencia calculada, no ET0 medida.",
+    "Diseno escrito despues del 03.2 y de su indicio post hoc.",
+    "La red usada es la validada; el servicio tendria la del dia sin validar (limite superior).",
+    "Open-Meteo archive es reanalisis: no hay retraso de la red frente a Open-Meteo en esta evaluacion; en tiempo real lo hay.",
+    "API gratuita de Open-Meteo: uso no comercial (ver L14 y el estudio 03.4 propuesto)."
+  ]
+}

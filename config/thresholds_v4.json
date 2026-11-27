@@ -1,0 +1,32 @@
+{
+  "_comment": "Criterios de la FASE B (confirmatoria) del estudio 04, prevision de ET0. PROPUESTA: los ajusta la fase A (exploratoria) y se congelan con un PR aprobado por el usuario ANTES de evaluar ninguna fila del periodo de captura. La fase A no tiene veredicto.",
+  "version": "4",
+  "status": "PROPUESTA",
+  "reference": "PM_FAO56_V1 de SIAR del dia D+L",
+  "horizons_days": [1, 2, 3, 4, 5, 6, 7],
+  "aggregate": "suma semanal D+1..D+7",
+  "data": {
+    "train": "previsiones historicas de Open-Meteo tal como se emitieron (previous runs / historical_forecast), periodo a fijar en la fase A; para la via comercial, capturas ECMWF propias (validacion por origen movil)",
+    "test": "capturas propias del primer anio completo: 2026-12-01 a 2027-11-30 (a confirmar al congelar)",
+    "folds": "leave-one-station-out (9) por horizonte; F2 Ibiza y Menorca informativo"
+  },
+  "inputs": "variables previstas para D+L (ET0 prevista, Tmax, Tmin, radiacion, HR, viento), L, sin/cos del dia del anio, Ra(D+L), altitud (o sin altitud segun 03.3) y, opcional, el error reciente: PM observada de la red en D-1 frente a la prevision para D-1",
+  "methods": {"HGB_primario": "rejilla del 03.2", "Ridge": "rejilla del 03.2", "structure": "un modelo con L como input o uno por horizonte: lo decide la fase A"},
+  "comparators": [
+    "persistencia: PM (IDW de la red) de D como valor de D+L",
+    "climatologia: media de PM de las estaciones de entrenamiento para el dia del anio (ventana +-15 dias) en DESARROLLO",
+    "ET0 prevista cruda (Open-Meteo y ECMWF calculada con FAO-56)",
+    "ET0 prevista + AHC mensual transferido",
+    "modelo HGB-S0 del 03.2 aplicado a la prevision",
+    "prevision oficial de SIAR y de AEMET (ET0 si la dan; si no, ET0 calculada con sus variables), donde haya captura"
+  ],
+  "statistics": {"paired_ci": "bootstrap de bloques estacion-mes (a fijar en la fase A), 2000 replicas, semilla 20261126", "practical_threshold_mm_dia": 0.05, "practical_threshold_semanal_pct": 5},
+  "hypotheses": {
+    "P4_1": "Para L = 1..3: HGB - persistencia < 0 con IC95 < 0",
+    "P4_2": "Para L = 1..7: HGB - ET0 prevista cruda < 0 con IC95 < 0",
+    "P4_3": "Suma semanal: error relativo de HGB menor que el de la prevision oficial (SIAR/AEMET) donde haya captura",
+    "informativo": "habilidad frente a climatologia por horizonte, F2, por estacion, intervalos (fase posterior con ENS)"
+  },
+  "interpretation_rule": "A fijar al congelar. Propuesta: si P4_1 y P4_2 se cumplen hasta L=3, el servicio ofrece prevision diaria a 3 dias y semanal a 7; si solo la suma semanal mejora a la oficial, el servicio ofrece la prevision semanal.",
+  "caveats": ["Referencia calculada.", "Un solo anio de test: cubre las estaciones del anio una vez.", "API gratuita de Open-Meteo solo no comercial; la via comercial es ECMWF."]
+}
