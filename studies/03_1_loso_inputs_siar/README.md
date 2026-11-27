@@ -10,7 +10,7 @@ Estado: **EJECUTADO COMPLETO (2026-11-27)**: las 432 celdas (Ridge, HGB, RF, ANN
 | [II — Resultados](#parte-ii--resultados-ejecución-del-2026-11-2627) | Ejecución, controles, resultados F1, veredicto de H1–H3, regla de decisión, RF y ANN, secundario |
 | [III — Análisis posterior (post hoc)](#parte-iii--análisis-exploratorio-posterior-post-hoc) | Ajuste mensual frente a anual de Open-Meteo, equivalencia (TOST) y resultado estación por estación |
 | [IV — Conclusiones sobre los modelos](#parte-iv--conclusiones-sobre-los-modelos-de-pocos-inputs) | Lo bueno, lo malo y lo que el estudio no responde, al margen de la decisión |
-| [V — Propuesta de estudio 03.1.2](#parte-v--propuesta-de-estudio-0312-sensor-local--red-valoración-y-plan) | Sensor local + red: valoración de la idea, diseño, modelos, coste y riesgos |
+| [V — Propuesta de estudio 03.1.2](#parte-v--propuesta-de-estudio-0312-sensor-local--red-valoración-y-plan) | Sensor local + red: valoración de la idea, diseño, modelos, coste y riesgos; y los estudios 03.3 (distancia, sensores de usuario) y 03.4 (resolución subdiaria) |
 | [VI — Salvedades de la ejecución](#parte-vi--salvedades-de-la-ejecución) | |
 
 Las partes I y II son el estudio tal y como se planificó y ejecutó. Las partes III a V son posteriores y **no modifican** hipótesis, comparadores congelados ni la regla de decisión.
@@ -87,9 +87,10 @@ Ficheros producidos (los marcados *post hoc* son de la Parte III, posteriores al
 | `results/rf_ann_hipotesis.csv` | *(post hoc)* H1–H3 de cada modelo y familia |
 | `results/extra_om_comparadores.csv`, `extra_om_equivalencia.csv` | *(post hoc)* Comparadores OM anual/mensual y prueba de equivalencia |
 | `results/extra_por_estacion.csv` | *(post hoc)* H1–H3 estación por estación |
+| `results/extra_distancia.csv`, `extra_distancia_bandas.csv` | *(post hoc)* RMSE de cada método según la distancia a la estación de entrenamiento más cercana, por estación y por banda |
 | `figures/01`–`02` | Degradación local → no vista; comparación con estación cercana y Open-Meteo |
 | `figures/03`–`06` | *(post hoc)* RF y ANN frente a H1–H3; OM mensual frente a anual; equivalencia; resultado por estación |
-| `extra_om_equivalencia.py`, `extra_por_estacion.py` | *(post hoc)* Código de los análisis posteriores |
+| `extra_om_equivalencia.py`, `extra_por_estacion.py`, `extra_distancia.py` | *(post hoc)* Código de los análisis posteriores |
 
 ## Salvedades
 
@@ -269,7 +270,23 @@ El ajuste mensual es mucho mejor que el anual (0,483 frente a 0,575): corrige el
 | **Mejor modelo local V2, misma estación (H1)** | **+0,100 [+0,082; +0,119]** | **+0,098 [+0,074; +0,119]** | **+0,053 [+0,039; +0,067]** |
 
 La última fila (H1) es la única comparación en la que el rival **ha visto la estación**: es el techo de lo que se podría conseguir con esos mismos inputs si hubiera una estación SIAR en el sitio del usuario. Las demás filas son rivales que el usuario puede tener sin instalar nada. Que la distancia al techo (+0,05 a +0,10) sea **menor** que la distancia a la estación más cercana en HS-Ra (+0,149) y mayor que ella en HG-Rs (−0,063) resume el estudio: con sensor barato, lo que falta no es tanto «estar en tu estación» como «tener suficiente información meteorológica».
->> JOSEP: Lo que no entiendo de aqui es , estamos comparando nuestro modelo entonces contrA ESTACION siar mas cercana, que en realidad no tiene porque esa medida se mas proxima al valor de la estacion que hemos dejado fuera, por tanto, es lo que vemos, que baja de 0,149  a 0,100 .entonces mi pregunta es, que aporta la comparacion H2 a la estacion mas cercana si puede darnos lecturas o un error que no representa nada respecto lo que queremos conseguir? corrigeme si em equivoco
+**Qué aporta la comparación H2 (respuesta a una pregunta de la revisión).** La objeción tiene una parte correcta. Conviene separar qué mide H2 y qué no:
+
+- **No mide «parecerse a la estación dejada fuera».** La PM de la vecina es la de *otro* sitio, y su error mezcla el clima que de verdad cambia entre los dos puntos con la suerte de que ese vecino concreto sea el más cercano (un solo vecino, no una media). Es un comparador **ruidoso**, y con la distancia se nota: el error de la PM vecina sube con la distancia al vecino (correlación 0,66 en las 9 estaciones de F1; solo indicativa).
+- **Sí mide la alternativa que el usuario tiene gratis:** copiar la PM de la estación SIAR de al lado. Que ese dato represente mal su finca es justamente el coste de no tener sensor propio, y es lo que el servicio tiene que superar.
+- **Sobre «baja de 0,149 a 0,100»:** no es un mismo rival que cambie, son dos rivales. En HS-Ra el HGB conjunto (0,633) pierde 0,100 frente al mejor modelo entrenado en la propia estación (0,533) y 0,149 frente a la PM de la vecina (0,484). Es decir, **la vecina es mejor que el mejor modelo local con Tmax, Tmin y Ra**: no porque se parezca más a la estación dejada fuera, sino porque su PM se calcula con **todos** los sensores (humedad, viento, radiación). Esa es la lectura correcta de H2: la información completa de un vecino a 10–30 km vale más que un modelo local con solo temperatura.
+- **Consecuencia que hay que asumir:** de los comparadores de red, H2 (el congelado) es el **más indulgente** y la IDW el más exigente. Frente a la IDW, Valiantzas pierde +0,084 [+0,060; +0,106], no +0,035. Se ha añadido como matiz en la Parte IV.
+
+Error de cada método según la distancia a la estación de entrenamiento más cercana (RMSE medio entre estaciones, TEST 2020–2025, cohorte común; `extra_distancia.py`, `results/extra_distancia.csv` y `results/extra_distancia_bandas.csv`; *post hoc*, descriptivo, sin IC):
+
+| Banda (nº de estaciones) | PM vecina | IDW | OM + AHC mensual | HGB HS-Ra | HGB Valiantzas | HGB HG-Rs |
+|---|---|---|---|---|---|---|
+| F1, 10–22 km (6) | 0,435 | 0,371 | 0,416 | 0,607 | 0,498 | 0,415 |
+| F1, 32 km (2: IB01, IB11) | 0,571 | 0,514 | 0,567 | 0,666 | 0,525 | 0,429 |
+| F1, 93 km (1: IB08) | 0,561 | 0,568 | 0,587 | 0,692 | 0,594 | 0,422 |
+| F2, 93–130 km (las 9) | 0,645 | 0,524 | 0,475 | 0,641 | 0,522 | 0,423 |
+
+Al alejarse de la red, **la PM vecina se degrada (0,435 → 0,645) y la IDW también (0,371 → 0,524), mientras que los modelos de sensor casi no se mueven** (Valiantzas 0,498 → 0,522; HG-Rs 0,415 → 0,423; HS-Ra 0,607 → 0,641). A 93–130 km, **HS-Ra empata con la PM vecina (0,641 frente a 0,645), Valiantzas empata con la IDW (0,522 frente a 0,524) y supera a la PM vecina (−0,12), y HG-Rs supera a ambas**. Ese es el escenario en el que un servicio basado en sensor tendría más sentido. Tres cautelas: (1) en F1 las bandas tienen 1 a 6 estaciones; (2) en F2, las 6 estaciones de Mallorca se dejan fuera entrenando solo con 3 (Ibiza y Menorca) y la IDW interpola con 3 estaciones, no con 8, así que la banda mezcla distancia con red más pobre; (3) Open-Meteo + AHC no depende de la red por construcción: sus cambios entre bandas reflejan qué estaciones cayeron en cada una (IB11 e IB08, sus dos peores, están en las bandas lejanas de F1).
 
 **3. Criterio adicional de equivalencia (TOST).** Un «empate» por IC que incluye 0 no demuestra que dos métodos sean equivalentes. Para decir que lo son se usa el margen que el estudio ya fijó como diferencia sin interés práctico (0,05 mm/día): dos métodos son **equivalentes** si el IC al 90 % de ΔRMSE (bootstrap de bloques estación-año, los mismos remuestreos) queda dentro de ±0,05. Se informa además el **margen mínimo de equivalencia** (el menor margen con el que se declararía equivalencia). Resultados con HGB (igual con RF y ANN):
 
@@ -324,23 +341,28 @@ Esta parte valora los modelos **en sí mismos**, al margen de que el estudio se 
 
 ## Lo bueno
 
-1. **Valiantzas se queda a muy poco, y el partido está amañado en su contra.** Pierde +0,035 mm/día frente a la estación más cercana y +0,036 frente a Open-Meteo + AHC mensual: por debajo del umbral práctico de 0,05 que el propio estudio fijó como «diferencia sin interés práctico». Conviene mirar contra quién pierde:
+1. **Valiantzas se queda a muy poco, y juega contra rivales fuertes.** Pierde +0,035 mm/día frente a la estación más cercana y +0,036 frente a Open-Meteo + AHC mensual: por debajo del umbral práctico de 0,05 que el propio estudio fijó como «diferencia sin interés práctico». Conviene mirar contra quién pierde:
    - El **mejor local V2** es un modelo entrenado **en la misma estación** en la que se le evalúa. Es el techo, y Valiantzas conjunta queda a +0,098 de él.
-   - **Open-Meteo + AHC mensual** no es un rival modesto: es un reanálisis con muchas más variables (viento, humedad, radiación, nubosidad) **y además** recibe una calibración mensual construida con la PM de las 8 estaciones de entrenamiento. Es decir, usa la red SIAR dos veces: para los datos y para corregirse.
-     >> JOSEP:este ultimo parrafo, no me cuadra, entiendo que OM es et0 suya calculada con sus inputs y ppsteriormente ajustada anualmente o mensualmente, por tanto solamente ve 1 vez datos del siar. corrigeme si me equivoco
-     >> 
+   - **Open-Meteo + AHC mensual** no es un rival modesto: es un reanálisis con muchas más variables (viento, humedad, radiación, nubosidad) que no necesita ningún sensor local, y que además se corrige con SIAR. Precisión importante sobre ese «además»: SIAR interviene **una sola vez**, solo en la corrección. Open-Meteo calcula su ET0 con sus propios datos de modelo, y después se le aplican 12 coeficientes mensuales calculados con la PM de las 8 estaciones de entrenamiento (2004–2019) y promediados. *(La versión anterior de este texto decía que usaba la red SIAR «dos veces», para los datos y para corregirse. Era incorrecto: los datos de entrada diarios de Open-Meteo no proceden de SIAR.)* Eso también relativiza la comparación en el otro sentido: Open-Meteo + AHC toma de SIAR solo 12 números, mientras que el modelo de Valiantzas aprende de toda la serie diaria de las 8 estaciones.
    - Contra la versión **anual** de ese mismo ajuste, **Valiantzas gana** (−0,057 [−0,095; −0,021]), y con el ajuste mensual de la estación más cercana es **estadísticamente equivalente** (±0,05).
    - Resumen: con un termohigrómetro y un modelo entrenado en otras estaciones se consigue, en una ubicación nunca vista, algo comparable a un reanálisis global corregido con la red. Eso es un resultado respetable para el coste del sensor.
+   - **Matiz (añadido en la revisión):** frente a la **IDW** (varias estaciones del mismo día) Valiantzas sí pierde con claridad: +0,084 [+0,060; +0,106]. «Ahí ahí» vale frente a la estación más cercana y a Open-Meteo + AHC; frente a la IDW solo cuando la red está lejos (a 93–130 km empatan, 0,522 frente a 0,524; Parte III, punto 2, descriptivo).
 2. **Con radiación medida (HG-Rs) los modelos sí ganan, y con margen.** Baten a la estación más cercana (−0,063), a Open-Meteo + AHC mensual (−0,062), al ajuste anual (−0,155) y al mensual de la estación más cercana (−0,087), y empatan con la IDW. Hay que decirlo con honestidad: **es un resultado ventajista**, porque Rs es el input más informativo para la ET0 y también el caro (un piranómetro no es un sensor de aficionado). Lo que demuestra es que el cuello de botella está en la información de entrada, no en el método.
-3. **La degradación al salir de la estación es moderada, no un hundimiento.** +0,05 a +0,10 mm/día sobre errores de 0,4–0,6. Los modelos de V2 **transfieren**: pierden calidad fuera de su estación, pero no se rompen. Esto es información nueva: hasta ahora nadie lo había comprobado.
+3. **La degradación al salir de la estación es moderada, no un hundimiento.** +0,05 a +0,10 mm/día sobre errores de 0,4–0,6. Los modelos de V2 **transfieren**: pierden calidad fuera de su estación, pero no se rompen.
+   - *Corrección:* la versión anterior añadía que «hasta ahora nadie lo había comprobado». No tenía respaldo, y en general es falso: evaluar modelos de ET0 con pocos inputs en estaciones no usadas para entrenar es un tema establecido. Estudios cercanos, localizados en una búsqueda web rápida (no es una revisión sistemática; conviene verificar autores y años antes de citarlos en un texto formal):
+     - **Wang et al. (2019, *Agric. Water Manag.*, doi 10.1016/j.agwat.2019.03.027):** RF y GEP con pocos datos climáticos en Guangxi (China). Parten de que la mayoría de modelos se probaban en la misma estación de entrenamiento y evalúan la generalización fuera de ella.
+     - **Fan et al. (2019, *Agric. Water Manag.* 225:105758):** LightGBM con datos locales y de otras estaciones (49 estaciones, China). Los modelos entrenados en la estación más representativa dieron estimaciones satisfactorias en otras 15 estaciones de la misma provincia y también en otras 33 de la región húmeda subtropical.
+     - **Un estudio con 9 estaciones de Brasil (*An. Acad. Bras. Ciênc.*)** y **Reis et al. (*Comput. Electron. Agric.*, cuenca del Verde Grande, Brasil):** modelos locales frente a regionales (datos agrupados) con temperatura. El de 9 estaciones concluye que los modelos locales rinden más en su estación, pero los regionales generalizan mejor y con un rendimiento más estable entre estaciones; coincide con el punto 4 de abajo.
+     - **Ahmadi et al. (2024, SolarET, *Agric. Water Manag.*):** entrena con 114 estaciones de California y prueba con 17 no vistas (una por zona climática); funciona mejor en zonas de regadío y peor en costa y desierto.
+     - **Evaluación cruzada entre estaciones hiperáridas de Irán y húmedas de España** (*Theor. Appl. Climatol.*, doi 10.1007/s00704-016-1888-5) y un estudio con SVR, GPR y RF con 16 combinaciones de inputs y evaluación cruzada (*Acta Geophysica*, 2022, doi 10.1007/s11600-022-00939-9).
+   - Lo que **no he encontrado** en esa búsqueda, y lo que por tanto distinguiría a este estudio, es la comparación contra **alternativas operativas de red** (PM de la estación vecina, IDW, reanálisis con calibración local), con **contrastes pareados y bootstrap por estación-año** y una regla de decisión fijada antes de ejecutar. Es una ausencia en una búsqueda rápida, no una prueba de que no exista.
 
->> JOSEP: la afirmacion de que nadie lo habia comprobado de donde sale? si on hay estudios al respecto comentar los mas parecidos o similares o cercanos.
->
-5. **Calidad más predecible que la de los comparadores de red.** Entre las 9 estaciones, el RMSE del modelo HG-Rs varía con una desviación típica de 0,040, frente a 0,123 de Open-Meteo + AHC. El rival con mejor media es el más irregular según dónde estés. Para un servicio que no sabe de antemano dónde estará el usuario, eso cuenta.
-   es decir que open meteo saca mejor media de prediccion una vez ajustado , pero tiene variabliidad muy alta (como haias comentado creo que en verano primavera? es por eso o me quvoco?)
-   
-7. **El resultado es homogéneo: no depende de una estación afortunada.** Ninguna de las 9 estaciones cambia ningún veredicto (Parte III, punto 4), y las dos excepciones de Valiantzas se explican porque el comparador falla, no porque el modelo mejore.
-8. **La arquitectura ANN de V2 es reproducible y el resultado no depende del modelo.** Ridge, HGB, RF, ANN S, ANN M y ANN tipo V2 dan el mismo veredicto en las tres familias; las diferencias entre ANN están en el rango del ruido de semilla. El estudio no depende de haber elegido bien el modelo.
+4. **Calidad más predecible que la de los comparadores de red.** Entre las 9 estaciones de F1, la desviación típica del RMSE es 0,040 en HG-Rs, 0,072 en Valiantzas y 0,067 en HS-Ra, frente a 0,123 de Open-Meteo + AHC mensual (0,070 la PM vecina; 0,098 la IDW). Para un servicio que no sabe de antemano dónde estará el usuario, eso cuenta.
+   - **Precisión sobre la media (corrige la frase anterior, que decía que el rival con mejor media era el más irregular):** Open-Meteo + AHC tiene mejor media que HS-Ra y Valiantzas (RMSE medio entre estaciones 0,469, frente a 0,630 y 0,515) y peor que HG-Rs (0,419), y es el más irregular. No es «el rival con mejor media» en general.
+   - **De dónde viene esa irregularidad (respuesta a una pregunta de la revisión):** sí, en parte es el verano, pero no como un patrón general de la época del año. El error de **todos** los métodos sube de mayo a septiembre (Open-Meteo + AHC: 0,52–0,70 de mayo a septiembre frente a 0,28–0,30 de diciembre a febrero). Lo que hace que unas estaciones salgan mucho peor que otras es un sesgo de **signo opuesto** en esos meses en dos estaciones: en IB11 el ajuste infraestima entre −0,7 y −0,9 mm/día de mayo a agosto (RMSE 0,733), y en IB08 sobreestima entre +0,6 y +0,8 mm/día de junio a agosto (0,587). Con un único coeficiente mensual medio de las 8 estaciones de entrenamiento, una estación cuyo verano se aparta del promedio de la red recibe un error grande. Sin IB08 e IB11, Open-Meteo + AHC tiene un RMSE medio de 0,414 (desviación típica 0,052), frente a 0,409 de HG-Rs y 0,489 de Valiantzas. Esto es descriptivo: se quitan después de ver los resultados las dos estaciones donde peor le va, solo para localizar de dónde sale la dispersión. No se ha investigado por qué esas dos estaciones se apartan del promedio (hipótesis natural, no comprobada: efectos de entorno, como costa o viento).
+
+5. **El resultado es homogéneo: no depende de una estación afortunada.** Ninguna de las 9 estaciones cambia ningún veredicto (Parte III, punto 4), y las dos excepciones de Valiantzas se explican porque el comparador falla, no porque el modelo mejore.
+6. **La arquitectura ANN de V2 es reproducible y el resultado no depende del modelo.** Ridge, HGB, RF, ANN S, ANN M y ANN tipo V2 dan el mismo veredicto en las tres familias; las diferencias entre ANN están en el rango del ruido de semilla. El estudio no depende de haber elegido bien el modelo.
 
 ## Lo malo
 
@@ -349,16 +371,15 @@ Esta parte valora los modelos **en sí mismos**, al margen de que el estudio se 
 3. **Añadir geografía estática a las ANN rompe el modelo.** La variante secundaria (seno/coseno del día del año + altitud) dispara el RMSE a 0,51–1,25 mm/día en las ANN, con gran dispersión entre semillas, mientras Ridge, HGB y RF aguantan. Con 8 estaciones de entrenamiento, la altitud funciona casi como identificador de estación y la red extrapola mal a una altitud no vista. Es una advertencia directa para cualquier estudio futuro que quiera meter metadatos de ubicación como inputs.
 4. **F1 es un escenario optimista.** Las 9 estaciones son cercanas entre sí, están en regadío y bien mantenidas. Un usuario real estará más lejos de la red y en condiciones peores; los comparadores de red (estación cercana, IDW) empeorarán, pero también lo hará la transferencia del modelo. F2 (fuera una isla entera) es más honesto y ahí los IC son demasiado anchos para concluir.
 5. **La referencia es PM_FAO56 calculada, no ET0 medida.** Todo el estudio mide «parecerse a la PM de la estación», no «acertar la evapotranspiración real». Y los inputs son de sensores SIAR calibrados: el sensor de un usuario será peor, así que estos números son un **límite superior** de lo que obtendría.
-6. **No se ha probado el caso que más importa al servicio: estar lejos de cualquier estación.** Justo donde los modelos de sensor tendrían ventaja, el diseño F1 no llega.
+6. **No se ha probado el caso que más importa al servicio: estar lejos de cualquier estación.** Justo donde los modelos de sensor tendrían ventaja, el diseño F1 no llega (a 10–32 km de la vecina, salvo IB08 a 93 km). F2 da un indicio favorable a 93–130 km (Parte III, punto 2) pero sin potencia estadística.
 
 ## Lo que este estudio no responde
 
-- Qué pasa a 50 o 100 km de la estación más próxima (F1 no lo cubre; F2 lo insinúa pero sin potencia estadística).
-  >> JOSEP: seria en andalucia con mcuhas mas estacione y mas superfície buen sitio?
-- Cuánto se pierde con sensores de usuario en vez de sensores SIAR.
-- >> JOSEP: que experimento podriamos entonces hacer para reproducir esto?
+- **Qué pasa a 50 o 100 km de la estación más próxima.** F1 llega a 10–32 km (93 km solo en IB08). F2 da un indicio más claro de lo que parecía (Parte III, punto 2: a 93–130 km Valiantzas, 0,522, empata con la IDW, 0,524, y supera a la PM vecina, 0,645), pero son 9 estaciones de una región, descriptivo, con redes de entrenamiento más pobres. No es una prueba. El estudio 03.3 (Parte V) lo plantea como experimento propio.
+  - **¿Sería Andalucía un buen sitio?** Sí, probablemente el mejor candidato: la Red de Información Agroclimática de Andalucía (IFAPA) tenía 97 estaciones según un informe de la Junta de 2024, en una superficie unas 17 veces la de Baleares (≈87.600 km² frente a ≈5.000) y con mucha más diversidad climática (costa atlántica y mediterránea, valle del Guadalquivir, serranías). Permitiría tener distancias de pocos km a más de 100 km **en una misma región y con muchos casos por banda**. Dos cautelas: es otro régimen climático (más continental), así que «a X km el sensor supera a la red» se trasladaría en lo cualitativo pero no en la cifra a Baleares; y hay que comprobar disponibilidad, calidad y licencia de los datos de la RIA, y que la referencia PM se calcule igual que en SIAR. La alternativa es la red SIAR completa (más de 500 estaciones, con API) estratificando por distancia.
+- **Cuánto se pierde con sensores de usuario en vez de sensores SIAR.** Ver el experimento propuesto en la Parte V (03.3 b).
+- **Si la resolución subdiaria ayuda** (el SIAR registra cada media hora): no se ha probado. Ver el estudio 03.4 de la Parte V.
 - Si combinar sensor local **y** red mejora a ambos por separado: es la pregunta de la Parte V.
-- >> JOSEP: añadiria otra pregunta a ver si hay bibliografia , con mayor resolucion de datos, es decir , creo que siar puede dar dos lecturas cada hora, tendriamos mas informacion del dia aunque fuera solo con temperatur , o incluso con humedad. serian las redes neuronales cpaces ?
 
 # Parte V — Propuesta de estudio 03.1.2 (sensor local + red): valoración y plan
 
@@ -422,6 +443,43 @@ Hay un matiz operativo que conviene fijar desde ahora: este diseño supone que l
 - Sigue valiendo todo lo de la Parte IV: referencia calculada, no medida; sensores SIAR, no de usuario.
 
 **Cuándo.** Es independiente del 03.2 (no comparten código ni criterios) y mucho más barato que este estudio. Para no tener dos experimentos pesados a la vez, lo razonable es prepararlo mientras el 03.2 esté en diseño y ejecutarlo cuando el 03.2 libere Kaggle.
+
+## Otros estudios que surgen de la revisión (03.3 y 03.4)
+
+Dos preguntas que quedaron abiertas en la Parte IV y que merecen diseño propio. Son independientes entre sí y del 03.1.2; ninguna se ejecuta sin aprobar antes sus criterios.
+
+### Estudio 03.3 — distancia a la red: ¿a partir de qué distancia gana el sensor a la red?
+
+**Pregunta.** A qué distancia de la estación de entrenamiento más cercana el modelo de sensor (HS-Ra, Valiantzas, HG-Rs) empata o supera a la PM de la vecina, a la IDW y a Open-Meteo + AHC. Es el dato que más le importa al servicio y el 03.1 solo lo ve de forma limitada (Parte III, punto 2).
+
+- **Red y datos.** Andalucía (RIA) o la red SIAR peninsular, con la misma referencia PM, los mismos inputs de sensor y los mismos comparadores (PM vecina, IDW, Open-Meteo crudo y Open-Meteo + AHC mensual transferido).
+- **Diseño espacial.** *Leave-one-station-out* **con zona de exclusión por radio** (*buffered* LOSO, un esquema habitual de validación cruzada espacial; Roberts et al., 2017, *Ecography*): para cada estación de prueba se entrena sin ella **y sin todas las estaciones a menos de R km**, con R ∈ {0, 15, 30, 60, 100} km. La distancia al vecino de entrenamiento queda controlada por diseño, no por accidente como en F1.
+- **Control del tamaño de la red.** Quitar las cercanas también reduce el número de estaciones de entrenamiento. Para no confundir distancia con tamaño, en cada R se compara con una versión que quita el mismo número de estaciones **al azar** y se informan las dos.
+- **Resultado principal.** Curva RMSE frente a R de cada método y la **distancia de cruce**: el menor R a partir del cual el IC 95 % de ΔRMSE frente a la IDW (y frente a la PM vecina) queda por debajo de 0 o dentro de ±0,05. Es la cifra que sirve para decidir: «a partir de X km de la estación más cercana, un termohigrómetro vale más que la red».
+- **Modelos y coste.** Ridge, HGB y ANN M, como en el 03.1.2. Ridge y HGB son baratos; la ANN M con 5 valores de R y las dos variantes de control son unas horas de Kaggle por región.
+- **Versión barata, ya posible con lo calculado.** La tabla de la Parte III (punto 2) se puede convertir en un contraste pareado por banda con el mismo bootstrap, sin entrenar nada nuevo.
+
+### Estudio 03.3 (b) — sensores de usuario en lugar de sensores SIAR
+
+**Pregunta.** Cuánto empeoran los resultados con sensores baratos. Los números del 03.1 son un límite superior porque los inputs son de sensores SIAR calibrados y bien instalados.
+
+- **Simulación (sin datos nuevos).** Perturbar los inputs de TEST con modelos de error realistas (sesgo constante, ruido, deriva lenta, y un error de temperatura dependiente de la radiación que imite una mala protección del sensor) y medir cuánto sube el RMSE con modelos entrenados sin perturbar y con modelos entrenados con perturbación. Los errores típicos se tomarían de las hojas de características del sensor elegido (por ejemplo, del orden de 0,3–0,5 °C en temperatura y 2–5 % en humedad relativa en sensores económicos; a verificar). Mi expectativa, sin comprobar, es que los errores de instalación (ubicación y protección frente al sol) pesan más que la precisión nominal.
+- **Validación en campo.** Colocar un sensor barato junto a una estación SIAR durante al menos un año completo y comparar sus lecturas con las de la estación; después, pasar las lecturas del sensor por los modelos. Es lo único que distingue de verdad el sensor real del sensor simulado.
+
+### Estudio 03.4 — resolución subdiaria: ¿ayudan las lecturas de cada media hora?
+
+**El dato.** La API de SIAR ofrece resolución **horaria** (en la práctica, un registro cada 30 minutos, 48 al día) con temperatura media, humedad media, viento (velocidad y dirección), radiación y precipitación; el diario ya incluye las horas de los máximos y mínimos (manual de la Web API SiAR, sección 4.6). Con eso se pueden construir inputs que el modelo diario no ve: la **curva diaria** de temperatura y humedad (valores a horas fijas, amplitud, velocidad de subida matinal, hora de Tmax y Tmin) y, con humedad, la tensión de vapor por tramos del día, no solo su media.
+
+**Bibliografía.** La evidencia que he encontrado es limitada e indirecta. SolarET (Ahmadi et al., 2024) entrena con muestras horarias y obtiene un RMSE de 0,93 mm/día con datos horarios y de 0,97 con diarios (solo con radiación y con modelos de árboles, en California): una mejora pequeña. No he localizado un estudio que compare directamente ML con Tmax y Tmin diarios frente a la serie subdiaria de temperatura y humedad para estimar la PM diaria.
+
+**¿Serían capaces las redes neuronales?** Capaces de usarlo, sí; que ganen mucho, no puedo asegurarlo. Mi expectativa, razonada pero no comprobada:
+
+1. La información nueva de la temperatura horaria es sobre todo **nubosidad y radiación indirecta**: la amplitud y la forma de la curva dependen de ella. Por eso el avance posible está en **HS-Ra** (la familia que más pierde, 0,633) y no en HG-Rs, que ya tiene la radiación medida.
+2. Con humedad horaria, Valiantzas mejora la presión de vapor real del día, no solo su media.
+3. No arregla lo que falta en HS-Ra y Valiantzas, que es el viento.
+4. No hay motivo para esperar que una ANN lo aproveche mejor que HGB: en el 03.1 Ridge, HGB y las ANN dieron lo mismo. Con un conjunto de variables derivadas pequeño (6–10), HGB debería bastar.
+
+**Diseño mínimo.** Mismo protocolo y mismos modelos (Ridge, HGB, ANN M); inputs: la familia diaria más el resumen subdiario; comparación pareada frente al mismo modelo con inputs diarios, en F1 y F2, con la hipótesis fijada antes (por ejemplo, «las variables subdiarias reducen el RMSE de HS-Ra y de Valiantzas al menos 0,05 mm/día»). **Requisito:** descargar los datos horarios (9 estaciones × 22 años × 48 lecturas ≈ 3,5 millones de filas); la API requiere autorización de uso y tiene restricciones de acceso. Estos datos no están hoy en el repositorio.
 
 # Parte VI — Salvedades de la ejecución
 
