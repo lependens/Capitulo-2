@@ -1,0 +1,17 @@
+                                  cultivo                       fuente  riego_mm_anio  sesgo_pct  error_abs_medio_pct_por_estacion  peor_estacion_pct
+Almendro (Kc 0,4-0,9 abr-oct, TAW 150 mm)         PM SIAR (referencia)            430        0.0                               0.0                0.0
+Almendro (Kc 0,4-0,9 abr-oct, TAW 150 mm)             Open-Meteo crudo            489       14.6                              15.8               27.2
+Almendro (Kc 0,4-0,9 abr-oct, TAW 150 mm) OM + AHC mensual transferido            425       -0.2                               8.1               19.2
+Almendro (Kc 0,4-0,9 abr-oct, TAW 150 mm)      PM estacion mas cercana            428       -0.0                              10.2               17.4
+Almendro (Kc 0,4-0,9 abr-oct, TAW 150 mm)                IDW mismo dia            431        0.9                               8.7               15.5
+Almendro (Kc 0,4-0,9 abr-oct, TAW 150 mm)          HGB-S0 (sin sensor)            430        0.4                               6.0               12.9
+Almendro (Kc 0,4-0,9 abr-oct, TAW 150 mm)              HGB-S2 (+T, HR)            441        2.8                               6.3               16.1
+Almendro (Kc 0,4-0,9 abr-oct, TAW 150 mm)   HGB-L2 (solo sensor T, HR)            457        6.9                              11.1               25.8
+ Cesped (Kc 0,8 todo el anio, TAW 100 mm)         PM SIAR (referencia)            554        0.0                               0.0                0.0
+ Cesped (Kc 0,8 todo el anio, TAW 100 mm)             Open-Meteo crudo            688       26.1                              26.1               57.9
+ Cesped (Kc 0,8 todo el anio, TAW 100 mm) OM + AHC mensual transferido            545       -0.1                               8.5               22.8
+ Cesped (Kc 0,8 todo el anio, TAW 100 mm)      PM estacion mas cercana            561        2.7                              13.5               20.7
+ Cesped (Kc 0,8 todo el anio, TAW 100 mm)                IDW mismo dia            559        2.4                              11.1               21.8
+ Cesped (Kc 0,8 todo el anio, TAW 100 mm)          HGB-S0 (sin sensor)            559        2.0                               7.1               16.0
+ Cesped (Kc 0,8 todo el anio, TAW 100 mm)              HGB-S2 (+T, HR)            575        4.8                               9.2               18.6
+ Cesped (Kc 0,8 todo el anio, TAW 100 mm)   HGB-L2 (solo sensor T, HR)            591        8.0                              12.4               23.9

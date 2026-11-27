@@ -23,6 +23,8 @@ Origen de los modelos y la referencia: [Capitulo-1](https://github.com/lependens
 | `config/thresholds_v3_1_2.json` | Criterios del estudio 03.1.2 (PROPUESTA; se congelan con su PR, antes de ejecutar) |
 | `studies/03_1_2_loso_sensor_red/` | Estudio 03.1.2 (plan): sensor local + red SIAR del mismo día y previsión a D+1; prompt de ejecución en `PROMPT_CHAT.md` |
 | `studies/03_2_loso_openmeteo_ml/` | Estudio 03.2 (ejecutado): Open-Meteo corregido con ML, evaluado en estaciones no vistas (leave-one-station-out). Criterios en `config/thresholds_v3.json` |
+| `studies/05_balance_hidrico/` | Estudio 05 (enfoque + exploratorio): cuánto cambia el riego según la fuente de ET0 |
+| `docs/IDEAS_Y_MEJORAS.md` | Documento vivo: lo aprendido, líneas de investigación, publicación y cómo rentabilizar |
 | `studies/04_prevision_et0/` | Estudio 04 (enfoque): previsión de ET0 a 0–7 días |
 | `studies/01_et0_vs_pm/` | Estudio 01: ET0 de Open-Meteo frente a PM_FAO56_V1 y frente a las formulas V2 |
 | `tools/export_reference.py` | Extrae de `classical-baselines.csv` (Capitulo-1, 56 MB) solo 2020-2025 y las columnas necesarias |
@@ -40,6 +42,7 @@ Cada paso nace de lo que dejo el anterior. Los criterios de exito se congelaron 
 | 4 | [03.2 - Open-Meteo + ML en estacion no vista](studies/03_2_loso_openmeteo_ml/README.md) | Open-Meteo como entrada de un modelo entrenado con otras estaciones, supera a Open-Meteo + AHC? | HGB con las mismas variables de Open-Meteo (S0): RMSE 0,433 frente a 0,483 (AHC transferido) y 0,752 (crudo); con Tmax/Tmin (S1) 0,411 y con HR (S2) 0,396. Techo local 0,427. Las ANN fallan por extrapolar altitud (IB01). Criterio: [`thresholds_v3.json`](config/thresholds_v3.json) | Ejecutado (PR #11) |
 | 5 | [03.1.2 - Sensor local + red SIAR](studies/03_1_2_loso_sensor_red/README.md) | Con sensor propio y estaciones vecinas, cuanto mejora la estimacion en una estacion no vista? | Escenarios de sensor y de red (mismo dia, prevision a D+1, distancia a la costa). Criterio: [`thresholds_v3_1_2.json`](config/thresholds_v3_1_2.json) | Criterios congelados, codigo en el repo; sin resultados publicados |
 | 6 | [04 - Prevision de ET0 a 0-7 dias](studies/04_prevision_et0/README.md) | Se puede predecir ET0 a 0-7 dias corrigiendo la prevision de Open-Meteo? | Solo enfoque, sin protocolo ni codigo; usa la captura diaria de prevision del workflow `daily_forecast` | Enfoque |
+| 7 | [05 - Balance hidrico por fuente de ET0](studies/05_balance_hidrico/README.md) | Cuanto cambia el riego de una temporada segun la fuente de ET0? | Exploratorio: Open-Meteo crudo riega un 15-26 % de mas; las fuentes corregidas quedan en torno al 10 % y HGB-S0 da el menor error por estacion (6-7 %) | Enfoque + exploratorio |
 
 **Lectura rapida de la secuencia:** 01 y 02 muestran que Open-Meteo corregido compite con V2 donde V2 no era realista; 03.1 comprueba que los modelos locales no se generalizan; 03.2 demuestra que un modelo entrenado con el resto de estaciones sobre las variables de Open-Meteo iguala o supera la correccion local, y mejora si se anade un termometro o higrometro; 03.1.2 y 04 son los siguientes pasos.
 
