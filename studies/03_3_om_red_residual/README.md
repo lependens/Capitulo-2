@@ -182,7 +182,7 @@ Lo que sigue no cambia el veredicto anterior. Sirve para proponer estudios, no p
 1. **Las combinaciones HGB-S0 + red sí cumplirían el caso (1).** Son brazos informativos, así que la regla los manda a *post hoc*.
    - `media_fija` (0,5 · HGB-S0 + 0,5 · IDW): 0,377, que es −0,056 frente a HGB-S0 y −0,058 frente a la IDW. En F2 no empeora de forma relevante (Ibiza −0,004, Menorca +0,015).
    - `media_ponderada` da lo mismo (0,378), porque la validación interna elige w = 0,5 en casi todas las particiones (0,6 en IB04 y fuera Mallorca).
-   - Así, el indicio *post hoc* del 03.2 se reproduce exactamente con hiperparámetros anidados. Es el mejor método del estudio en F1 y no pierde lejos de la red.
+   - `media_fija` usa las mismas predicciones de HGB-S0 y de la IDW que el 03.2, sobre el mismo TEST. Por eso da exactamente la misma cifra que el indicio del 03.2: **es un recálculo, no una réplica**. Lo nuevo es `media_ponderada`, cuyo peso se elige en DESARROLLO, sin ver TEST, y sale 0,5. Es el mejor método del estudio en F1 y no pierde lejos de la red.
 2. **`residuo_IDW`** (regresión-kriging simplificada) mejora a HGB-S0 en F1 (0,400; −0,032), pero menos de 0,05, así que es el caso (3) por la aclaración 1. En F2 es inestable: Menorca −0,047, Ibiza +0,042, Mallorca +0,102. Interpolar residuos de estaciones lejanas propaga sesgos locales.
 3. **Por qué falla `S0+R1`: probable causa, sin comprobar.** `d1_km` (distancia a la estación más cercana) es casi constante en cada estación, así que actúa como un identificador de sitio, igual que las coordenadas en el 03.2. Los peores casos son estaciones con un `d1_km` atípico:
    - IB05 pasa de 0,41 a 0,54; en test su d1 es 10,7 km, por debajo del rango de entrenamiento.
@@ -192,6 +192,101 @@ Lo que sigue no cambia el veredicto anterior. Sirve para proponer estudios, no p
    La ablación «S0+R1 sin `d1_km`» **queda propuesta, no ejecutada**: no estaba en el plan.
 4. **La red del día anterior** (`S0+R1_ayer`) cuesta +0,010 frente a la del día (0,454 frente a 0,444) y queda peor que HGB-S0 (+0,021, IC por encima de 0). Por la vía de `S0+R1`, no esperar a SIAR no tiene contrapartida que perder.
 5. **ANN sin altitud.** Es estable y ya no se rompe en IB01, pero sigue peor que HGB-S0 (+0,019) y empeora en IB08 e IB10. Si se retoman las ANN (L13), deben ir sin inputs estáticos que extrapolen.
+
+## Valoración: qué se saca en claro, qué no, y propuestas
+
+Esta parte es una valoración, como la Parte IV y la Parte V del 03.2. No cambia el veredicto, que ya está aplicado en «Regla de interpretación».
+
+Las cifras nuevas salen de `results/predictions_test.csv.gz` (F1, cohorte común, n = 19.251) y no estaban en el informe: estación, temporada, sesgo y correlación de errores.
+
+### Lo bueno (lo que se saca en claro)
+
+1. **Queda cerrada, con criterio congelado, la pregunta de si la red sirve como input del modelo: no.**
+   - `S0+R1` HGB (0,444) no mejora a HGB-S0 ni a la IDW.
+   - Con Ridge pasa lo mismo (0,438; frente a la IDW +0,003 [−0,009; +0,017]).
+   - Con el termohigrómetro incluso empeora: `S2+R1` 0,423 frente a HGB-S2 0,396, +0,027 [+0,004; +0,052].
+   - Fuera de isla empeora mucho (+0,12 a +0,17).
+   - Es un resultado negativo limpio. Evita llevar a Andalucía o al servicio un diseño que no funciona.
+2. **La combinación más simple sí funciona, y por todas partes.**
+   - La media HGB-S0 + IDW gana a HGB-S0 en las cuatro estaciones del año (DJF 0,245 frente a 0,258; MAM 0,378 frente a 0,451; JJA 0,487 frente a 0,582; SON 0,359 frente a 0,377).
+   - Gana sobre todo en verano (−0,095), que es cuando más pesa en el riego.
+   - Gana a HGB-S0 en 8 de 9 estaciones y a la IDW en 8 de 9. Las excepciones son IB08 frente a HGB-S0 e IB04 frente a la IDW.
+   - Sin ningún sensor empata con HGB-S2, que sí lleva termohigrómetro: −0,019 [−0,046; +0,008].
+3. **El peso 0,5 no está elegido mirando TEST.** La validación interna de `media_ponderada`, hecha solo con DESARROLLO y sin la estación evaluada, elige w = 0,5 en casi todas las particiones. Es la única evidencia nueva a favor de la media que aporta este estudio (ver Lo malo, 1).
+4. **Los dos errores se compensan porque son poco parecidos.** La correlación entre el error de HGB-S0 y el de la IDW es 0,51 (entre 0,40 y 0,62 según la estación). Además, sus sesgos por estación suelen tener signo distinto: IB03 +0,16 frente a −0,20; IB10 −0,05 frente a +0,26; IB01 −0,06 frente a +0,17. El mecanismo es sencillo y explicable: Open-Meteo + ML y la red fallan por motivos distintos.
+5. **`residuo_IDW` casi no tiene sesgo global** (−0,007, frente a +0,042 de HGB-S0 y +0,044 de la media). Para el balance hídrico, donde el sesgo se acumula (estudio 05), esto interesa aunque su RMSE sea peor que el de la media.
+6. **El problema de las ANN queda diagnosticado del todo.**
+   - No es el objetivo: el residual solo baja de 1,020 a 0,996.
+   - Es la altitud: sin ella la ANN da 0,452, no se rompe en IB01 (0,375) y es estable entre semillas (desviación ≤ 0,005, frente a 0,137).
+   - El control de dominio separa exactamente las filas malas. Dentro de dominio, la ANN empata con HGB (0,432 frente a 0,433); fuera, 1,686.
+   - El control de dominio queda justificado con datos, no solo como prudencia.
+7. **El objetivo residual es inocuo con HGB** (equivalente por TOST, Δ −0,002). Si en algún estudio conviene usarlo, por ejemplo para que un modelo caiga hacia Open-Meteo cuando extrapola, no cuesta nada.
+8. **La ejecución ha sido limpia.** No se han perdido filas por falta de red, las particiones son idénticas a las del 03.2 y el HGB-S0 anidado tiene selección de hiperparámetros completa. Las cuatro aclaraciones se fijaron antes de ajustar ningún modelo.
+
+### Lo malo (lo que no queda claro o sale mal)
+
+1. **La media no tiene todavía una confirmación independiente.** `media_fija` es un recálculo sobre las mismas predicciones y el mismo TEST que el 03.2, no una réplica. Además, la regla congelada la deja como brazo informativo. Que sea la mejor opción solo se podrá afirmar cuando se prerregistre como brazo principal en datos nuevos: Andalucía (L4) o un periodo posterior a 2025.
+2. **El brazo primario se diseñó mal, y era previsible.** El 03.1.2 ya había visto que `d1_km` extrapola mal lejos de la red (su Parte VIII, punto 2). Cuando se congeló el 03.3 no se tuvo en cuenta, porque los dos estudios se diseñaron en paralelo.
+3. **La explicación de por qué falla `S0+R1` no está demostrada.** La hipótesis es que `d1_km` actúa como identificador de estación. La apoya la extrapolación fuera de isla y que el sesgo de `S0+R1` sube mucho en IB05 (+0,44 frente a +0,24) e IB08 (+0,46 frente a +0,27). Pero IB03, con el mismo d1 que IB05 (10,7 km, son vecinas), mejora con `S0+R1` (0,297 frente a 0,367). Sin la ablación no se puede afirmar.
+4. **La media empeora donde la red está lejos.** En IB08 (Menorca, d1 = 93 km) la media da 0,474, frente a 0,458 de HGB-S0. Fuera Menorca da +0,015. Con un solo caso no se puede generalizar, pero apunta a que el peso de la red debería bajar con la distancia.
+5. **`residuo_IDW` es inestable lejos de la red:** −0,047 fuera Menorca, +0,042 fuera Ibiza y +0,102 en Mallorca. Interpolar residuos de estaciones a más de 90 km propaga sesgos de otro sitio.
+6. **Las ANN siguen sin aportar, incluso arregladas.** Sin altitud quedan +0,019 por encima de HGB-S0 y pierden mucho en IB08 (0,59) e IB10 (0,47). Como modelo de punto con estos datos no tienen recorrido.
+7. **El 32 % de las filas de F1 queda fuera de dominio**, casi todo por altitud (IB01 e IB06 al 100 %). En un servicio, un aviso que salta en un tercio de los casos se ignora. La regla de dominio necesita un umbral que distinga «fuera de rango» de «fuera de rango y peligroso para este modelo»: con HGB el error fuera de dominio es el mismo que dentro.
+8. **La red de ayer no se ha medido donde importa.** `S0+R1_ayer` solo dice que la red de ayer como input tampoco sirve. Cuánto pierde la media con la red de ayer, que es lo que decidiría si sirve para la ET0 de hoy, no se ha medido. En el 03.1.2, la red de ayer perdía casi todo su valor con un sensor barato.
+
+### Lo que este estudio no responde
+
+- Si la media gana en datos nuevos (ver Lo malo, 1).
+- Cómo debería depender el peso de la red de la distancia, y a partir de qué distancia conviene no usarla.
+- Si la media funciona con la red del día anterior o con la previsión (estudio 04).
+- Si funciona en altura o en interior: ninguna estación supera los 120 m.
+- Si el fallo de `S0+R1` se debe a `d1_km` o a otra cosa.
+
+### Propuestas de mejora y variantes
+
+Posibilidad de que funcionen: **alta**, **media** o **baja**, como en el 03.2. Cada una necesita su protocolo congelado antes de ejecutarse.
+
+#### A. Prerregistrar la media HGB-S0 + IDW como brazo principal en Andalucía (L4) — posibilidad **alta**
+
+Es la confirmación que falta. Hay que fijar antes de ver resultados:
+- w = 0,5 (o el elegido en validación interna);
+- las mismas comparaciones (frente a HGB-S0 y frente a la IDW);
+- el umbral de 0,05.
+
+Con unas 100 estaciones y la exclusión por radio de L4, se obtiene además la curva de la media frente a la distancia. Es la forma de convertir el mejor resultado *post hoc* en un resultado.
+
+#### B. Peso de la red que baje con la distancia — posibilidad **media-alta**
+
+La fórmula sería: w(d1) = peso de HGB-S0, que crece con d1 desde 0,5 cerca de la red hasta 1 lejos, por ejemplo con un corte o una rampa entre 30 y 90 km. Se ajusta en DESARROLLO.
+
+Recoge lo que se ve en IB08 y en F2 sin meter `d1_km` en el modelo. En Baleares hay muy pocas estaciones lejanas para ajustarla, así que se diseña aquí y se estima en Andalucía (junto con A).
+
+#### C. Ablación «S0+R1 sin `d1_km`» y variante «S0+R3» — posibilidad **media**
+
+Cierra la duda de por qué falla `S0+R1`. Es barata: unas 24 celdas de HGB en local, con la misma infraestructura.
+- `S0+R1 sin d1`: solo la IDW como input.
+- `S0+R3`: las 3 vecinas ordenadas. En el 03.1.2, R3 fue más estable que R1 (ganaba o empataba en 8 de 9 estaciones).
+- Opcional: entrenar con distancias más variadas, quitando a veces a los vecinos más cercanos (la idea del punto 2 de la Parte VIII del 03.1.2).
+
+Si alguna iguala a la media, el modelo podría aprender la ponderación por sí solo. Si no, la media se queda como método.
+
+#### D. Media con la red de ayer — posibilidad **alta** de que se pueda medir; resultado incierto
+
+Basta con calcular la IDW del día d−1 (ya se hace para `S0+R1_ayer`) y promediarla con HGB-S0. Es un cálculo de minutos, sin entrenar nada. Responde a la pregunta abierta sobre el retraso de SIAR. Si la media con la red de ayer sigue ganando a HGB-S0, el método vale para la ET0 de hoy; si no, solo para la de ayer. Debe congelarse antes de calcular.
+
+#### E. Combinar media y `residuo_IDW` por su sesgo — posibilidad **media**
+
+La media tiene mejor RMSE y `residuo_IDW` casi no tiene sesgo. Para el balance hídrico (estudio 05), que acumula sesgo, conviene comparar las dos en litros y no solo en RMSE. Basta con añadirlas como fuentes al 05, sin entrenar nada.
+
+#### F. Control de dominio por modelo, no por input — posibilidad **alta**
+
+Que el aviso solo salte con modelos sensibles a extrapolar (ANN, Ridge) o cuando el input esté lejos del rango, no solo fuera. Con HGB el error dentro y fuera de dominio es el mismo (0,433), así que con el modelo de referencia no hace falta avisar por altitud. Se puede definir y probar con las predicciones que ya existen.
+
+#### No recomendado
+
+- **Más brazos con la red como input del modelo**, salvo la ablación C: tres variantes (Ridge, HGB, con sensor) fallan del mismo modo.
+- **ANN como modelo de punto**, ni con objetivo residual ni sin altitud: quedan siempre por detrás de HGB. Solo tiene sentido retomarlas con contexto temporal o espacial (L13).
+- **Recortar la altitud con árboles:** no hace nada por construcción.
 
 ## Riesgos y salvedades
 
