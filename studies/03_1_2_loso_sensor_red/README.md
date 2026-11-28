@@ -399,6 +399,47 @@ Para no tener que volver a las Partes II–III, aquí está todo lo que se nombr
 
 **Un ejemplo de cómo se lee un código:** «S+R3 Valiantzas HGB» es un modelo de árboles con un termohigrómetro (Tmín, Tmáx, HR) y la PM del mismo día de las 3 estaciones más cercanas. Su RMSE es 0,385; la IDW, 0,434.
 
+## X.0b Qué se probó en cada escenario y resultados (HGB, F1)
+
+**Los escenarios no se probaron con las mismas combinaciones de inputs.** Cada escenario responde una pregunta y usa solo los conjuntos que la contestan. Los tres sensores (familias) se probaron siempre; lo que cambia es el conjunto de inputs y los modelos.
+
+| Escenario | Pregunta que contesta | Conjuntos de inputs probados | Modelos | Qué cambia respecto al B |
+|---|---|---|---|---|
+| **B** (principal) | ¿Cuánto vale cada combinación para estimar la ET0 de hoy? | S, S+R1, S+R3, R | Ridge, HGB, ANN M | Nada: es la referencia |
+| **C** (d+1) | ¿Se puede estimar la de mañana con lo de hoy? | S, S+R1, S+R3, R (todos con Ra de mañana) | Ridge, HGB, ANN M | El objetivo es la PM de d+1; sensor y red son del día d |
+| **B-ayer** | ¿Y si la red llega con un día de retraso? | solo S+R1 y R | solo Ridge y HGB | La red es la de d−1; el sensor sigue siendo el de d |
+| **A** | ¿Ayuda la distancia a la costa? | solo S+costa (frente a S) | solo Ridge y HGB | Añade log(1 + km a la costa) al sensor |
+
+Detalles: R no lleva sensor, así que no tiene familia. En C, además de los modelos, se comparan la persistencia (IDW, vecina, modelo del día d) y la climatología. B-ayer y A no se hicieron con la ANN M.
+
+**Resultados del HGB en F1 (RMSE, mm/día).** Es el modelo de referencia; los otros dos modelos están en la Parte VII. Las columnas son los tres sensores.
+
+| Escenario | Conjunto de inputs | Termómetro (HS-Ra) | Termohigrómetro (Valiantzas) | Piranómetro (HG-Rs) |
+|---|---|---|---|---|
+| B | S (solo sensor) | 0,633 | 0,518 | 0,421 |
+| B | S+R1 (sensor + red mínima) | 0,455 | 0,435 | 0,362 |
+| B | S+R3 (sensor + 3 vecinas) | 0,413 | 0,385 | 0,343 |
+| B | R (solo red, sin sensor) | 0,429 | 0,429 | 0,429 |
+| B | IDW (comparador) | 0,434 | 0,434 | 0,434 |
+| B-ayer | S+R1 con la red de ayer | 0,617 | 0,529 | 0,391 |
+| B-ayer | R con la red de ayer | 0,673 | 0,673 | 0,673 |
+| A | S+costa | 0,639 | 0,529 | 0,446 |
+| C | S (solo sensor de hoy) | 0,706 | 0,684 | 0,670 |
+| C | S+R1 | 0,688 | 0,681 | 0,668 |
+| C | S+R3 | 0,665 | 0,655 | 0,660 |
+| C | R | 0,674 | 0,674 | 0,674 |
+| C | persistencia: modelo del día d | 0,716 | 0,728 | 0,725 |
+| C | persistencia IDW / vecina / climatología | 0,725 / 0,768 / 0,742 | igual | igual |
+
+(En las filas con R, IDW, persistencia IDW/vecina y climatología el valor es el mismo para los tres sensores porque no usan sensor. La persistencia del modelo del día d depende del sensor del modelo.)
+
+**Cómo interpretarlo.**
+- **De S a S+R1 a S+R3 (B).** Cada fila añade información de la red. Con cualquier sensor baja el error: la red completa al sensor, y más cuantas más vecinas (R3). La mejora es mayor cuanto peor es el sensor (termómetro −0,178, piranómetro −0,058 con R1).
+- **S frente a R (B).** El sensor solo (0,42–0,63) pierde casi siempre frente a la red sola (0,429) y frente a la IDW (0,434). Solo el piranómetro solo (0,421) iguala a la red.
+- **B frente a B-ayer.** La diferencia mide cuánto vale que la red sea del mismo día. Con termohigrómetro, de 0,435 a 0,529: sin la red del día, casi se vuelve al sensor solo (0,518). Con piranómetro se conserva más (0,362 a 0,391).
+- **B frente a C.** Es el coste del horizonte: +0,23 a +0,31. Y en C todo se parece (0,655–0,706): ni el sensor ni la red dicen mucho del día siguiente, por eso S, S+R1 y R quedan cerca. P1 se cumple porque todos ganan a la persistencia IDW (0,725), no porque el sensor aporte.
+- **A.** S+costa nunca mejora a S (+0,006 a +0,025).
+
 ## X.1 Resumen de las opciones, con cifras (F1, estación no vista)
 
 Todas las cifras son del escenario B (mismo día) sobre la misma cohorte y las mismas particiones, salvo las que vienen de otros estudios (se marca). Los de otros estudios se han tomado de sus README, no se han recalculado, y no hay contraste pareado con los del 03.1.2.
