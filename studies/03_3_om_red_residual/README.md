@@ -1,6 +1,6 @@
 # Estudio 03.3: Open-Meteo + ML + red SIAR del día, y objetivo residual (L3 y L5)
 
-Estado: **PLAN**, criterios congelados en `config/thresholds_v3_3.json` al fusionar el PR que los crea (2026-11-27). No se ha ejecutado nada. La ejecución se hará en un chat aparte con el prompt de `PROMPT_CHAT.md`.
+Estado: **EJECUTADO** (2026-11-28). Criterios congelados en `config/thresholds_v3_3.json` (2026-11-27), sin cambios. Resultados en la sección «Resultados»; lo *post hoc* va aparte, en «Análisis *post hoc*».
 
 > **Numeración.** Las Partes V del 03.1 y del 03.2 llamaban «03.3» a las estaciones a 50–100 km y a los sensores de usuario, y «03.4» a la resolución subdiaria. Ese contenido pasa a las líneas L4 (Andalucía, distancia de cruce), L11 (robustez del sensor) y L16 (subdiaria) de `docs/IDEAS_Y_MEJORAS.md`. Desde ahora, 03.3 es este estudio y 03.4 es la revalidación con fuentes de licencia comercial (L14).
 
@@ -79,9 +79,123 @@ Decididas con el autor tras comparar este README con `thresholds_v3_3.json` (no 
 3. **HGB-S0 anidados (`residuo_IDW` y w de `media_ponderada`)**: selección de hiperparámetros **anidada completa** (rejilla y validación interna sin s ni las evaluadas), no los del 03.2.
 4. **Implementación**: validación interna con la red recalculada por pliegue (`select_and_fit_net`, lógica literal de `loso_models.select_and_fit`); IDW de residuos con `network.py`; IC 90 % del TOST con los mismos remuestreos; cohorte común = filas con red del día d **y** de d−1 y con todos los métodos finitos; control de dominio con los 12 inputs de S0 distintos de la altitud ([p0,5; p99,5]) y la altitud ([min; max]), con la tasa por variable.
 
+## Resultados
+
+### Ejecución y controles
+
+- **234 celdas, 0 pendientes**: 84 HGB, 24 Ridge y 90 HGB-S0 anidados en local (unos 30–50 s por celda, 2 procesos); 36 ANN M en una sesión de Kaggle (CPU, 4 núcleos, 158 min, 10,2 h·núcleo; scikit-learn 1.9.1, pandas 3.0.5, numpy 2.5.3, las versiones fijadas del 03.2).
+- HGB-S0, HGB-S2 y ANN M-S0 se reutilizan del 03.2 (no se reentrenan). Particiones idénticas a las del 03.2 (test).
+- **Cohorte común:** 19.251 filas en F1. Ninguna fila sale por falta de red (siempre hubo red el día d y el d−1).
+- Negativos recortados a 0: Ridge 21, HGB 0, ANN M 2.621.
+- Tests: 61 previos + 18 nuevos (`tests/test_estudio_03_3.py`), que cubren las reglas (a)–(e).
+- Figuras en `figures/`: `01_delta_vs_hgb_s0_F1`, `02_rmse_por_estacion_L3`, `03_ann_por_estacion_L5` y `04_F2_delta_vs_hgb_s0`.
+
+### F1 (estación no vista), RMSE en mm/día
+
+| Método | RMSE | Δ frente a HGB-S0 [IC95] |
+|---|---|---|
+| HGB-S0 (03.2), referencia | 0,433 | — |
+| PM IDW del día | 0,434 | +0,002 [−0,026; +0,030] |
+| **S0+R1 HGB** (brazo primario de L3) | 0,444 | +0,011 [−0,012; +0,033] |
+| S0+R1 Ridge | 0,438 | +0,005 |
+| S2+R1 HGB | 0,423 | −0,010 (frente a HGB-S2 0,396: peor) |
+| S0+R1_ayer HGB | 0,454 | +0,021 [+0,007; +0,036] |
+| S0_res HGB | 0,431 | −0,002 [−0,004; +0,000] |
+| S0_res Ridge | 0,485 | +0,052 |
+| S0_res ANN M | 0,996 | +0,563 |
+| ANN M-S0 (03.2) | 1,020 | +0,587 |
+| S0_sin_alt HGB / ANN M | 0,459 / 0,452 | +0,026 / +0,019 [0,000; +0,039] |
+| S0_alt_recortada HGB | 0,433 | 0,000 (idéntico por construcción, aclaración 2) |
+| S0_res_sin_alt HGB / ANN M | 0,461 / 0,452 | +0,028 / +0,019 |
+| residuo_IDW (informativo) | 0,400 | −0,032 [−0,050; −0,014] |
+| media_fija (informativo) | 0,377 | −0,056 [−0,070; −0,042] |
+| media_ponderada (informativo) | 0,378 | −0,055 |
+
+Todas las cifras y los IC están en `results/metrics_global.csv` y `results/paired_ci.csv` (bootstrap por bloques estación-año, 2.000 remuestreos, semilla 20261126).
+
+### Hipótesis planificadas
+
+| Hipótesis | Comparación | Resultado | Veredicto |
+|---|---|---|---|
+| H33.1 | S0+R1 HGB frente a HGB-S0 (F1) | 0,444 frente a 0,433; Δ +0,011 [−0,012; +0,033] | **No se cumple** |
+| H33.2 | S0+R1 HGB frente a IDW del día (F1) | Δ +0,009 [−0,016; +0,034] | **No se cumple** |
+| H33.3 | S0+R1 HGB frente a HGB-S0 (F2) | Ibiza +0,166 [+0,141; +0,199]; Menorca +0,118 [+0,091; +0,137] | **Empeora más de +0,05** en las dos islas |
+| H5.1 | ANN M S0_res frente a ANN M-S0 (F1) | 0,996 frente a 1,020; Δ −0,025 [−0,039; −0,006] | **Se cumple**, pero la mejora es pequeña |
+| H5.2 | HGB S0_res frente a HGB-S0 (F1), TOST ±0,05 | Δ −0,002, IC90 [−0,004; +0,000] | **Equivalentes** |
+
+### Regla de interpretación, aplicada literalmente
+
+- **L3: caso (4), «la red no aporta sobre HGB-S0».** El brazo primario `S0+R1` HGB no mejora a HGB-S0 ni a la IDW en F1 (ningún IC95 por debajo de 0) y empeora mucho en F2. La aclaración 1 no interviene. `S2+R1` y `S0+R1_ayer` tampoco cumplen (1) ni (2).
+- **L5: las ANN quedan aparcadas.** H5.1 se cumple, pero la ANN M residual queda a +0,563 de HGB-S0, muy lejos de 0,05. El objetivo residual no arregla IB01 (2,68 mm/día, sesgo −2,44): el fallo viene de la altitud, no del objetivo.
+- **El control de dominio se adopta en el servicio**, como estaba previsto pase lo que pase.
+- **Se queda HGB-S0** como modelo de Open-Meteo + ML. El objetivo residual con HGB es equivalente y no aporta.
+
+`results/interpretation.json` lo registra caso por caso.
+
+### Por estación (F1), RMSE en mm/día
+
+| Estación (altitud) | HGB-S0 | IDW | S0+R1 HGB | media_fija | residuo_IDW |
+|---|---|---|---|---|---|
+| IB02 (78 m) | 0,418 | 0,429 | 0,304 | 0,378 | 0,369 |
+| IB03 (79 m) | 0,367 | 0,334 | 0,297 | 0,259 | 0,287 |
+| IB04 (8 m) | 0,417 | 0,301 | 0,371 | 0,314 | 0,363 |
+| IB05 (82 m) | 0,412 | 0,366 | **0,537** | 0,357 | 0,313 |
+| IB06 (4 m) | 0,388 | 0,347 | 0,382 | 0,319 | 0,355 |
+| IB08 (40 m) | 0,458 | 0,568 | **0,576** | 0,474 | 0,411 |
+| IB10 (30 m) | 0,358 | 0,451 | 0,379 | 0,332 | 0,368 |
+| IB11 (7 m) | 0,630 | 0,571 | 0,614 | 0,531 | 0,590 |
+
+**IB01 (120 m, aparte)**, la estación más alta y fuera del rango de altitud de entrenamiento:
+
+- Con los HGB no hay problema: HGB-S0 0,382; S0+R1 0,403; media_fija 0,353; residuo_IDW 0,461.
+- Las ANN con altitud se rompen: ANN M-S0 2,77; S0_res ANN M 2,68.
+- Sin altitud la ANN funciona: S0_sin_alt 0,375 y S0_res_sin_alt 0,381.
+
+### F2 (fuera de isla), Δ frente a HGB-S0 [IC95]
+
+| Método | Fuera Ibiza (HGB-S0 0,509) | Fuera Menorca (HGB-S0 0,458) | Fuera Mallorca (informativo, 0,477) |
+|---|---|---|---|
+| S0+R1 HGB | +0,166 [+0,141; +0,199] | +0,118 [+0,091; +0,137] | −0,054 |
+| PM IDW del día | +0,103 | +0,110 | +0,016 |
+| media_fija | −0,004 | +0,015 | −0,048 |
+| residuo_IDW | +0,042 | −0,047 | +0,102 |
+| S0_res HGB | +0,003 | 0,000 | 0,000 |
+
+### Control de dominio y dispersión entre semillas
+
+- **Filas marcadas fuera de dominio en F1: 32,1 %.** Casi todas son por altitud (22,8 %; IB01 e IB06 al 100 %) (`results/dominio.csv`).
+- Error dentro y fuera de dominio:
+
+  | Modelo | Dentro | Fuera |
+  |---|---|---|
+  | HGB-S0 | 0,433 | 0,433 |
+  | ANN M-S0 | 0,432 | 1,686 |
+  | ANN M S0_res | 0,445 | 1,632 |
+
+  El aviso separa exactamente los fallos de las ANN. Dentro de dominio, la ANN empata con HGB.
+- **Desviación típica del RMSE entre las 5 semillas de la ANN M (F1):** ANN M-S0 0,137; S0_res 0,092; sin altitud ≤ 0,005 (`results/ann_seed_spread.csv`). Sin altitud la ANN es estable.
+
+## Análisis *post hoc* (no planificado como confirmatorio)
+
+Lo que sigue no cambia el veredicto anterior. Sirve para proponer estudios, no para concluir.
+
+1. **Las combinaciones HGB-S0 + red sí cumplirían el caso (1).** Son brazos informativos, así que la regla los manda a *post hoc*.
+   - `media_fija` (0,5 · HGB-S0 + 0,5 · IDW): 0,377, que es −0,056 frente a HGB-S0 y −0,058 frente a la IDW. En F2 no empeora de forma relevante (Ibiza −0,004, Menorca +0,015).
+   - `media_ponderada` da lo mismo (0,378), porque la validación interna elige w = 0,5 en casi todas las particiones (0,6 en IB04 y fuera Mallorca).
+   - Así, el indicio *post hoc* del 03.2 se reproduce exactamente con hiperparámetros anidados. Es el mejor método del estudio en F1 y no pierde lejos de la red.
+2. **`residuo_IDW`** (regresión-kriging simplificada) mejora a HGB-S0 en F1 (0,400; −0,032), pero menos de 0,05, así que es el caso (3) por la aclaración 1. En F2 es inestable: Menorca −0,047, Ibiza +0,042, Mallorca +0,102. Interpolar residuos de estaciones lejanas propaga sesgos locales.
+3. **Por qué falla `S0+R1`: probable causa, sin comprobar.** `d1_km` (distancia a la estación más cercana) es casi constante en cada estación, así que actúa como un identificador de sitio, igual que las coordenadas en el 03.2. Los peores casos son estaciones con un `d1_km` atípico:
+   - IB05 pasa de 0,41 a 0,54; en test su d1 es 10,7 km, por debajo del rango de entrenamiento.
+   - IB08 pasa de 0,46 a 0,58; su d1 es de 93 km.
+   - En F2, d1 queda muy fuera del rango de entrenamiento.
+
+   La ablación «S0+R1 sin `d1_km`» **queda propuesta, no ejecutada**: no estaba en el plan.
+4. **La red del día anterior** (`S0+R1_ayer`) cuesta +0,010 frente a la del día (0,454 frente a 0,444) y queda peor que HGB-S0 (+0,021, IC por encima de 0). Por la vía de `S0+R1`, no esperar a SIAR no tiene contrapartida que perder.
+5. **ANN sin altitud.** Es estable y ya no se rompe en IB01, pero sigue peor que HGB-S0 (+0,019) y empeora en IB08 e IB10. Si se retoman las ANN (L13), deben ir sin inputs estáticos que extrapolen.
+
 ## Riesgos y salvedades
 
-- Diseño escrito después del 03.2 y de su indicio: declarado. F1 es optimista; F2 es el caso que más interesa.
+- Diseño escrito después del 03.2 y de su indicio: declarado. El resultado de `media_fija` reproduce ese indicio, pero sigue siendo *post hoc*: para usarlo como resultado hay que prerregistrarlo en Andalucía (L4) o en un periodo nuevo. F1 es optimista; F2 es el caso que más interesa.
 - La red es la validada; el servicio tendría la del día sin validar: límite superior. `S0+R1_ayer` mide el coste de no esperar.
 - En tiempo real Open-Meteo `archive` llega con ~5 días de retraso: el servicio usaría la previsión o el análisis del día (estudio 04). Este estudio mide la corrección, no la disponibilidad.
 - Licencia: la API gratuita de Open-Meteo es no comercial. El estudio 03.4 (propuesto) repetiría lo esencial con ERA5 de Copernicus.

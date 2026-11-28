@@ -1,0 +1,242 @@
+scope,tipo,variable,method,region,n,tasa,rmse,bias,mae
+F1,tasa_de_marcas,et0_om_mm,,,240,0.012467,,,
+F1,tasa_de_marcas,tmax_c,,,393,0.020415,,,
+F1,tasa_de_marcas,tmin_c,,,546,0.028362,,,
+F1,tasa_de_marcas,shortwave_sum_mj_m2,,,86,0.004467,,,
+F1,tasa_de_marcas,wind10_mean_ms,,,138,0.007168,,,
+F1,tasa_de_marcas,wind10_max_ms,,,101,0.005246,,,
+F1,tasa_de_marcas,rh_mean_pct,,,413,0.021453,,,
+F1,tasa_de_marcas,rh_max_pct,,,63,0.003273,,,
+F1,tasa_de_marcas,rh_min_pct,,,410,0.021298,,,
+F1,tasa_de_marcas,doy_sin,,,105,0.005454,,,
+F1,tasa_de_marcas,doy_cos,,,124,0.006441,,,
+F1,tasa_de_marcas,Ra,,,230,0.011947,,,
+F1,tasa_de_marcas,altitude_m,,,4382,0.227625,,,
+F1,tasa_de_marcas,fuera_de_dominio,,,6189,0.321490,,,
+F1,metricas,,HGB-S0 (03.2),dentro,13062,,0.432695,0.059805,0.318068
+F1,metricas,,HGB-S0 (03.2),fuera,6189,,0.433480,0.003677,0.307339
+F1,metricas,,HGB-S2 (03.2),dentro,13062,,0.398641,0.090307,0.296186
+F1,metricas,,HGB-S2 (03.2),fuera,6189,,0.389460,0.079400,0.281847
+F1,metricas,,ANN_M-S0 (03.2),dentro,13062,,0.431899,0.040301,0.323451
+F1,metricas,,ANN_M-S0 (03.2),fuera,6189,,1.686263,-0.876874,1.090552
+F1,metricas,,OM_crudo,dentro,13062,,0.764774,0.558640,0.640296
+F1,metricas,,OM_crudo,fuera,6189,,0.723047,0.505466,0.596889
+F1,metricas,,OM_AHC_mensual_medio_entrenamiento,dentro,13062,,0.485670,0.012133,0.356104
+F1,metricas,,OM_AHC_mensual_medio_entrenamiento,fuera,6189,,0.476550,-0.031240,0.337058
+F1,metricas,,PM_estacion_mas_cercana_mismo_dia,dentro,13062,,0.466844,-0.021716,0.350271
+F1,metricas,,PM_estacion_mas_cercana_mismo_dia,fuera,6189,,0.518091,0.163282,0.388753
+F1,metricas,,PM_IDW_mismo_dia,dentro,13062,,0.436720,0.026487,0.326235
+F1,metricas,,PM_IDW_mismo_dia,fuera,6189,,0.429740,0.089982,0.318637
+F1,metricas,,media_fija,dentro,13062,,0.379938,0.043146,0.280815
+F1,metricas,,media_fija,fuera,6189,,0.370588,0.046830,0.272896
+F1,metricas,,media_ponderada,dentro,13062,,0.381671,0.044712,0.282431
+F1,metricas,,media_ponderada,fuera,6189,,0.371304,0.047325,0.273395
+F1,metricas,,residuo_IDW,dentro,13062,,0.384822,-0.031264,0.277966
+F1,metricas,,residuo_IDW,fuera,6189,,0.431611,0.045235,0.312266
+F1,metricas,,S0+R1|Ridge,dentro,13062,,0.441755,0.043931,0.337942
+F1,metricas,,S0+R1|Ridge,fuera,6189,,0.428944,0.104152,0.326670
+F1,metricas,,S0+R1|HGB,dentro,13062,,0.450578,0.146781,0.344848
+F1,metricas,,S0+R1|HGB,fuera,6189,,0.429227,0.039667,0.328232
+F1,metricas,,S2+R1|HGB,dentro,13062,,0.434230,0.155346,0.329830
+F1,metricas,,S2+R1|HGB,fuera,6189,,0.398465,0.040220,0.298593
+F1,metricas,,S0+R1_ayer|HGB,dentro,13062,,0.467570,0.135647,0.350310
+F1,metricas,,S0+R1_ayer|HGB,fuera,6189,,0.424819,0.014864,0.302238
+F1,metricas,,S0_res|Ridge,dentro,13062,,0.488179,0.069746,0.370569
+F1,metricas,,S0_res|Ridge,fuera,6189,,0.476929,0.020768,0.349172
+F1,metricas,,S0_res|HGB,dentro,13062,,0.434028,0.052140,0.319159
+F1,metricas,,S0_res|HGB,fuera,6189,,0.424920,-0.005154,0.300315
+F1,metricas,,S0_res|ANN_M,dentro,13062,,0.445409,0.052038,0.332832
+F1,metricas,,S0_res|ANN_M,fuera,6189,,1.632235,-0.867305,1.066131
+F1,metricas,,S0_sin_alt|HGB,dentro,13062,,0.467035,0.054022,0.349825
+F1,metricas,,S0_sin_alt|HGB,fuera,6189,,0.440179,0.028045,0.315153
+F1,metricas,,S0_sin_alt|ANN_M,dentro,13062,,0.460152,0.070005,0.347419
+F1,metricas,,S0_sin_alt|ANN_M,fuera,6189,,0.433373,0.053044,0.311898
+F1,metricas,,S0_alt_recortada|HGB,dentro,13062,,0.432695,0.059805,0.318068
+F1,metricas,,S0_alt_recortada|HGB,fuera,6189,,0.433480,0.003677,0.307339
+F1,metricas,,S0_res_sin_alt|HGB,dentro,13062,,0.468908,0.047816,0.350176
+F1,metricas,,S0_res_sin_alt|HGB,fuera,6189,,0.444126,0.021385,0.316904
+F1,metricas,,S0_res_sin_alt|ANN_M,dentro,13062,,0.459707,0.064010,0.346676
+F1,metricas,,S0_res_sin_alt|ANN_M,fuera,6189,,0.435956,0.038553,0.312636
+F1,tasa_por_estacion,IB01,,,2192,1.000000,,,
+F1,tasa_por_estacion,IB02,,,333,0.165097,,,
+F1,tasa_por_estacion,IB03,,,260,0.118613,,,
+F1,tasa_por_estacion,IB04,,,141,0.066384,,,
+F1,tasa_por_estacion,IB05,,,236,0.109564,,,
+F1,tasa_por_estacion,IB06,,,2190,1.000000,,,
+F1,tasa_por_estacion,IB08,,,256,0.122079,,,
+F1,tasa_por_estacion,IB10,,,111,0.052933,,,
+F1,tasa_por_estacion,IB11,,,470,0.214808,,,
+F2_Ibiza,tasa_de_marcas,et0_om_mm,,,11,0.002511,,,
+F2_Ibiza,tasa_de_marcas,tmax_c,,,4,0.000913,,,
+F2_Ibiza,tasa_de_marcas,tmin_c,,,255,0.058219,,,
+F2_Ibiza,tasa_de_marcas,shortwave_sum_mj_m2,,,15,0.003425,,,
+F2_Ibiza,tasa_de_marcas,wind10_mean_ms,,,42,0.009589,,,
+F2_Ibiza,tasa_de_marcas,wind10_max_ms,,,36,0.008219,,,
+F2_Ibiza,tasa_de_marcas,rh_mean_pct,,,51,0.011644,,,
+F2_Ibiza,tasa_de_marcas,rh_max_pct,,,35,0.007991,,,
+F2_Ibiza,tasa_de_marcas,rh_min_pct,,,123,0.028082,,,
+F2_Ibiza,tasa_de_marcas,doy_sin,,,24,0.005479,,,
+F2_Ibiza,tasa_de_marcas,doy_cos,,,28,0.006393,,,
+F2_Ibiza,tasa_de_marcas,Ra,,,0,0.000000,,,
+F2_Ibiza,tasa_de_marcas,altitude_m,,,2192,0.500457,,,
+F2_Ibiza,tasa_de_marcas,fuera_de_dominio,,,2641,0.602968,,,
+F2_Ibiza,metricas,,HGB-S0 (03.2),dentro,1739,,0.575657,-0.260317,0.425672
+F2_Ibiza,metricas,,HGB-S0 (03.2),fuera,2641,,0.459777,-0.131131,0.328370
+F2_Ibiza,metricas,,HGB-S2 (03.2),dentro,1739,,0.474417,-0.240037,0.366295
+F2_Ibiza,metricas,,HGB-S2 (03.2),fuera,2641,,0.359495,-0.063909,0.258024
+F2_Ibiza,metricas,,ANN_M-S0 (03.2),dentro,1739,,0.554821,-0.160577,0.414070
+F2_Ibiza,metricas,,ANN_M-S0 (03.2),fuera,2641,,2.546651,-2.142446,2.172681
+F2_Ibiza,metricas,,OM_crudo,dentro,1739,,0.799132,0.296890,0.662555
+F2_Ibiza,metricas,,OM_crudo,fuera,2641,,0.751108,0.475363,0.624068
+F2_Ibiza,metricas,,OM_AHC_mensual_medio_entrenamiento,dentro,1739,,0.680479,-0.329435,0.502369
+F2_Ibiza,metricas,,OM_AHC_mensual_medio_entrenamiento,fuera,2641,,0.516329,-0.114731,0.375818
+F2_Ibiza,metricas,,PM_estacion_mas_cercana_mismo_dia,dentro,1739,,0.841140,-0.576401,0.659925
+F2_Ibiza,metricas,,PM_estacion_mas_cercana_mismo_dia,fuera,2641,,0.673946,-0.367643,0.507297
+F2_Ibiza,metricas,,PM_IDW_mismo_dia,dentro,1739,,0.715402,-0.421447,0.552216
+F2_Ibiza,metricas,,PM_IDW_mismo_dia,fuera,2641,,0.533367,-0.189369,0.384587
+F2_Ibiza,metricas,,media_fija,dentro,1739,,0.582727,-0.340882,0.442769
+F2_Ibiza,metricas,,media_fija,fuera,2641,,0.447217,-0.160250,0.324292
+F2_Ibiza,metricas,,media_ponderada,dentro,1739,,0.582727,-0.340882,0.442769
+F2_Ibiza,metricas,,media_ponderada,fuera,2641,,0.447217,-0.160250,0.324292
+F2_Ibiza,metricas,,residuo_IDW,dentro,1739,,0.616540,-0.305411,0.448314
+F2_Ibiza,metricas,,residuo_IDW,fuera,2641,,0.503046,-0.187195,0.358052
+F2_Ibiza,metricas,,S0+R1|Ridge,dentro,1739,,0.912788,-0.774006,0.790666
+F2_Ibiza,metricas,,S0+R1|Ridge,fuera,2641,,0.559565,-0.276418,0.406697
+F2_Ibiza,metricas,,S0+R1|HGB,dentro,1739,,0.738999,-0.553721,0.600749
+F2_Ibiza,metricas,,S0+R1|HGB,fuera,2641,,0.630092,-0.449185,0.505194
+F2_Ibiza,metricas,,S2+R1|HGB,dentro,1739,,0.629218,-0.473994,0.518861
+F2_Ibiza,metricas,,S2+R1|HGB,fuera,2641,,0.562313,-0.403649,0.449520
+F2_Ibiza,metricas,,S0+R1_ayer|HGB,dentro,1739,,0.589097,-0.346826,0.455066
+F2_Ibiza,metricas,,S0+R1_ayer|HGB,fuera,2641,,0.497682,-0.254800,0.373715
+F2_Ibiza,metricas,,S0_res|Ridge,dentro,1739,,0.658561,-0.415839,0.499011
+F2_Ibiza,metricas,,S0_res|Ridge,fuera,2641,,0.522728,0.015346,0.386807
+F2_Ibiza,metricas,,S0_res|HGB,dentro,1739,,0.580532,-0.273267,0.429509
+F2_Ibiza,metricas,,S0_res|HGB,fuera,2641,,0.460468,-0.131364,0.329296
+F2_Ibiza,metricas,,S0_res|ANN_M,dentro,1739,,0.583381,-0.179859,0.427231
+F2_Ibiza,metricas,,S0_res|ANN_M,fuera,2641,,2.452731,-2.085733,2.111050
+F2_Ibiza,metricas,,S0_sin_alt|HGB,dentro,1739,,0.614922,-0.359070,0.468960
+F2_Ibiza,metricas,,S0_sin_alt|HGB,fuera,2641,,0.461482,-0.054347,0.337139
+F2_Ibiza,metricas,,S0_sin_alt|ANN_M,dentro,1739,,0.606152,-0.371404,0.471863
+F2_Ibiza,metricas,,S0_sin_alt|ANN_M,fuera,2641,,0.446794,-0.040383,0.324739
+F2_Ibiza,metricas,,S0_alt_recortada|HGB,dentro,1739,,0.575657,-0.260317,0.425672
+F2_Ibiza,metricas,,S0_alt_recortada|HGB,fuera,2641,,0.459777,-0.131131,0.328370
+F2_Ibiza,metricas,,S0_res_sin_alt|HGB,dentro,1739,,0.620133,-0.377071,0.477572
+F2_Ibiza,metricas,,S0_res_sin_alt|HGB,fuera,2641,,0.458745,-0.051933,0.331605
+F2_Ibiza,metricas,,S0_res_sin_alt|ANN_M,dentro,1739,,0.602770,-0.369951,0.467222
+F2_Ibiza,metricas,,S0_res_sin_alt|ANN_M,fuera,2641,,0.451607,-0.043745,0.328302
+F2_Mallorca_informativo,tasa_de_marcas,et0_om_mm,,,510,0.039925,,,
+F2_Mallorca_informativo,tasa_de_marcas,tmax_c,,,1111,0.086974,,,
+F2_Mallorca_informativo,tasa_de_marcas,tmin_c,,,635,0.049710,,,
+F2_Mallorca_informativo,tasa_de_marcas,shortwave_sum_mj_m2,,,63,0.004932,,,
+F2_Mallorca_informativo,tasa_de_marcas,wind10_mean_ms,,,329,0.025755,,,
+F2_Mallorca_informativo,tasa_de_marcas,wind10_max_ms,,,195,0.015265,,,
+F2_Mallorca_informativo,tasa_de_marcas,rh_mean_pct,,,452,0.035384,,,
+F2_Mallorca_informativo,tasa_de_marcas,rh_max_pct,,,1346,0.105370,,,
+F2_Mallorca_informativo,tasa_de_marcas,rh_min_pct,,,741,0.058008,,,
+F2_Mallorca_informativo,tasa_de_marcas,doy_sin,,,69,0.005402,,,
+F2_Mallorca_informativo,tasa_de_marcas,doy_cos,,,83,0.006498,,,
+F2_Mallorca_informativo,tasa_de_marcas,Ra,,,39,0.003053,,,
+F2_Mallorca_informativo,tasa_de_marcas,altitude_m,,,2190,0.171442,,,
+F2_Mallorca_informativo,tasa_de_marcas,fuera_de_dominio,,,5429,0.425004,,,
+F2_Mallorca_informativo,metricas,,HGB-S0 (03.2),dentro,7345,,0.490727,-0.160974,0.366578
+F2_Mallorca_informativo,metricas,,HGB-S0 (03.2),fuera,5429,,0.458527,-0.089354,0.327602
+F2_Mallorca_informativo,metricas,,HGB-S2 (03.2),dentro,7345,,0.479675,-0.107636,0.371280
+F2_Mallorca_informativo,metricas,,HGB-S2 (03.2),fuera,5429,,0.465602,-0.033421,0.344577
+F2_Mallorca_informativo,metricas,,ANN_M-S0 (03.2),dentro,7345,,0.547538,-0.203544,0.426872
+F2_Mallorca_informativo,metricas,,ANN_M-S0 (03.2),fuera,5429,,0.476381,-0.016401,0.376798
+F2_Mallorca_informativo,metricas,,OM_crudo,dentro,7345,,0.717186,0.550675,0.599448
+F2_Mallorca_informativo,metricas,,OM_crudo,fuera,5429,,0.641569,0.485278,0.529036
+F2_Mallorca_informativo,metricas,,OM_AHC_mensual_medio_entrenamiento,dentro,7345,,0.431200,-0.037179,0.322308
+F2_Mallorca_informativo,metricas,,OM_AHC_mensual_medio_entrenamiento,fuera,5429,,0.423355,-0.047911,0.301484
+F2_Mallorca_informativo,metricas,,PM_estacion_mas_cercana_mismo_dia,dentro,7345,,0.645411,-0.093345,0.490727
+F2_Mallorca_informativo,metricas,,PM_estacion_mas_cercana_mismo_dia,fuera,5429,,0.620329,-0.287127,0.458750
+F2_Mallorca_informativo,metricas,,PM_IDW_mismo_dia,dentro,7345,,0.511941,0.021683,0.384500
+F2_Mallorca_informativo,metricas,,PM_IDW_mismo_dia,fuera,5429,,0.467528,-0.127607,0.342273
+F2_Mallorca_informativo,metricas,,media_fija,dentro,7345,,0.435156,-0.069645,0.328603
+F2_Mallorca_informativo,metricas,,media_fija,fuera,5429,,0.420388,-0.108481,0.301571
+F2_Mallorca_informativo,metricas,,media_ponderada,dentro,7345,,0.435565,-0.087911,0.327747
+F2_Mallorca_informativo,metricas,,media_ponderada,fuera,5429,,0.421189,-0.104655,0.300893
+F2_Mallorca_informativo,metricas,,residuo_IDW,dentro,7345,,0.591158,-0.212935,0.444428
+F2_Mallorca_informativo,metricas,,residuo_IDW,fuera,5429,,0.562384,-0.242552,0.407112
+F2_Mallorca_informativo,metricas,,S0+R1|Ridge,dentro,7345,,0.411939,0.005849,0.316224
+F2_Mallorca_informativo,metricas,,S0+R1|Ridge,fuera,5429,,0.381518,-0.017982,0.284103
+F2_Mallorca_informativo,metricas,,S0+R1|HGB,dentro,7345,,0.438459,-0.091924,0.329844
+F2_Mallorca_informativo,metricas,,S0+R1|HGB,fuera,5429,,0.402429,-0.052217,0.294533
+F2_Mallorca_informativo,metricas,,S2+R1|HGB,dentro,7345,,0.417683,0.001205,0.320270
+F2_Mallorca_informativo,metricas,,S2+R1|HGB,fuera,5429,,0.362657,0.014722,0.269039
+F2_Mallorca_informativo,metricas,,S0+R1_ayer|HGB,dentro,7345,,0.435215,-0.070230,0.327131
+F2_Mallorca_informativo,metricas,,S0+R1_ayer|HGB,fuera,5429,,0.396583,-0.029162,0.288397
+F2_Mallorca_informativo,metricas,,S0_res|Ridge,dentro,7345,,0.424620,0.005265,0.322856
+F2_Mallorca_informativo,metricas,,S0_res|Ridge,fuera,5429,,0.412135,-0.019382,0.304791
+F2_Mallorca_informativo,metricas,,S0_res|HGB,dentro,7345,,0.492293,-0.158100,0.370243
+F2_Mallorca_informativo,metricas,,S0_res|HGB,fuera,5429,,0.455244,-0.072459,0.324606
+F2_Mallorca_informativo,metricas,,S0_res|ANN_M,dentro,7345,,0.487334,-0.170077,0.367748
+F2_Mallorca_informativo,metricas,,S0_res|ANN_M,fuera,5429,,0.425440,-0.054993,0.313005
+F2_Mallorca_informativo,metricas,,S0_sin_alt|HGB,dentro,7345,,0.445303,-0.134241,0.332585
+F2_Mallorca_informativo,metricas,,S0_sin_alt|HGB,fuera,5429,,0.430627,-0.177807,0.306753
+F2_Mallorca_informativo,metricas,,S0_sin_alt|ANN_M,dentro,7345,,0.460742,-0.161382,0.344567
+F2_Mallorca_informativo,metricas,,S0_sin_alt|ANN_M,fuera,5429,,0.417108,-0.163201,0.300937
+F2_Mallorca_informativo,metricas,,S0_alt_recortada|HGB,dentro,7345,,0.490727,-0.160973,0.366578
+F2_Mallorca_informativo,metricas,,S0_alt_recortada|HGB,fuera,5429,,0.458527,-0.089354,0.327602
+F2_Mallorca_informativo,metricas,,S0_res_sin_alt|HGB,dentro,7345,,0.441637,-0.140476,0.330123
+F2_Mallorca_informativo,metricas,,S0_res_sin_alt|HGB,fuera,5429,,0.421976,-0.180855,0.305070
+F2_Mallorca_informativo,metricas,,S0_res_sin_alt|ANN_M,dentro,7345,,0.464326,-0.172192,0.349741
+F2_Mallorca_informativo,metricas,,S0_res_sin_alt|ANN_M,fuera,5429,,0.431222,-0.205307,0.321633
+F2_Menorca,tasa_de_marcas,et0_om_mm,,,20,0.009537,,,
+F2_Menorca,tasa_de_marcas,tmax_c,,,16,0.007630,,,
+F2_Menorca,tasa_de_marcas,tmin_c,,,5,0.002384,,,
+F2_Menorca,tasa_de_marcas,shortwave_sum_mj_m2,,,6,0.002861,,,
+F2_Menorca,tasa_de_marcas,wind10_mean_ms,,,22,0.010491,,,
+F2_Menorca,tasa_de_marcas,wind10_max_ms,,,20,0.009537,,,
+F2_Menorca,tasa_de_marcas,rh_mean_pct,,,38,0.018121,,,
+F2_Menorca,tasa_de_marcas,rh_max_pct,,,2,0.000954,,,
+F2_Menorca,tasa_de_marcas,rh_min_pct,,,9,0.004292,,,
+F2_Menorca,tasa_de_marcas,doy_sin,,,12,0.005722,,,
+F2_Menorca,tasa_de_marcas,doy_cos,,,13,0.006199,,,
+F2_Menorca,tasa_de_marcas,Ra,,,144,0.068670,,,
+F2_Menorca,tasa_de_marcas,altitude_m,,,0,0.000000,,,
+F2_Menorca,tasa_de_marcas,fuera_de_dominio,,,256,0.122079,,,
+F2_Menorca,metricas,,HGB-S0 (03.2),dentro,1841,,0.465503,0.282825,0.349247
+F2_Menorca,metricas,,HGB-S0 (03.2),fuera,256,,0.401480,0.165144,0.259182
+F2_Menorca,metricas,,HGB-S2 (03.2),dentro,1841,,0.391508,0.236531,0.290623
+F2_Menorca,metricas,,HGB-S2 (03.2),fuera,256,,0.321407,0.150628,0.220806
+F2_Menorca,metricas,,ANN_M-S0 (03.2),dentro,1841,,0.509297,0.364980,0.408134
+F2_Menorca,metricas,,ANN_M-S0 (03.2),fuera,256,,0.480109,0.280904,0.354878
+F2_Menorca,metricas,,OM_crudo,dentro,1841,,1.048458,0.955962,0.959218
+F2_Menorca,metricas,,OM_crudo,fuera,256,,0.965108,0.837336,0.845087
+F2_Menorca,metricas,,OM_AHC_mensual_medio_entrenamiento,dentro,1841,,0.592425,0.431798,0.462424
+F2_Menorca,metricas,,OM_AHC_mensual_medio_entrenamiento,fuera,256,,0.545282,0.326392,0.372088
+F2_Menorca,metricas,,PM_estacion_mas_cercana_mismo_dia,dentro,1841,,0.567940,0.328672,0.433584
+F2_Menorca,metricas,,PM_estacion_mas_cercana_mismo_dia,fuera,256,,0.508560,0.222677,0.361436
+F2_Menorca,metricas,,PM_IDW_mismo_dia,dentro,1841,,0.577773,0.389351,0.459903
+F2_Menorca,metricas,,PM_IDW_mismo_dia,fuera,256,,0.494263,0.254066,0.376070
+F2_Menorca,metricas,,media_fija,dentro,1841,,0.483022,0.336088,0.378768
+F2_Menorca,metricas,,media_fija,fuera,256,,0.399873,0.209605,0.292557
+F2_Menorca,metricas,,media_ponderada,dentro,1841,,0.483022,0.336088,0.378768
+F2_Menorca,metricas,,media_ponderada,fuera,256,,0.399873,0.209605,0.292557
+F2_Menorca,metricas,,residuo_IDW,dentro,1841,,0.418084,0.186924,0.301365
+F2_Menorca,metricas,,residuo_IDW,fuera,256,,0.352898,0.079185,0.219356
+F2_Menorca,metricas,,S0+R1|Ridge,dentro,1841,,0.586008,0.472706,0.490931
+F2_Menorca,metricas,,S0+R1|Ridge,fuera,256,,0.493375,0.335401,0.381080
+F2_Menorca,metricas,,S0+R1|HGB,dentro,1841,,0.588308,0.472495,0.488350
+F2_Menorca,metricas,,S0+R1|HGB,fuera,256,,0.483113,0.365939,0.383805
+F2_Menorca,metricas,,S2+R1|HGB,dentro,1841,,0.593945,0.495415,0.503637
+F2_Menorca,metricas,,S2+R1|HGB,fuera,256,,0.483659,0.359344,0.375066
+F2_Menorca,metricas,,S0+R1_ayer|HGB,dentro,1841,,0.538948,0.359198,0.410377
+F2_Menorca,metricas,,S0+R1_ayer|HGB,fuera,256,,0.473214,0.227597,0.316473
+F2_Menorca,metricas,,S0_res|Ridge,dentro,1841,,0.632313,0.513665,0.531031
+F2_Menorca,metricas,,S0_res|Ridge,fuera,256,,0.565520,0.383231,0.433998
+F2_Menorca,metricas,,S0_res|HGB,dentro,1841,,0.467978,0.285366,0.352110
+F2_Menorca,metricas,,S0_res|HGB,fuera,256,,0.387790,0.156568,0.255981
+F2_Menorca,metricas,,S0_res|ANN_M,dentro,1841,,0.566893,0.419115,0.458099
+F2_Menorca,metricas,,S0_res|ANN_M,fuera,256,,0.509853,0.303983,0.363593
+F2_Menorca,metricas,,S0_sin_alt|HGB,dentro,1841,,0.596210,0.467097,0.489538
+F2_Menorca,metricas,,S0_sin_alt|HGB,fuera,256,,0.576090,0.418972,0.449283
+F2_Menorca,metricas,,S0_sin_alt|ANN_M,dentro,1841,,0.596660,0.474715,0.494231
+F2_Menorca,metricas,,S0_sin_alt|ANN_M,fuera,256,,0.554423,0.380898,0.408084
+F2_Menorca,metricas,,S0_alt_recortada|HGB,dentro,1841,,0.465503,0.282825,0.349247
+F2_Menorca,metricas,,S0_alt_recortada|HGB,fuera,256,,0.401480,0.165143,0.259182
+F2_Menorca,metricas,,S0_res_sin_alt|HGB,dentro,1841,,0.591627,0.459357,0.483330
+F2_Menorca,metricas,,S0_res_sin_alt|HGB,fuera,256,,0.587744,0.416442,0.446111
+F2_Menorca,metricas,,S0_res_sin_alt|ANN_M,dentro,1841,,0.585597,0.461090,0.481699
+F2_Menorca,metricas,,S0_res_sin_alt|ANN_M,fuera,256,,0.535044,0.357680,0.390201

@@ -1,0 +1,5 @@
+scope,method,n_seeds,rmse_ensemble,rmse_seed_mean,rmse_seed_sd,rmse_seed_min,rmse_seed_max
+"F1 (cohorte 03.2, n=19251)",ANN_M-S0 (03.2),5,1.001663,1.010850,0.136948,0.809749,1.143256
+"F1 (cohorte 03.2, n=19251)",S0_res_sin_alt|ANN_M,5,0.452207,0.457048,0.004631,0.450097,0.461637
+"F1 (cohorte 03.2, n=19251)",S0_res|ANN_M,5,0.985804,0.992175,0.091726,0.905032,1.136287
+"F1 (cohorte 03.2, n=19251)",S0_sin_alt|ANN_M,5,0.451716,0.456128,0.002332,0.452625,0.458753

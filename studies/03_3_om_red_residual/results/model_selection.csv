@@ -1,0 +1,235 @@
+fold,arm,model,n_train,params,cv_mean_rmse_chosen,negatives_clipped,convergence_warnings,rows_test_without_network,seconds,platform,test_run
+F1_IB01,S0_res,ANN_M,42958,"{""alpha"": 0.0001}",0.436339,1299,0,0,1339.800000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB02,S0_res,ANN_M,42791,"{""alpha"": 0.001}",0.528474,0,0,0,1164.300000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB03,S0_res,ANN_M,42792,"{""alpha"": 0.0001}",0.898251,0,0,0,1556.700000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB04,S0_res,ANN_M,42883,"{""alpha"": 0.0001}",0.826365,0,0,0,1505.100000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB05,S0_res,ANN_M,42794,"{""alpha"": 0.0001}",0.513247,0,0,0,1087.500000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB06,S0_res,ANN_M,42800,"{""alpha"": 0.001}",0.827275,0,0,0,1473.500000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB08,S0_res,ANN_M,43512,"{""alpha"": 0.0001}",0.806568,0,0,0,1436.300000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB10,S0_res,ANN_M,43589,"{""alpha"": 0.001}",0.847843,0,0,0,1511.400000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB11,S0_res,ANN_M,43641,"{""alpha"": 0.001}",0.787166,0,0,0,1501.300000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F2_Ibiza,S0_res,ANN_M,38129,"{""alpha"": 0.001}",0.428682,1322,0,0,960.900000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,S0_res,ANN_M,15299,"{""alpha"": 0.0001}",1.066728,0,0,0,124.700000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F2_Menorca,S0_res,ANN_M,43512,"{""alpha"": 0.0001}",0.806568,0,0,0,1463.300000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB01,S0_res_sin_alt,ANN_M,42958,"{""alpha"": 0.0001}",0.451850,0,0,0,1242.100000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB02,S0_res_sin_alt,ANN_M,42791,"{""alpha"": 0.001}",0.429490,0,0,0,1092.500000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB03,S0_res_sin_alt,ANN_M,42792,"{""alpha"": 0.0001}",0.450344,0,0,0,1009.300000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB04,S0_res_sin_alt,ANN_M,42883,"{""alpha"": 0.001}",0.456436,0,0,0,1086.400000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB05,S0_res_sin_alt,ANN_M,42794,"{""alpha"": 0.0001}",0.449973,0,0,0,1149.300000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB06,S0_res_sin_alt,ANN_M,42800,"{""alpha"": 0.0001}",0.449222,0,0,0,1206.400000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB08,S0_res_sin_alt,ANN_M,43512,"{""alpha"": 0.001}",0.442331,0,0,0,1075.600000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB10,S0_res_sin_alt,ANN_M,43589,"{""alpha"": 0.0001}",0.451513,0,0,0,1086.900000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB11,S0_res_sin_alt,ANN_M,43641,"{""alpha"": 0.001}",0.418421,0,0,0,964.500000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F2_Ibiza,S0_res_sin_alt,ANN_M,38129,"{""alpha"": 0.001}",0.425362,0,0,0,780.700000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,S0_res_sin_alt,ANN_M,15299,"{""alpha"": 0.0001}",0.530940,0,0,0,163.900000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F2_Menorca,S0_res_sin_alt,ANN_M,43512,"{""alpha"": 0.001}",0.442331,0,0,0,867.900000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB01,S0_sin_alt,ANN_M,42958,"{""alpha"": 0.0001}",0.448721,0,0,0,953.100000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB02,S0_sin_alt,ANN_M,42791,"{""alpha"": 0.001}",0.425801,0,0,0,911.600000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB03,S0_sin_alt,ANN_M,42792,"{""alpha"": 0.001}",0.448323,0,0,0,884.500000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB04,S0_sin_alt,ANN_M,42883,"{""alpha"": 0.0001}",0.455052,0,0,0,915.600000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB05,S0_sin_alt,ANN_M,42794,"{""alpha"": 0.001}",0.448573,0,0,0,890.300000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB06,S0_sin_alt,ANN_M,42800,"{""alpha"": 0.001}",0.450263,0,0,0,911.200000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB08,S0_sin_alt,ANN_M,43512,"{""alpha"": 0.0001}",0.441087,0,0,0,884.100000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB10,S0_sin_alt,ANN_M,43589,"{""alpha"": 0.0001}",0.453219,0,0,0,897.300000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB11,S0_sin_alt,ANN_M,43641,"{""alpha"": 0.0001}",0.418586,0,0,0,871.100000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F2_Ibiza,S0_sin_alt,ANN_M,38129,"{""alpha"": 0.0001}",0.424528,0,0,0,695.500000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,S0_sin_alt,ANN_M,15299,"{""alpha"": 0.001}",0.527388,0,0,0,170.400000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F2_Menorca,S0_sin_alt,ANN_M,43512,"{""alpha"": 0.0001}",0.441087,0,0,0,890.000000,Linux-6.18.55+-x86_64-with-glibc2.39,False
+F1_IB01,S0+R1,HGB,42955,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.420675,0,0,0,38.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,S0+R1,HGB,42787,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.422028,0,0,0,39.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,S0+R1,HGB,42789,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.453287,0,0,0,39.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,S0+R1,HGB,42880,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.428962,0,0,0,42.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,S0+R1,HGB,42793,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.420198,0,0,0,39.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,S0+R1,HGB,42797,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.412977,0,0,0,44.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,S0+R1,HGB,43509,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.405985,0,0,0,41.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,S0+R1,HGB,43586,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.440015,0,0,0,42.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,S0+R1,HGB,43638,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.371384,0,0,0,40.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,S0+R1,HGB,38126,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.350490,0,0,0,33.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,S0+R1,HGB,14643,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.630850,0,0,0,9.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,S0+R1,HGB,43509,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.405985,0,0,0,43.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,S0+R1_ayer,HGB,42953,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.440825,0,0,0,42.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,S0+R1_ayer,HGB,42785,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.427108,0,0,0,43.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,S0+R1_ayer,HGB,42787,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.451557,0,0,0,42.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,S0+R1_ayer,HGB,42878,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.430932,0,0,0,42.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,S0+R1_ayer,HGB,42785,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.433980,0,0,0,42.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,S0+R1_ayer,HGB,42795,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.442065,0,0,0,38.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,S0+R1_ayer,HGB,43507,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.433189,0,0,0,42.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,S0+R1_ayer,HGB,43584,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.452388,0,0,0,41.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,S0+R1_ayer,HGB,43636,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.413778,0,0,0,42.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,S0+R1_ayer,HGB,38124,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.415089,0,0,0,34.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,S0+R1_ayer,HGB,14641,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.598097,0,0,0,8.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,S0+R1_ayer,HGB,43507,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.433189,0,0,0,39.800000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,S0_alt_recortada,HGB,42958,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.419870,0,0,0,36.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,S0_alt_recortada,HGB,42791,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.419422,0,0,0,37.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,S0_alt_recortada,HGB,42792,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.452951,0,0,0,38.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,S0_alt_recortada,HGB,42883,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.418578,0,0,0,39.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,S0_alt_recortada,HGB,42794,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.429719,0,0,0,36.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,S0_alt_recortada,HGB,42800,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.420586,0,0,0,35.800000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,S0_alt_recortada,HGB,43512,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.420203,0,0,0,39.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,S0_alt_recortada,HGB,43589,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.429613,0,0,0,38.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,S0_alt_recortada,HGB,43641,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.401969,0,0,0,36.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,S0_alt_recortada,HGB,38129,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.403719,0,0,0,31.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,S0_alt_recortada,HGB,15299,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.599953,0,0,0,8.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,S0_alt_recortada,HGB,43512,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.420203,0,0,0,37.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,S0_res,HGB,42958,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.423235,0,0,0,38.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,S0_res,HGB,42791,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.418782,0,0,0,37.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,S0_res,HGB,42792,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.452595,0,0,0,36.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,S0_res,HGB,42883,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.420789,0,0,0,37.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,S0_res,HGB,42794,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.431518,0,0,0,36.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,S0_res,HGB,42800,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.423549,0,0,0,35.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,S0_res,HGB,43512,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.422999,0,0,0,39.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,S0_res,HGB,43589,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.429690,0,0,0,39.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,S0_res,HGB,43641,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.403753,0,0,0,38.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,S0_res,HGB,38129,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.405782,0,0,0,29.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,S0_res,HGB,15299,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.605882,0,0,0,8.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,S0_res,HGB,43512,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.422999,0,0,0,39.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,S0_res_sin_alt,HGB,42958,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.450223,0,0,0,32.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,S0_res_sin_alt,HGB,42791,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.428271,0,0,0,32.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,S0_res_sin_alt,HGB,42792,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.449267,0,0,0,35.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,S0_res_sin_alt,HGB,42883,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.457154,0,0,0,32.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,S0_res_sin_alt,HGB,42794,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.451517,0,0,0,36.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,S0_res_sin_alt,HGB,42800,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.452899,0,0,0,32.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,S0_res_sin_alt,HGB,43512,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.437468,0,0,0,36.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,S0_res_sin_alt,HGB,43589,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.452592,0,0,0,32.800000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,S0_res_sin_alt,HGB,43641,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.415817,0,0,0,34.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,S0_res_sin_alt,HGB,38129,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.419649,0,0,0,28.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,S0_res_sin_alt,HGB,15299,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.522497,0,0,0,8.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,S0_res_sin_alt,HGB,43512,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.437468,0,0,0,32.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,S0_sin_alt,HGB,42958,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.449155,0,0,0,33.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,S0_sin_alt,HGB,42791,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.427409,0,0,0,35.800000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,S0_sin_alt,HGB,42792,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.448116,0,0,0,33.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,S0_sin_alt,HGB,42883,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.456669,0,0,0,35.800000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,S0_sin_alt,HGB,42794,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.449447,0,0,0,33.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,S0_sin_alt,HGB,42800,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.451855,0,0,0,33.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,S0_sin_alt,HGB,43512,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.436506,0,0,0,33.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,S0_sin_alt,HGB,43589,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.452124,0,0,0,35.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,S0_sin_alt,HGB,43641,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.415654,0,0,0,33.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,S0_sin_alt,HGB,38129,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.418742,0,0,0,31.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,S0_sin_alt,HGB,15299,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.517581,0,0,0,8.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,S0_sin_alt,HGB,43512,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.436506,0,0,0,34.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,S2+R1,HGB,42954,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.394686,0,0,0,49.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,S2+R1,HGB,42786,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.423834,0,0,0,53.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,S2+R1,HGB,42788,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.429497,0,0,0,52.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,S2+R1,HGB,42879,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.409826,0,0,0,51.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,S2+R1,HGB,42792,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.385739,0,0,0,54.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,S2+R1,HGB,42796,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.385276,0,0,0,52.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,S2+R1,HGB,43508,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.388981,0,0,0,50.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,S2+R1,HGB,43585,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.430263,0,0,0,50.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,S2+R1,HGB,43638,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.341094,0,0,0,53.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,S2+R1,HGB,38126,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.318734,0,0,0,42.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,S2+R1,HGB,14642,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.597194,0,0,0,10.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,S2+R1,HGB,43508,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.388981,0,0,0,54.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,anidado_IB01,HGB,37279,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.425632,0,0,0,29.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,anidado_IB01,HGB,37280,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.463055,0,0,0,29.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,anidado_IB01,HGB,37371,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.425015,0,0,0,31.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,anidado_IB01,HGB,37282,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.427405,0,0,0,30.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,anidado_IB01,HGB,37288,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.428237,0,0,0,32.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,anidado_IB01,HGB,38000,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.427419,0,0,0,29.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,anidado_IB01,HGB,38077,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.434792,0,0,0,30.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,anidado_IB01,HGB,38129,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.403719,0,0,0,32.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,anidado_IB01,HGB,9787,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.681444,0,0,0,5.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,anidado_IB01,HGB,38000,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.427419,0,0,0,29.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,anidado_IB02,HGB,37279,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.425632,0,0,0,29.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,anidado_IB02,HGB,37113,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.406765,0,0,0,30.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,anidado_IB02,HGB,37204,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.422573,0,0,0,29.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,anidado_IB02,HGB,37115,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.453096,0,0,0,31.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,anidado_IB02,HGB,37121,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.424121,0,0,0,32.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,anidado_IB02,HGB,37833,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.426543,0,0,0,29.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,anidado_IB02,HGB,37910,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.434135,0,0,0,30.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,anidado_IB02,HGB,37962,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.407051,0,0,0,31.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,anidado_IB02,HGB,32450,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.410830,0,0,0,23.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,anidado_IB02,HGB,37833,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.426543,0,0,0,30.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,anidado_IB03,HGB,37280,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.463055,0,0,0,29.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,anidado_IB03,HGB,37113,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 31}",0.406765,0,0,0,29.800000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,anidado_IB03,HGB,37205,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.458989,0,0,0,30.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,anidado_IB03,HGB,37116,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.496011,0,0,0,29.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,anidado_IB03,HGB,37122,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.461257,0,0,0,30.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,anidado_IB03,HGB,37834,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.464789,0,0,0,28.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,anidado_IB03,HGB,37911,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.471182,0,0,0,29.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,anidado_IB03,HGB,37963,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.443937,0,0,0,32.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,anidado_IB03,HGB,32451,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.453641,0,0,0,25.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,anidado_IB03,HGB,37834,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.464789,0,0,0,30.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,anidado_IB04,HGB,37371,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.425015,0,0,0,32.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,anidado_IB04,HGB,37204,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.422573,0,0,0,29.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,anidado_IB04,HGB,37205,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.458989,0,0,0,31.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,anidado_IB04,HGB,37207,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.434522,0,0,0,30.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,anidado_IB04,HGB,37213,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.441604,0,0,0,31.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,anidado_IB04,HGB,37925,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.447702,0,0,0,31.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,anidado_IB04,HGB,38002,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.458602,0,0,0,30.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,anidado_IB04,HGB,38054,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.413750,0,0,0,32.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,anidado_IB04,HGB,32542,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.417700,0,0,0,23.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,anidado_IB04,HGB,37925,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.447702,0,0,0,29.900000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,anidado_IB05,HGB,37282,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.427405,0,0,0,30.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,anidado_IB05,HGB,37115,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.453096,0,0,0,29.800000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,anidado_IB05,HGB,37116,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.496011,0,0,0,29.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,anidado_IB05,HGB,37207,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.434522,0,0,0,29.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,anidado_IB05,HGB,37124,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.435395,0,0,0,28.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,anidado_IB05,HGB,37836,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.436614,0,0,0,29.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,anidado_IB05,HGB,37913,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.444140,0,0,0,29.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,anidado_IB05,HGB,37965,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.415706,0,0,0,31.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,anidado_IB05,HGB,32453,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.410780,0,0,0,23.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,anidado_IB05,HGB,37836,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.436614,0,0,0,29.800000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,anidado_IB06,HGB,37288,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.428237,0,0,0,32.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,anidado_IB06,HGB,37121,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.424121,0,0,0,28.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,anidado_IB06,HGB,37122,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.461257,0,0,0,32.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,anidado_IB06,HGB,37213,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.441604,0,0,0,30.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,anidado_IB06,HGB,37124,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.435395,0,0,0,32.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,anidado_IB06,HGB,37842,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.425792,0,0,0,31.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,anidado_IB06,HGB,37919,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.434556,0,0,0,30.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,anidado_IB06,HGB,37971,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.401529,0,0,0,32.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,anidado_IB06,HGB,32459,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.404882,0,0,0,23.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,anidado_IB06,HGB,37842,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.425792,0,0,0,30.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,anidado_IB08,HGB,38000,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.427419,0,0,0,29.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,anidado_IB08,HGB,37833,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.426543,0,0,0,29.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,anidado_IB08,HGB,37834,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.464789,0,0,0,30.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,anidado_IB08,HGB,37925,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.447702,0,0,0,29.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,anidado_IB08,HGB,37836,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.436614,0,0,0,29.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,anidado_IB08,HGB,37842,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.425792,0,0,0,29.800000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,anidado_IB08,HGB,38631,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.427421,0,0,0,31.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,anidado_IB08,HGB,38683,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.397483,0,0,0,30.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,anidado_IB08,HGB,33171,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.399332,0,0,0,23.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,anidado_IB08,HGB,10341,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.556346,0,0,0,5.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,anidado_IB10,HGB,38077,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.434792,0,0,0,29.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,anidado_IB10,HGB,37910,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.434135,0,0,0,29.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,anidado_IB10,HGB,37911,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.471182,0,0,0,31.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,anidado_IB10,HGB,38002,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.458602,0,0,0,32.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,anidado_IB10,HGB,37913,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.444140,0,0,0,33.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,anidado_IB10,HGB,37919,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.434556,0,0,0,29.000000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,anidado_IB10,HGB,38631,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.427421,0,0,0,29.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,anidado_IB10,HGB,38760,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.414727,0,0,0,32.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,anidado_IB10,HGB,33248,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.420075,0,0,0,25.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,anidado_IB10,HGB,38631,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.427421,0,0,0,29.800000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,anidado_IB11,HGB,38129,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.403719,0,0,0,29.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,anidado_IB11,HGB,37962,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.407051,0,0,0,31.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,anidado_IB11,HGB,37963,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.443937,0,0,0,33.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,anidado_IB11,HGB,38054,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.413750,0,0,0,29.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,anidado_IB11,HGB,37965,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.415706,0,0,0,33.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,anidado_IB11,HGB,37971,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.401529,0,0,0,30.800000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,anidado_IB11,HGB,38683,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.397483,0,0,0,31.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,anidado_IB11,HGB,38760,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.414727,0,0,0,32.200000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,anidado_IB11,HGB,10470,"{""learning_rate"": 0.03, ""max_leaf_nodes"": 15}",0.497956,0,0,0,5.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,anidado_IB11,HGB,38683,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.397483,0,0,0,31.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,S0+R1,Ridge,42955,"{""alpha"": 100}",0.466519,0,0,0,0.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,S0+R1,Ridge,42787,"{""alpha"": 100}",0.398008,0,0,0,0.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,S0+R1,Ridge,42789,"{""alpha"": 100}",0.425626,0,0,0,0.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,S0+R1,Ridge,42880,"{""alpha"": 100}",0.443368,0,0,0,0.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,S0+R1,Ridge,42793,"{""alpha"": 100}",0.436807,0,0,0,0.600000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,S0+R1,Ridge,42797,"{""alpha"": 100}",0.450265,0,0,0,0.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,S0+R1,Ridge,43509,"{""alpha"": 100}",0.430664,0,0,0,0.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,S0+R1,Ridge,43586,"{""alpha"": 100}",0.434462,0,0,0,0.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,S0+R1,Ridge,43638,"{""alpha"": 100}",0.374114,0,0,0,0.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,S0+R1,Ridge,38126,"{""alpha"": 100}",0.474658,0,0,0,0.500000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,S0+R1,Ridge,14643,"{""alpha"": 100}",1.040882,3,0,0,0.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,S0+R1,Ridge,43509,"{""alpha"": 100}",0.430664,0,0,0,0.700000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB01,S0_res,Ridge,42958,"{""alpha"": 100}",0.488814,0,0,0,0.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB02,S0_res,Ridge,42791,"{""alpha"": 100}",0.456104,2,0,0,0.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB03,S0_res,Ridge,42792,"{""alpha"": 100}",0.482631,2,0,0,0.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB04,S0_res,Ridge,42883,"{""alpha"": 100}",0.489520,0,0,0,0.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB05,S0_res,Ridge,42794,"{""alpha"": 100}",0.493006,2,0,0,0.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB06,S0_res,Ridge,42800,"{""alpha"": 100}",0.487504,1,0,0,0.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB08,S0_res,Ridge,43512,"{""alpha"": 10}",0.471658,0,0,0,0.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB10,S0_res,Ridge,43589,"{""alpha"": 100}",0.484943,0,0,0,0.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F1_IB11,S0_res,Ridge,43641,"{""alpha"": 0.1}",0.453382,0,0,0,0.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Ibiza,S0_res,Ridge,38129,"{""alpha"": 0.1}",0.464729,0,0,0,0.300000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Mallorca_informativo,S0_res,Ridge,15299,"{""alpha"": 100}",0.967056,11,0,0,0.100000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
+F2_Menorca,S0_res,Ridge,43512,"{""alpha"": 10}",0.471658,0,0,0,0.400000,Linux-6.18.44-fc-v880-x86_64-with-glibc2.39,False
