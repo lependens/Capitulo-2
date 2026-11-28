@@ -15,6 +15,8 @@ Estado: **EJECUTADO** (27-11-2026). Criterios congelados en `config/thresholds_v
 | [VII — Resultados planificados](#parte-vii--resultados-planificados) | Regla de interpretación, G1–G3, P1–P2, F2, B-ayer, A y diagnóstico de costa |
 | [VIII — Análisis post hoc](#parte-viii--análisis-post-hoc-sin-veredicto) | Por estación, distancia a la red, Ridge frente a HGB, semillas de la ANN |
 | [IX — Decisiones previas y desviaciones](#parte-ix--decisiones-previas-a-la-congelación-y-desviaciones) | Qué se decidió antes de congelar y qué se apartó del plan |
+| [X — Conclusiones sobre los modelos](#parte-x--conclusiones-sobre-los-modelos) | Guía de lectura (qué es cada modelo, conjunto e hipótesis), lo bueno, lo malo y lo que no responde |
+| [XI — Propuestas de mejora](#parte-xi--propuestas-de-mejora) | Qué hacer a partir de estos resultados, con su viabilidad y su coste |
 
 # Parte I — Pregunta y motivación
 
@@ -335,3 +337,182 @@ Josep delegó estas dudas con la instrucción «decide tú con criterio científ
 - Kaggle, CPU, 4 procesos por sesión: sesión 0 (Ridge y HGB, 576 celdas, 1 h 47 min), sesión 1 (ANN M de B, 84, 6 h 22 min), sesión 2 (ANN M de C, IB01–IB06, 60, 3 h 32 min) y sesión 3 (ANN M de C, resto, 60, 2 h 54 min).
 - Entorno de todas las celdas: Python 3.13.18, numpy 2.5.3, pandas 3.0.5, scikit-learn 1.9.1.
 - Informe: `python studies/03_1_2_loso_sensor_red/run.py report` (unos 30 s).
+
+# Parte X — Conclusiones sobre los modelos
+
+Esta parte valora los modelos **en sí mismos**, al margen de la regla de interpretación, que ya está aplicada en la Parte VII y no cambia. Es una valoración posterior a los resultados, para revisar. Lo que sale de un análisis post hoc (Parte VIII y la media del punto X.2) se marca como tal y no tiene veredicto.
+
+## X.0 Guía de lectura: qué es cada cosa
+
+Para no tener que volver a las Partes II–III, aquí está todo lo que se nombra después. En el resto de la parte, cada modelo se escribe con su nombre en palabras y, entre paréntesis, el código.
+
+**Cifras:** RMSE en mm/día frente a la PM calculada de la estación evaluada, estación no vista (F1: 9 estaciones, una cada vez), TEST 2020–2025, n = 19.251, salvo que se diga otra cosa. Más bajo es mejor. Δ = RMSE(A) − RMSE(B); negativo significa que A gana. El umbral práctico es 0,05 (por debajo de eso no hay interés práctico).
+
+**El sensor (familia).** Es el aparato del usuario y lo que mide cada día.
+
+| Nombre en palabras | Código | Qué mide | Coste del aparato |
+|---|---|---|---|
+| Termómetro (solo temperatura) | HS-Ra | Tmín, Tmáx (y Ra, que es astronómica y se calcula) | el más barato |
+| Termohigrómetro (temperatura + humedad) | Valiantzas | Tmín, Tmáx, humedad media (y Ra) | barato; es el sensor «del servicio» |
+| Piranómetro (con radiación) | HG-Rs | Tmedia y radiación solar Rs | caro; no es de aficionado |
+
+**La red.** Son las estaciones SIAR *de entrenamiento* de cada partición, sin la estación evaluada.
+
+| Qué es | Código | Contenido |
+|---|---|---|
+| IDW | IDW | La PM de la red interpolada por distancia, del mismo día. Es un comparador y también un input |
+| Red mínima | R1 | La IDW de la PM + d₁ (distancia a la estación más cercana) |
+| Red ampliada | R3 | La PM de las 3 estaciones más cercanas, ordenadas por distancia, + d₁, d₂, d₃ |
+
+**Los conjuntos de inputs.** «S» es siempre «el sensor».
+
+| Conjunto | En palabras | Inputs |
+|---|---|---|
+| S | solo el sensor | Los de su familia (viene del 03.1, no se reentrenó) |
+| S+R1 | sensor + red mínima | S + IDW + d₁ |
+| S+R3 | sensor + 3 vecinas | S + PM de 3 vecinas + d₁, d₂, d₃ |
+| R | solo la red, sin sensor | PM de 3 vecinas + d₁–d₃ + Ra + IDW |
+| S+costa | sensor + distancia a la costa | S + log(1 + km a la costa) |
+
+**Los escenarios.**
+
+| Escenario | Qué estima | Datos que usa |
+|---|---|---|
+| B (principal) | la PM **del día d**, al terminar el día | sensor y red del día d |
+| C (previsión) | la PM del día **d+1**, sin modelo meteorológico | sensor y red del día d, más Ra(d+1) |
+| B-ayer | la PM del día d con la red desfasada | sensor del día d, red del día d−1 |
+| A | B con la distancia a la costa | solo Ridge y HGB |
+
+**Los modelos de aprendizaje.** **HGB** (árboles potenciados) es el modelo de referencia y el único al que se aplica la regla. **Ridge** es una regresión lineal. **ANN M** es una red neuronal de dos capas (64, 32), con 5 semillas.
+
+**Los comparadores.** IDW del mismo día (la red sola, sin ML). **Vecina**: la PM de la estación más cercana. **OM + AHC**: Open-Meteo con un coeficiente mensual transferido (no usa el sensor). En C: **persistencia** (el valor de hoy como el de mañana, con la IDW, la vecina o el modelo del día d) y **climatología** (el promedio mensual).
+
+**Las hipótesis.** Se cumplen o no con el IC 95 % del bootstrap.
+
+| Hipótesis | Pregunta | Resultado (HGB, F1) |
+|---|---|---|
+| G1 | ¿El sensor aporta sobre la red? (sensor + red mínima frente a la IDW) | Solo con piranómetro: −0,072. Con termohigrómetro +0,001 (equivalentes); con termómetro +0,020 |
+| G2 | ¿La red aporta sobre el sensor solo? | **Sí**, en las tres: −0,178, −0,083, −0,058 |
+| G3 | ¿Un modelo con la red sola mejora la IDW? | **No**: −0,006, equivalentes |
+| P1 | ¿La previsión a d+1 gana a la persistencia? | **Sí**, en las tres, pero poco: −0,037, −0,044, −0,057 |
+| P2 | ¿El sensor aporta en la previsión? (sensor + red frente a solo red) | **No**: +0,014, +0,007, −0,006 |
+
+**Un ejemplo de cómo se lee un código:** «S+R3 Valiantzas HGB» es un modelo de árboles con un termohigrómetro (Tmín, Tmáx, HR) y la PM del mismo día de las 3 estaciones más cercanas. Su RMSE es 0,385; la IDW, 0,434.
+
+## X.1 Resumen de las opciones, con cifras (F1, estación no vista)
+
+Todas las cifras son del escenario B (mismo día) sobre la misma cohorte y las mismas particiones, salvo las que vienen de otros estudios (se marca). Los de otros estudios se han tomado de sus README, no se han recalculado, y no hay contraste pareado con los del 03.1.2.
+
+| Opción | Qué necesita el usuario | RMSE | Fuente |
+|---|---|---|---|
+| IDW de la red del mismo día | nada (solo la red) | 0,434 | comparador |
+| Estación más cercana del mismo día | nada | 0,484 | comparador |
+| Open-Meteo + coeficiente mensual (OM + AHC) | nada | 0,483 | 03.1 |
+| Open-Meteo + ML (HGB-S0) | nada | 0,433 | 03.2 |
+| Termohigrómetro solo (Valiantzas S) | sensor | 0,518 | 03.1 |
+| Termohigrómetro + red mínima (Valiantzas S+R1) | sensor + red del día | 0,435 | **03.1.2** |
+| Termohigrómetro + 3 vecinas (Valiantzas S+R3) | sensor + red del día | 0,385 | **03.1.2** |
+| Termohigrómetro: **media** de Valiantzas S y la IDW (post hoc) | sensor + red del día | 0,410 | **03.1.2**, X.2 |
+| Open-Meteo + ML + temperatura y humedad (HGB-S2) | sensor | 0,396 | 03.2 |
+| Media de HGB-S2 y la IDW (post hoc) | sensor + red del día | 0,358 | 03.2 |
+| Media de HGB-S0 y la IDW (post hoc) | red del día | 0,377 | 03.3 |
+| Piranómetro solo (HG-Rs S) | piranómetro | 0,421 | 03.1 |
+| Piranómetro + 3 vecinas (HG-Rs S+R3) | piranómetro + red del día | **0,343** | **03.1.2** |
+| Modelo local con piranómetro (techo de V2) | piranómetro en la misma estación | 0,368 | 03.2 |
+
+Dos lecturas de la tabla:
+- **Con termohigrómetro, el 03.1.2 no mejora lo que ya había.** Termohigrómetro + 3 vecinas (0,385) mejora a Open-Meteo + ML + temperatura y humedad (0,396, que no necesita la red) solo en 0,011, y queda peor que la media de ese modelo con la IDW (0,358). La Parte VIII ya lo anticipaba: la red ayuda al sensor, pero un sensor sin Open-Meteo parte de un nivel peor.
+- **El 0,343 con piranómetro es la cifra más baja de F1 de todo el proyecto**, con el matiz de que exige un piranómetro y la red del mismo día.
+
+## X.2 Lo bueno
+
+1. **La red es la mayor fuente de información y el sensor la completa muy bien (G2).** Añadir la red mínima al termohigrómetro baja el RMSE de 0,518 a 0,435 (−0,083 [−0,108; −0,060]); con 3 vecinas, a 0,385. Con termómetro, de 0,633 a 0,455 (−0,178). Es el efecto más grande y más claro del estudio, y se repite con Ridge (−0,135 con termohigrómetro). Con la ANN M solo es claro con termómetro (−0,149); con termohigrómetro (−0,028 [−0,061; +0,008]) y con piranómetro (−0,024 [−0,051; +0,005]) el IC incluye 0.
+2. **Con piranómetro, sensor + red gana con interés práctico.** Piranómetro + red mínima: 0,362 (−0,072 frente a la IDW [−0,093; −0,052]); con 3 vecinas, 0,343 (−0,092). Mejora también al piranómetro solo (−0,058). Cumple la regla en el caso 1. Es un resultado ventajista (Rs es el input más informativo y el más caro), como ya decía el 03.1.
+3. **Lejos de la red, el sensor solo gana a la red en Ibiza (F2, sin veredicto).** A 107–130 km, el termohigrómetro solo da 0,532 frente a 0,612 de la IDW (−0,080 [−0,124; −0,033]), y con piranómetro 0,435 (−0,177). Es la dirección que apuntaba el 03.1 («a 93–130 km empatan»), aunque no se repite igual en Menorca ni en Mallorca.
+4. **Post hoc: la media simple del modelo de sensor y la IDW recupera lo que el modelo con la red como input pierde.** (`extra_media_sensor_idw.py`, sin entrenar nada; el análogo con sensor de la media del 03.3.)
+   - **Termohigrómetro (Valiantzas):** la media da 0,410 en F1 frente a 0,434 de la IDW (−0,025 [−0,039; −0,012]) y frente a 0,435 de sensor + red mínima (−0,025 [−0,046; −0,003]). Gana a la IDW en 6 de 9 estaciones.
+   - **Lejos de la red (Ibiza):** 0,489 frente a 0,612 de la IDW (−0,124 [−0,145; −0,104]) y frente a 0,608 de sensor + red mínima (−0,119). Es la mejor opción con termohigrómetro en las particiones de isla, salvo Menorca, donde gana sensor + 3 vecinas (0,480 frente a 0,524 de la media).
+   - **Piranómetro:** la media da 0,360 y gana a la IDW en las 9 estaciones.
+   - Los errores del modelo de sensor y de la IDW se correlacionan 0,47 (Valiantzas, F1): se compensan en parte, igual que en el 03.2 (0,51).
+   - **No sirve con termómetro** (HS-Ra: 0,466 frente a 0,434 de la IDW en F1).
+5. **P1 se cumple: una previsión a un día sin modelo meteorológico ya gana a la persistencia.** Termohigrómetro + red mínima en C: 0,681 frente a 0,725 de la persistencia de la IDW (−0,044 [−0,058; −0,031]); con 3 vecinas, 0,655. También gana a la climatología (0,742). Es una línea base útil para el estudio 04.
+6. **El resultado es coherente con el 03.1, el 03.2 y el 03.3.** Los tres dicen lo mismo desde otros ángulos: usar la red como *input* de un modelo de aprendizaje con pocas estaciones no rinde (aquí: la red sola da 0,429 frente a 0,434 de la IDW; en el 03.3, +0,011 sobre HGB-S0); promediar sí.
+7. **El diseño es sólido y barato de revisar.** La estación evaluada nunca entra en su propia red (tests), la estación de validación sale del pool en la validación interna, las cohortes y las comparaciones son pareadas y las 108 celdas S del 03.1 se verifican. La variante A (costa) se cerró con un diagnóstico previo sin entrenar y no cambió nada después: el diagnóstico plano acertó.
+
+## X.3 Lo malo
+
+1. **Cerca de la red, el termohigrómetro no compensa.** Termohigrómetro + red mínima es equivalente a la IDW (+0,001), y pierde en 4 de las 9 estaciones (IB04, IB05, IB08, IB11). El resultado depende de la estación y de cómo se use la red: con 3 vecinas gana o empata en 8 de 9, pero en el límite del umbral (−0,0495 frente a −0,05). Para el servicio: no se puede vender «compra un termohigrómetro y mejorarás» a quien tiene una estación SIAR cerca.
+2. **Con solo temperatura (termómetro) no vale la pena, tampoco con la red.** Sensor + red mínima da 0,455 frente a 0,434 de la IDW (+0,020, IC [−0,000; +0,041]); con 3 vecinas gana, pero −0,021, sin interés práctico. Confirma lo del 03.1.
+3. **El modelo de aprendizaje no sabe usar la red como input.** Con la red sola (R) el HGB da 0,429 frente a 0,434 de la IDW (G3, equivalentes); con Ridge es peor (+0,018) y con la ANN M mucho peor (+0,052). Y, lo más serio, **fuera de la red, añadir la red al sensor empeora con HGB y con Ridge** (con la ANN M no, pero esta ya era peor): en Ibiza, termohigrómetro solo 0,532 frente a 0,608 con la red mínima (+0,076 [+0,037; +0,120]; con Ridge, +0,139), y con piranómetro 0,435 frente a 0,540. Hipótesis natural, no comprobada: d₁ (la distancia a la vecina) actúa como identificador de estación y el modelo extrapola cuando en test vale 93–130 km y en la mayoría de F1 vale 11–32 km. Es el mismo diagnóstico del 03.3, aquí sin ablación.
+4. **La red tiene que ser la del mismo día.** Con la red de ayer, el termohigrómetro baja de 0,435 a 0,529 (+0,094 [+0,079; +0,110]), prácticamente el sensor solo (0,518); solo el piranómetro conserva valor (0,391). Dependiendo de cuándo publique el SIAR los datos del día, esto limita el servicio (es una pregunta abierta de las ideas).
+5. **La previsión a un día gana poco y el sensor no aporta.** P1 se cumple por −0,037 a −0,057, y P2 no: sensor + red mínima es equivalente a la red sola. El error a d+1 (0,67–0,69 con HGB y sensor + red mínima) es 0,23–0,31 mayor que el del mismo día (0,435 con termohigrómetro). Para dar una previsión útil hace falta información meteorológica, no un sensor: Open-Meteo del día d+1, que es un reanálisis y no una previsión, da 0,483.
+6. **La ANN M no aportó nada y es inestable.** Termohigrómetro + red mínima con la ANN M da 0,489 (+0,055 frente a la IDW [+0,018; +0,092]), peor que el HGB (0,435). La desviación típica del RMSE entre semillas llega a 0,22. Las 204 celdas de ANN M costaron unas 12,8 horas de Kaggle con 4 procesos, y ningún veredicto depende de ellas. Ya lo anticipaba el 03.1 (el modelo no cambia el veredicto).
+7. **Los números son optimistas.** Sensores SIAR calibrados, no de usuario; datos de red ya validados (el servicio tendría los del día, sin validar); referencia PM calculada, no ET0 medida; y la red de F1 está cerca (d₁ de 11 a 32 km, salvo IB08). Son un límite superior, como en el 03.1.
+8. **F2 tiene poca potencia.** Ibiza son 2 estaciones y Menorca una; los IC por bloques estación-año no recogen la incertidumbre de pocas estaciones. Lo que se ve en F2 es una pista, no una prueba.
+9. **La distancia a la costa no aportó nada** (variante A: +0,006 a +0,025, HGB). Era lo esperado con 9 estaciones bajas y cerca del mar.
+
+## X.4 Lo que este estudio no responde
+
+- **A qué distancia exacta de la red compensa el sensor** (L4, Andalucía): F2 solo tiene tres particiones, y ninguna entre 32 y 93 km.
+- **Cuánto se pierde con un sensor de usuario** de verdad (L11): aquí los sensores son SIAR.
+- **Cuándo publica el SIAR los datos del día**, y por tanto si se puede usar el escenario B para la ET0 de hoy o solo para la de ayer.
+- **Qué pasa combinando el sensor con Open-Meteo y con la red a la vez.** El 03.1.2 no usa Open-Meteo. La media del 03.2 (HGB-S2 + IDW, 0,358) sugiere que esa combinación es mejor que cualquiera de las de aquí.
+- **Previsión con modelo meteorológico** (estudio 04): C es la línea base sin él.
+- **Altura e interior** (L12) y otros climas.
+- **Si la media simple se sostiene fuera de Baleares y con otro sensor:** es post hoc y de 9 estaciones.
+
+# Parte XI — Propuestas de mejora
+
+Valoración de la posibilidad de que funcionen: **alta**, **media** o **baja**. Coste: **bajo** (sin datos nuevos, HGB, minutos u horas locales), **medio** o **alto**. Cada una necesitaría su protocolo congelado antes de ejecutarse. Se enlaza con las líneas de `docs/IDEAS_Y_MEJORAS.md` (L3, L4, L6, L11…) para no duplicar. Nota de criterio: las ideas del documento advierten contra partir en subestudios diferencias de 0,02–0,04 mm/día (punto 8). Por eso lo que sigue no propone un estudio por cada variante, sino llevar las variantes como **brazos** a protocolos que ya van a existir.
+
+## A. Llevar la media sensor + red a la distancia de cruce (L4, Andalucía) — posibilidad **alta**, coste bajo
+
+**Indicio (post hoc):** la media simple de Valiantzas y la IDW da 0,410 en F1 y 0,489 en Ibiza frente a 0,612 de la IDW (X.2, punto 4); sin entrenar ni ajustar nada. Coincide con la media del 03.3 (HGB-S0 + IDW, 0,377).
+
+**Propuesta:** prerregistrar en el protocolo de L4 (exclusión por radio: se quitan las estaciones a menos de r km) estos brazos, con los mismos comparadores y el bootstrap por bloques estación-año:
+- media simple del modelo de sensor y la IDW;
+- la misma media con Open-Meteo + ML + sensor (HGB-S2) en lugar del sensor solo;
+- como referencia: IDW, sensor solo y sensor + red mínima.
+
+Con ~100 estaciones y radios de 0 a 100 km, la pregunta pasa a ser la de la tabla de decisión «si tu estación está a menos de X km, usa…». Es lo que F2 no puede dar con 3 particiones.
+
+## B. Peso de la red según la distancia — posibilidad **media-alta**, coste bajo
+
+En F2 se ve la dirección: cuanto más lejos está la red, más pesa el sensor (el sensor solo gana a la IDW en Ibiza, −0,080, pero pierde algo en Menorca, +0,025, y en Mallorca, +0,019). En vez del 50/50, un peso w(d₁) para la IDW que baje con la distancia, **ajustado solo con DESARROLLO** y validado en test. Es una variante de A, con un parámetro (o dos) y poco riesgo de sobreajuste. Se diseña dentro de L4 y se ajusta con la curva de exclusión por radio.
+
+## C. Ablación de d₁ (alta) y objetivo residual respecto a la IDW (media) — coste bajo
+
+Es la forma de arreglar el punto X.3.3 con base en lo ya visto.
+- **Objetivo residual:** que el HGB prediga PM − IDW a partir del sensor. Si el modelo duda, cae hacia la IDW y no hacia un valor extraño. Cautela: el `residuo_IDW` del 03.3 (interpolar los residuos de HGB-S0 de las vecinas, regresión-kriging simplificada) dio 0,400 en F1 pero fue inestable fuera de la isla (Ibiza +0,042, Mallorca +0,102). No es lo mismo que predecir PM − IDW desde el sensor, pero es un aviso de que el objetivo residual puede propagar sesgos locales.
+- **Ablación de d₁:** repetir sensor + red mínima **sin d₁** (solo la IDW) y sensor + 3 vecinas sin d₁–d₃. Si F2 deja de empeorar, d₁ era un identificador de estación (hipótesis del 03.3, pregunta abierta de las ideas). Es la comprobación más barata de todas y no necesita Kaggle.
+
+Las ideas ya prevén la ablación «sin distancia» dentro de L4 (Andalucía); hacerla antes, en Baleares, es opcional y sirve para decidir si el resto de variantes con la red como input merece la pena. Se puede hacer en un par de horas con el código y las celdas actuales (HGB y Ridge, 12 particiones), y debería llevar sus criterios congelados. Si resulta que d₁ era el problema, el resto de modelos con la red como input se arregla de golpe.
+
+## D. Robustez a un sensor de usuario (L11) — posibilidad **alta**, coste bajo
+
+Esta propuesta gana peso con este estudio: **con sensores SIAR calibrados, el termohigrómetro ya no mejora a la red** cerca de ella. Con un sensor de usuario (sesgo de ±0,5–1 °C, calentamiento por mala ventilación, ±5 % de HR) será peor. Lo más probable es que el resultado sea negativo, y eso es información para decidir si el servicio ofrece el sensor. Degradar los inputs en la evaluación (sin tocar el entrenamiento) mide cuánta de la ganancia de sensor + red sobrevive. Requiere reentrenar los HGB con la degradación, no más datos.
+
+## E. Medir la latencia de publicación del SIAR — posibilidad **alta**, coste bajo
+
+Decide si el escenario B sirve para la ET0 de hoy o solo para la de ayer, y B-ayer pierde mucho (+0,094). Las capturas propias (SIAR Sync V3) pueden dar la hora en que aparece cada dato. Sin esa cifra, todos los números de B son un límite superior (X.3.7).
+
+## F. Incertidumbre por predicción (L6) — posibilidad **alta**, coste bajo
+
+La media sensor + red tiene dos modelos con errores correlacionados 0,47: la discrepancia entre los dos puede usarse como señal de incertidumbre (intervalos por cuantiles o conformes en LOSO, con la cobertura medida en la estación no vista).
+
+## G. Para el servicio, a partir de esto
+
+| Situación del usuario | Qué ofrecer | Por qué |
+|---|---|---|
+| Sin sensor, con red cerca | IDW del día, o la media HGB-S0 + IDW (0,377, post hoc) | El sensor no compensa (X.3.1) |
+| Sin sensor, sin red cerca | Open-Meteo + ML (HGB-S0) | Gana con claridad lejos (03.2) |
+| Con termohigrómetro | Open-Meteo + ML con T y HR (HGB-S2) y su media con la IDW (0,358) | Mejor que sensor + red sin Open-Meteo (X.1) |
+| Con piranómetro | Sensor + 3 vecinas (0,343) o la media (0,360) | Gana a la red con interés práctico (X.2.2) |
+| Quiere la ET0 de mañana | Previsión meteorológica (estudio 04), no sensor | P1 pasa pero poco, y el sensor no aporta (X.3.5) |
+
+## No recomendado
+
+- **Más ANN en esta línea.** Ninguna aportó nada (X.3.6), y el 03.1, el 03.2 y el 03.3 ya lo habían visto.
+- **Un estudio aparte para la media simple en Baleares.** El efecto en F1 (−0,025) está por debajo del umbral y la prueba que importa es la distancia (A).
+- **Distancia a la costa en Baleares** (variante A del 03.1.2): cerrada, no aportó nada. Se reserva para Andalucía (L17).
+- **Seguir con el termómetro solo (HS-Ra)** como producto: no compensa con ninguna red ni con ninguna combinación probada.
