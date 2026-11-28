@@ -1,0 +1,461 @@
+scope,hypothesis,kind,A,B,n,delta_rmse,ci90_lo,ci90_hi,tost_equivalente_005
+F1,,vs_comparador,media_fija,HGB-S0 (03.2),19251,-0.055990,-0.068235,-0.043863,False
+F1,,vs_comparador,media_fija,PM_IDW_mismo_dia,19251,-0.057531,-0.071050,-0.044370,False
+F1,,vs_comparador,media_fija,PM_estacion_mas_cercana_mismo_dia,19251,-0.106954,-0.128104,-0.087006,False
+F1,,vs_comparador,media_fija,OM_AHC_mensual_medio_entrenamiento,19251,-0.105799,-0.121698,-0.088170,False
+F1,,vs_comparador,media_fija,OM_crudo,19251,-0.374654,-0.409980,-0.339975,False
+F1,,vs_comparador,media_fija,HGB-S2 (03.2),19251,-0.018755,-0.041137,0.003070,True
+F1,,vs_comparador,media_fija,ANN_M-S0 (03.2),19251,-0.643198,-0.892046,-0.376937,False
+F1,,vs_comparador,media_ponderada,HGB-S0 (03.2),19251,-0.054578,-0.066846,-0.042854,False
+F1,,vs_comparador,media_ponderada,PM_IDW_mismo_dia,19251,-0.056119,-0.070106,-0.042666,False
+F1,,vs_comparador,media_ponderada,PM_estacion_mas_cercana_mismo_dia,19251,-0.105542,-0.126823,-0.085543,False
+F1,,vs_comparador,media_ponderada,OM_AHC_mensual_medio_entrenamiento,19251,-0.104387,-0.120743,-0.086480,False
+F1,,vs_comparador,media_ponderada,OM_crudo,19251,-0.373242,-0.408269,-0.338522,False
+F1,,vs_comparador,media_ponderada,HGB-S2 (03.2),19251,-0.017343,-0.039354,0.003940,True
+F1,,vs_comparador,media_ponderada,ANN_M-S0 (03.2),19251,-0.641786,-0.890588,-0.375156,False
+F1,,vs_comparador,residuo_IDW,HGB-S0 (03.2),19251,-0.032487,-0.047649,-0.016838,True
+F1,,vs_comparador,residuo_IDW,PM_IDW_mismo_dia,19251,-0.034028,-0.054273,-0.013262,False
+F1,,vs_comparador,residuo_IDW,PM_estacion_mas_cercana_mismo_dia,19251,-0.083451,-0.104314,-0.063040,False
+F1,,vs_comparador,residuo_IDW,OM_AHC_mensual_medio_entrenamiento,19251,-0.082296,-0.102370,-0.060079,False
+F1,,vs_comparador,residuo_IDW,OM_crudo,19251,-0.351151,-0.393270,-0.310651,False
+F1,,vs_comparador,residuo_IDW,HGB-S2 (03.2),19251,0.004748,-0.022085,0.031747,True
+F1,,vs_comparador,residuo_IDW,ANN_M-S0 (03.2),19251,-0.619695,-0.862771,-0.352788,False
+F1,,vs_comparador,S0+R1|Ridge,HGB-S0 (03.2),19251,0.004730,-0.013291,0.023558,True
+F1,,vs_comparador,S0+R1|Ridge,PM_IDW_mismo_dia,19251,0.003189,-0.008076,0.014834,True
+F1,,vs_comparador,S0+R1|Ridge,PM_estacion_mas_cercana_mismo_dia,19251,-0.046235,-0.069499,-0.024004,False
+F1,,vs_comparador,S0+R1|Ridge,OM_AHC_mensual_medio_entrenamiento,19251,-0.045079,-0.059080,-0.030516,False
+F1,,vs_comparador,S0+R1|Ridge,OM_crudo,19251,-0.313934,-0.345889,-0.280289,False
+F1,,vs_comparador,S0+R1|Ridge,HGB-S2 (03.2),19251,0.041964,0.011434,0.071322,False
+F1,,vs_comparador,S0+R1|Ridge,ANN_M-S0 (03.2),19251,-0.582478,-0.826981,-0.307240,False
+F1,,Ridge_vs_HGB,S0+R1|Ridge,S0+R1|HGB,19251,-0.006149,-0.023736,0.010545,True
+F1,H33_1,vs_comparador,S0+R1|HGB,HGB-S0 (03.2),19251,0.010878,-0.007083,0.029539,True
+F1,H33_2,vs_comparador,S0+R1|HGB,PM_IDW_mismo_dia,19251,0.009337,-0.012033,0.030488,True
+F1,,vs_comparador,S0+R1|HGB,PM_estacion_mas_cercana_mismo_dia,19251,-0.040086,-0.068094,-0.013592,False
+F1,,vs_comparador,S0+R1|HGB,OM_AHC_mensual_medio_entrenamiento,19251,-0.038931,-0.060702,-0.014269,False
+F1,,vs_comparador,S0+R1|HGB,OM_crudo,19251,-0.307786,-0.340750,-0.274374,False
+F1,,vs_comparador,S0+R1|HGB,HGB-S2 (03.2),19251,0.048113,0.024386,0.072493,False
+F1,,vs_comparador,S0+R1|HGB,ANN_M-S0 (03.2),19251,-0.576330,-0.827989,-0.307430,False
+F1,,vs_comparador,S2+R1|HGB,HGB-S0 (03.2),19251,-0.009886,-0.035250,0.014430,True
+F1,,vs_comparador,S2+R1|HGB,PM_IDW_mismo_dia,19251,-0.011427,-0.036061,0.012877,True
+F1,,vs_comparador,S2+R1|HGB,PM_estacion_mas_cercana_mismo_dia,19251,-0.060850,-0.090828,-0.032299,False
+F1,,vs_comparador,S2+R1|HGB,OM_AHC_mensual_medio_entrenamiento,19251,-0.059695,-0.089069,-0.027713,False
+F1,,vs_comparador,S2+R1|HGB,OM_crudo,19251,-0.328550,-0.359289,-0.297427,False
+F1,,vs_comparador,S2+R1|HGB,HGB-S2 (03.2),19251,0.027349,0.007380,0.048261,True
+F1,,vs_comparador,S2+R1|HGB,ANN_M-S0 (03.2),19251,-0.597094,-0.853588,-0.326144,False
+F1,,vs_comparador,S0+R1_ayer|HGB,HGB-S0 (03.2),19251,0.021317,0.008908,0.033961,True
+F1,,vs_comparador,S0+R1_ayer|HGB,PM_IDW_mismo_dia,19251,0.019776,0.000296,0.039469,True
+F1,,vs_comparador,S0+R1_ayer|HGB,PM_estacion_mas_cercana_mismo_dia,19251,-0.029647,-0.057301,-0.003058,False
+F1,,vs_comparador,S0+R1_ayer|HGB,OM_AHC_mensual_medio_entrenamiento,19251,-0.028492,-0.045860,-0.008313,True
+F1,,vs_comparador,S0+R1_ayer|HGB,OM_crudo,19251,-0.297346,-0.331912,-0.264219,False
+F1,,vs_comparador,S0+R1_ayer|HGB,HGB-S2 (03.2),19251,0.058552,0.039206,0.077446,False
+F1,,vs_comparador,S0+R1_ayer|HGB,ANN_M-S0 (03.2),19251,-0.565890,-0.819387,-0.294544,False
+F1,,vs_comparador,S0_res|Ridge,HGB-S0 (03.2),19251,0.051643,0.035077,0.067853,False
+F1,,vs_comparador,S0_res|Ridge,PM_IDW_mismo_dia,19251,0.050102,0.030898,0.069989,False
+F1,,vs_comparador,S0_res|Ridge,PM_estacion_mas_cercana_mismo_dia,19251,0.000679,-0.029835,0.029957,True
+F1,,vs_comparador,S0_res|Ridge,OM_AHC_mensual_medio_entrenamiento,19251,0.001834,-0.006113,0.010171,True
+F1,,vs_comparador,S0_res|Ridge,OM_crudo,19251,-0.267021,-0.301143,-0.230919,False
+F1,,vs_comparador,S0_res|Ridge,HGB-S2 (03.2),19251,0.088878,0.058190,0.118488,False
+F1,,vs_comparador,S0_res|Ridge,ANN_M-S0 (03.2),19251,-0.535565,-0.788538,-0.258876,False
+F1,,Ridge_vs_HGB,S0_res|Ridge,S0_res|HGB,19251,0.053470,0.037790,0.068846,False
+F1,H5_2,vs_comparador,S0_res|HGB,HGB-S0 (03.2),19251,-0.001827,-0.003832,0.000146,True
+F1,,vs_comparador,S0_res|HGB,PM_IDW_mismo_dia,19251,-0.003368,-0.026826,0.019885,True
+F1,,vs_comparador,S0_res|HGB,PM_estacion_mas_cercana_mismo_dia,19251,-0.052791,-0.081603,-0.025317,False
+F1,,vs_comparador,S0_res|HGB,OM_AHC_mensual_medio_entrenamiento,19251,-0.051636,-0.067494,-0.034571,False
+F1,,vs_comparador,S0_res|HGB,OM_crudo,19251,-0.320491,-0.362380,-0.279520,False
+F1,,vs_comparador,S0_res|HGB,HGB-S2 (03.2),19251,0.035408,0.014470,0.056491,False
+F1,,vs_comparador,S0_res|HGB,ANN_M-S0 (03.2),19251,-0.589035,-0.840297,-0.318855,False
+F1,,vs_comparador,S0_res|ANN_M,HGB-S0 (03.2),19251,0.562602,0.306508,0.800875,False
+F1,,vs_comparador,S0_res|ANN_M,PM_IDW_mismo_dia,19251,0.561061,0.301720,0.794929,False
+F1,,vs_comparador,S0_res|ANN_M,PM_estacion_mas_cercana_mismo_dia,19251,0.511638,0.261581,0.743698,False
+F1,,vs_comparador,S0_res|ANN_M,OM_AHC_mensual_medio_entrenamiento,19251,0.512793,0.245653,0.754075,False
+F1,,vs_comparador,S0_res|ANN_M,OM_crudo,19251,0.243938,-0.022532,0.489294,False
+F1,,vs_comparador,S0_res|ANN_M,HGB-S2 (03.2),19251,0.599837,0.335540,0.846762,False
+F1,H5_1,vs_comparador,S0_res|ANN_M,ANN_M-S0 (03.2),19251,-0.024606,-0.036479,-0.009368,True
+F1,,vs_comparador,S0_sin_alt|HGB,HGB-S0 (03.2),19251,0.025625,0.010456,0.040771,True
+F1,,vs_comparador,S0_sin_alt|HGB,PM_IDW_mismo_dia,19251,0.024084,0.008707,0.039537,True
+F1,,vs_comparador,S0_sin_alt|HGB,PM_estacion_mas_cercana_mismo_dia,19251,-0.025339,-0.051227,-0.000829,False
+F1,,vs_comparador,S0_sin_alt|HGB,OM_AHC_mensual_medio_entrenamiento,19251,-0.024184,-0.036710,-0.011410,True
+F1,,vs_comparador,S0_sin_alt|HGB,OM_crudo,19251,-0.293039,-0.325416,-0.260757,False
+F1,,vs_comparador,S0_sin_alt|HGB,HGB-S2 (03.2),19251,0.062860,0.036803,0.087887,False
+F1,,vs_comparador,S0_sin_alt|HGB,ANN_M-S0 (03.2),19251,-0.561583,-0.814208,-0.289061,False
+F1,,vs_comparador,S0_sin_alt|ANN_M,HGB-S0 (03.2),19251,0.018769,0.002838,0.035282,True
+F1,,vs_comparador,S0_sin_alt|ANN_M,PM_IDW_mismo_dia,19251,0.017227,0.001320,0.032839,True
+F1,,vs_comparador,S0_sin_alt|ANN_M,PM_estacion_mas_cercana_mismo_dia,19251,-0.032196,-0.057678,-0.008244,False
+F1,,vs_comparador,S0_sin_alt|ANN_M,OM_AHC_mensual_medio_entrenamiento,19251,-0.031041,-0.045715,-0.016573,True
+F1,,vs_comparador,S0_sin_alt|ANN_M,OM_crudo,19251,-0.299895,-0.329343,-0.270525,False
+F1,,vs_comparador,S0_sin_alt|ANN_M,HGB-S2 (03.2),19251,0.056003,0.030258,0.080192,False
+F1,,vs_comparador,S0_sin_alt|ANN_M,ANN_M-S0 (03.2),19251,-0.568439,-0.820483,-0.298402,False
+F1,,vs_comparador,S0_alt_recortada|HGB,HGB-S0 (03.2),19251,-0.000000,-0.000000,0.000000,True
+F1,,vs_comparador,S0_alt_recortada|HGB,PM_IDW_mismo_dia,19251,-0.001541,-0.025036,0.021697,True
+F1,,vs_comparador,S0_alt_recortada|HGB,PM_estacion_mas_cercana_mismo_dia,19251,-0.050964,-0.079186,-0.023610,False
+F1,,vs_comparador,S0_alt_recortada|HGB,OM_AHC_mensual_medio_entrenamiento,19251,-0.049809,-0.066307,-0.032113,False
+F1,,vs_comparador,S0_alt_recortada|HGB,OM_crudo,19251,-0.318664,-0.360969,-0.277891,False
+F1,,vs_comparador,S0_alt_recortada|HGB,HGB-S2 (03.2),19251,0.037235,0.016410,0.058272,False
+F1,,vs_comparador,S0_alt_recortada|HGB,ANN_M-S0 (03.2),19251,-0.587208,-0.837228,-0.317442,False
+F1,,vs_comparador,S0_res_sin_alt|HGB,HGB-S0 (03.2),19251,0.028139,0.013593,0.042883,True
+F1,,vs_comparador,S0_res_sin_alt|HGB,PM_IDW_mismo_dia,19251,0.026598,0.010557,0.042457,True
+F1,,vs_comparador,S0_res_sin_alt|HGB,PM_estacion_mas_cercana_mismo_dia,19251,-0.022825,-0.049295,0.001942,True
+F1,,vs_comparador,S0_res_sin_alt|HGB,OM_AHC_mensual_medio_entrenamiento,19251,-0.021670,-0.033591,-0.009508,True
+F1,,vs_comparador,S0_res_sin_alt|HGB,OM_crudo,19251,-0.290525,-0.324000,-0.257094,False
+F1,,vs_comparador,S0_res_sin_alt|HGB,HGB-S2 (03.2),19251,0.065374,0.039037,0.090354,False
+F1,,vs_comparador,S0_res_sin_alt|HGB,ANN_M-S0 (03.2),19251,-0.559069,-0.811908,-0.286074,False
+F1,,vs_comparador,S0_res_sin_alt|ANN_M,HGB-S0 (03.2),19251,0.019259,0.004601,0.034773,True
+F1,,vs_comparador,S0_res_sin_alt|ANN_M,PM_IDW_mismo_dia,19251,0.017718,0.002248,0.033536,True
+F1,,vs_comparador,S0_res_sin_alt|ANN_M,PM_estacion_mas_cercana_mismo_dia,19251,-0.031705,-0.057649,-0.007286,False
+F1,,vs_comparador,S0_res_sin_alt|ANN_M,OM_AHC_mensual_medio_entrenamiento,19251,-0.030550,-0.043931,-0.016922,True
+F1,,vs_comparador,S0_res_sin_alt|ANN_M,OM_crudo,19251,-0.299404,-0.330441,-0.268393,False
+F1,,vs_comparador,S0_res_sin_alt|ANN_M,HGB-S2 (03.2),19251,0.056494,0.030822,0.080840,False
+F1,,vs_comparador,S0_res_sin_alt|ANN_M,ANN_M-S0 (03.2),19251,-0.567948,-0.820380,-0.296831,False
+F1,,red_ayer_vs_red_dia,S0+R1_ayer|HGB,S0+R1|HGB,19251,0.010439,-0.002008,0.023259,True
+F1,,S2+R1_vs_S0+R1,S2+R1|HGB,S0+R1|HGB,19251,-0.020764,-0.034574,-0.008583,True
+F1,,ANN_vs_HGB_mismo_brazo,S0_res|ANN_M,S0_res|HGB,19251,0.564429,0.307919,0.804459,False
+F1,,ANN_vs_HGB_mismo_brazo,S0_sin_alt|ANN_M,S0_sin_alt|HGB,19251,-0.006856,-0.010666,-0.003362,True
+F1,,ANN_vs_HGB_mismo_brazo,S0_res_sin_alt|ANN_M,S0_res_sin_alt|HGB,19251,-0.008879,-0.012256,-0.005565,True
+F1,,comparadores,ANN_M-S0 (03.2),HGB-S0 (03.2),19251,0.587208,0.317442,0.837228,False
+F1,,comparadores,PM_IDW_mismo_dia,HGB-S0 (03.2),19251,0.001541,-0.021697,0.025036,True
+F1,,comparadores,HGB-S2 (03.2),HGB-S0 (03.2),19251,-0.037235,-0.058272,-0.016410,False
+F2_Ibiza,,vs_comparador,media_fija,HGB-S0 (03.2),4380,-0.003566,-0.018822,0.012469,True
+F2_Ibiza,,vs_comparador,media_fija,PM_IDW_mismo_dia,4380,-0.106767,-0.131638,-0.085236,False
+F2_Ibiza,,vs_comparador,media_fija,PM_estacion_mas_cercana_mismo_dia,4380,-0.239446,-0.274804,-0.200158,False
+F2_Ibiza,,vs_comparador,media_fija,OM_AHC_mensual_medio_entrenamiento,4380,-0.081635,-0.112428,-0.045550,False
+F2_Ibiza,,vs_comparador,media_fija,OM_crudo,4380,-0.265146,-0.320440,-0.212962,False
+F2_Ibiza,,vs_comparador,media_fija,HGB-S2 (03.2),4380,0.096381,0.072857,0.123589,False
+F2_Ibiza,,vs_comparador,media_fija,ANN_M-S0 (03.2),4380,-1.502777,-1.960409,-0.927356,False
+F2_Ibiza,,vs_comparador,media_ponderada,HGB-S0 (03.2),4380,-0.003566,-0.018822,0.012469,True
+F2_Ibiza,,vs_comparador,media_ponderada,PM_IDW_mismo_dia,4380,-0.106767,-0.131638,-0.085236,False
+F2_Ibiza,,vs_comparador,media_ponderada,PM_estacion_mas_cercana_mismo_dia,4380,-0.239446,-0.274804,-0.200158,False
+F2_Ibiza,,vs_comparador,media_ponderada,OM_AHC_mensual_medio_entrenamiento,4380,-0.081635,-0.112428,-0.045550,False
+F2_Ibiza,,vs_comparador,media_ponderada,OM_crudo,4380,-0.265146,-0.320440,-0.212962,False
+F2_Ibiza,,vs_comparador,media_ponderada,HGB-S2 (03.2),4380,0.096381,0.072857,0.123589,False
+F2_Ibiza,,vs_comparador,media_ponderada,ANN_M-S0 (03.2),4380,-1.502777,-1.960409,-0.927356,False
+F2_Ibiza,,vs_comparador,residuo_IDW,HGB-S0 (03.2),4380,0.041959,0.032472,0.051291,False
+F2_Ibiza,,vs_comparador,residuo_IDW,PM_IDW_mismo_dia,4380,-0.061242,-0.096498,-0.026517,False
+F2_Ibiza,,vs_comparador,residuo_IDW,PM_estacion_mas_cercana_mismo_dia,4380,-0.193921,-0.234463,-0.155399,False
+F2_Ibiza,,vs_comparador,residuo_IDW,OM_AHC_mensual_medio_entrenamiento,4380,-0.036110,-0.056511,-0.013397,False
+F2_Ibiza,,vs_comparador,residuo_IDW,OM_crudo,4380,-0.219621,-0.286246,-0.160066,False
+F2_Ibiza,,vs_comparador,residuo_IDW,HGB-S2 (03.2),4380,0.141906,0.111457,0.171712,False
+F2_Ibiza,,vs_comparador,residuo_IDW,ANN_M-S0 (03.2),4380,-1.457252,-1.922310,-0.875501,False
+F2_Ibiza,,vs_comparador,S0+R1|Ridge,HGB-S0 (03.2),4380,0.211877,0.144728,0.270328,False
+F2_Ibiza,,vs_comparador,S0+R1|Ridge,PM_IDW_mismo_dia,4380,0.108676,0.036995,0.166969,False
+F2_Ibiza,,vs_comparador,S0+R1|Ridge,PM_estacion_mas_cercana_mismo_dia,4380,-0.024003,-0.091729,0.038771,False
+F2_Ibiza,,vs_comparador,S0+R1|Ridge,OM_AHC_mensual_medio_entrenamiento,4380,0.133808,0.088187,0.176579,False
+F2_Ibiza,,vs_comparador,S0+R1|Ridge,OM_crudo,4380,-0.049703,-0.167410,0.055650,False
+F2_Ibiza,,vs_comparador,S0+R1|Ridge,HGB-S2 (03.2),4380,0.311825,0.230080,0.385398,False
+F2_Ibiza,,vs_comparador,S0+R1|Ridge,ANN_M-S0 (03.2),4380,-1.287334,-1.817971,-0.648287,False
+F2_Ibiza,,Ridge_vs_HGB,S0+R1|Ridge,S0+R1|HGB,4380,0.045394,-0.035882,0.113611,False
+F2_Ibiza,H33_3_Ibiza,vs_comparador,S0+R1|HGB,HGB-S0 (03.2),4380,0.166483,0.144642,0.193405,False
+F2_Ibiza,,vs_comparador,S0+R1|HGB,PM_IDW_mismo_dia,4380,0.063282,0.039858,0.086826,False
+F2_Ibiza,,vs_comparador,S0+R1|HGB,PM_estacion_mas_cercana_mismo_dia,4380,-0.069397,-0.111009,-0.019825,False
+F2_Ibiza,,vs_comparador,S0+R1|HGB,OM_AHC_mensual_medio_entrenamiento,4380,0.088414,0.051100,0.135440,False
+F2_Ibiza,,vs_comparador,S0+R1|HGB,OM_crudo,4380,-0.095097,-0.144912,-0.048236,False
+F2_Ibiza,,vs_comparador,S0+R1|HGB,HGB-S2 (03.2),4380,0.266431,0.241858,0.292299,False
+F2_Ibiza,,vs_comparador,S0+R1|HGB,ANN_M-S0 (03.2),4380,-1.332728,-1.783490,-0.763413,False
+F2_Ibiza,,vs_comparador,S2+R1|HGB,HGB-S0 (03.2),4380,0.080832,0.037159,0.127518,False
+F2_Ibiza,,vs_comparador,S2+R1|HGB,PM_IDW_mismo_dia,4380,-0.022369,-0.058728,0.011550,False
+F2_Ibiza,,vs_comparador,S2+R1|HGB,PM_estacion_mas_cercana_mismo_dia,4380,-0.155048,-0.220462,-0.088501,False
+F2_Ibiza,,vs_comparador,S2+R1|HGB,OM_AHC_mensual_medio_entrenamiento,4380,0.002763,-0.055691,0.068477,False
+F2_Ibiza,,vs_comparador,S2+R1|HGB,OM_crudo,4380,-0.180748,-0.219366,-0.142407,False
+F2_Ibiza,,vs_comparador,S2+R1|HGB,HGB-S2 (03.2),4380,0.180779,0.161904,0.203771,False
+F2_Ibiza,,vs_comparador,S2+R1|HGB,ANN_M-S0 (03.2),4380,-1.418379,-1.859644,-0.860960,False
+F2_Ibiza,,vs_comparador,S0+R1_ayer|HGB,HGB-S0 (03.2),4380,0.026893,0.013337,0.044167,True
+F2_Ibiza,,vs_comparador,S0+R1_ayer|HGB,PM_IDW_mismo_dia,4380,-0.076308,-0.110985,-0.044087,False
+F2_Ibiza,,vs_comparador,S0+R1_ayer|HGB,PM_estacion_mas_cercana_mismo_dia,4380,-0.208987,-0.249519,-0.163934,False
+F2_Ibiza,,vs_comparador,S0+R1_ayer|HGB,OM_AHC_mensual_medio_entrenamiento,4380,-0.051176,-0.084301,-0.011003,False
+F2_Ibiza,,vs_comparador,S0+R1_ayer|HGB,OM_crudo,4380,-0.234687,-0.287344,-0.186526,False
+F2_Ibiza,,vs_comparador,S0+R1_ayer|HGB,HGB-S2 (03.2),4380,0.126840,0.099941,0.152756,False
+F2_Ibiza,,vs_comparador,S0+R1_ayer|HGB,ANN_M-S0 (03.2),4380,-1.472318,-1.920014,-0.904419,False
+F2_Ibiza,,vs_comparador,S0_res|Ridge,HGB-S0 (03.2),4380,0.071522,0.054052,0.085769,False
+F2_Ibiza,,vs_comparador,S0_res|Ridge,PM_IDW_mismo_dia,4380,-0.031679,-0.078461,0.010910,False
+F2_Ibiza,,vs_comparador,S0_res|Ridge,PM_estacion_mas_cercana_mismo_dia,4380,-0.164358,-0.207748,-0.123599,False
+F2_Ibiza,,vs_comparador,S0_res|Ridge,OM_AHC_mensual_medio_entrenamiento,4380,-0.006547,-0.020325,0.007681,True
+F2_Ibiza,,vs_comparador,S0_res|Ridge,OM_crudo,4380,-0.190058,-0.265273,-0.123780,False
+F2_Ibiza,,vs_comparador,S0_res|Ridge,HGB-S2 (03.2),4380,0.171469,0.131056,0.209392,False
+F2_Ibiza,,vs_comparador,S0_res|Ridge,ANN_M-S0 (03.2),4380,-1.427689,-1.900500,-0.839012,False
+F2_Ibiza,,Ridge_vs_HGB,S0_res|Ridge,S0_res|HGB,4380,0.068953,0.050173,0.084293,False
+F2_Ibiza,,vs_comparador,S0_res|HGB,HGB-S0 (03.2),4380,0.002568,-0.001203,0.006014,True
+F2_Ibiza,,vs_comparador,S0_res|HGB,PM_IDW_mismo_dia,4380,-0.100633,-0.140477,-0.063913,False
+F2_Ibiza,,vs_comparador,S0_res|HGB,PM_estacion_mas_cercana_mismo_dia,4380,-0.233311,-0.274550,-0.191882,False
+F2_Ibiza,,vs_comparador,S0_res|HGB,OM_AHC_mensual_medio_entrenamiento,4380,-0.075501,-0.097484,-0.049864,False
+F2_Ibiza,,vs_comparador,S0_res|HGB,OM_crudo,4380,-0.259011,-0.322281,-0.202179,False
+F2_Ibiza,,vs_comparador,S0_res|HGB,HGB-S2 (03.2),4380,0.102516,0.068566,0.134261,False
+F2_Ibiza,,vs_comparador,S0_res|HGB,ANN_M-S0 (03.2),4380,-1.496642,-1.955367,-0.919627,False
+F2_Ibiza,,vs_comparador,S0_res|ANN_M,HGB-S0 (03.2),4380,1.430766,0.880318,1.872980,False
+F2_Ibiza,,vs_comparador,S0_res|ANN_M,PM_IDW_mismo_dia,4380,1.327565,0.771824,1.773767,False
+F2_Ibiza,,vs_comparador,S0_res|ANN_M,PM_estacion_mas_cercana_mismo_dia,4380,1.194886,0.637729,1.638007,False
+F2_Ibiza,,vs_comparador,S0_res|ANN_M,OM_AHC_mensual_medio_entrenamiento,4380,1.352697,0.783136,1.814985,False
+F2_Ibiza,,vs_comparador,S0_res|ANN_M,OM_crudo,4380,1.169186,0.660097,1.565096,False
+F2_Ibiza,,vs_comparador,S0_res|ANN_M,HGB-S2 (03.2),4380,1.530713,0.993001,1.963005,False
+F2_Ibiza,,vs_comparador,S0_res|ANN_M,ANN_M-S0 (03.2),4380,-0.068445,-0.088794,-0.040813,False
+F2_Ibiza,,vs_comparador,S0_sin_alt|HGB,HGB-S0 (03.2),4380,0.018817,0.009928,0.028279,True
+F2_Ibiza,,vs_comparador,S0_sin_alt|HGB,PM_IDW_mismo_dia,4380,-0.084384,-0.120463,-0.052820,False
+F2_Ibiza,,vs_comparador,S0_sin_alt|HGB,PM_estacion_mas_cercana_mismo_dia,4380,-0.217063,-0.251764,-0.182377,False
+F2_Ibiza,,vs_comparador,S0_sin_alt|HGB,OM_AHC_mensual_medio_entrenamiento,4380,-0.059252,-0.078702,-0.036798,False
+F2_Ibiza,,vs_comparador,S0_sin_alt|HGB,OM_crudo,4380,-0.242763,-0.308762,-0.181294,False
+F2_Ibiza,,vs_comparador,S0_sin_alt|HGB,HGB-S2 (03.2),4380,0.118764,0.085614,0.152118,False
+F2_Ibiza,,vs_comparador,S0_sin_alt|HGB,ANN_M-S0 (03.2),4380,-1.480394,-1.945067,-0.895307,False
+F2_Ibiza,,vs_comparador,S0_sin_alt|ANN_M,HGB-S0 (03.2),4380,0.007036,-0.000495,0.014306,True
+F2_Ibiza,,vs_comparador,S0_sin_alt|ANN_M,PM_IDW_mismo_dia,4380,-0.096165,-0.131636,-0.064549,False
+F2_Ibiza,,vs_comparador,S0_sin_alt|ANN_M,PM_estacion_mas_cercana_mismo_dia,4380,-0.228844,-0.265451,-0.192973,False
+F2_Ibiza,,vs_comparador,S0_sin_alt|ANN_M,OM_AHC_mensual_medio_entrenamiento,4380,-0.071033,-0.089663,-0.049293,False
+F2_Ibiza,,vs_comparador,S0_sin_alt|ANN_M,OM_crudo,4380,-0.254544,-0.320650,-0.193465,False
+F2_Ibiza,,vs_comparador,S0_sin_alt|ANN_M,HGB-S2 (03.2),4380,0.106983,0.073525,0.141000,False
+F2_Ibiza,,vs_comparador,S0_sin_alt|ANN_M,ANN_M-S0 (03.2),4380,-1.492175,-1.956774,-0.907230,False
+F2_Ibiza,,vs_comparador,S0_alt_recortada|HGB,HGB-S0 (03.2),4380,0.000000,-0.000000,0.000000,True
+F2_Ibiza,,vs_comparador,S0_alt_recortada|HGB,PM_IDW_mismo_dia,4380,-0.103201,-0.140932,-0.068568,False
+F2_Ibiza,,vs_comparador,S0_alt_recortada|HGB,PM_estacion_mas_cercana_mismo_dia,4380,-0.235880,-0.275818,-0.195104,False
+F2_Ibiza,,vs_comparador,S0_alt_recortada|HGB,OM_AHC_mensual_medio_entrenamiento,4380,-0.078069,-0.099533,-0.052952,False
+F2_Ibiza,,vs_comparador,S0_alt_recortada|HGB,OM_crudo,4380,-0.261580,-0.324197,-0.204897,False
+F2_Ibiza,,vs_comparador,S0_alt_recortada|HGB,HGB-S2 (03.2),4380,0.099947,0.068685,0.130208,False
+F2_Ibiza,,vs_comparador,S0_alt_recortada|HGB,ANN_M-S0 (03.2),4380,-1.499211,-1.958493,-0.921212,False
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|HGB,HGB-S0 (03.2),4380,0.019797,0.008972,0.031051,True
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|HGB,PM_IDW_mismo_dia,4380,-0.083404,-0.118714,-0.053322,False
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|HGB,PM_estacion_mas_cercana_mismo_dia,4380,-0.216082,-0.248533,-0.183943,False
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|HGB,OM_AHC_mensual_medio_entrenamiento,4380,-0.058272,-0.079203,-0.035477,False
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|HGB,OM_crudo,4380,-0.241783,-0.308356,-0.179517,False
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|HGB,HGB-S2 (03.2),4380,0.119745,0.086594,0.155071,False
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|HGB,ANN_M-S0 (03.2),4380,-1.479413,-1.944128,-0.894713,False
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|ANN_M,HGB-S0 (03.2),4380,0.007988,0.001298,0.014593,True
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|ANN_M,PM_IDW_mismo_dia,4380,-0.095213,-0.130258,-0.063450,False
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|ANN_M,PM_estacion_mas_cercana_mismo_dia,4380,-0.227892,-0.265335,-0.191480,False
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|ANN_M,OM_AHC_mensual_medio_entrenamiento,4380,-0.070081,-0.088459,-0.047931,False
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|ANN_M,OM_crudo,4380,-0.253592,-0.318994,-0.193450,False
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|ANN_M,HGB-S2 (03.2),4380,0.107936,0.075924,0.140307,False
+F2_Ibiza,,vs_comparador,S0_res_sin_alt|ANN_M,ANN_M-S0 (03.2),4380,-1.491223,-1.955325,-0.907688,False
+F2_Ibiza,,red_ayer_vs_red_dia,S0+R1_ayer|HGB,S0+R1|HGB,4380,-0.139590,-0.154034,-0.126198,False
+F2_Ibiza,,S2+R1_vs_S0+R1,S2+R1|HGB,S0+R1|HGB,4380,-0.085651,-0.114533,-0.060681,False
+F2_Ibiza,,ANN_vs_HGB_mismo_brazo,S0_res|ANN_M,S0_res|HGB,4380,1.428197,0.877997,1.869228,False
+F2_Ibiza,,ANN_vs_HGB_mismo_brazo,S0_sin_alt|ANN_M,S0_sin_alt|HGB,4380,-0.011781,-0.015798,-0.007501,True
+F2_Ibiza,,ANN_vs_HGB_mismo_brazo,S0_res_sin_alt|ANN_M,S0_res_sin_alt|HGB,4380,-0.011809,-0.017820,-0.006156,True
+F2_Ibiza,,comparadores,ANN_M-S0 (03.2),HGB-S0 (03.2),4380,1.499211,0.921212,1.958493,False
+F2_Ibiza,,comparadores,PM_IDW_mismo_dia,HGB-S0 (03.2),4380,0.103201,0.068568,0.140932,False
+F2_Ibiza,,comparadores,HGB-S2 (03.2),HGB-S0 (03.2),4380,-0.099947,-0.130208,-0.068686,False
+F2_Mallorca_informativo,,vs_comparador,media_fija,HGB-S0 (03.2),12774,-0.048366,-0.061657,-0.033839,False
+F2_Mallorca_informativo,,vs_comparador,media_fija,PM_IDW_mismo_dia,12774,-0.064612,-0.087806,-0.042833,False
+F2_Mallorca_informativo,,vs_comparador,media_fija,PM_estacion_mas_cercana_mismo_dia,12774,-0.205930,-0.219866,-0.192077,False
+F2_Mallorca_informativo,,vs_comparador,media_fija,OM_AHC_mensual_medio_entrenamiento,12774,0.001059,-0.031605,0.032153,True
+F2_Mallorca_informativo,,vs_comparador,media_fija,OM_crudo,12774,-0.257126,-0.325126,-0.187862,False
+F2_Mallorca_informativo,,vs_comparador,media_fija,HGB-S2 (03.2),12774,-0.044803,-0.060502,-0.027909,False
+F2_Mallorca_informativo,,vs_comparador,media_fija,ANN_M-S0 (03.2),12774,-0.089549,-0.103588,-0.074498,False
+F2_Mallorca_informativo,,vs_comparador,media_ponderada,HGB-S0 (03.2),12774,-0.047793,-0.057675,-0.037188,False
+F2_Mallorca_informativo,,vs_comparador,media_ponderada,PM_IDW_mismo_dia,12774,-0.064039,-0.091324,-0.038692,False
+F2_Mallorca_informativo,,vs_comparador,media_ponderada,PM_estacion_mas_cercana_mismo_dia,12774,-0.205358,-0.221322,-0.189536,False
+F2_Mallorca_informativo,,vs_comparador,media_ponderada,OM_AHC_mensual_medio_entrenamiento,12774,0.001631,-0.034658,0.035799,True
+F2_Mallorca_informativo,,vs_comparador,media_ponderada,OM_crudo,12774,-0.256553,-0.328266,-0.183684,False
+F2_Mallorca_informativo,,vs_comparador,media_ponderada,HGB-S2 (03.2),12774,-0.044231,-0.058420,-0.030278,False
+F2_Mallorca_informativo,,vs_comparador,media_ponderada,ANN_M-S0 (03.2),12774,-0.088976,-0.101360,-0.075977,False
+F2_Mallorca_informativo,,vs_comparador,residuo_IDW,HGB-S0 (03.2),12774,0.101796,0.083220,0.120120,False
+F2_Mallorca_informativo,,vs_comparador,residuo_IDW,PM_IDW_mismo_dia,12774,0.085550,0.036155,0.130196,False
+F2_Mallorca_informativo,,vs_comparador,residuo_IDW,PM_estacion_mas_cercana_mismo_dia,12774,-0.055768,-0.090280,-0.022891,False
+F2_Mallorca_informativo,,vs_comparador,residuo_IDW,OM_AHC_mensual_medio_entrenamiento,12774,0.151220,0.091996,0.205617,False
+F2_Mallorca_informativo,,vs_comparador,residuo_IDW,OM_crudo,12774,-0.106964,-0.199662,-0.015018,False
+F2_Mallorca_informativo,,vs_comparador,residuo_IDW,HGB-S2 (03.2),12774,0.105359,0.079038,0.130339,False
+F2_Mallorca_informativo,,vs_comparador,residuo_IDW,ANN_M-S0 (03.2),12774,0.060613,0.034630,0.085801,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1|Ridge,HGB-S0 (03.2),12774,-0.078014,-0.111590,-0.040974,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1|Ridge,PM_IDW_mismo_dia,12774,-0.094260,-0.105068,-0.082317,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1|Ridge,PM_estacion_mas_cercana_mismo_dia,12774,-0.235579,-0.258277,-0.213379,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1|Ridge,OM_AHC_mensual_medio_entrenamiento,12774,-0.028590,-0.043924,-0.013788,True
+F2_Mallorca_informativo,,vs_comparador,S0+R1|Ridge,OM_crudo,12774,-0.286774,-0.334866,-0.236741,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1|Ridge,HGB-S2 (03.2),12774,-0.074451,-0.105463,-0.040188,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1|Ridge,ANN_M-S0 (03.2),12774,-0.119197,-0.149882,-0.085439,False
+F2_Mallorca_informativo,,Ridge_vs_HGB,S0+R1|Ridge,S0+R1|HGB,12774,-0.024227,-0.044477,-0.002151,True
+F2_Mallorca_informativo,,vs_comparador,S0+R1|HGB,HGB-S0 (03.2),12774,-0.053787,-0.068941,-0.037135,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1|HGB,PM_IDW_mismo_dia,12774,-0.070033,-0.093051,-0.048465,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1|HGB,PM_estacion_mas_cercana_mismo_dia,12774,-0.211351,-0.228082,-0.194698,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1|HGB,OM_AHC_mensual_medio_entrenamiento,12774,-0.004363,-0.033422,0.024353,True
+F2_Mallorca_informativo,,vs_comparador,S0+R1|HGB,OM_crudo,12774,-0.262547,-0.328274,-0.196295,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1|HGB,HGB-S2 (03.2),12774,-0.050224,-0.064175,-0.034687,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1|HGB,ANN_M-S0 (03.2),12774,-0.094970,-0.107762,-0.081196,False
+F2_Mallorca_informativo,,vs_comparador,S2+R1|HGB,HGB-S0 (03.2),12774,-0.082073,-0.116922,-0.044209,False
+F2_Mallorca_informativo,,vs_comparador,S2+R1|HGB,PM_IDW_mismo_dia,12774,-0.098320,-0.115653,-0.080498,False
+F2_Mallorca_informativo,,vs_comparador,S2+R1|HGB,PM_estacion_mas_cercana_mismo_dia,12774,-0.239638,-0.264628,-0.213499,False
+F2_Mallorca_informativo,,vs_comparador,S2+R1|HGB,OM_AHC_mensual_medio_entrenamiento,12774,-0.032649,-0.049652,-0.015863,True
+F2_Mallorca_informativo,,vs_comparador,S2+R1|HGB,OM_crudo,12774,-0.290834,-0.336787,-0.243297,False
+F2_Mallorca_informativo,,vs_comparador,S2+R1|HGB,HGB-S2 (03.2),12774,-0.078511,-0.107043,-0.047852,False
+F2_Mallorca_informativo,,vs_comparador,S2+R1|HGB,ANN_M-S0 (03.2),12774,-0.123257,-0.154572,-0.089137,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1_ayer|HGB,HGB-S0 (03.2),12774,-0.058076,-0.082081,-0.031300,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1_ayer|HGB,PM_IDW_mismo_dia,12774,-0.074322,-0.090920,-0.058151,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1_ayer|HGB,PM_estacion_mas_cercana_mismo_dia,12774,-0.215640,-0.234233,-0.197325,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1_ayer|HGB,OM_AHC_mensual_medio_entrenamiento,12774,-0.008652,-0.028455,0.011715,True
+F2_Mallorca_informativo,,vs_comparador,S0+R1_ayer|HGB,OM_crudo,12774,-0.266836,-0.322734,-0.209203,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1_ayer|HGB,HGB-S2 (03.2),12774,-0.054513,-0.075896,-0.031754,False
+F2_Mallorca_informativo,,vs_comparador,S0+R1_ayer|HGB,ANN_M-S0 (03.2),12774,-0.099259,-0.120415,-0.076949,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|Ridge,HGB-S0 (03.2),12774,-0.057948,-0.092826,-0.020694,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|Ridge,PM_IDW_mismo_dia,12774,-0.074194,-0.087722,-0.059836,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|Ridge,PM_estacion_mas_cercana_mismo_dia,12774,-0.215513,-0.239219,-0.192058,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|Ridge,OM_AHC_mensual_medio_entrenamiento,12774,-0.008524,-0.020594,0.004220,True
+F2_Mallorca_informativo,,vs_comparador,S0_res|Ridge,OM_crudo,12774,-0.266709,-0.313075,-0.217956,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|Ridge,HGB-S2 (03.2),12774,-0.054386,-0.085251,-0.020889,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|Ridge,ANN_M-S0 (03.2),12774,-0.099132,-0.129873,-0.066623,False
+F2_Mallorca_informativo,,Ridge_vs_HGB,S0_res|Ridge,S0_res|HGB,12774,-0.057540,-0.089167,-0.023863,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|HGB,HGB-S0 (03.2),12774,-0.000409,-0.005183,0.004984,True
+F2_Mallorca_informativo,,vs_comparador,S0_res|HGB,PM_IDW_mismo_dia,12774,-0.016655,-0.050815,0.015203,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|HGB,PM_estacion_mas_cercana_mismo_dia,12774,-0.157973,-0.178385,-0.137232,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|HGB,OM_AHC_mensual_medio_entrenamiento,12774,0.049016,0.008401,0.089212,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|HGB,OM_crudo,12774,-0.209169,-0.286296,-0.132265,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|HGB,HGB-S2 (03.2),12774,0.003154,-0.008212,0.014439,True
+F2_Mallorca_informativo,,vs_comparador,S0_res|HGB,ANN_M-S0 (03.2),12774,-0.041592,-0.053083,-0.030172,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|ANN_M,HGB-S0 (03.2),12774,-0.015264,-0.026645,-0.002788,True
+F2_Mallorca_informativo,,vs_comparador,S0_res|ANN_M,PM_IDW_mismo_dia,12774,-0.031511,-0.060226,-0.004802,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|ANN_M,PM_estacion_mas_cercana_mismo_dia,12774,-0.172829,-0.189974,-0.154888,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|ANN_M,OM_AHC_mensual_medio_entrenamiento,12774,0.034160,-0.000690,0.068959,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|ANN_M,OM_crudo,12774,-0.224025,-0.295637,-0.152100,False
+F2_Mallorca_informativo,,vs_comparador,S0_res|ANN_M,HGB-S2 (03.2),12774,-0.011702,-0.024833,0.001419,True
+F2_Mallorca_informativo,,vs_comparador,S0_res|ANN_M,ANN_M-S0 (03.2),12774,-0.056448,-0.063100,-0.049150,False
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|HGB,HGB-S0 (03.2),12774,-0.038182,-0.061321,-0.012708,False
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|HGB,PM_IDW_mismo_dia,12774,-0.054428,-0.072828,-0.036574,False
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|HGB,PM_estacion_mas_cercana_mismo_dia,12774,-0.195746,-0.212342,-0.179133,False
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|HGB,OM_AHC_mensual_medio_entrenamiento,12774,0.011242,-0.010994,0.033322,True
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|HGB,OM_crudo,12774,-0.246942,-0.306292,-0.185996,False
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|HGB,HGB-S2 (03.2),12774,-0.034619,-0.056943,-0.010022,False
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|HGB,ANN_M-S0 (03.2),12774,-0.079365,-0.099990,-0.056094,False
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|ANN_M,HGB-S0 (03.2),12774,-0.034584,-0.057683,-0.009692,False
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|ANN_M,PM_IDW_mismo_dia,12774,-0.050830,-0.069201,-0.033130,False
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|ANN_M,PM_estacion_mas_cercana_mismo_dia,12774,-0.192149,-0.207052,-0.176807,False
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|ANN_M,OM_AHC_mensual_medio_entrenamiento,12774,0.014840,-0.007752,0.037746,True
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|ANN_M,OM_crudo,12774,-0.243344,-0.304006,-0.182321,False
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|ANN_M,HGB-S2 (03.2),12774,-0.031022,-0.052498,-0.006962,False
+F2_Mallorca_informativo,,vs_comparador,S0_sin_alt|ANN_M,ANN_M-S0 (03.2),12774,-0.075767,-0.094565,-0.053883,False
+F2_Mallorca_informativo,,vs_comparador,S0_alt_recortada|HGB,HGB-S0 (03.2),12774,-0.000000,-0.000000,0.000000,True
+F2_Mallorca_informativo,,vs_comparador,S0_alt_recortada|HGB,PM_IDW_mismo_dia,12774,-0.016246,-0.053106,0.018080,False
+F2_Mallorca_informativo,,vs_comparador,S0_alt_recortada|HGB,PM_estacion_mas_cercana_mismo_dia,12774,-0.157565,-0.181143,-0.134892,False
+F2_Mallorca_informativo,,vs_comparador,S0_alt_recortada|HGB,OM_AHC_mensual_medio_entrenamiento,12774,0.049424,0.005654,0.091901,False
+F2_Mallorca_informativo,,vs_comparador,S0_alt_recortada|HGB,OM_crudo,12774,-0.208760,-0.288975,-0.129106,False
+F2_Mallorca_informativo,,vs_comparador,S0_alt_recortada|HGB,HGB-S2 (03.2),12774,0.003563,-0.010016,0.016113,True
+F2_Mallorca_informativo,,vs_comparador,S0_alt_recortada|HGB,ANN_M-S0 (03.2),12774,-0.041183,-0.053866,-0.028490,False
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|HGB,HGB-S0 (03.2),12774,-0.043917,-0.068969,-0.016342,False
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|HGB,PM_IDW_mismo_dia,12774,-0.060164,-0.079334,-0.041576,False
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|HGB,PM_estacion_mas_cercana_mismo_dia,12774,-0.201482,-0.219537,-0.183730,False
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|HGB,OM_AHC_mensual_medio_entrenamiento,12774,0.005507,-0.015184,0.026675,True
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|HGB,OM_crudo,12774,-0.252678,-0.311755,-0.192471,False
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|HGB,HGB-S2 (03.2),12774,-0.040355,-0.063587,-0.015031,False
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|HGB,ANN_M-S0 (03.2),12774,-0.085101,-0.106269,-0.061019,False
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|ANN_M,HGB-S0 (03.2),12774,-0.026754,-0.049344,-0.002326,True
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|ANN_M,PM_IDW_mismo_dia,12774,-0.043000,-0.062247,-0.024602,False
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|ANN_M,PM_estacion_mas_cercana_mismo_dia,12774,-0.184318,-0.199925,-0.168741,False
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|ANN_M,OM_AHC_mensual_medio_entrenamiento,12774,0.022671,-0.000317,0.045570,True
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|ANN_M,OM_crudo,12774,-0.235514,-0.296911,-0.173681,False
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|ANN_M,HGB-S2 (03.2),12774,-0.023191,-0.044477,0.000623,True
+F2_Mallorca_informativo,,vs_comparador,S0_res_sin_alt|ANN_M,ANN_M-S0 (03.2),12774,-0.067937,-0.086521,-0.046686,False
+F2_Mallorca_informativo,,red_ayer_vs_red_dia,S0+R1_ayer|HGB,S0+R1|HGB,12774,-0.004289,-0.014190,0.006158,True
+F2_Mallorca_informativo,,S2+R1_vs_S0+R1,S2+R1|HGB,S0+R1|HGB,12774,-0.028287,-0.049986,-0.005353,True
+F2_Mallorca_informativo,,ANN_vs_HGB_mismo_brazo,S0_res|ANN_M,S0_res|HGB,12774,-0.014856,-0.023437,-0.005239,True
+F2_Mallorca_informativo,,ANN_vs_HGB_mismo_brazo,S0_sin_alt|ANN_M,S0_sin_alt|HGB,12774,0.003598,-0.000222,0.007555,True
+F2_Mallorca_informativo,,ANN_vs_HGB_mismo_brazo,S0_res_sin_alt|ANN_M,S0_res_sin_alt|HGB,12774,0.017164,0.012013,0.021869,True
+F2_Mallorca_informativo,,comparadores,ANN_M-S0 (03.2),HGB-S0 (03.2),12774,0.041183,0.028490,0.053866,False
+F2_Mallorca_informativo,,comparadores,PM_IDW_mismo_dia,HGB-S0 (03.2),12774,0.016246,-0.018080,0.053106,False
+F2_Mallorca_informativo,,comparadores,HGB-S2 (03.2),HGB-S0 (03.2),12774,-0.003563,-0.016113,0.010016,True
+F2_Menorca,,vs_comparador,media_fija,HGB-S0 (03.2),2097,0.015488,0.010914,0.019665,True
+F2_Menorca,,vs_comparador,media_fija,PM_IDW_mismo_dia,2097,-0.094582,-0.103016,-0.084181,False
+F2_Menorca,,vs_comparador,media_fija,PM_estacion_mas_cercana_mismo_dia,2097,-0.087374,-0.135266,-0.038191,False
+F2_Menorca,,vs_comparador,media_fija,OM_AHC_mensual_medio_entrenamiento,2097,-0.113218,-0.128955,-0.093760,False
+F2_Menorca,,vs_comparador,media_fija,OM_crudo,2097,-0.564987,-0.587442,-0.530258,False
+F2_Menorca,,vs_comparador,media_fija,HGB-S2 (03.2),2097,0.090017,0.067399,0.111220,False
+F2_Menorca,,vs_comparador,media_fija,ANN_M-S0 (03.2),2097,-0.032169,-0.040066,-0.025151,True
+F2_Menorca,,vs_comparador,media_ponderada,HGB-S0 (03.2),2097,0.015488,0.010914,0.019665,True
+F2_Menorca,,vs_comparador,media_ponderada,PM_IDW_mismo_dia,2097,-0.094582,-0.103016,-0.084181,False
+F2_Menorca,,vs_comparador,media_ponderada,PM_estacion_mas_cercana_mismo_dia,2097,-0.087374,-0.135266,-0.038191,False
+F2_Menorca,,vs_comparador,media_ponderada,OM_AHC_mensual_medio_entrenamiento,2097,-0.113218,-0.128955,-0.093760,False
+F2_Menorca,,vs_comparador,media_ponderada,OM_crudo,2097,-0.564987,-0.587442,-0.530258,False
+F2_Menorca,,vs_comparador,media_ponderada,HGB-S2 (03.2),2097,0.090017,0.067399,0.111220,False
+F2_Menorca,,vs_comparador,media_ponderada,ANN_M-S0 (03.2),2097,-0.032169,-0.040066,-0.025151,True
+F2_Menorca,,vs_comparador,residuo_IDW,HGB-S0 (03.2),2097,-0.047485,-0.056992,-0.037909,False
+F2_Menorca,,vs_comparador,residuo_IDW,PM_IDW_mismo_dia,2097,-0.157555,-0.164507,-0.149384,False
+F2_Menorca,,vs_comparador,residuo_IDW,PM_estacion_mas_cercana_mismo_dia,2097,-0.150347,-0.197930,-0.102741,False
+F2_Menorca,,vs_comparador,residuo_IDW,OM_AHC_mensual_medio_entrenamiento,2097,-0.176191,-0.193647,-0.156528,False
+F2_Menorca,,vs_comparador,residuo_IDW,OM_crudo,2097,-0.627960,-0.651461,-0.598293,False
+F2_Menorca,,vs_comparador,residuo_IDW,HGB-S2 (03.2),2097,0.027044,0.000749,0.053029,False
+F2_Menorca,,vs_comparador,residuo_IDW,ANN_M-S0 (03.2),2097,-0.095142,-0.107753,-0.083477,False
+F2_Menorca,,vs_comparador,S0+R1|Ridge,HGB-S0 (03.2),2097,0.117332,0.102088,0.130460,False
+F2_Menorca,,vs_comparador,S0+R1|Ridge,PM_IDW_mismo_dia,2097,0.007263,0.003661,0.011590,True
+F2_Menorca,,vs_comparador,S0+R1|Ridge,PM_estacion_mas_cercana_mismo_dia,2097,0.014471,-0.028761,0.057208,False
+F2_Menorca,,vs_comparador,S0+R1|Ridge,OM_AHC_mensual_medio_entrenamiento,2097,-0.011373,-0.025095,0.005353,True
+F2_Menorca,,vs_comparador,S0+R1|Ridge,OM_crudo,2097,-0.463142,-0.478418,-0.438857,False
+F2_Menorca,,vs_comparador,S0+R1|Ridge,HGB-S2 (03.2),2097,0.191862,0.158750,0.220727,False
+F2_Menorca,,vs_comparador,S0+R1|Ridge,ANN_M-S0 (03.2),2097,0.069675,0.059039,0.078818,False
+F2_Menorca,,Ridge_vs_HGB,S0+R1|Ridge,S0+R1|HGB,2097,-0.000996,-0.008056,0.008002,True
+F2_Menorca,H33_3_Menorca,vs_comparador,S0+R1|HGB,HGB-S0 (03.2),2097,0.118329,0.094246,0.136191,False
+F2_Menorca,,vs_comparador,S0+R1|HGB,PM_IDW_mismo_dia,2097,0.008259,-0.000490,0.015982,True
+F2_Menorca,,vs_comparador,S0+R1|HGB,PM_estacion_mas_cercana_mismo_dia,2097,0.015467,-0.023045,0.050925,False
+F2_Menorca,,vs_comparador,S0+R1|HGB,OM_AHC_mensual_medio_entrenamiento,2097,-0.010377,-0.021191,0.004129,True
+F2_Menorca,,vs_comparador,S0+R1|HGB,OM_crudo,2097,-0.462146,-0.473085,-0.447007,False
+F2_Menorca,,vs_comparador,S0+R1|HGB,HGB-S2 (03.2),2097,0.192858,0.150767,0.226946,False
+F2_Menorca,,vs_comparador,S0+R1|HGB,ANN_M-S0 (03.2),2097,0.070672,0.052652,0.083241,False
+F2_Menorca,,vs_comparador,S2+R1|HGB,HGB-S0 (03.2),2097,0.123436,0.111563,0.133619,False
+F2_Menorca,,vs_comparador,S2+R1|HGB,PM_IDW_mismo_dia,2097,0.013366,-0.006182,0.031354,True
+F2_Menorca,,vs_comparador,S2+R1|HGB,PM_estacion_mas_cercana_mismo_dia,2097,0.020575,-0.029327,0.075131,False
+F2_Menorca,,vs_comparador,S2+R1|HGB,OM_AHC_mensual_medio_entrenamiento,2097,-0.005270,-0.023294,0.018168,True
+F2_Menorca,,vs_comparador,S2+R1|HGB,OM_crudo,2097,-0.457038,-0.485674,-0.415957,False
+F2_Menorca,,vs_comparador,S2+R1|HGB,HGB-S2 (03.2),2097,0.197965,0.181247,0.214131,False
+F2_Menorca,,vs_comparador,S2+R1|HGB,ANN_M-S0 (03.2),2097,0.075779,0.062276,0.088521,False
+F2_Menorca,,vs_comparador,S0+R1_ayer|HGB,HGB-S0 (03.2),2097,0.073193,0.064601,0.079686,False
+F2_Menorca,,vs_comparador,S0+R1_ayer|HGB,PM_IDW_mismo_dia,2097,-0.036877,-0.050266,-0.024502,False
+F2_Menorca,,vs_comparador,S0+R1_ayer|HGB,PM_estacion_mas_cercana_mismo_dia,2097,-0.029669,-0.077627,0.018614,False
+F2_Menorca,,vs_comparador,S0+R1_ayer|HGB,OM_AHC_mensual_medio_entrenamiento,2097,-0.055513,-0.069145,-0.038940,False
+F2_Menorca,,vs_comparador,S0+R1_ayer|HGB,OM_crudo,2097,-0.507282,-0.535295,-0.473155,False
+F2_Menorca,,vs_comparador,S0+R1_ayer|HGB,HGB-S2 (03.2),2097,0.147722,0.125448,0.168288,False
+F2_Menorca,,vs_comparador,S0+R1_ayer|HGB,ANN_M-S0 (03.2),2097,0.025536,0.010229,0.037719,True
+F2_Menorca,,vs_comparador,S0_res|Ridge,HGB-S0 (03.2),2097,0.166375,0.151016,0.177220,False
+F2_Menorca,,vs_comparador,S0_res|Ridge,PM_IDW_mismo_dia,2097,0.056305,0.050972,0.061917,False
+F2_Menorca,,vs_comparador,S0_res|Ridge,PM_estacion_mas_cercana_mismo_dia,2097,0.063513,0.021020,0.106770,False
+F2_Menorca,,vs_comparador,S0_res|Ridge,OM_AHC_mensual_medio_entrenamiento,2097,0.037669,0.025884,0.052920,False
+F2_Menorca,,vs_comparador,S0_res|Ridge,OM_crudo,2097,-0.414099,-0.429812,-0.389401,False
+F2_Menorca,,vs_comparador,S0_res|Ridge,HGB-S2 (03.2),2097,0.240904,0.206742,0.268652,False
+F2_Menorca,,vs_comparador,S0_res|Ridge,ANN_M-S0 (03.2),2097,0.118718,0.108123,0.127888,False
+F2_Menorca,,Ridge_vs_HGB,S0_res|Ridge,S0_res|HGB,2097,0.165601,0.148619,0.177206,False
+F2_Menorca,,vs_comparador,S0_res|HGB,HGB-S0 (03.2),2097,0.000773,-0.001898,0.003622,True
+F2_Menorca,,vs_comparador,S0_res|HGB,PM_IDW_mismo_dia,2097,-0.109297,-0.123202,-0.092542,False
+F2_Menorca,,vs_comparador,S0_res|HGB,PM_estacion_mas_cercana_mismo_dia,2097,-0.102088,-0.150896,-0.048347,False
+F2_Menorca,,vs_comparador,S0_res|HGB,OM_AHC_mensual_medio_entrenamiento,2097,-0.127932,-0.147529,-0.103712,False
+F2_Menorca,,vs_comparador,S0_res|HGB,OM_crudo,2097,-0.579701,-0.606880,-0.537634,False
+F2_Menorca,,vs_comparador,S0_res|HGB,HGB-S2 (03.2),2097,0.075303,0.058400,0.091548,False
+F2_Menorca,,vs_comparador,S0_res|HGB,ANN_M-S0 (03.2),2097,-0.046884,-0.057588,-0.037453,False
+F2_Menorca,,vs_comparador,S0_res|ANN_M,HGB-S0 (03.2),2097,0.102074,0.092889,0.112067,False
+F2_Menorca,,vs_comparador,S0_res|ANN_M,PM_IDW_mismo_dia,2097,-0.007996,-0.023366,0.011389,True
+F2_Menorca,,vs_comparador,S0_res|ANN_M,PM_estacion_mas_cercana_mismo_dia,2097,-0.000787,-0.048491,0.052275,False
+F2_Menorca,,vs_comparador,S0_res|ANN_M,OM_AHC_mensual_medio_entrenamiento,2097,-0.026632,-0.048415,-0.000421,True
+F2_Menorca,,vs_comparador,S0_res|ANN_M,OM_crudo,2097,-0.478400,-0.503359,-0.436019,False
+F2_Menorca,,vs_comparador,S0_res|ANN_M,HGB-S2 (03.2),2097,0.176603,0.157229,0.199750,False
+F2_Menorca,,vs_comparador,S0_res|ANN_M,ANN_M-S0 (03.2),2097,0.054417,0.048682,0.062532,False
+F2_Menorca,,vs_comparador,S0_sin_alt|HGB,HGB-S0 (03.2),2097,0.135624,0.124088,0.146607,False
+F2_Menorca,,vs_comparador,S0_sin_alt|HGB,PM_IDW_mismo_dia,2097,0.025554,0.019579,0.031854,True
+F2_Menorca,,vs_comparador,S0_sin_alt|HGB,PM_estacion_mas_cercana_mismo_dia,2097,0.032762,-0.006025,0.074677,False
+F2_Menorca,,vs_comparador,S0_sin_alt|HGB,OM_AHC_mensual_medio_entrenamiento,2097,0.006918,-0.006481,0.022576,True
+F2_Menorca,,vs_comparador,S0_sin_alt|HGB,OM_crudo,2097,-0.444851,-0.464979,-0.416598,False
+F2_Menorca,,vs_comparador,S0_sin_alt|HGB,HGB-S2 (03.2),2097,0.210153,0.180173,0.239465,False
+F2_Menorca,,vs_comparador,S0_sin_alt|HGB,ANN_M-S0 (03.2),2097,0.087967,0.079368,0.095583,False
+F2_Menorca,,vs_comparador,S0_sin_alt|ANN_M,HGB-S0 (03.2),2097,0.133499,0.114942,0.149810,False
+F2_Menorca,,vs_comparador,S0_sin_alt|ANN_M,PM_IDW_mismo_dia,2097,0.023429,0.015216,0.032818,True
+F2_Menorca,,vs_comparador,S0_sin_alt|ANN_M,PM_estacion_mas_cercana_mismo_dia,2097,0.030637,-0.005203,0.065394,False
+F2_Menorca,,vs_comparador,S0_sin_alt|ANN_M,OM_AHC_mensual_medio_entrenamiento,2097,0.004793,-0.005032,0.015654,True
+F2_Menorca,,vs_comparador,S0_sin_alt|ANN_M,OM_crudo,2097,-0.446975,-0.463338,-0.425560,False
+F2_Menorca,,vs_comparador,S0_sin_alt|ANN_M,HGB-S2 (03.2),2097,0.208028,0.172467,0.240876,False
+F2_Menorca,,vs_comparador,S0_sin_alt|ANN_M,ANN_M-S0 (03.2),2097,0.085842,0.072705,0.095772,False
+F2_Menorca,,vs_comparador,S0_alt_recortada|HGB,HGB-S0 (03.2),2097,-0.000000,-0.000000,0.000000,True
+F2_Menorca,,vs_comparador,S0_alt_recortada|HGB,PM_IDW_mismo_dia,2097,-0.110070,-0.122244,-0.094930,False
+F2_Menorca,,vs_comparador,S0_alt_recortada|HGB,PM_estacion_mas_cercana_mismo_dia,2097,-0.102862,-0.151159,-0.051012,False
+F2_Menorca,,vs_comparador,S0_alt_recortada|HGB,OM_AHC_mensual_medio_entrenamiento,2097,-0.128706,-0.146344,-0.106491,False
+F2_Menorca,,vs_comparador,S0_alt_recortada|HGB,OM_crudo,2097,-0.580474,-0.606824,-0.540278,False
+F2_Menorca,,vs_comparador,S0_alt_recortada|HGB,HGB-S2 (03.2),2097,0.074529,0.056304,0.091995,False
+F2_Menorca,,vs_comparador,S0_alt_recortada|HGB,ANN_M-S0 (03.2),2097,-0.047657,-0.057479,-0.038848,False
+F2_Menorca,,vs_comparador,S0_res_sin_alt|HGB,HGB-S0 (03.2),2097,0.132988,0.121292,0.144610,False
+F2_Menorca,,vs_comparador,S0_res_sin_alt|HGB,PM_IDW_mismo_dia,2097,0.022918,0.017735,0.028322,True
+F2_Menorca,,vs_comparador,S0_res_sin_alt|HGB,PM_estacion_mas_cercana_mismo_dia,2097,0.030126,-0.009403,0.071967,False
+F2_Menorca,,vs_comparador,S0_res_sin_alt|HGB,OM_AHC_mensual_medio_entrenamiento,2097,0.004282,-0.010166,0.020683,True
+F2_Menorca,,vs_comparador,S0_res_sin_alt|HGB,OM_crudo,2097,-0.447487,-0.466448,-0.420302,False
+F2_Menorca,,vs_comparador,S0_res_sin_alt|HGB,HGB-S2 (03.2),2097,0.207517,0.177065,0.237213,False
+F2_Menorca,,vs_comparador,S0_res_sin_alt|HGB,ANN_M-S0 (03.2),2097,0.085331,0.077119,0.092834,False
+F2_Menorca,,vs_comparador,S0_res_sin_alt|ANN_M,HGB-S0 (03.2),2097,0.121495,0.107066,0.134081,False
+F2_Menorca,,vs_comparador,S0_res_sin_alt|ANN_M,PM_IDW_mismo_dia,2097,0.011425,0.004674,0.018765,True
+F2_Menorca,,vs_comparador,S0_res_sin_alt|ANN_M,PM_estacion_mas_cercana_mismo_dia,2097,0.018634,-0.020526,0.057846,False
+F2_Menorca,,vs_comparador,S0_res_sin_alt|ANN_M,OM_AHC_mensual_medio_entrenamiento,2097,-0.007211,-0.017765,0.005542,True
+F2_Menorca,,vs_comparador,S0_res_sin_alt|ANN_M,OM_crudo,2097,-0.458979,-0.475963,-0.433361,False
+F2_Menorca,,vs_comparador,S0_res_sin_alt|ANN_M,HGB-S2 (03.2),2097,0.196024,0.163337,0.225856,False
+F2_Menorca,,vs_comparador,S0_res_sin_alt|ANN_M,ANN_M-S0 (03.2),2097,0.073838,0.064150,0.081153,False
+F2_Menorca,,red_ayer_vs_red_dia,S0+R1_ayer|HGB,S0+R1|HGB,2097,-0.045136,-0.063917,-0.024741,False
+F2_Menorca,,S2+R1_vs_S0+R1,S2+R1|HGB,S0+R1|HGB,2097,0.005108,-0.018642,0.030280,True
+F2_Menorca,,ANN_vs_HGB_mismo_brazo,S0_res|ANN_M,S0_res|HGB,2097,0.101301,0.091898,0.111863,False
+F2_Menorca,,ANN_vs_HGB_mismo_brazo,S0_sin_alt|ANN_M,S0_sin_alt|HGB,2097,-0.002125,-0.009984,0.005098,True
+F2_Menorca,,ANN_vs_HGB_mismo_brazo,S0_res_sin_alt|ANN_M,S0_res_sin_alt|HGB,2097,-0.011492,-0.016716,-0.006938,True
+F2_Menorca,,comparadores,ANN_M-S0 (03.2),HGB-S0 (03.2),2097,0.047657,0.038848,0.057479,False
+F2_Menorca,,comparadores,PM_IDW_mismo_dia,HGB-S0 (03.2),2097,0.110070,0.094930,0.122244,False
+F2_Menorca,,comparadores,HGB-S2 (03.2),HGB-S0 (03.2),2097,-0.074529,-0.091995,-0.056304,False

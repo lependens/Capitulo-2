@@ -59,7 +59,7 @@ r32 = _load("estudio03_2_run", S032 / "run.py")
 nw = _load("estudio03_1_2_network", S0312 / "network.py")
 
 RES = Path(os.environ.get("LOSO_RES_DIR", HERE / "results"))      # LOSO_RES_DIR solo para pruebas
-CELLS = Path(os.environ.get("LOSO_CELLS_DIR", RES / "cells"))   # LOSO_CELLS_DIR solo para pruebas
+CELLS = Path(os.environ.get("LOSO_CELLS_DIR", HERE / "results" / "cells"))   # LOSO_CELLS_DIR solo para pruebas
 THR = json.loads((lc.ROOT / "config/thresholds_v3_3.json").read_text(encoding="utf-8"))
 
 # brazo -> modelos (thresholds_v3_3.json -> methods). HGB: todos los brazos con modelo; Ridge: S0+R1 y S0_res;

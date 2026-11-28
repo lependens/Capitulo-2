@@ -4,7 +4,7 @@ Documento **vivo e interno**. Recoge lo que se ha aprendido, las líneas que se 
 
 **Cómo se mantiene:** al cerrar cada estudio se actualizan «Lo que sabemos hoy» y el estado de las líneas afectadas, y se añade una línea al registro de cambios del final. Las propuestas detalladas siguen en cada estudio (03.1 Parte V, 03.2 Parte V, 03.1.2); aquí solo se resumen y se priorizan.
 
-Última actualización: 2026-11-27: 03.3, 04 (fase A) y 05 preparados con sus prompts; 03.1.2 en ejecución. Cómo se mantiene este documento: `docs/COMO_ACTUALIZAR.md`.
+Última actualización: 2026-11-28: cierre del 03.3 (L3 y L5); 04 (fase A) y 05 preparados con sus prompts. Cómo se mantiene este documento: `docs/COMO_ACTUALIZAR.md`.
 
 ## 1. Lo que sabemos hoy
 
@@ -16,8 +16,9 @@ Cifras en mm/día de RMSE frente a PM_FAO56_V1, TEST 2020–2025, estación no v
 4. **Lejos de la red, HGB-S0 gana con claridad.** Fuera Ibiza 0,51 frente a 0,61 (IDW) y 0,75 (estación más cercana); fuera Menorca 0,46 frente a 0,57 y 0,56 (03.2, F2). El error del modelo casi no cambia con la distancia y el de la red sí.
 5. **Los modelos de pocos inputs de V2 transfieren, pero peor:** +0,05 a +0,10 al salir de su estación. Con solo temperatura no vale la pena; con piranómetro sí, pero es caro (03.1).
 6. **Un termohigrómetro barato añade poco** a Open-Meteo + ML (−0,037) y mete un sesgo positivo de +0,09 (03.2).
-7. **Las ANN no son mejores que los árboles con estos datos** y se rompen al extrapolar inputs estáticos (altitud o coordenadas fuera del rango de entrenamiento, sesgo de −2,5 en IB01). HGB es el modelo de referencia (03.1, 03.2).
+7. **Las ANN no son mejores que los árboles con estos datos** y se rompen al extrapolar inputs estáticos (altitud o coordenadas fuera del rango de entrenamiento, sesgo de −2,5 en IB01). Predecir la corrección (PM − ET0_OM) no lo arregla; quitar la altitud sí, pero siguen peor que HGB (0,452 frente a 0,433). Un control de dominio (inputs fuera del rango de entrenamiento) separa exactamente esos fallos. HGB es el modelo de referencia (03.1, 03.2, 03.3).
 8. **Las diferencias entre métodos corregidos (0,03–0,05 mm/día, 1–2 %) son despreciables en la práctica** frente a la incertidumbre del Kc (10–20 %) o la eficiencia del riego. Lo que importa es corregir el sesgo de Open-Meteo y la robustez lejos de la red.
+9. **Meter la red SIAR del día como input del modelo no ayuda** (HGB-S0 + IDW + distancia: 0,444 frente a 0,433) y empeora mucho fuera de isla (+0,12 a +0,17), probablemente porque la distancia a la red actúa de identificador de estación. **Promediar** HGB-S0 y la IDW del día sí da 0,377 (−0,056) sin perder fuera de isla, pero es *post hoc* (03.3).
 
 ## 2. Líneas de investigación
 
@@ -27,9 +28,9 @@ Viabilidad: **alta** (indicio a favor o base sólida), **media** o **baja**. Cos
 |---|---|---|---|---|---|
 | L1 | **Balance hídrico por fuente de ET0** (estudio 05) | Traduce los deltas de RMSE a agua y euros; es el mensaje para vender el trabajo | alta | bajo | plan + prompt; falta tabla de cultivos |
 | L2 | **Previsión D+1…D+7** (estudio 04) | Es lo que la red no da y lo más útil para programar el riego | media-alta | medio | fase A preparada; capturas Open-Meteo y ECMWF en marcha |
-| L3 | **ML + red: corrección residual de HGB-S0 con la red del día** (regresión-kriging o IDW de los residuos) | La media simple HGB-S0 + IDW ya da 0,377 (−0,056); interpolar los residuos es la forma con base geoestadística | alta | bajo | plan: estudio 03.3 |
+| L3 | **ML + red: corrección residual de HGB-S0 con la red del día** (regresión-kriging o IDW de los residuos) | La media simple HGB-S0 + IDW ya da 0,377 (−0,056); interpolar los residuos es la forma con base geoestadística | alta | bajo | **03.3: la red como input no aporta (caso 4); la media HGB-S0 + IDW (0,377) es la mejor candidata, post hoc: prerregistrarla en L4** |
 | L4 | **Andalucía: distancia de cruce** (a partir de qué distancia a la red gana cada fuente, con y sin sensor propio) | ~100 estaciones, relieve y distancias de 50–100 km; base de un artículo serio y de un mapa de decisión. Método: exclusión por radio (ver abajo) | alta | medio | datos en captura (SIAR Sync V3) |
-| L5 | **Objetivo residual y control de dominio** (predecir PM − ET0_OM, quitar o recortar altitud, avisar fuera de rango) | Evita los fallos silenciosos de las ANN; imprescindible en un servicio | alta | bajo | plan: estudio 03.3 |
+| L5 | **Objetivo residual y control de dominio** (predecir PM − ET0_OM, quitar o recortar altitud, avisar fuera de rango) | Evita los fallos silenciosos de las ANN; imprescindible en un servicio | alta | bajo | **03.3: objetivo residual equivalente con HGB e insuficiente para la ANN; ANN aparcadas; control de dominio adoptado** |
 | L6 | **Incertidumbre por predicción** (cuantiles o intervalos conformes en LOSO) | «4,2 ± 0,4 mm» vale más que «4,2»; pocos servicios lo dan | alta | bajo | idea |
 | L7 | **Reconstrucción histórica de la ET0 de Baleares desde 1940** con el reanálisis corregido, y su tendencia | Muy divulgable; serie insular de 85 años; ya tenemos el pipeline. Supone que la corrección de 2004–2019 vale hacia atrás | media | bajo | idea |
 | L8 | **Control de calidad de la red SIAR** con los residuos de Open-Meteo + ML (detectar sensores que derivan o fallan) | Útil para el MAPA y para depurar nuestra propia referencia; publicable | media | medio | idea |
@@ -71,13 +72,13 @@ Satélite y radar mejoran sobre todo la **nubosidad y la lluvia** (previsión a 
 | Estudio | Líneas | Estado | Necesita Kaggle |
 |---|---|---|---|
 | 03.1.2 sensor + red | — | en ejecución | sí (ANN M) |
-| 03.3 Open-Meteo + ML + red, objetivo residual | L3, L5 | plan congelado, prompt listo | una sesión corta (ANN M) |
+| 03.3 Open-Meteo + ML + red, objetivo residual | L3, L5 | **ejecutado** (2026-11-28) | hecho (1 sesión) |
 | 05 balance hídrico | L1 | plan, falta tabla de cultivos | no |
 | 04 fase A previsión | L2 | prompt listo | probablemente no |
 | **03.4 fuente con licencia comercial** (propuesto) | L14 | idea: repetir lo esencial del 03.2/03.3 con ERA5 de Copernicus (descarga con cuenta gratuita del CDS) y comprobar si el `archive` de Open-Meteo y ERA5 dan lo mismo | no |
 | Andalucía, distancia de cruce | L4 | espera datos | sí |
 
-**Orden recomendado:** L1 → L3 y L5 (baratas, mismas predicciones e infraestructura) → L4 (Andalucía) → L2 (cuando haya meses de previsión capturada) → el resto según interés.
+**Orden recomendado:** L1 → L4 (Andalucía, con la media HGB-S0 + IDW y la ablación «S0+R1 sin distancia» prerregistradas) → L2 (Andalucía) → L2 (cuando haya meses de previsión capturada) → el resto según interés.
 
 ### No recomendado
 
@@ -130,7 +131,8 @@ Camino para un servicio de pago o con anuncios: entrenar con ERA5, predecir con 
 
 - ¿Qué fuente con licencia comercial reproduce mejor a Open-Meteo en Baleares (L14)? ¿Es el `archive` de Open-Meteo equivalente a ERA5 descargado de Copernicus?
 - ¿Qué ET0 prevista da ECMWF con sus variables abiertas (T, Td, viento, radiación) frente a la de Open-Meteo, y falta Tmax/Tmin para el modelo?
-- ¿Con qué retardo publica SIAR los datos del día? Decide si L3 sirve para la ET0 de hoy o solo para la de ayer.
+- ¿Con qué retardo publica SIAR los datos del día? Decide si la media HGB-S0 + IDW sirve para la ET0 de hoy o solo para la de ayer (con la red de ayer como input se pierden +0,010, 03.3; la media con la red de ayer no se ha medido).
+- ¿Falla `S0+R1` por la distancia a la red (`d1_km`) como identificador de estación? Ablación propuesta en el 03.3, no ejecutada.
 - ¿Hay acceso a datos de lisímetro a través del tutor (L10)?
 - ¿Mantiene HGB-S0 su ventaja con previsión en lugar de reanálisis (L2)?
 
@@ -143,3 +145,4 @@ Camino para un servicio de pago o con anuncios: entrenar con ERA5, predecir con 
 | 2026-11-27 | L17 (terreno y emplazamiento) y L18 (satélite y radar) |
 | 2026-11-27 | L19 (presión, tendencia, gradiente y nubosidad) y L20 (ET0 de satélite como comparador); decisión sobre cada dato de L18 |
 | 2026-11-27 | Estudio 03.3 (L3 + L5) con criterios congelados; 04 fase A y 05 con prompts; 03.4 propuesto (L14); L16 subdiaria; renumeración 03.3/03.4; guía `docs/COMO_ACTUALIZAR.md` |
+| 2026-11-28 | Cierre del estudio 03.3: L3 caso (4) con la red como input; media HGB-S0 + IDW post hoc (0,377) como candidata para L4; L5 con ANN aparcadas y control de dominio adoptado; puntos 7 y 9 de «Lo que sabemos hoy» |
