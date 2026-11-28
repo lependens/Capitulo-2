@@ -19,6 +19,7 @@ Cifras en mm/día de RMSE frente a PM_FAO56_V1, TEST 2020–2025, estación no v
 7. **Las ANN no son mejores que los árboles con estos datos** y se rompen al extrapolar inputs estáticos (altitud o coordenadas fuera del rango de entrenamiento, sesgo de −2,5 en IB01). Predecir la corrección (PM − ET0_OM) no lo arregla; quitar la altitud sí, pero siguen peor que HGB (0,452 frente a 0,433). Un control de dominio (inputs fuera del rango de entrenamiento) separa exactamente esos fallos. HGB es el modelo de referencia (03.1, 03.2, 03.3).
 8. **Las diferencias entre métodos corregidos (0,03–0,05 mm/día, 1–2 %) son despreciables en la práctica** frente a la incertidumbre del Kc (10–20 %) o la eficiencia del riego. Lo que importa es corregir el sesgo de Open-Meteo y la robustez lejos de la red.
 9. **Meter la red SIAR del día como input del modelo no ayuda** (HGB-S0 + IDW + distancia: 0,444 frente a 0,433) y empeora mucho fuera de isla (+0,12 a +0,17), probablemente porque la distancia a la red actúa de identificador de estación. **Promediar** HGB-S0 y la IDW del día sí da 0,377 (−0,056) sin perder fuera de isla, pero es *post hoc* (03.3).
+10. **Con sensor propio pasa lo mismo que con Open-Meteo (03.1.2).** La red mejora siempre al sensor solo (−0,06 a −0,18), pero sensor + red mínima como input solo gana a la IDW con piranómetro (0,362 frente a 0,434); con termohigrómetro empata (0,435) y fuera de la isla empeora (Ibiza 0,608 frente a 0,532 del sensor solo). La media simple termohigrómetro + IDW (post hoc) da 0,410 y 0,489 en Ibiza (IDW 0,612). La red del día anterior hace perder casi todo (+0,094). A d+1 se gana a la persistencia (−0,04 a −0,06) pero el sensor no aporta sobre la red.
 
 ## 2. Líneas de investigación
 
@@ -71,14 +72,14 @@ Satélite y radar mejoran sobre todo la **nubosidad y la lluvia** (previsión a 
 
 | Estudio | Líneas | Estado | Necesita Kaggle |
 |---|---|---|---|
-| 03.1.2 sensor + red | — | en ejecución | sí (ANN M) |
+| 03.1.2 sensor + red | L3, L4, L11 | **ejecutado** (2026-11-28, PR #27); conclusiones y propuestas en las Partes X y XI de su README | hecho (4 sesiones) |
 | 03.3 Open-Meteo + ML + red, objetivo residual | L3, L5 | **ejecutado** (2026-11-28) | hecho (1 sesión) |
 | 05 balance hídrico | L1 | plan, falta tabla de cultivos | no |
 | 04 fase A previsión | L2 | prompt listo | probablemente no |
 | **03.4 fuente con licencia comercial** (propuesto) | L14 | idea: repetir lo esencial del 03.2/03.3 con ERA5 de Copernicus (descarga con cuenta gratuita del CDS) y comprobar si el `archive` de Open-Meteo y ERA5 dan lo mismo | no |
 | Andalucía, distancia de cruce | L4 | espera datos | sí |
 
-**Orden recomendado:** L1 → L4 (Andalucía, con la media HGB-S0 + IDW y la ablación «S0+R1 sin distancia» prerregistradas) → L2 (Andalucía) → L2 (cuando haya meses de previsión capturada) → el resto según interés.
+**Orden recomendado:** L1 → L4 (Andalucía, con la media HGB-S0 + IDW, la media sensor + IDW (03.1.2) y la ablación «S0+R1 sin distancia» prerregistradas) → L2 (Andalucía) → L2 (cuando haya meses de previsión capturada) → el resto según interés.
 
 ### No recomendado
 
@@ -131,7 +132,7 @@ Camino para un servicio de pago o con anuncios: entrenar con ERA5, predecir con 
 
 - ¿Qué fuente con licencia comercial reproduce mejor a Open-Meteo en Baleares (L14)? ¿Es el `archive` de Open-Meteo equivalente a ERA5 descargado de Copernicus?
 - ¿Qué ET0 prevista da ECMWF con sus variables abiertas (T, Td, viento, radiación) frente a la de Open-Meteo, y falta Tmax/Tmin para el modelo?
-- ¿Con qué retardo publica SIAR los datos del día? Decide si la media HGB-S0 + IDW sirve para la ET0 de hoy o solo para la de ayer (con la red de ayer como input se pierden +0,010, 03.3; la media con la red de ayer no se ha medido).
+- ¿Con qué retardo publica SIAR los datos del día? (03.1.2: con la red de ayer, termohigrómetro + red mínima pasa de 0,435 a 0,529.) Decide si la media HGB-S0 + IDW sirve para la ET0 de hoy o solo para la de ayer (con la red de ayer como input se pierden +0,010, 03.3; la media con la red de ayer no se ha medido).
 - ¿Falla `S0+R1` por la distancia a la red (`d1_km`) como identificador de estación? Ablación propuesta en el 03.3, no ejecutada.
 - ¿Hay acceso a datos de lisímetro a través del tutor (L10)?
 - ¿Mantiene HGB-S0 su ventaja con previsión en lugar de reanálisis (L2)?
@@ -145,4 +146,5 @@ Camino para un servicio de pago o con anuncios: entrenar con ERA5, predecir con 
 | 2026-11-27 | L17 (terreno y emplazamiento) y L18 (satélite y radar) |
 | 2026-11-27 | L19 (presión, tendencia, gradiente y nubosidad) y L20 (ET0 de satélite como comparador); decisión sobre cada dato de L18 |
 | 2026-11-27 | Estudio 03.3 (L3 + L5) con criterios congelados; 04 fase A y 05 con prompts; 03.4 propuesto (L14); L16 subdiaria; renumeración 03.3/03.4; guía `docs/COMO_ACTUALIZAR.md` |
+| 2026-11-28 | Cierre del estudio 03.1.2 (PR #27; cierre documental en el PR de análisis): punto 10 de «Lo que sabemos hoy»; la media sensor + IDW y la ablación de d₁ pasan a L4; L11 gana peso (el termohigrómetro SIAR ya no mejora a la red cerca de ella) |
 | 2026-11-28 | Cierre del estudio 03.3: L3 caso (4) con la red como input; media HGB-S0 + IDW post hoc (0,377) como candidata para L4; L5 con ANN aparcadas y control de dominio adoptado; puntos 7 y 9 de «Lo que sabemos hoy» |
