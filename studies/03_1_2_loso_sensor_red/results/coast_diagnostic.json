@@ -1,0 +1,30 @@
+{
+  "_comment": "Diagnostico previo de la variante A, sin entrenar (03.1.2, Parte II). n = 9 estaciones: solo indicativo, sin IC ni contraste.",
+  "spearman": {
+    "HG_RS|principal|HGB": {
+      "bias": -0.367,
+      "bias_JJA": -0.45,
+      "rmse": -0.183
+    },
+    "HS_RA|principal|HGB": {
+      "bias": -0.133,
+      "bias_JJA": -0.133,
+      "rmse": -0.483
+    },
+    "OM_AHC_mensual_medio_entrenamiento": {
+      "bias": -0.15,
+      "bias_JJA": -0.117,
+      "rmse": -0.667
+    },
+    "PM_IDW_estaciones_entrenamiento_mismo_dia": {
+      "bias": -0.067,
+      "bias_JJA": -0.317,
+      "rmse": -0.35
+    },
+    "VALIANTZAS|principal|HGB": {
+      "bias": -0.167,
+      "bias_JJA": -0.033,
+      "rmse": -0.65
+    }
+  }
+}

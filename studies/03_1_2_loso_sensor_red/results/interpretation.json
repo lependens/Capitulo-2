@@ -1,0 +1,286 @@
+{
+  "_comment": "Aplicacion literal de interpretation_rule de config/thresholds_v3_1_2.json (HGB, F1).",
+  "B": {
+    "HS_RA|S+R1": {
+      "delta_rmse": 0.020347191493251482,
+      "ci95": [
+        -0.0003070682441184397,
+        0.04051428425110952
+      ],
+      "ci90": [
+        0.00268558690835847,
+        0.03742381495953121
+      ],
+      "caso": 3,
+      "lectura": "equivalentes (TOST): basta la red; sensor solo lejos (F2, 03.3)",
+      "rige": false,
+      "aparte_piranometro": false
+    },
+    "HS_RA|S+R3": {
+      "delta_rmse": -0.021306986311747322,
+      "ci95": [
+        -0.03396673770916134,
+        -0.008458293754224012
+      ],
+      "ci90": [
+        -0.03190036622295707,
+        -0.010574844052761873
+      ],
+      "caso": 2,
+      "lectura": "mejora estadistica sin interes practico: cerca de la red basta la red; sensor solo lejos (F2, 03.3)",
+      "rige": false,
+      "aparte_piranometro": false
+    },
+    "VALIANTZAS|S+R1": {
+      "delta_rmse": 0.0005584018239621069,
+      "ci95": [
+        -0.020886559781715084,
+        0.022251620622581562
+      ],
+      "ci90": [
+        -0.01827543751123863,
+        0.018850618639038065
+      ],
+      "caso": 3,
+      "lectura": "equivalentes (TOST): basta la red; sensor solo lejos (F2, 03.3)",
+      "rige": true,
+      "aparte_piranometro": false
+    },
+    "VALIANTZAS|S+R3": {
+      "delta_rmse": -0.04948795539262374,
+      "ci95": [
+        -0.0649930254528477,
+        -0.03459568589923376
+      ],
+      "ci90": [
+        -0.06249181339003915,
+        -0.03606998286623891
+      ],
+      "caso": 2,
+      "lectura": "mejora estadistica sin interes practico: cerca de la red basta la red; sensor solo lejos (F2, 03.3)",
+      "rige": false,
+      "aparte_piranometro": false
+    },
+    "HG_RS|S+R1": {
+      "delta_rmse": -0.07206158981053012,
+      "ci95": [
+        -0.09303840365656743,
+        -0.05182500769646434
+      ],
+      "ci90": [
+        -0.08944015304690739,
+        -0.05513951754363005
+      ],
+      "caso": 1,
+      "lectura": "sensor + red",
+      "rige": false,
+      "aparte_piranometro": true
+    },
+    "HG_RS|S+R3": {
+      "delta_rmse": -0.09184168870463688,
+      "ci95": [
+        -0.11109194804232053,
+        -0.07322714914045483
+      ],
+      "ci90": [
+        -0.10773355882522523,
+        -0.07636004413047077
+      ],
+      "caso": 1,
+      "lectura": "sensor + red",
+      "rige": false,
+      "aparte_piranometro": true
+    }
+  },
+  "C": {
+    "HS_RA": {
+      "delta_rmse": -0.03721914396258397,
+      "ci95": [
+        -0.05007590203998323,
+        -0.024293412767138155
+      ],
+      "P1_se_cumple": true,
+      "lectura": "la prevision a un dia gana a la persistencia"
+    },
+    "VALIANTZAS": {
+      "delta_rmse": -0.044127277763207906,
+      "ci95": [
+        -0.05761696150893178,
+        -0.031146833917148318
+      ],
+      "P1_se_cumple": true,
+      "lectura": "la prevision a un dia gana a la persistencia"
+    },
+    "HG_RS": {
+      "delta_rmse": -0.056997385066433925,
+      "ci95": [
+        -0.06923988851556334,
+        -0.04516222948423349
+      ],
+      "P1_se_cumple": true,
+      "lectura": "la prevision a un dia gana a la persistencia"
+    }
+  },
+  "hipotesis": {
+    "G1|B|S_R1|HS_RA|HGB": {
+      "B": "B|IDW",
+      "delta_rmse": 0.020347191493251482,
+      "ci95": [
+        -0.0003070682441184397,
+        0.04051428425110952
+      ],
+      "verdict": "IC incluye 0",
+      "equivalente_tost": true
+    },
+    "G1_R3|B|S_R3|HS_RA|HGB": {
+      "B": "B|IDW",
+      "delta_rmse": -0.021306986311747322,
+      "ci95": [
+        -0.03396673770916134,
+        -0.008458293754224012
+      ],
+      "verdict": "A gana",
+      "equivalente_tost": true
+    },
+    "G2|B|S_R1|HS_RA|HGB": {
+      "B": "B|S|HS_RA|HGB",
+      "delta_rmse": -0.17791202916357096,
+      "ci95": [
+        -0.20556083750329116,
+        -0.152010745215646
+      ],
+      "verdict": "A gana",
+      "equivalente_tost": false
+    },
+    "G1|B|S_R1|VALIANTZAS|HGB": {
+      "B": "B|IDW",
+      "delta_rmse": 0.0005584018239621069,
+      "ci95": [
+        -0.020886559781715084,
+        0.022251620622581562
+      ],
+      "verdict": "IC incluye 0",
+      "equivalente_tost": true
+    },
+    "G1_R3|B|S_R3|VALIANTZAS|HGB": {
+      "B": "B|IDW",
+      "delta_rmse": -0.04948795539262374,
+      "ci95": [
+        -0.0649930254528477,
+        -0.03459568589923376
+      ],
+      "verdict": "A gana",
+      "equivalente_tost": false
+    },
+    "G2|B|S_R1|VALIANTZAS|HGB": {
+      "B": "B|S|VALIANTZAS|HGB",
+      "delta_rmse": -0.08340668120993827,
+      "ci95": [
+        -0.10803976155588454,
+        -0.059646493449544556
+      ],
+      "verdict": "A gana",
+      "equivalente_tost": false
+    },
+    "G1|B|S_R1|HG_RS|HGB": {
+      "B": "B|IDW",
+      "delta_rmse": -0.07206158981053012,
+      "ci95": [
+        -0.09303840365656743,
+        -0.05182500769646434
+      ],
+      "verdict": "A gana",
+      "equivalente_tost": false
+    },
+    "G1_R3|B|S_R3|HG_RS|HGB": {
+      "B": "B|IDW",
+      "delta_rmse": -0.09184168870463688,
+      "ci95": [
+        -0.11109194804232053,
+        -0.07322714914045483
+      ],
+      "verdict": "A gana",
+      "equivalente_tost": false
+    },
+    "G2|B|S_R1|HG_RS|HGB": {
+      "B": "B|S|HG_RS|HGB",
+      "delta_rmse": -0.05812902884385168,
+      "ci95": [
+        -0.07739203095842885,
+        -0.03824453827472026
+      ],
+      "verdict": "A gana",
+      "equivalente_tost": false
+    },
+    "G3|B|R|NONE|HGB": {
+      "B": "B|IDW",
+      "delta_rmse": -0.005686762345731067,
+      "ci95": [
+        -0.022825081396061302,
+        0.01124651417388087
+      ],
+      "verdict": "IC incluye 0",
+      "equivalente_tost": true
+    },
+    "P1|C|S_R1|HS_RA|HGB": {
+      "B": "C|pers_IDW",
+      "delta_rmse": -0.03721914396258397,
+      "ci95": [
+        -0.05007590203998323,
+        -0.024293412767138155
+      ],
+      "verdict": "A gana",
+      "equivalente_tost": true
+    },
+    "P2|C|S_R1|HS_RA|HGB": {
+      "B": "C|R|NONE|HGB",
+      "delta_rmse": 0.014108880915598365,
+      "ci95": [
+        2.5052817638815487e-06,
+        0.028827232241509022
+      ],
+      "verdict": "A pierde",
+      "equivalente_tost": true
+    },
+    "P1|C|S_R1|VALIANTZAS|HGB": {
+      "B": "C|pers_IDW",
+      "delta_rmse": -0.044127277763207906,
+      "ci95": [
+        -0.05761696150893178,
+        -0.031146833917148318
+      ],
+      "verdict": "A gana",
+      "equivalente_tost": false
+    },
+    "P2|C|S_R1|VALIANTZAS|HGB": {
+      "B": "C|R|NONE|HGB",
+      "delta_rmse": 0.007200747114974426,
+      "ci95": [
+        -0.009062773147870531,
+        0.023120593109667506
+      ],
+      "verdict": "IC incluye 0",
+      "equivalente_tost": true
+    },
+    "P1|C|S_R1|HG_RS|HGB": {
+      "B": "C|pers_IDW",
+      "delta_rmse": -0.056997385066433925,
+      "ci95": [
+        -0.06923988851556334,
+        -0.04516222948423349
+      ],
+      "verdict": "A gana",
+      "equivalente_tost": false
+    },
+    "P2|C|S_R1|HG_RS|HGB": {
+      "B": "C|R|NONE|HGB",
+      "delta_rmse": -0.005669360188251593,
+      "ci95": [
+        -0.020069533363452356,
+        0.008802234285849187
+      ],
+      "verdict": "IC incluye 0",
+      "equivalente_tost": true
+    }
+  }
+}
