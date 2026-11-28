@@ -35,3 +35,21 @@ captured_at_utc,run_tag,source,station_code,status,detail
 2026-11-27T21:21:05Z,2026-11-27_2221,aemet,IB10,error,GET https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/07011: HTTP 429
 2026-11-27T21:21:05Z,2026-11-27_2221,siar,IB11,sin_prevision,CSV solo con cabecera (30 bytes)
 2026-11-27T21:21:05Z,2026-11-27_2221,aemet,IB11,error,GET https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/07024: HTTP 429
+2026-11-28T16:06:39Z,2026-11-28_1706,siar,IB01,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-28T16:06:39Z,2026-11-28_1706,aemet,IB01,ok,"07054 elaborado 2026-11-28T15:55:09, 7 dias"
+2026-11-28T16:06:39Z,2026-11-28_1706,siar,IB02,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-28T16:06:39Z,2026-11-28_1706,aemet,IB02,ok,"07017 elaborado 2026-11-28T15:55:09, 7 dias"
+2026-11-28T16:06:39Z,2026-11-28_1706,siar,IB03,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-28T16:06:39Z,2026-11-28_1706,aemet,IB03,ok,"07033 elaborado 2026-11-28T15:43:08, 7 dias"
+2026-11-28T16:06:39Z,2026-11-28_1706,siar,IB04,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-28T16:06:39Z,2026-11-28_1706,aemet,IB04,ok,"07040 elaborado 2026-11-28T15:55:09, 7 dias"
+2026-11-28T16:06:39Z,2026-11-28_1706,siar,IB05,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-28T16:06:39Z,2026-11-28_1706,aemet,IB05,ok,"07022 elaborado 2026-11-28T15:55:09, 7 dias"
+2026-11-28T16:06:39Z,2026-11-28_1706,siar,IB06,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-28T16:06:39Z,2026-11-28_1706,aemet,IB06,ok,"07044 elaborado 2026-11-28T15:43:08, 7 dias"
+2026-11-28T16:06:39Z,2026-11-28_1706,siar,IB08,error,POST https://servicio.mapa.gob.es/siarweb/necesidadesHidricas/calculo: HTTP 500
+2026-11-28T16:06:39Z,2026-11-28_1706,aemet,IB08,ok,"07037 elaborado 2026-11-28T15:55:09, 7 dias"
+2026-11-28T16:06:39Z,2026-11-28_1706,siar,IB10,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-28T16:06:39Z,2026-11-28_1706,aemet,IB10,ok,"07011 elaborado 2026-11-28T15:55:09, 7 dias"
+2026-11-28T16:06:39Z,2026-11-28_1706,siar,IB11,sin_prevision,CSV solo con cabecera (30 bytes)
+2026-11-28T16:06:39Z,2026-11-28_1706,aemet,IB11,ok,"07024 elaborado 2026-11-28T15:55:09, 7 dias"
