@@ -4,7 +4,7 @@ Documento **vivo e interno**. Recoge lo que se ha aprendido, las líneas que se 
 
 **Cómo se mantiene:** al cerrar cada estudio se actualizan «Lo que sabemos hoy» y el estado de las líneas afectadas, y se añade una línea al registro de cambios del final. Las propuestas detalladas siguen en cada estudio (03.1 Parte V, 03.2 Parte V, 03.1.2); aquí solo se resumen y se priorizan.
 
-Última actualización: 2026-11-28: cierre del 03.3 (L3 y L5); 04 (fase A) y 05 preparados con sus prompts; 03.1.2 en ejecución. Cómo se mantiene este documento: `docs/COMO_ACTUALIZAR.md`.
+Última actualización: 2026-11-28: cierre del 03.3 (L3 y L5); 04 (fase A) y 05 preparados con sus prompts. Cómo se mantiene este documento: `docs/COMO_ACTUALIZAR.md`.
 
 ## 1. Lo que sabemos hoy
 
