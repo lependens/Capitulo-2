@@ -18,7 +18,7 @@ Cifras en mm/día de RMSE frente a PM_FAO56_V1, TEST 2020–2025, estación no v
 6. **Un termohigrómetro barato añade poco** a Open-Meteo + ML (−0,037) y mete un sesgo positivo de +0,09 (03.2).
 7. **Las ANN no son mejores que los árboles con estos datos** y se rompen al extrapolar inputs estáticos (altitud o coordenadas fuera del rango de entrenamiento, sesgo de −2,5 en IB01). Predecir la corrección (PM − ET0_OM) no lo arregla; quitar la altitud sí, pero siguen peor que HGB (0,452 frente a 0,433). Un control de dominio (inputs fuera del rango de entrenamiento) separa exactamente esos fallos. HGB es el modelo de referencia (03.1, 03.2, 03.3).
 8. **Las diferencias entre métodos corregidos (0,03–0,05 mm/día, 1–2 %) son despreciables en la práctica** frente a la incertidumbre del Kc (10–20 %) o la eficiencia del riego. Lo que importa es corregir el sesgo de Open-Meteo y la robustez lejos de la red.
-9. **Meter la red SIAR del día como input del modelo no ayuda** (HGB-S0 + IDW + distancia: 0,444 frente a 0,433) y empeora mucho fuera de isla (+0,12 a +0,17), probablemente porque la distancia a la red actúa de identificador de estación. **Promediar** HGB-S0 y la IDW del día sí da 0,377 (−0,056) sin perder fuera de isla, pero es *post hoc* (03.3).
+9. **Meter la red SIAR del día como input del modelo no ayuda** (HGB-S0 + IDW + distancia: 0,444 frente a 0,433) y empeora mucho fuera de isla (+0,12 a +0,17), probablemente porque la distancia a la red actúa de identificador de estación. **Promediar** HGB-S0 y la IDW del día sí da 0,377 (−0,056) sin perder fuera de isla, pero es *post hoc*: recalcula sobre el mismo TEST que el 03.2; lo único nuevo es que el peso elegido sin ver TEST también sale 0,5 (03.3). Gana en las cuatro estaciones del año, sobre todo en verano (0,487 frente a 0,582), y pierde donde la red está lejos (IB08).
 10. **Con sensor propio pasa lo mismo que con Open-Meteo (03.1.2).** La red mejora siempre al sensor solo (−0,06 a −0,18), pero sensor + red mínima como input solo gana a la IDW con piranómetro (0,362 frente a 0,434); con termohigrómetro empata (0,435) y fuera de la isla empeora (Ibiza 0,608 frente a 0,532 del sensor solo). La media simple termohigrómetro + IDW (post hoc) da 0,410 y 0,489 en Ibiza (IDW 0,612). La red del día anterior hace perder casi todo (+0,094). A d+1 se gana a la persistencia (−0,04 a −0,06) pero el sensor no aporta sobre la red.
 
 ## 2. Líneas de investigación
@@ -29,9 +29,9 @@ Viabilidad: **alta** (indicio a favor o base sólida), **media** o **baja**. Cos
 |---|---|---|---|---|---|
 | L1 | **Balance hídrico por fuente de ET0** (estudio 05) | Traduce los deltas de RMSE a agua y euros; es el mensaje para vender el trabajo | alta | bajo | plan + prompt; falta tabla de cultivos |
 | L2 | **Previsión D+1…D+7** (estudio 04) | Es lo que la red no da y lo más útil para programar el riego | media-alta | medio | fase A preparada; capturas Open-Meteo y ECMWF en marcha |
-| L3 | **ML + red: corrección residual de HGB-S0 con la red del día** (regresión-kriging o IDW de los residuos) | La media simple HGB-S0 + IDW ya da 0,377 (−0,056); interpolar los residuos es la forma con base geoestadística | alta | bajo | **03.3: la red como input no aporta (caso 4); la media HGB-S0 + IDW (0,377) es la mejor candidata, post hoc: prerregistrarla en L4** |
+| L3 | **ML + red: corrección residual de HGB-S0 con la red del día** (regresión-kriging o IDW de los residuos) | La media simple HGB-S0 + IDW ya da 0,377 (−0,056); interpolar los residuos es la forma con base geoestadística | alta | bajo | **03.3: la red como input no aporta (caso 4); la media HGB-S0 + IDW (0,377) es la mejor candidata, post hoc: prerregistrarla en L4**. Propuestas del 03.3 (valoración en su README): peso de la red que baje con la distancia (L21), ablación sin `d1_km` y variante S0+R3, media con la red de ayer |
 | L4 | **Andalucía: distancia de cruce** (a partir de qué distancia a la red gana cada fuente, con y sin sensor propio) | ~100 estaciones, relieve y distancias de 50–100 km; base de un artículo serio y de un mapa de decisión. Método: exclusión por radio (ver abajo) | alta | medio | datos en captura (SIAR Sync V3) |
-| L5 | **Objetivo residual y control de dominio** (predecir PM − ET0_OM, quitar o recortar altitud, avisar fuera de rango) | Evita los fallos silenciosos de las ANN; imprescindible en un servicio | alta | bajo | **03.3: objetivo residual equivalente con HGB e insuficiente para la ANN; ANN aparcadas; control de dominio adoptado** |
+| L5 | **Objetivo residual y control de dominio** (predecir PM − ET0_OM, quitar o recortar altitud, avisar fuera de rango) | Evita los fallos silenciosos de las ANN; imprescindible en un servicio | alta | bajo | **03.3: objetivo residual equivalente con HGB e insuficiente para la ANN; ANN aparcadas; control de dominio adoptado**. Pendiente: aviso de dominio por modelo, no por input (con HGB el error fuera de dominio es el mismo; hoy salta en el 32 % de las filas) |
 | L6 | **Incertidumbre por predicción** (cuantiles o intervalos conformes en LOSO) | «4,2 ± 0,4 mm» vale más que «4,2»; pocos servicios lo dan | alta | bajo | idea |
 | L7 | **Reconstrucción histórica de la ET0 de Baleares desde 1940** con el reanálisis corregido, y su tendencia | Muy divulgable; serie insular de 85 años; ya tenemos el pipeline. Supone que la corrección de 2004–2019 vale hacia atrás | media | bajo | idea |
 | L8 | **Control de calidad de la red SIAR** con los residuos de Open-Meteo + ML (detectar sensores que derivan o fallan) | Útil para el MAPA y para depurar nuestra propia referencia; publicable | media | medio | idea |
@@ -47,6 +47,7 @@ Viabilidad: **alta** (indicio a favor o base sólida), **media** o **baja**. Cos
 | L18 | **Satélite y radar** como datos adicionales: radiación de satélite (CM SAF SARAH-3), ET0 de satélite (LSA SAF METREF), radar de lluvia de AEMET, NDVI/Kcb de Sentinel-2 | Radiación y ET0 de satélite como fuente alternativa o comparador; lluvia de radar para el balance hídrico; Kcb para el cultivo real | media | medio | idea; ver abajo |
 | L19 | **Presión, tendencia, gradiente y nubosidad como inputs adicionales** (de Open-Meteo `archive`: presión a nivel del mar y en superficie, nubosidad) | La presión no entra en PM, pero describe la situación sinóptica que condiciona viento y nubosidad, las variables que más fallan. Más informativas: la tendencia a 24 h y el gradiente entre dos puntos alejados (viento geostrófico). A diferencia de los datos estáticos, es igual para todas las estaciones el día dado: no identifica estación | media | bajo | idea; variante de la propuesta H del 03.2 |
 | L20 | **ET0 de satélite (LSA SAF METREF) como comparador** | ET0 diaria independiente a 3 km, 2004–hoy, CC BY 4.0, con registro. Comparador gratuito y con licencia clara frente a HGB-S0, la IDW y Open-Meteo | media-alta | bajo | idea; comprobar primero que cubre Baleares y su calidad |
+| L21 | **Peso de la red que baje con la distancia** (w(d1): media 0,5 · HGB-S0 + 0,5 · IDW cerca de la red y solo HGB-S0 lejos, con rampa o corte ajustado en DESARROLLO) | La media empeora donde la red está lejos (IB08 a 93 km: 0,474 frente a 0,458; fuera Menorca +0,015). Recoge eso sin meter `d1_km` en el modelo | media-alta | bajo | idea (03.3); se diseña aquí y se estima en Andalucía con L4 |
 
 ### Método para L4: exclusión por radio
 
@@ -73,18 +74,21 @@ Satélite y radar mejoran sobre todo la **nubosidad y la lluvia** (previsión a 
 | Estudio | Líneas | Estado | Necesita Kaggle |
 |---|---|---|---|
 | 03.1.2 sensor + red | L3, L4, L11 | **ejecutado** (2026-11-28, PR #27); conclusiones y propuestas en las Partes X y XI de su README | hecho (4 sesiones) |
-| 03.3 Open-Meteo + ML + red, objetivo residual | L3, L5 | **ejecutado** (2026-11-28) | hecho (1 sesión) |
+| 03.3 Open-Meteo + ML + red, objetivo residual | L3, L5 | **ejecutado** (2026-11-28, PR #28; valoración y propuestas en PR #29) | hecho (1 sesión) |
+| **03.3.1 complementos baratos del 03.3** (propuesto) | L3, L5 | idea: (1) media HGB-S0 + IDW con la red de ayer, sin entrenar; (2) ablación S0+R1 sin `d1_km` y variante S0+R3, unas 24 celdas de HGB; (3) aviso de dominio por modelo con las predicciones existentes. Criterios congelados antes de calcular | no (local) |
 | 05 balance hídrico | L1 | plan, falta tabla de cultivos | no |
 | 04 fase A previsión | L2 | prompt listo | probablemente no |
 | **03.4 fuente con licencia comercial** (propuesto) | L14 | idea: repetir lo esencial del 03.2/03.3 con ERA5 de Copernicus (descarga con cuenta gratuita del CDS) y comprobar si el `archive` de Open-Meteo y ERA5 dan lo mismo | no |
 | Andalucía, distancia de cruce | L4 | espera datos | sí |
 
-**Orden recomendado:** L1 → L4 (Andalucía, con la media HGB-S0 + IDW, la media sensor + IDW (03.1.2) y la ablación «S0+R1 sin distancia» prerregistradas) → L2 (Andalucía) → L2 (cuando haya meses de previsión capturada) → el resto según interés.
+**Orden recomendado:** L1 (añadir la media HGB-S0 + IDW y `residuo_IDW`, casi sin sesgo, como fuentes del 05) → 03.3.1 (horas de CPU, decide si la media sirve para la ET0 de hoy) → L4 (Andalucía, con la media HGB-S0 + IDW, la media sensor + IDW (03.1.2) y la ablación «S0+R1 sin distancia» prerregistradas) → L2 (cuando haya meses de previsión capturada) → el resto según interés.
 
 ### No recomendado
 
 - Seguir partiendo en subestudios diferencias de 0,02–0,04 mm/día de RMSE diario: no cambian ninguna decisión de riego (punto 8).
-- ANN tal cual con altitud o coordenadas como input (fallan dos veces: 03.1 y 03.2).
+- ANN tal cual con altitud o coordenadas como input (fallan dos veces: 03.1 y 03.2). Tampoco como modelo de punto con objetivo residual o sin altitud: quedan por detrás de HGB (03.3); solo con contexto temporal o espacial (L13).
+- Más brazos con la red SIAR como input del modelo, salvo la ablación del 03.3.1: Ridge, HGB y HGB con sensor fallan igual (03.3).
+- Recortar la altitud con árboles: no hace nada por construcción (03.3).
 - Coordenadas o identificadores de estación como input con pocas estaciones de entrenamiento (memorizan).
 
 ## 3. Publicación
@@ -132,8 +136,8 @@ Camino para un servicio de pago o con anuncios: entrenar con ERA5, predecir con 
 
 - ¿Qué fuente con licencia comercial reproduce mejor a Open-Meteo en Baleares (L14)? ¿Es el `archive` de Open-Meteo equivalente a ERA5 descargado de Copernicus?
 - ¿Qué ET0 prevista da ECMWF con sus variables abiertas (T, Td, viento, radiación) frente a la de Open-Meteo, y falta Tmax/Tmin para el modelo?
-- ¿Con qué retardo publica SIAR los datos del día? (03.1.2: con la red de ayer, termohigrómetro + red mínima pasa de 0,435 a 0,529.) Decide si la media HGB-S0 + IDW sirve para la ET0 de hoy o solo para la de ayer (con la red de ayer como input se pierden +0,010, 03.3; la media con la red de ayer no se ha medido).
-- ¿Falla `S0+R1` por la distancia a la red (`d1_km`) como identificador de estación? Ablación propuesta en el 03.3, no ejecutada.
+- ¿Con qué retardo publica SIAR los datos del día? (03.1.2: con la red de ayer, termohigrómetro + red mínima pasa de 0,435 a 0,529.) Decide si la media HGB-S0 + IDW sirve para la ET0 de hoy o solo para la de ayer (con la red de ayer como input se pierden +0,010, 03.3; la media con la red de ayer no se ha medido; es el punto (1) del 03.3.1).
+- ¿Falla `S0+R1` por la distancia a la red (`d1_km`) como identificador de estación? Ablación propuesta en el 03.3 (punto 2 del 03.3.1), no ejecutada. Ojo: IB03, con el mismo d1 que IB05, mejora con S0+R1.
 - ¿Hay acceso a datos de lisímetro a través del tutor (L10)?
 - ¿Mantiene HGB-S0 su ventaja con previsión en lugar de reanálisis (L2)?
 
@@ -148,3 +152,4 @@ Camino para un servicio de pago o con anuncios: entrenar con ERA5, predecir con 
 | 2026-11-27 | Estudio 03.3 (L3 + L5) con criterios congelados; 04 fase A y 05 con prompts; 03.4 propuesto (L14); L16 subdiaria; renumeración 03.3/03.4; guía `docs/COMO_ACTUALIZAR.md` |
 | 2026-11-28 | Cierre del estudio 03.1.2 (PR #27; cierre documental en el PR de análisis): punto 10 de «Lo que sabemos hoy»; la media sensor + IDW y la ablación de d₁ pasan a L4; L11 gana peso (el termohigrómetro SIAR ya no mejora a la red cerca de ella) |
 | 2026-11-28 | Cierre del estudio 03.3: L3 caso (4) con la red como input; media HGB-S0 + IDW post hoc (0,377) como candidata para L4; L5 con ANN aparcadas y control de dominio adoptado; puntos 7 y 9 de «Lo que sabemos hoy» |
+| 2026-11-28 | Valoración del 03.3 (PR #29): L21 (peso de la red según la distancia), 03.3.1 propuesto (media con red de ayer, ablación de `d1_km` y S0+R3, aviso de dominio por modelo), estado de L3 y L5, no recomendados; aclarado que `media_fija` es un recálculo del 03.2, no una réplica |
